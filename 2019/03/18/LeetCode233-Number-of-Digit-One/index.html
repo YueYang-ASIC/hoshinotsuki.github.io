@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,LeetCode,Math,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n. Example: Input: 13Output: 6Explanation: Digit 1 occurred in the following numbers:">
+<meta name="keywords" content="C++,LeetCode,Math">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode233.Number of Digit One">
+<meta property="og:url" content="http://yoursite.com/2019/03/18/LeetCode233-Number-of-Digit-One/index.html">
+<meta property="og:site_name" content="狂気の瞳 | Invisible Full Moon | Lightmare">
+<meta property="og:description" content="Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n. Example: Input: 13Output: 6Explanation: Digit 1 occurred in the following numbers:">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://leetcode.com/problems/number-of-digit-one/Figures/233/number_of_digit_one.png">
+<meta property="og:updated_time" content="2019-03-18T16:15:29.104Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode233.Number of Digit One">
+<meta name="twitter:description" content="Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n. Example: Input: 13Output: 6Explanation: Digit 1 occurred in the following numbers:">
+<meta name="twitter:image" content="https://leetcode.com/problems/number-of-digit-one/Figures/233/number_of_digit_one.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/18/LeetCode233-Number-of-Digit-One/">
+
+
+
+
+
+  <title>LeetCode233.Number of Digit One | 狂気の瞳 | Invisible Full Moon | Lightmare</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">狂気の瞳 | Invisible Full Moon | Lightmare</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-hand-o-right"></i> <br>
+            
+            小蒟蒻的即刻
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-github">
+          <a href="https://github.com/hoshinotsuki" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-github"></i> <br>
+            
+            小蒟蒻的GitHub
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/18/LeetCode233-Number-of-Digit-One/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="狂気の瞳 | Invisible Full Moon | Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LeetCode233.Number of Digit One</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-18T23:39:00+08:00">
+                2019-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Interview/" itemprop="url" rel="index">
+                    <span itemprop="name">Interview</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.</p>
+<p>Example:</p>
+<p>Input: 13<br>Output: 6<br>Explanation: Digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.</p>
+<h2 id="法一-按位"><a href="#法一-按位" class="headerlink" title="法一 - 按位"></a>法一 - 按位</h2><p>参考leetcode官方解答。</p>
+<p>1.个位数上的1：</p>
+<ul>
+<li>每10个数内，出现一次1</li>
+<li>如果个位数不为0，一定会出现一次1.</li>
+</ul>
+<p>n/10 + min(0,max(1,(n%10-1+1)))</p>
+<p>2.十位上的1：</p>
+<ul>
+<li>每100次，十位上出现10次1。 </li>
+<li>当十位数大于1，会出现10次1;如161x(x:[0,9]),+x+1次;16y0(y:[2,9])=+10次。所以只可能加0~10次。</li>
+<li>设个位数为x，x = n%100-10 。而且x是大于等于0的，所以用max(0,x)，由于要加x+1次，所以用 max(0,x+1)</li>
+</ul>
+<p>n/100 * 10 + min(10, max(0 ,  （n%100-10） +1))</p>
+<p>3.百位上的1：</p>
+<ul>
+<li>每1000次，百位上出现100次1.</li>
+<li>如果百位上的数字大于了2，百位上出现了100次1（不超过100次）</li>
+<li>如果百位数是1或者0，百位上会出现（n%1000 -100)+1次1.（不小于0次） </li>
+</ul>
+<p>n /1000 *100 + min(100, max(0,n%1000 -100 +1))</p>
+<p><img src="https://leetcode.com/problems/number-of-digit-one/Figures/233/number_of_digit_one.png" alt></p>
+<p>如n=1234</p>
+<ul>
+<li><p>个位的1：1234/10<em>1+min(1,4)=123\</em>1+1=124</p>
+</li>
+<li><p>十位的1：1234/100<em>10 + min(10,25)=12\</em>10+10=130</p>
+</li>
+<li><p>百位的1：1234/1000<em>100+min(100,（234-100)+1)=1\</em>100+100=200</p>
+</li>
+<li><p>千位的1：1234/10000<em>1000+min(1000,(1234-1000)+1)=0\</em>1000+235=235</p>
+<p>总计：124+130+200+235=689</p>
+</li>
+</ul>
+<h3 id="数学模型"><a href="#数学模型" class="headerlink" title="数学模型"></a>数学模型</h3><p>$$<br>n/(degree<em>10)</em>degree + min(degree,max(0,n\%(10*degree)-degree+1))<br>$$</p>
+<h3 id="C-code"><a href="#C-code" class="headerlink" title="C++ code"></a>C++ code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;    </span><br><span class="line">        <span class="keyword">int</span> ret=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> degree=<span class="number">1</span>;degree&lt;=n;degree*=<span class="number">10</span>)       </span><br><span class="line">  			ret += n /(degree*<span class="number">10</span>)*degree + min(degree, max((<span class="keyword">long</span> <span class="keyword">long</span>)<span class="number">0</span>, n % (<span class="number">10</span> * degree) - degree+<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>T:O(logn)<br>S:O(1)</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>1.这种方法是计算个十百千万位上1出现的次数，找到不同位上1出现次数的规律，解得通用公式，一般是一个分段函数。再将所有位上的次数相加，就是最终结果。<br>2.这道题容易错的地方是n/(degree<em>10)</em>degree不能写成n/10，因为可能n/(degree*10)的结果是0。<br>3.用迭代防止栈溢出，还可以使O(1)。<br>4.防止栈溢出，用long long来表示大数；同时开始ret要赋初值0，否则是一个很大的数；用<algorithm>中的max()时，要用(long long)强制转换。</algorithm></p>
+<h2 id="法二-划分"><a href="#法二-划分" class="headerlink" title="法二 - 划分"></a>法二 - 划分</h2><p>参考LC高票回答。</p>
+<table>
+<thead>
+<tr>
+<th>含1的数字</th>
+<th>1的个数</th>
+<th>数字范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>[1,9]</td>
+</tr>
+<tr>
+<td>10  11  12  13  14  15  16  17  18  19</td>
+<td>11</td>
+<td>[10,19]</td>
+</tr>
+<tr>
+<td>21</td>
+<td>1</td>
+<td>[20,29]</td>
+</tr>
+<tr>
+<td>31</td>
+<td>1</td>
+<td>[30,39]</td>
+</tr>
+<tr>
+<td>41</td>
+<td>1</td>
+<td>[40,49]</td>
+</tr>
+<tr>
+<td>51</td>
+<td>1</td>
+<td>[50,59]</td>
+</tr>
+<tr>
+<td>61</td>
+<td>1</td>
+<td>[60,69]</td>
+</tr>
+<tr>
+<td>71</td>
+<td>1</td>
+<td>[70,79]</td>
+</tr>
+<tr>
+<td>81</td>
+<td>1</td>
+<td>[80,89]</td>
+</tr>
+<tr>
+<td>91</td>
+<td>1</td>
+<td>[90,99]</td>
+</tr>
+<tr>
+<td>总计</td>
+<td>11+1*9=20</td>
+<td>[001,099]</td>
+</tr>
+<tr>
+<td>100  101  102  103  104  105  106  107  108  109</td>
+<td>11</td>
+<td>[100,109]</td>
+</tr>
+<tr>
+<td>110  111  112  113  114  115  116  117  118  119</td>
+<td>21</td>
+<td>[110,119]</td>
+</tr>
+<tr>
+<td>120  121  122  123  124  125  126  127  128  129</td>
+<td>11</td>
+<td>[120,129]</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>总计</td>
+<td>21+11*9=120</td>
+<td>[100,199]</td>
+</tr>
+<tr>
+<td>…</td>
+<td>20</td>
+<td>[200,299]=[0,99]</td>
+</tr>
+<tr>
+<td>…</td>
+<td>20</td>
+<td>[300,399]=[0,99]</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>…</td>
+<td>20</td>
+<td>[900,999]=[0,99]</td>
+</tr>
+<tr>
+<td>总计</td>
+<td>120+20*9=300</td>
+<td>[001,999]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>对于任意两位数，十位数上的数字+1就代表1出现的个数</li>
+<li>当十位数大于等于2的时候(x+8)/10，要再加上多出来的10个1. </li>
+</ul>
+<p>如：n=3141592,按个十百千万位来划分</p>
+<ul>
+<li>当m=100时，a=31415,b=92;百位数1的前缀是””到”3141”.所以是3142次。</li>
+<li>所以百位是1的时候，出现了 (a/10+1)*100 次。</li>
+<li>当m=1000时，a=3141,b=592；千位数1的前缀是””到”314”，一共315次。</li>
+<li>因为最后一个千位数是1，所以最后一次没有满1000次，而是”000”到”592”，一共593次。</li>
+<li>所以千位是1的时候，出现了(a/10*1000)+(b+1)次</li>
+<li>为了判断最后一位是否为1.用（a+8)/10来获取满载的次数，用a%10==1来判断是否需要添加额外的次数。 </li>
+</ul>
+<h3 id="C-code-1"><a href="#C-code-1" class="headerlink" title="C++ code"></a>C++ code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;    </span><br><span class="line">    <span class="keyword">int</span> ret=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> degree=<span class="number">1</span>;degree&lt;=n;degree*=<span class="number">10</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> a = n/degree;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> b = n%degree;</span><br><span class="line">            ret+=(a+<span class="number">8</span>)/<span class="number">10</span> *degree<span class="comment">//满载</span></span><br><span class="line">            +(a%<span class="number">10</span>==<span class="number">1</span>)*(b+<span class="number">1</span>);<span class="comment">//a的最后一位为1，会加剩下的余数+1</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>1.这种方法的思想是把大范围的数划分为小范围的数来计算。<br>2.前缀的最后一位如果大于等于2就进满载，即<code>(a+8)/10*degree</code>。如果题目问的是3出现的大小，就大于等于4进满载<code>(a+4)/10*degree</code>。<br>3.判断最后一位是不是1<code>(a%10==1)</code>，如果是1就要加(剩下的余数+1),加1是尾号为000的时候。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
+          
+            <a href="/tags/Math/" rel="tag"># Math</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/17/pacman/" rel="next" title="用C++写的一个吃豆人的小游戏">
+                <i class="fa fa-chevron-left"></i> 用C++写的一个吃豆人的小游戏
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Lightmare">
+            
+              <p class="site-author-name" itemprop="name">Lightmare</p>
+              <p class="site-description motion-element" itemprop="description">热爱编程的小蒟蒻。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#法一-按位"><span class="nav-number">1.</span> <span class="nav-text">法一 - 按位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学模型"><span class="nav-number">1.1.</span> <span class="nav-text">数学模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-code"><span class="nav-number">1.2.</span> <span class="nav-text">C++ code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#法二-划分"><span class="nav-number">2.</span> <span class="nav-text">法二 - 划分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C-code-1"><span class="nav-number">2.1.</span> <span class="nav-text">C++ code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">2.2.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lightmare</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
