@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-CN">
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -88,7 +88,7 @@
 <meta property="og:description" content="Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n. Example: Input: 13Output: 6Explanation: Digit 1 occurred in the following numbers:">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://leetcode.com/problems/number-of-digit-one/Figures/233/number_of_digit_one.png">
-<meta property="og:updated_time" content="2019-03-18T16:15:29.104Z">
+<meta property="og:updated_time" content="2019-03-18T16:18:37.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode233.Number of Digit One">
 <meta name="twitter:description" content="Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n. Example: Input: 13Output: 6Explanation: Digit 1 occurred in the following numbers:">
@@ -100,7 +100,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -381,7 +381,7 @@
 <p>总计：124+130+200+235=689</p>
 </li>
 </ul>
-<h3 id="数学模型"><a href="#数学模型" class="headerlink" title="数学模型"></a>数学模型</h3><p>$$<br>n/(degree<em>10)</em>degree + min(degree,max(0,n\%(10*degree)-degree+1))<br>$$</p>
+<h3 id="数学模型"><a href="#数学模型" class="headerlink" title="数学模型"></a>数学模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n/(degree*10)*degree + min(degree,max(0,n\%(10*degree)-degree+1))</span><br></pre></td></tr></table></figure>
 <h3 id="C-code"><a href="#C-code" class="headerlink" title="C++ code"></a>C++ code</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;    </span><br><span class="line">        <span class="keyword">int</span> ret=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> degree=<span class="number">1</span>;degree&lt;=n;degree*=<span class="number">10</span>)       </span><br><span class="line">  			ret += n /(degree*<span class="number">10</span>)*degree + min(degree, max((<span class="keyword">long</span> <span class="keyword">long</span>)<span class="number">0</span>, n % (<span class="number">10</span> * degree) - degree+<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>T:O(logn)<br>S:O(1)</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>1.这种方法是计算个十百千万位上1出现的次数，找到不同位上1出现次数的规律，解得通用公式，一般是一个分段函数。再将所有位上的次数相加，就是最终结果。<br>2.这道题容易错的地方是n/(degree<em>10)</em>degree不能写成n/10，因为可能n/(degree*10)的结果是0。<br>3.用迭代防止栈溢出，还可以使O(1)。<br>4.防止栈溢出，用long long来表示大数；同时开始ret要赋初值0，否则是一个很大的数；用<algorithm>中的max()时，要用(long long)强制转换。</algorithm></p>
@@ -561,6 +561,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/03/19/LeetCode刷题记录/" rel="prev" title="LeetCode刷题记录">
+                LeetCode刷题记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -638,7 +642,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -660,7 +664,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -731,7 +735,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
 
 
 
