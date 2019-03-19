@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="C++,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Range-For[c++11] What is the correct way of using C++11’s range-based for?What syntax should be used? for (auto elem : container), or for (auto&amp;amp; elem : container) or for (const auto&amp;amp; elem : co">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 语言篇 Range-For：Observing and Modifying [c++11]">
+<meta property="og:url" content="http://yoursite.com/2019/03/10/C-语言篇-Range-For-c-11/index.html">
+<meta property="og:site_name" content="Lightmare">
+<meta property="og:description" content="Range-For[c++11] What is the correct way of using C++11’s range-based for?What syntax should be used? for (auto elem : container), or for (auto&amp;amp; elem : container) or for (const auto&amp;amp; elem : co">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-19T04:47:56.064Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ 语言篇 Range-For：Observing and Modifying [c++11]">
+<meta name="twitter:description" content="Range-For[c++11] What is the correct way of using C++11’s range-based for?What syntax should be used? for (auto elem : container), or for (auto&amp;amp; elem : container) or for (const auto&amp;amp; elem : co">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":15,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/10/C-语言篇-Range-For-c-11/">
+
+
+
+
+
+  <title>C++ 语言篇 Range-For：Observing and Modifying [c++11] | Lightmare</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lightmare</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-泉水">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tint"></i> <br>
+            
+            泉水
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-英雄">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
+            
+            英雄
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-发育">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pied-piper-alt"></i> <br>
+            
+            发育
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-打野">
+          <a href="/2019/03/19/LeetCode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-optin-monster"></i> <br>
+            
+            打野
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-奖杯">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-trophy"></i> <br>
+            
+            奖杯
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/10/C-语言篇-Range-For-c-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ 语言篇 Range-For：Observing and Modifying [c++11]</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-10T12:26:20+08:00">
+                2019-03-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-19T12:47:56+08:00">
+                2019-03-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NoteBook/" itemprop="url" rel="index">
+                    <span itemprop="name">NoteBook</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Range-For-c-11"><a href="#Range-For-c-11" class="headerlink" title="Range-For[c++11]"></a>Range-For[c++11]</h2><blockquote>
+<p>What is the correct way of using C++11’s range-based for?<br>What syntax should be used? for (auto elem : container), or for (auto&amp; elem : container) or for (const auto&amp; elem : container)? Or some other?</p>
+</blockquote>
+<blockquote>
+<p>答案直接在Generic code 部分。<br>下面是解释：</p>
+</blockquote>
+<p>There’re some difference between <strong>observing the elements in the continer</strong> vs. <strong>modifying them in place</strong>.</p>
+<h2 id="Observing"><a href="#Observing" class="headerlink" title="Observing"></a>Observing</h2><h3 id="cheap-to-copy-by-value"><a href="#cheap-to-copy-by-value" class="headerlink" title="cheap-to-copy :by value"></a>cheap-to-copy :by value</h3><p>适用简单类型的元素，比如 int,double</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> elem : container)</span><br></pre></td></tr></table></figure>
+<h4 id="for-auto-x-v-简单类型"><a href="#for-auto-x-v-简单类型" class="headerlink" title="for (auto x : v) 简单类型"></a>for (auto x : v) 简单类型</h4><p>observing “int” in “vector”.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> x : v)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">' '</span>;</span><br></pre></td></tr></table></figure>
+<p>output:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="number">3</span> <span class="number">5</span> <span class="number">7</span> <span class="number">9</span></span><br></pre></td></tr></table></figure>
+<h3 id="general-case-by-const-reference"><a href="#general-case-by-const-reference" class="headerlink" title="general case : by const reference"></a>general case : by const reference</h3><h4 id="for-auto-x-v-复杂类型"><a href="#for-auto-x-v-复杂类型" class="headerlink" title="for (auto x : v) 复杂类型"></a>for (auto x : v) 复杂类型</h4><p>复杂类型的by value(效率低，会调用拷贝构造。)</p>
+<ul>
+<li>observing “customclass_type” in “vector”.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A sample test class, with custom copy semantics.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    X() </span><br><span class="line">        : m_data(<span class="number">0</span>) </span><br><span class="line">    &#123;&#125;</span><br><span class="line"></span><br><span class="line">    X(<span class="keyword">int</span> data)</span><br><span class="line">        : m_data(data)</span><br><span class="line">    &#123;&#125;</span><br><span class="line"></span><br><span class="line">    ~X() </span><br><span class="line">    &#123;&#125;</span><br><span class="line"></span><br><span class="line">    X(<span class="keyword">const</span> X&amp; other) </span><br><span class="line">        : m_data(other.m_data)</span><br><span class="line">    &#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"X copy ctor.\n"</span>; &#125;</span><br><span class="line"></span><br><span class="line">    X&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> X&amp; other)</span><br><span class="line">    &#123;</span><br><span class="line">        m_data = other.m_data;       </span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"X copy assign.\n"</span>;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Get</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> m_data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> m_data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os, <span class="keyword">const</span> X&amp; x)</span><br><span class="line">&#123;</span><br><span class="line">    os &lt;&lt; x.Get();</span><br><span class="line">    <span class="keyword">return</span> os;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;X&gt; v = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"\nElements:\n"</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> x : v)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>output: 在vector<x>初始化时，拷贝构造函数 被调用了。</x></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Elements:</span><br><span class="line">X copy ctor.</span><br><span class="line"><span class="number">1</span> X copy ctor.</span><br><span class="line"><span class="number">3</span> X copy ctor.</span><br><span class="line"><span class="number">5</span> X copy ctor.</span><br><span class="line"><span class="number">7</span> X copy ctor.</span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
+<p>在range-based for loop iterations的时候，采用的是by value的方法，初始化容器中每个元素时，<strong>copy constructor</strong> 被调用了。这样做很低效，因为我们只想观察容器中的元素,而不是想拷贝一个临时对象。（e.g. if these elements are instances of std::string, heap memory allocations can be done, with expensive trips to the memory manager, etc.）</p>
+<h4 id="for-const-auto-amp-x-v"><a href="#for-const-auto-amp-x-v" class="headerlink" title="for (const auto&amp; x : v)"></a>for (const auto&amp; x : v)</h4><p>所以最好的观测方法是常量引用传递 const auto &amp; </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;X&gt; v = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"\nElements:\n"</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; x : v)</span><br><span class="line">&#123; </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>output:没有 拷贝构造函数 调用。更加高效。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Elements:</span><br><span class="line"><span class="number">1</span> <span class="number">3</span> <span class="number">5</span> <span class="number">7</span> <span class="number">9</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Modifying"><a href="#Modifying" class="headerlink" title="Modifying"></a>Modifying</h2><p>如果要修改容器中的元素， for (auto elem : container)  或者 for (const auto&amp; elem : container) 的写法是错误的。</p>
+<h3 id="for-auto-elem-container"><a href="#for-auto-elem-container" class="headerlink" title="for (auto elem : container)"></a>for (auto elem : container)</h3><p>修改的是拷贝局部临时变量的值，不是原始数据<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> x : v)  <span class="comment">// &lt;-- capture by value (copy)</span></span><br><span class="line">    x *= <span class="number">10</span>;      <span class="comment">// &lt;-- a local temporary copy ("x") is modified,</span></span><br><span class="line">                  <span class="comment">//     *not* the original vector element.</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> x : v)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">' '</span>;</span><br></pre></td></tr></table></figure></p>
+<p>output<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="number">3</span> <span class="number">5</span> <span class="number">7</span> <span class="number">9</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="for-const-auto-amp-elem-container"><a href="#for-const-auto-amp-elem-container" class="headerlink" title="for (const auto&amp; elem : container)"></a>for (const auto&amp; elem : container)</h3><p>修改常量引用会导致编译不通过<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TestRangeFor.cpp:<span class="number">138</span>:<span class="number">11</span>: error: assignment of read-only reference <span class="string">'x'</span></span><br><span class="line">          x *= <span class="number">10</span>;</span><br><span class="line">            ^</span><br></pre></td></tr></table></figure></p>
+<h3 id="for-auto-amp-x-v"><a href="#for-auto-amp-x-v" class="headerlink" title="for (auto&amp; x : v)"></a>for (auto&amp; x : v)</h3><p>正确方法是非常量引用</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; v = &#123;<span class="string">"Bob"</span>, <span class="string">"Jeff"</span>, <span class="string">"Connie"</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Modify elements in place: use "auto &amp;"</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; x : v)</span><br><span class="line">    x = <span class="string">"Hi "</span> + x + <span class="string">"!"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Output elements (*observing* --&gt; use "const auto&amp;")</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; x : v)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">' '</span>;</span><br></pre></td></tr></table></figure>
+<p>output</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi Bob! Hi Jeff! Hi Connie!</span><br></pre></td></tr></table></figure>
+<h2 id="Case-of-Proxy-Iterator"><a href="#Case-of-Proxy-Iterator" class="headerlink" title="Case of  Proxy Iterator"></a>Case of  <strong>Proxy Iterator</strong></h2><p>需求：想通过非常量引用修改容器中bool的状态。</p>
+<h3 id="for-auto-amp-x-v-1"><a href="#for-auto-amp-x-v-1" class="headerlink" title="for (auto&amp; x : v)"></a>for (auto&amp; x : v)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; v = &#123;<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">true</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; x : v)</span><br><span class="line">    x = !x;</span><br></pre></td></tr></table></figure>
+<p>编译不通过</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TestRangeFor.cpp:<span class="number">168</span>:<span class="number">20</span>: error: invalid initialization of non-<span class="keyword">const</span> reference of</span><br><span class="line"> type 'std::_Bit_reference&amp;' from an rvalue of type 'std::_Bit_iterator::referen</span><br><span class="line">ce &#123;aka <span class="built_in">std</span>::_Bit_reference&#125;'</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; x : v)</span><br><span class="line">                    ^</span><br></pre></td></tr></table></figure>
+<p>为bool特化的std::vector模板，是由把bool打包优化空间后实现的，每个boolean值占1bit,8个boolean才占1byte。<br>因为不能返回一个单独的bit的reference，所以vector<bool>使用了一个proxy iterator设计模式。<br>proxy iterator在解引用的时候，不产生普通的bool&amp;，而是返回(by value)一个临时对象，这个对象是一个可以表达bool的proxy class。</bool></p>
+<p>REF:</p>
+<blockquote>
+<p>The problem is that std::vector template is specialized for bool, with an implementation that packs the bools to optimize space (each boolean value is stored in one bit, eight “boolean” bits in a byte).</p>
+</blockquote>
+<blockquote>
+<p>Because of that (since it’s not possible to return a reference to a single bit), vector<bool> uses a so called “proxy iterator” pattern. A “proxy iterator” is an iterator that, when dereferenced, does not yield an ordinary bool &amp;, but instead returns (by value) a temporary object, which is a <a href="https://en.wikipedia.org/wiki/Sequence_container_%28C%2B%2B%29#Specialization_for_bool" target="_blank" rel="noopener">proxy class convertible to bool</a>. (See also this question and related answers here on <a href="https://stackoverflow.com/questions/8399417/why-vectorboolreference-doesnt-return-reference-to-bool" target="_blank" rel="noopener">StackOverflow</a>.)</bool></p>
+</blockquote>
+<h3 id="for-auto-amp-amp-x-v"><a href="#for-auto-amp-amp-x-v" class="headerlink" title="for (auto&amp;&amp; x : v)"></a>for (auto&amp;&amp; x : v)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; v = &#123;<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">true</span>&#125;;</span><br><span class="line"><span class="comment">// Invert boolean status</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp;&amp; x : v)  <span class="comment">// &lt;-- note use of "auto&amp;&amp;" for proxy iterators</span></span><br><span class="line">    x = !x;</span><br><span class="line"><span class="comment">// Print new element values</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; boolalpha;        </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; x : v)<span class="comment">// 遵从observing的const auto&amp;</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">' '</span>;</span><br></pre></td></tr></table></figure>
+<p>output</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">false</span> <span class="literal">true</span> <span class="literal">true</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>proxy iterators也遵从observing的for (const auto&amp; elem : container)</li>
+<li>for (auto&amp;&amp; elem : container)也适用ordinary (non-proxy) iterators,比如vector&lt;int>或者vector&lt;string>。</li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>If the objects are cheap to copy (like ints, doubles, etc.) OR NEED to <strong>make a local copy</strong>.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> elem : container)    <span class="comment">// capture by value</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>For observing the complex elements (not need to copy)</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; elem : container)    <span class="comment">// capture by const reference</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>For modifying the elements in place </li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; elem : container)    <span class="comment">// capture by (non-const) reference</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>If the container uses “proxy iterators” (like std::vector&lt;bool>) </li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp;&amp; elem : container)    <span class="comment">// capture by &amp;&amp;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Generic-code"><a href="#Generic-code" class="headerlink" title="Generic code"></a>Generic code</h3><ul>
+<li>For observing the elements </li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; elem : container)    <span class="comment">// capture by const reference</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>For modifying the elements in place </li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp;&amp; elem : container)    <span class="comment">// capture by &amp;&amp;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for Support.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Lightmare Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/07/C-语言篇-Inline/" rel="next" title="C++ 语言篇 Inline">
+                <i class="fa fa-chevron-left"></i> C++ 语言篇 Inline
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/12/C-语言篇-Pointer-to-Function/" rel="prev" title="C++ 语言篇 Pointer to Function">
+                C++ 语言篇 Pointer to Function <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Lightmare">
+            
+              <p class="site-author-name" itemprop="name">Lightmare</p>
+              <p class="site-description motion-element" itemprop="description">~ Magic world , Magical girl ~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="即刻">
+                      
+                        <i class="iconfont icon-jike"></i>即刻</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                      
+                        <i class="iconfont icon-psn"></i>PSN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_41042404" target="_blank" title="CSDN">
+                      
+                        <i class="iconfont icon-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="博客园">
+                      
+                        <i class="iconfont icon-bokeyuan"></i>博客园</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
+                      
+                        <i class="iconfont icon-LeetCode"></i>LeetCode</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="B站">
+                      
+                        <i class="iconfont icon-bilibili"></i>B站</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lightmare625@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="前Mtime">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>前Mtime</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="现Mtime">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>现Mtime</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://whosurdaddy.ml/" title="Hector" target="_blank">Hector</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hoyyy.me/" title="小贺今天有认真学习吗" target="_blank">小贺今天有认真学习吗</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Range-For-c-11"><span class="nav-number">1.</span> <span class="nav-text">Range-For[c++11]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Observing"><span class="nav-number">2.</span> <span class="nav-text">Observing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cheap-to-copy-by-value"><span class="nav-number">2.1.</span> <span class="nav-text">cheap-to-copy :by value</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#for-auto-x-v-简单类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">for (auto x : v) 简单类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#general-case-by-const-reference"><span class="nav-number">2.2.</span> <span class="nav-text">general case : by const reference</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#for-auto-x-v-复杂类型"><span class="nav-number">2.2.1.</span> <span class="nav-text">for (auto x : v) 复杂类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for-const-auto-amp-x-v"><span class="nav-number">2.2.2.</span> <span class="nav-text">for (const auto&amp; x : v)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modifying"><span class="nav-number">3.</span> <span class="nav-text">Modifying</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-auto-elem-container"><span class="nav-number">3.1.</span> <span class="nav-text">for (auto elem : container)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-const-auto-amp-elem-container"><span class="nav-number">3.2.</span> <span class="nav-text">for (const auto&amp; elem : container)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-auto-amp-x-v"><span class="nav-number">3.3.</span> <span class="nav-text">for (auto&amp; x : v)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-of-Proxy-Iterator"><span class="nav-number">4.</span> <span class="nav-text">Case of  Proxy Iterator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-auto-amp-x-v-1"><span class="nav-number">4.1.</span> <span class="nav-text">for (auto&amp; x : v)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-auto-amp-amp-x-v"><span class="nav-number">4.2.</span> <span class="nav-text">for (auto&amp;&amp; x : v)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">5.</span> <span class="nav-text">Summary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generic-code"><span class="nav-number">5.1.</span> <span class="nav-text">Generic code</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-/images/favicon.ico"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lightmare</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
