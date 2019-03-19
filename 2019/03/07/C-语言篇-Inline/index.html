@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Algorithm,Dynamic Programming,">
+  <meta name="keywords" content="C++,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Kadane’s algorithm Aka Maximum Sum of Subarray Dynamic Programming  Maximum Subarray ProblemFrom Wikipedia  In computer science, the maximum subarray problem is the task of finding the contiguous suba">
-<meta name="keywords" content="Algorithm,Dynamic Programming">
+<meta name="description" content="Inline1.C/C++为了解决频繁调用小函数消耗栈空间的问题，引入内联函数。栈空间就是存放局部数据的内存空间。大量调用函数会造成栈空间不足而程序出错，inline避免了调用函数对栈内存重复开辟所带来的消耗。 123456789101112131415161718192021222324include &amp;lt;string&amp;gt;using std::string;include &amp;lt;ios">
+<meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kadane&#39;s Algorithm">
-<meta property="og:url" content="http://yoursite.com/2019/03/15/Kadane-s-Algorithm/index.html">
+<meta property="og:title" content="C++ 语言篇 Inline">
+<meta property="og:url" content="http://yoursite.com/2019/03/07/C-语言篇-Inline/index.html">
 <meta property="og:site_name" content="狂気の瞳 | Invisible Full Moon | Lightmare">
-<meta property="og:description" content="Kadane’s algorithm Aka Maximum Sum of Subarray Dynamic Programming  Maximum Subarray ProblemFrom Wikipedia  In computer science, the maximum subarray problem is the task of finding the contiguous suba">
+<meta property="og:description" content="Inline1.C/C++为了解决频繁调用小函数消耗栈空间的问题，引入内联函数。栈空间就是存放局部数据的内存空间。大量调用函数会造成栈空间不足而程序出错，inline避免了调用函数对栈内存重复开辟所带来的消耗。 123456789101112131415161718192021222324include &amp;lt;string&amp;gt;using std::string;include &amp;lt;ios">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-18T16:29:20.003Z">
+<meta property="og:updated_time" content="2019-03-19T04:10:38.416Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kadane&#39;s Algorithm">
-<meta name="twitter:description" content="Kadane’s algorithm Aka Maximum Sum of Subarray Dynamic Programming  Maximum Subarray ProblemFrom Wikipedia  In computer science, the maximum subarray problem is the task of finding the contiguous suba">
+<meta name="twitter:title" content="C++ 语言篇 Inline">
+<meta name="twitter:description" content="Inline1.C/C++为了解决频繁调用小函数消耗栈空间的问题，引入内联函数。栈空间就是存放局部数据的内存空间。大量调用函数会造成栈空间不足而程序出错，inline避免了调用函数对栈内存重复开辟所带来的消耗。 123456789101112131415161718192021222324include &amp;lt;string&amp;gt;using std::string;include &amp;lt;ios">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/15/Kadane-s-Algorithm/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/07/C-语言篇-Inline/">
 
 
 
 
 
-  <title>Kadane's Algorithm | 狂気の瞳 | Invisible Full Moon | Lightmare</title>
+  <title>C++ 语言篇 Inline | 狂気の瞳 | Invisible Full Moon | Lightmare</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/Kadane-s-Algorithm/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/C-语言篇-Inline/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lightmare">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Kadane's Algorithm</h1>
+          <h1 class="post-title" itemprop="name headline">C++ 语言篇 Inline</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-15T11:24:21+08:00">
-                2019-03-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-07T23:39:00+08:00">
+                2019-03-07
               </time>
             
 
@@ -285,8 +285,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Interview/" itemprop="url" rel="index">
-                    <span itemprop="name">Interview</span>
+                  <a href="/categories/NoteBook/" itemprop="url" rel="index">
+                    <span itemprop="name">NoteBook</span>
                   </a>
                 </span>
 
@@ -322,35 +322,19 @@
       
 
       
-        <h1 id="Kadane’s-algorithm"><a href="#Kadane’s-algorithm" class="headerlink" title="Kadane’s algorithm"></a>Kadane’s algorithm</h1><ul>
-<li>Aka Maximum Sum of Subarray</li>
-<li>Dynamic Programming</li>
-</ul>
-<h2 id="Maximum-Subarray-Problem"><a href="#Maximum-Subarray-Problem" class="headerlink" title="Maximum Subarray Problem"></a>Maximum Subarray Problem</h2><p>From <a href="https://en.wikipedia.org/wiki/Maximum_subarray_problem" target="_blank" rel="noopener">Wikipedia</a></p>
-<blockquote>
-<p>In computer science, the maximum subarray problem is the task of finding the contiguous subarray within a one-dimensional array, a[1…n], of numbers which has the largest sum.</p>
-</blockquote>
-<p>The task is to find a subarray (contiguous elements) of the given array that has the largest sum. For instance:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1, 5, -1, 0, 10]</span><br></pre></td></tr></table></figure>
-<p>The answer would be <code>15</code> or the entire array (it’s also a subarray)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0, -1, -5, 0, -4]</span><br></pre></td></tr></table></figure>
-<p>The answer would be <code>0</code> and so on.</p>
-<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><h3 id="Brute-force"><a href="#Brute-force" class="headerlink" title="Brute-force"></a>Brute-force</h3><p>All you need is going through all sub-arrays, keep the global maximum and compare.</p>
-<h3 id="Dynamic-Programming-Kadane’s-Algorithm"><a href="#Dynamic-Programming-Kadane’s-Algorithm" class="headerlink" title="Dynamic Programming (Kadane’s Algorithm)"></a>Dynamic Programming (Kadane’s Algorithm)</h3><ul>
-<li><code>O(n)</code> runtime complexity </li>
-<li><code>O(1)</code> space.</li>
-</ul>
-<p>Following function shows the Kadane’s algorithm implementation which uses two variables, one to store the <strong>local maximum</strong> and the other to keep track of the <strong>global maximum</strong>:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_subarray</span><span class="params">(A)</span>:</span></span><br><span class="line">    max_ending_here = max_so_far = A[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> A[<span class="number">1</span>:]:</span><br><span class="line">        max_ending_here = max(x, max_ending_here + x)</span><br><span class="line">        max_so_far = max(max_so_far, max_ending_here)</span><br><span class="line">    <span class="keyword">return</span> max_so_far</span><br></pre></td></tr></table></figure>
-<p>So we assume that the largest subarray is the first element, then we go through <code>A[1:]</code> elements (all elements except the first one).</p>
-<p>At each step, what we do is:</p>
-<ul>
-<li>Can current element plus the last largest sum_ help to find a largest subarray (line 4)?</li>
-<li>If yes, update the <code>max_ending_here</code> or our local maximum, otherwise current element is the largest subarray (array of one).</li>
-<li>Then update the global maximum or <code>max_so_far</code> if there is a new global maximum.</li>
-</ul>
-<p>When the loop is over, return the global maximum.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Kadane’s algorithm is a <a href="https://en.wikipedia.org/wiki/Dynamic_programming" target="_blank" rel="noopener">Dynamic Programming</a> approach to solve “the largest contiguous elements in an array” with runtime of O(n). </p>
+        <h1 id="Inline"><a href="#Inline" class="headerlink" title="Inline"></a>Inline</h1><p>1.C/C++为了解决频繁调用小函数消耗栈空间的问题，引入内联函数。栈空间就是存放局部数据的内存空间。大量调用函数会造成栈空间不足而程序出错，inline避免了调用函数对栈内存重复开辟所带来的消耗。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">include &lt;<span class="built_in">string</span>&gt;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">include &lt;iostream&gt;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>; <span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//inline version: find the shorter of two strings</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">const</span> <span class="built_in">string</span> &amp;</span><br><span class="line">shorterString(<span class="keyword">const</span> <span class="built_in">string</span> &amp;s1, <span class="keyword">const</span> <span class="built_in">string</span> &amp;s2)</span><br><span class="line">&#123;</span><br><span class="line">        <span class="keyword">return</span> s1.size() &lt;= s2.size() ? s1 : s2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string s1("successes"), s2("failure");</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; shorterString(s1, s2) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">// call the size member of the string returned by shorterString</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; shorterString(s1, s2).size() &lt;&lt; <span class="built_in">endl</span>;     </span><br><span class="line">    <span class="comment">// equivalent code as generated by the call to inline version</span></span><br><span class="line">    <span class="comment">// of shorterString</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; (s1.size() &lt; s2.size() ? s1 : s2) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.inline使用限制：只能是小函数，不能包含复杂的结构控制语句，不能是递归函数。如果inline函数体内代码多或者出现循环，执行代码的时间比函数调用的开销大，那么内联的效率很低。另外，每次调用inline函数都要复制代码，使程序总代码量增大，消耗内存。    </p>
+<p>3.inline只是对编译器的建议，最后是否内联，看编译器的意思，如果不复杂就会在调用点展开，真正内联。并不是声明了内联就会内联。</p>
+<p>4.建议inline函数的定义放在头文件中。因为在不同的单元都会调用内联函数，所以放在头文件中最合适。声明和定义要一致，最好定义和声明是一样的，如果不一样，由编译器决定。内联函数最好放在文件头。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 头文件</span></span><br><span class="line">ifndef EXAMPLE_H</span><br><span class="line">define EXAMPLE_H</span><br><span class="line"><span class="comment">// 包含于多个源文件的函数必须为 inline</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line"><span class="comment">// 源文件 #2</span></span><br><span class="line">include <span class="string">"example.h"</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">a</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sum(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 源文件 #1</span></span><br><span class="line">include <span class="string">"example.h"</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">b</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sum(<span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.类中、结构体、联合中定义的函数，不管是成员函数还是非成员的友元函数，都为隐式的inline函数，即缺省都是内联的。如果未在类内给出定义，又想内联该函数，在类外要加inline。</p>
+<p>直接在类声明中定义成员函数，虽然书写方便，但是不是很好的编程风格。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:<span class="function"><span class="keyword">void</span> <span class="title">Foo</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;  &#125; <span class="comment">// 自动地成为内联函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>应该改成：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 头文件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Foo</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 定义文件</span></span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">void</span> A::Foo(<span class="keyword">int</span> x, <span class="keyword">int</span> y)&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>6.inline 必须和函数定义体放在一起才能起作用，跟声明放在一起没有作用。所以inline是一种用于实现的关键字，而不是用于声明的关键字。声明和定义不可以混为一谈，用户没有必要知道函数是否需要内联。</p>
+<p>7.类的构造函数和析构函数会隐藏一些行为，比如执行了基类或者成员对象的构造函数或析构函数。不要将构造/析构函数的定义体放在声明中，编译器会根据函数的定义体，自动取消不值得的内联，进一步说明了inline不应该在函数的声明中。</p>
 
       
     </div>
@@ -392,9 +376,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
-          
-            <a href="/tags/Dynamic-Programming/" rel="tag"># Dynamic Programming</a>
+            <a href="/tags/C/" rel="tag"># C++</a>
           
         </div>
       
@@ -407,8 +389,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/15/LeetCode295-Find-Median-from-Data-Stream/" rel="next" title="LeetCode295.Find Median from Data Stream">
-                <i class="fa fa-chevron-left"></i> LeetCode295.Find Median from Data Stream
+              <a href="/2019/03/03/C++笔记本/" rel="next" title="学习C++，道阻且长。">
+                <i class="fa fa-chevron-left"></i> 学习C++，道阻且长。
               </a>
             
           </div>
@@ -417,8 +399,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/17/pacman/" rel="prev" title="用C++写的一个吃豆人的小游戏">
-                用C++写的一个吃豆人的小游戏 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/10/C-语言篇-Range-For-c-11/" rel="prev" title="C++ 语言篇 Range-For：Observing and Modifying [c++11]">
+                C++ 语言篇 Range-For：Observing and Modifying [c++11] <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -617,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kadane’s-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Kadane’s algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Maximum-Subarray-Problem"><span class="nav-number">1.1.</span> <span class="nav-text">Maximum Subarray Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solutions"><span class="nav-number">1.2.</span> <span class="nav-text">Solutions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Brute-force"><span class="nav-number">1.2.1.</span> <span class="nav-text">Brute-force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Programming-Kadane’s-Algorithm"><span class="nav-number">1.2.2.</span> <span class="nav-text">Dynamic Programming (Kadane’s Algorithm)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.3.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Inline"><span class="nav-number">1.</span> <span class="nav-text">Inline</span></a></li></ol></div>
             
 
           </div>
