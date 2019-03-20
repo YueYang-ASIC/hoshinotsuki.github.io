@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="C++,">
+  <meta name="keywords" content="C++,const,volatile,">
 
 
 
@@ -78,20 +78,20 @@
 
 
 <meta name="description" content="cv (const and volatile) type qualifiers const - defines that the type is constant. volatile - defines that the type is volatile.  const1234567891011121314151617class complex&amp;#123;public:  complex (dou">
-<meta name="keywords" content="C++">
+<meta name="keywords" content="C++,const,volatile">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 语言篇 CV(const and volatile) Type Qualifiers">
 <meta property="og:url" content="http://yoursite.com/2019/03/14/C-语言篇-cv-const-and-volatile-type-qualifiers/index.html">
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="cv (const and volatile) type qualifiers const - defines that the type is constant. volatile - defines that the type is volatile.  const1234567891011121314151617class complex&amp;#123;public:  complex (dou">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="c:/Users/Administrator/Desktop/思维导图和图表/const.png">
-<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==">
-<meta property="og:updated_time" content="2019-03-19T15:36:43.125Z">
+<meta property="og:image" content="https://camo.githubusercontent.com/70ccc74d430a948979723cf91c30f41f36af9d28/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232363139333032383339382e706e67">
+<meta property="og:image" content="https://camo.githubusercontent.com/091ead27faa73ee5cb21bb04a210a2caaa2cfdb0/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232363139333335353130312e706e67">
+<meta property="og:updated_time" content="2019-03-20T15:44:53.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ 语言篇 CV(const and volatile) Type Qualifiers">
 <meta name="twitter:description" content="cv (const and volatile) type qualifiers const - defines that the type is constant. volatile - defines that the type is volatile.  const1234567891011121314151617class complex&amp;#123;public:  complex (dou">
-<meta name="twitter:image" content="c:/Users/Administrator/Desktop/思维导图和图表/const.png">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/70ccc74d430a948979723cf91c30f41f36af9d28/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232363139333032383339382e706e67">
 
 
 
@@ -182,52 +182,62 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-泉水">
-          <a href="/" rel="section">
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tint"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
             
-            泉水
+            C++
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-英雄">
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-questions">
+          <a href="/categories/Questions-Collections/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Questions
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
             
-            英雄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-发育">
-          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-pied-piper-alt"></i> <br>
-            
-            发育
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-打野">
-          <a href="/2019/01/21/leetcode/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-optin-monster"></i> <br>
-            
-            打野
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-奖杯">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-trophy"></i> <br>
-            
-            奖杯
+            About
           </a>
         </li>
       
@@ -240,7 +250,8 @@
 </nav>
 
 
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
  </div>
     </header>
 
@@ -309,8 +320,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-19T23:36:43+08:00">
-                2019-03-19
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T23:44:53+08:00">
+                2019-03-20
               </time>
             
           </span>
@@ -347,6 +358,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
           
 
@@ -373,10 +389,11 @@
 <ul>
 <li>只有member fun后面可以用 const定义。成员变量后面不可以写const，写在前面。</li>
 <li><p>const obj 如果调用 non-const member fun会编译出错。</p>
-<p><img src="C:\Users\Administrator\Desktop\思维导图和图表\const.png" alt="const"></p>
+<p><img src="https://camo.githubusercontent.com/70ccc74d430a948979723cf91c30f41f36af9d28/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232363139333032383339382e706e67" alt="const"></p>
 </li>
 </ul>
-<p>错误：如果定义时没有写成void print() const{}; 就会报错。因为str是const-obj，不能用non-const member fun调用。 <img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p>错误：如果定义时没有写成void print() const{}; 就会报错。因为str是const-obj，不能用non-const member fun调用。 <img src="https://camo.githubusercontent.com/091ead27faa73ee5cb21bb04a210a2caaa2cfdb0/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232363139333335353130312e706e67" alt="点击并拖拽以移动"></p>
+<hr>
 <h3 id="例子：STD里的操作符重载"><a href="#例子：STD里的操作符重载" class="headerlink" title="例子：STD里的操作符重载"></a>例子：STD里的操作符重载</h3><p>来自 TEMPLATE CLASS basic_string的定义。string类的operator[]。</p>
 <ul>
 <li>用户可能拿[]来改变字符串。如String str[5]=”a”;由于string的实现机制是共享模式，不可以直接改变内部内容。只能拷贝一份再改变。所以要做cow(copy on write)设计。</li>
@@ -390,6 +407,7 @@
 </ul>
 <hr>
 <h3 id="例子：《cpp-primer》15节-基类的定义"><a href="#例子：《cpp-primer》15节-基类的定义" class="headerlink" title="例子：《cpp primer》15节 -基类的定义"></a>例子：《cpp primer》15节 -基类的定义</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Quote</span> &#123;</span></span><br><span class="line">	<span class="comment">/* </span></span><br><span class="line"><span class="comment">	** istream&amp;：必须是非常量，因为本操作就是向流读出数据，其状态会改变；</span></span><br><span class="line"><span class="comment">	** Quote&amp; ：必须是非常量，因为本操作就是向此对象写入数据，此对象值会改变；</span></span><br><span class="line"><span class="comment">	*/</span>  </span><br><span class="line">	<span class="keyword">friend</span> istream&amp; <span class="keyword">operator</span>&gt;&gt;(istream&amp;, Quote&amp;);</span><br><span class="line"> </span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	**ostream&amp; ：必须是非常量，因为本操作就是向流写入数据，其状态会改变；</span></span><br><span class="line"><span class="comment">	**const Quote&amp; ：引用是因为避免赋值实参；常量是因为通常打印对象不会改变对象本身的值；</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp;, <span class="keyword">const</span> Quote&amp;);  </span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*这种传递中的代码使用以下变量来控制编译；</span></span><br><span class="line"><span class="comment">	**变量：IN_CLASS_INITS/DEFAULT_FCNS；对应C++作用：类初始状态设置/default(默认)；</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(IN_CLASS_INITS) &amp;&amp; defined(DEFAULT_FCNS)</span></span><br><span class="line">	<span class="comment">//若定义类初始值设置及默认值，则定义默认构造函数,不接受任何实参；</span></span><br><span class="line">	Quote() = <span class="keyword">default</span>;  </span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	<span class="comment">/*若未定义类初始值及默认值，则定义构造函数，函数体空；</span></span><br><span class="line"><span class="comment">	**构造函数初始列表为新创建的数据成员price初始化，对应初始化值为 0.0；</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	Quote() : price(<span class="number">0.0</span>) &#123; &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// !defined(IN_CLASS_INITS) &amp;&amp; defined(DEFAULT_FCNS)</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//初始化构造函数</span></span><br><span class="line">	Quote(<span class="keyword">const</span> <span class="built_in">string</span> &amp;book,<span class="keyword">double</span> sales_price):</span><br><span class="line">		bookNo(book),price(sales_price)&#123; &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//虚析构函数，动态绑定</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> DEFAULT_FCNS</span></span><br><span class="line">	<span class="keyword">virtual</span> ~Quote() = <span class="keyword">default</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	<span class="keyword">virtual</span> ~Quote() &#123;	&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// DEFAULT_FCNS</span></span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//const fun。 因为bookNo被期望是const obj，所以只能被const fun调用，必须定义为const fun，否则报错。</span></span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">isbn</span><span class="params">()</span> <span class="keyword">const</span> </span></span><br><span class="line"><span class="function">	</span>&#123; <span class="keyword">return</span> bookNo; &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//虚函数。将在派生类中重写，根据书的数量，采取不同的折扣算法。</span></span><br><span class="line">	<span class="comment">//因为price（定价）也是const obj,不会被改。所以定义为const fun。</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">net_price</span><span class="params">(<span class="keyword">size_t</span> n)</span> <span class="keyword">const</span> </span></span><br><span class="line"><span class="function">	</span>&#123; <span class="keyword">return</span> n*price; &#125;<span class="comment">//虚函数返回动态分配的自身副本</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">const</span> <span class="built_in">string</span> bookNo;<span class="comment">//书号，被期望是const obj</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> IN_CLASS_INITS</span></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">double</span> price = <span class="number">0.0</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">double</span> price;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// !IN_CLASS_INITS</span></span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
 <h2 id="mutable"><a href="#mutable" class="headerlink" title="mutable"></a>mutable</h2><p>May appear in the declaration of a [non-static [class members] of non-reference non-const] type:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> &#123;</span></span><br><span class="line">  <span class="keyword">mutable</span> <span class="keyword">const</span> <span class="keyword">int</span>* p;         <span class="comment">// OK</span></span><br><span class="line">  <span class="keyword">mutable</span> <span class="keyword">int</span>* <span class="keyword">const</span> q;         <span class="comment">// ill-formed</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>Mutable is used to specify that the member does not affect the externally visible state of the class (as often used for [mutexes, memo caches, lazy evaluation, and access instrumentation]).</p>
@@ -436,6 +454,10 @@
           
             <a href="/tags/C/" rel="tag"># C++</a>
           
+            <a href="/tags/const/" rel="tag"># const</a>
+          
+            <a href="/tags/volatile/" rel="tag"># volatile</a>
+          
         </div>
       
 
@@ -447,8 +469,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/12/C-语言篇-Pointer-to-Function/" rel="next" title="C++ 语言篇 Pointer to Function">
-                <i class="fa fa-chevron-left"></i> C++ 语言篇 Pointer to Function
+              <a href="/2019/03/14/LeetCode295-Find-Median-from-Data-Stream/" rel="next" title="LeetCode295.Find Median from Data Stream">
+                <i class="fa fa-chevron-left"></i> LeetCode295.Find Median from Data Stream
               </a>
             
           </div>
@@ -457,8 +479,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/15/LeetCode295-Find-Median-from-Data-Stream/" rel="prev" title="LeetCode295.Find Median from Data Stream">
-                LeetCode295.Find Median from Data Stream <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/15/Kadane-s-Algorithm/" rel="prev" title="Kadane's Algorithm">
+                Kadane's Algorithm <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -540,7 +562,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -550,10 +572,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">5</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
-                
+                </a>
               </div>
             
 
@@ -561,10 +583,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">7</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -576,21 +598,27 @@
             <div class="links-of-author motion-element">
                 
                   <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
                     <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
                       
                         <i class="fa fa-fw fa-github"></i>GitHub</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="即刻">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
                       
-                        <i class="iconfont icon-jike"></i>即刻</a>
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
                       
-                        <i class="iconfont icon-psn"></i>PSN</a>
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
                   </span>
                 
                   <span class="links-of-author-item">
@@ -600,21 +628,9 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="博客园">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
                       
-                        <i class="iconfont icon-bokeyuan"></i>博客园</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
-                      
-                        <i class="iconfont icon-LeetCode"></i>LeetCode</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://space.bilibili.com/1688015" target="_blank" title="B站">
-                      
-                        <i class="iconfont icon-bilibili"></i>B站</a>
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
                   </span>
                 
                   <span class="links-of-author-item">
@@ -624,15 +640,27 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="http://my.mtime.com/3278759/" target="_blank" title="前Mtime">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
                       
-                        <i class="iconfont icon-shiguangwang"></i>前Mtime</a>
+                        <i class="iconfont icon-psn"></i>PSN</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="http://my.mtime.com/89767092/" target="_blank" title="现Mtime">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
                       
-                        <i class="iconfont icon-shiguangwang"></i>现Mtime</a>
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
                   </span>
                 
             </div>
@@ -655,7 +683,7 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://hoyyy.me/" title="小贺今天有认真学习吗" target="_blank">小贺今天有认真学习吗</a>
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -725,7 +753,25 @@
 
 
 
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
 
 
 

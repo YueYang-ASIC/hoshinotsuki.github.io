@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="STL,Sort,priority_queue,Algorithms library,Heapsort,RBT,multiset,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="STL堆操作(函数模板) is_heap(v.begin(), v.end()) 检查范围 [first, last) 中的元素是否为最大堆。[c++11]  auto heap_end = is_heap_until(v.begin(), v.end());  检验范围 [first, last) 并寻找始于 first 且为最大堆的最大范围，返回堆的最后一个。[c++11]  make_hea">
+<meta name="keywords" content="STL,Sort,priority_queue,Algorithms library,Heapsort,RBT,multiset">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 算法篇 std::sort_heap">
+<meta property="og:url" content="http://yoursite.com/2019/03/12/C-算法篇-std-sort-heap/index.html">
+<meta property="og:site_name" content="Lightmare">
+<meta property="og:description" content="STL堆操作(函数模板) is_heap(v.begin(), v.end()) 检查范围 [first, last) 中的元素是否为最大堆。[c++11]  auto heap_end = is_heap_until(v.begin(), v.end());  检验范围 [first, last) 并寻找始于 first 且为最大堆的最大范围，返回堆的最后一个。[c++11]  make_hea">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-20T16:16:50.570Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ 算法篇 std::sort_heap">
+<meta name="twitter:description" content="STL堆操作(函数模板) is_heap(v.begin(), v.end()) 检查范围 [first, last) 中的元素是否为最大堆。[c++11]  auto heap_end = is_heap_until(v.begin(), v.end());  检验范围 [first, last) 并寻找始于 first 且为最大堆的最大范围，返回堆的最后一个。[c++11]  make_hea">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":15,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/12/C-算法篇-std-sort-heap/">
+
+
+
+
+
+  <title>C++ 算法篇 std::sort_heap | Lightmare</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lightmare</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
+            
+            C++
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-questions">
+          <a href="/categories/Questions-Collections/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Questions
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/C-算法篇-std-sort-heap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ 算法篇 std::sort_heap</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T17:15:54+08:00">
+                2019-03-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-21T00:16:50+08:00">
+                2019-03-21
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《C-Primer》/" itemprop="url" rel="index">
+                    <span itemprop="name">《C++ Primer》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="STL堆操作-函数模板"><a href="#STL堆操作-函数模板" class="headerlink" title="STL堆操作(函数模板)"></a>STL堆操作(函数模板)</h2><ul>
+<li><p>is_heap(v.begin(), v.end())</p>
+<p>检查范围 [first, last) 中的元素是否为最大堆。[c++11]</p>
+</li>
+<li><p>auto heap_end = is_heap_until(v.begin(), v.end()); </p>
+<p>检验范围 [first, last) 并寻找始于 first 且为最大堆的最大范围，返回堆的最后一个。[c++11]</p>
+</li>
+<li><p><code>make_heap(v.begin(), v.end());</code> </p>
+<p>根据区间内的元素创建出一个最大堆 。</p>
+<p>至多 3*N次比较。</p>
+</li>
+<li><p>push_heap(v.begin(), v.end()); </p>
+<p>Inserts the element at the position <code>last-1</code> into the <em>max heap</em> defined by the range <code>[first, last-1)</code>.  </p>
+<p>如果不是最大堆，不会报错，但是无法生成最大堆。</p>
+<p>进行<em>log(N)</em>次比较。 </p>
+</li>
+<li><p><code>pop_heap(v.begin(), v.end());</code> </p>
+<p>移动最大元素到结尾。</p>
+<p>如果不是最大堆，会报错。 </p>
+</li>
+<li><p><code>sort_heap(v.begin(), v.end());</code></p>
+<p>转换最大堆 [first, last) 为<strong>以升序排序</strong>的范围。 </p>
+<p>如果不是最大堆，会报错。</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123; <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">9</span> &#125;;</span><br><span class="line">	<span class="built_in">std</span>::push_heap(v.begin(), v.end());</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"heap:\t"</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;i : v) &#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//根据区间内的元素创建出一个最大堆 </span></span><br><span class="line">	<span class="built_in">std</span>::make_heap(v.begin(), v.end()); <span class="comment">// 9 5 4 1 1 3</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"heap:\t"</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;i : v) &#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::pop_heap(v.begin(), v.end()); <span class="comment">// 移动最大元素到结尾</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"after pop_heap: "</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i : v) <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">' '</span>;<span class="comment">// 5 3 4 1 1 9</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> largest = v.back();</span><br><span class="line">	v.pop_back();  <span class="comment">// 实际移出最大元素</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"largest element: "</span> &lt;&lt; largest &lt;&lt; <span class="string">'\n'</span>;<span class="comment">//9</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"heap without largest: "</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i : v) <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">' '</span>;<span class="comment">// 5 3 4 1 1</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//转换最大堆 [first, last) 为以升序排序的范围，必须保证是最大堆，否则报错。</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">std</span>::is_heap(v.begin(), v.end()))<span class="comment">//检查范围 [first, last) 中的元素是否为最大堆。[c++11]</span></span><br><span class="line">		<span class="built_in">std</span>::sort_heap(v.begin(), v.end());<span class="comment">//1 1 3 4 5</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"\nsorted:\t"</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;i : v) &#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::make_heap(v.begin(), v.end());</span><br><span class="line">	<span class="comment">// 很可能扰乱堆</span></span><br><span class="line">	v.push_back(<span class="number">2</span>);</span><br><span class="line">	v.push_back(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">auto</span> heap_end = <span class="built_in">std</span>::is_heap_until(v.begin(), v.end());</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"all of v: "</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i : v) <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"only heap: "</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i = v.begin(); i != heap_end; ++i) <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *i &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::push_heap(v.begin(), v.end());</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"push_heap: "</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i : v) <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">heap:   <span class="number">9</span> <span class="number">1</span> <span class="number">3</span> <span class="number">1</span> <span class="number">5</span> <span class="number">4</span></span><br><span class="line">heap:   <span class="number">9</span> <span class="number">5</span> <span class="number">4</span> <span class="number">1</span> <span class="number">1</span> <span class="number">3</span></span><br><span class="line">after pop_heap: <span class="number">5</span> <span class="number">3</span> <span class="number">4</span> <span class="number">1</span> <span class="number">1</span> <span class="number">9</span></span><br><span class="line">largest element: <span class="number">9</span></span><br><span class="line">heap without largest: <span class="number">5</span> <span class="number">3</span> <span class="number">4</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line">sorted: <span class="number">1</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line">all of v: <span class="number">5</span> <span class="number">4</span> <span class="number">3</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">6</span></span><br><span class="line">only heap: <span class="number">5</span> <span class="number">4</span> <span class="number">3</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span></span><br><span class="line">push_heap: <span class="number">6</span> <span class="number">4</span> <span class="number">5</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="using-priority-queue"><a href="#using-priority-queue" class="headerlink" title="using priority_queue"></a>using priority_queue</h2><h3 id="max-heap-default"><a href="#max-heap-default" class="headerlink" title="max-heap(default)"></a>max-heap(default)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        priority_queue&lt;<span class="keyword">int</span>&gt; pq(nums.begin(), nums.end());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            pq.pop();<span class="comment">//将堆顶元素删除k-1次。</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pq.top();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="min-heap"><a href="#min-heap" class="headerlink" title="min-heap"></a>min-heap</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        priority_queue&lt;<span class="keyword">int</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt;&gt; pq;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            pq.push(num);</span><br><span class="line">            <span class="keyword">if</span> (pq.size() &gt; k) &#123;</span><br><span class="line">                pq.pop();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pq.top();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="using-multiset-rbt"><a href="#using-multiset-rbt" class="headerlink" title="using multiset(rbt)"></a>using multiset(rbt)</h2><h3 id="min-heap-default"><a href="#min-heap-default" class="headerlink" title="min-heap(default)"></a>min-heap(default)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">multiset</span>&lt;<span class="keyword">int</span>&gt; mset;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            mset.insert(num);</span><br><span class="line">            <span class="keyword">if</span> (mset.size() &gt; k) &#123;</span><br><span class="line">                mset.erase(mset.begin());<span class="comment">//multiset没有pop()，只能用erase(it);</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> *mset.begin();<span class="comment">//multiset也没有top()，他是</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="max-heap"><a href="#max-heap" class="headerlink" title="max-heap"></a>max-heap</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">multiset</span>&lt;<span class="keyword">int</span>, greater&lt;<span class="keyword">int</span>&gt;&gt; mset(nums.begin(), nums.end());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            mset.erase(mset.begin());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> *mset.begin();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="implements-a-max-heap"><a href="#implements-a-max-heap" class="headerlink" title="implements a max-heap"></a>implements a max-heap</h2><p>In the above we have presented heap solutions using STL. You may also implement your own heap if you are interested. I suggest you to read the Heapsort chapter of Introduction to Algorithms if you are not familiar with it. The following code implements a max-heap.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        buildMaxHeap(nums);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            swap(nums[<span class="number">0</span>], nums[--heapSize]);</span><br><span class="line">            maxHeapify(nums, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> heapSize;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">left</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (i &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">right</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (i &lt;&lt; <span class="number">1</span>) + <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">maxHeapify</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> largest = i, l = left(i), r = right(i);</span><br><span class="line">        <span class="keyword">if</span> (l &lt; heapSize &amp;&amp; nums[l] &gt; nums[largest]) &#123;</span><br><span class="line">            largest = l;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (r &lt; heapSize &amp;&amp; nums[r] &gt; nums[largest]) &#123;</span><br><span class="line">            largest = r;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (largest != i) &#123;</span><br><span class="line">            swap(nums[i], nums[largest]);</span><br><span class="line">            maxHeapify(nums, largest);<span class="comment">//递归</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">buildMaxHeap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        heapSize = nums.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = (heapSize &gt;&gt; <span class="number">1</span>) - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            maxHeapify(nums, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="REF"><a href="#REF" class="headerlink" title="REF"></a>REF</h2><p><a href="https://wangwangok.github.io/2017/05/09/data_struct_max_heap/" target="_blank" rel="noopener">最大堆（创建、删除、插入和堆排序）</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for Support.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Lightmare Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/STL/" rel="tag"># STL</a>
+          
+            <a href="/tags/Sort/" rel="tag"># Sort</a>
+          
+            <a href="/tags/priority-queue/" rel="tag"># priority_queue</a>
+          
+            <a href="/tags/Algorithms-library/" rel="tag"># Algorithms library</a>
+          
+            <a href="/tags/Heapsort/" rel="tag"># Heapsort</a>
+          
+            <a href="/tags/RBT/" rel="tag"># RBT</a>
+          
+            <a href="/tags/multiset/" rel="tag"># multiset</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/12/C-容器篇-std-priority-queue/" rel="next" title="C++ 容器篇 std::priority_queue">
+                <i class="fa fa-chevron-left"></i> C++ 容器篇 std::priority_queue
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/12/C-语言篇-Named-requirements/" rel="prev" title="C++ 语言篇 Named requirements">
+                C++ 语言篇 Named requirements <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Lightmare">
+            
+              <p class="site-author-name" itemprop="name">Lightmare</p>
+              <p class="site-description motion-element" itemprop="description">~ Magic world , Magical girl ~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
+                      
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_41042404" target="_blank" title="CSDN">
+                      
+                        <i class="iconfont icon-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
+                      
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lightmare625@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                      
+                        <i class="iconfont icon-psn"></i>PSN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
+                      
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://whosurdaddy.ml/" title="Hector" target="_blank">Hector</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wayjam.me/" title="wayjam" target="_blank">wayjam</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#STL堆操作-函数模板"><span class="nav-number">1.</span> <span class="nav-text">STL堆操作(函数模板)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#using-priority-queue"><span class="nav-number">2.</span> <span class="nav-text">using priority_queue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#max-heap-default"><span class="nav-number">2.1.</span> <span class="nav-text">max-heap(default)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#min-heap"><span class="nav-number">2.2.</span> <span class="nav-text">min-heap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#using-multiset-rbt"><span class="nav-number">3.</span> <span class="nav-text">using multiset(rbt)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#min-heap-default"><span class="nav-number">3.1.</span> <span class="nav-text">min-heap(default)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#max-heap"><span class="nav-number">3.2.</span> <span class="nav-text">max-heap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#implements-a-max-heap"><span class="nav-number">4.</span> <span class="nav-text">implements a max-heap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REF"><span class="nav-number">5.</span> <span class="nav-text">REF</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-/images/favicon.ico"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lightmare</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

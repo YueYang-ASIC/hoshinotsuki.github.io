@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,OOP,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="概述  继承1234567891011struct Base &amp;#123;    int a, b, c;&amp;#125;;// 每个 Derived 类型对象包含 Base 为子对象struct Derived : Base &amp;#123;    int b;&amp;#125;;// 每个 Derived2 类型对象包含 Derived 与 Base 为子对象struct Derived2 : Derive">
+<meta name="keywords" content="C++,OOP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 面向对象篇 OOP概述">
+<meta property="og:url" content="http://yoursite.com/2019/02/25/C-面向对象篇-OOP概述/index.html">
+<meta property="og:site_name" content="Lightmare">
+<meta property="og:description" content="概述  继承1234567891011struct Base &amp;#123;    int a, b, c;&amp;#125;;// 每个 Derived 类型对象包含 Base 为子对象struct Derived : Base &amp;#123;    int b;&amp;#125;;// 每个 Derived2 类型对象包含 Derived 与 Base 为子对象struct Derived2 : Derive">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://camo.githubusercontent.com/766d23dc4b7965c123a7d6cf1be6cb89289e1e07/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232363031303130333634352e706e67">
+<meta property="og:image" content="https://camo.githubusercontent.com/66e3a2c13e24533e3a12f17ca6b2030bc0e2d331/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232353133323135353239332e706e67">
+<meta property="og:image" content="https://camo.githubusercontent.com/e9d9c46277497a68b9eb246b9eda915a49a4e99d/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232353136343130323639312e706e67">
+<meta property="og:image" content="https://camo.githubusercontent.com/8343d4ad5d56c305c11b720f2597898791e998d6/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232363230343832383937302e706e67">
+<meta property="og:image" content="https://camo.githubusercontent.com/81c7475882568e2b22c3612df37b0693a4af8cf3/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232373231323933393332312e706e67">
+<meta property="og:image" content="https://camo.githubusercontent.com/ede097c19de3d35faa8f51ec7538bcd8f853f0ce/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232373232313132393632312e706e67">
+<meta property="og:image" content="https://camo.githubusercontent.com/618aeffadc72a8d022e8dbe38e9be093b240b169/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f323031393032323732323337353533342e706e67">
+<meta property="og:image" content="https://camo.githubusercontent.com/91d7a1dc86cf7bddd13b6a350beddb0623930b9c/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232373232323735383231332e706e67">
+<meta property="og:updated_time" content="2019-03-20T14:10:30.217Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ 面向对象篇 OOP概述">
+<meta name="twitter:description" content="概述  继承1234567891011struct Base &amp;#123;    int a, b, c;&amp;#125;;// 每个 Derived 类型对象包含 Base 为子对象struct Derived : Base &amp;#123;    int b;&amp;#125;;// 每个 Derived2 类型对象包含 Derived 与 Base 为子对象struct Derived2 : Derive">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/766d23dc4b7965c123a7d6cf1be6cb89289e1e07/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232363031303130333634352e706e67">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":15,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/25/C-面向对象篇-OOP概述/">
+
+
+
+
+
+  <title>C++ 面向对象篇 OOP概述 | Lightmare</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lightmare</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
+            
+            C++
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-questions">
+          <a href="/categories/Questions-Collections/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Questions
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/25/C-面向对象篇-OOP概述/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ 面向对象篇 OOP概述</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-25T17:00:39+08:00">
+                2019-02-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T22:10:30+08:00">
+                2019-03-20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《C-Primer》/" itemprop="url" rel="index">
+                    <span itemprop="name">《C++ Primer》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><img src="https://camo.githubusercontent.com/766d23dc4b7965c123a7d6cf1be6cb89289e1e07/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232363031303130333634352e706e67" alt="img"></p>
+<hr>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> a, b, c;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 每个 Derived 类型对象包含 Base 为子对象</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> Base &#123;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 每个 Derived2 类型对象包含 Derived 与 Base 为子对象</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived2</span> :</span> Derived &#123;</span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从内存的角度：派生类继承了基类的成员变量（data)。</li>
+<li>从多态的角度：可以重写基类的成员函数。函数的继承是继承父类的调用权。</li>
+</ul>
+<h2 id="基类"><a href="#基类" class="headerlink" title="基类"></a>基类</h2><h3 id="基类的成员函数定义"><a href="#基类的成员函数定义" class="headerlink" title="基类的成员函数定义"></a><strong>基类的成员函数定义</strong></h3><p><strong>基类必须已经定义，才能派生。</strong></p>
+<ul>
+<li>non-virtual fun 非虚函数：不希望派生类重写。</li>
+<li>virtual fun 虚函数 ：希望派生类重写。</li>
+<li>pure virtual fun 纯虚函数 ： 派生类必须重写。</li>
+</ul>
+<h3 id="虚析构函数"><a href="#虚析构函数" class="headerlink" title="虚析构函数"></a><strong>虚析构函数</strong></h3><p>虽然析构函数是不继承的，若基类声明器其析构函数为 <code>virtual</code> ，则派生的析构函数始终覆写它。</p>
+<p>这使得可以通过指向基类的指针 delete 动态分配的多态类型对象。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~Base() &#123; <span class="comment">/* 释放 Base 的资源 */</span> &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> :</span> <span class="keyword">public</span> Base &#123;</span><br><span class="line">    ~Derived() &#123; <span class="comment">/* 释放 Derived 的资源 */</span> &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Base* b = <span class="keyword">new</span> Derived;</span><br><span class="line">    <span class="keyword">delete</span> b; <span class="comment">// 进行到 Base::~Base() 的虚函数调用</span></span><br><span class="line">              <span class="comment">// 因为它为虚，故它调用 Derived::~Derived() ，</span></span><br><span class="line">              <span class="comment">// 能释放派生类的资源，然后遵循通常析构顺序</span></span><br><span class="line">              <span class="comment">// 调用 Base::~Base()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>【重要！】<strong>任何基类的析构函数必须为公开且虚public virtual，或protected受保护且非虚 。</strong><br>若类为<em>多态</em>（声明或继承至少一个虚函数），且其析构函数非虚，会导致资源泄漏。因为派生类的资源未释放。</p>
+<h2 id="派生类"><a href="#派生类" class="headerlink" title="派生类"></a>派生类</h2><ul>
+<li>派生类必须用 ：指定父类。 用逗号分开。基类前面可以加三种访问说明符之一。</li>
+<li><img src="https://camo.githubusercontent.com/66e3a2c13e24533e3a12f17ca6b2030bc0e2d331/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232353133323135353239332e706e67" alt="img"></li>
+<li>若省略访问说明符 ，则它对以类关键 <code>struct</code> 声明的类默认为 <code>public</code> ，对以类关键 <code>class</code> 声明的类为 <code>private</code> 。</li>
+<li>列于 base-clause 的类是直接基类，其基类是间接基类。</li>
+<li>同一类不能指定于直接基类多于一次，但同一类可以既是直接又是间接基类。</li>
+<li>每个直接和间接基类都作为<em>基类子对象</em>，以实现定义的偏移存在于派生类的对象表示中。</li>
+<li>因为<a href="https://zh.cppreference.com/w/cpp/language/ebo" target="_blank" rel="noopener">空基类优化</a>，空基类通常不会增加派生类对象的大小。</li>
+<li><strong>类不能派生自己。</strong></li>
+<li><strong>派生类声明中。不能包含基类列表。</strong></li>
+<li>派生类可以隐式转换为基类。</li>
+</ul>
+<h2 id="空基类优化（本节不理解"><a href="#空基类优化（本节不理解" class="headerlink" title="空基类优化（本节不理解"></a><a href="https://zh.cppreference.com/w/cpp/language/ebo" target="_blank" rel="noopener">空基类优化</a>（本节不理解</h2><p>允许空的基类子对象大小为零。</p>
+<p>为保证同一类型的不同对象地址始终有别，要求任何<a href="https://zh.cppreference.com/w/cpp/language/object" target="_blank" rel="noopener">对象</a>或成员子对象的大小至少为 1 ，即使该类型是空<a href="https://zh.cppreference.com/w/cpp/language/class" target="_blank" rel="noopener">类类型</a>（即无非静态数据成员的 class 或 struct ）。</p>
+<p>然而，基类子对象不受这种制约，而且可以完全从对象布局中被优化掉：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cassert&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span>&#125;; <span class="comment">// 空类</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived1</span> :</span> Base &#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 任何空类类型的对象大小至少为 1</span></span><br><span class="line">    assert(<span class="keyword">sizeof</span>(Base) &gt; <span class="number">0</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 应用空基优化</span></span><br><span class="line">    assert(<span class="keyword">sizeof</span>(Derived1) == <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若空基类之一亦为首个非静态数据成员的类型或其类型的基类，则禁用空基优化，因为要求同类型二个基类子对象在最终派生类的对象表示中拥有不同地址。</p>
+<p>这种情况的典例是 <a href="https://zh.cppreference.com/w/cpp/iterator/reverse_iterator" target="_blank" rel="noopener">std::reverse_iterator</a> 的朴素实现（派生自空基类 <a href="https://zh.cppreference.com/w/cpp/iterator/iterator" target="_blank" rel="noopener">std::iterator</a> ），它保有底层迭代器（亦派生自 <a href="https://zh.cppreference.com/w/cpp/iterator/iterator" target="_blank" rel="noopener">std::iterator</a> ）为其首个非静态数据成员。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cassert&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span>&#125;; <span class="comment">// 空类</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived1</span> :</span> Base &#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived2</span> :</span> Base &#123;</span><br><span class="line">    Base c; <span class="comment">// Base ，占用 1 字节，后随为 i 的填充</span></span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived3</span> :</span> Base &#123;</span><br><span class="line">    Derived1 c; <span class="comment">// 从 Base 派生，占用 sizeof(int) 字节</span></span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 不应用空基优化</span></span><br><span class="line">    <span class="comment">// 基类占用 1 字节，Base 成员占用 1 字节，后随2个填充字节以满足 int 对齐要求</span></span><br><span class="line">    assert(<span class="keyword">sizeof</span>(Derived2) == <span class="number">2</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 不应用空基类优化，</span></span><br><span class="line">    <span class="comment">// 基类占用至少 1 字节加填充以满足首个成员的对齐要求（其对齐要求同 int ）</span></span><br><span class="line">    assert(<span class="keyword">sizeof</span>(Derived3) == <span class="number">3</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>【C++11】：对于<a href="https://zh.cppreference.com/w/cpp/named_req/StandardLayoutType" target="_blank" rel="noopener">标准布局类型</a> (StandardLayoutType) <em>要求</em>有空基类优化，以维持指向标准布局对象的指针，用 <a href="https://zh.cppreference.com/w/cpp/language/reinterpret_cast" target="_blank" rel="noopener">reinterpret_cast</a> 转换后，还指向其首成员，这是标准布局类型“无拥有非静态数据成员的基类，且无与其首个非静态数据成员同类型的基类”的原因。</p>
+<h2 id="虚基类"><a href="#虚基类" class="headerlink" title="虚基类"></a>虚基类</h2><p><strong>【注意】</strong>对于每个指定为 <code>virtual</code> 的相异基类，最终派生类对象<strong>仅含有该类型的一个基类子对象</strong>，即使该类在继承层级中出现多次（只要它每次都以 <code>virtual</code> 继承）。</p>
+<p>下面的AA对象只有2个B基类子对象，XY共有一个虚B基类，Z有一个非虚B基类。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> &#123;</span> <span class="keyword">int</span> n; &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span> :</span> <span class="keyword">public</span> <span class="keyword">virtual</span> B &#123;&#125;;<span class="comment">//相异基类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> :</span> <span class="keyword">virtual</span> <span class="keyword">public</span> B &#123;&#125;;<span class="comment">//相异基类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Z</span> :</span> <span class="keyword">public</span> B &#123;&#125;;</span><br><span class="line"><span class="comment">// 每个 AA 类型对象拥有一个 X ，一个 Y ，一个 Z 和二个 B ：</span></span><br><span class="line"><span class="comment">// 其一是 Z 的基类，另一者为 X 与 Y 所共享</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AA</span> :</span> X, Y, Z &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        X::n = <span class="number">1</span>; <span class="comment">// 修改虚 B 基类子对象的成员</span></span><br><span class="line">        Y::n = <span class="number">2</span>; <span class="comment">// 修改同一虚 B 基类子对象的成员</span></span><br><span class="line">        Z::n = <span class="number">3</span>; <span class="comment">// 修改非虚 B 基类子对象的成员</span></span><br><span class="line"> </span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; X::n &lt;&lt; Y::n &lt;&lt; Z::n &lt;&lt; <span class="string">'\n'</span>; <span class="comment">// 打印 223</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="iostream"><a href="#iostream" class="headerlink" title="iostream"></a><strong>iostream</strong></h3><p>继承层级有虚基类的例子之一是标准库的 iostream 的继承层级：</p>
+<p><img src="https://camo.githubusercontent.com/e9d9c46277497a68b9eb246b9eda915a49a4e99d/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232353136343130323639312e706e67" alt="img"></p>
+<p><a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 与 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> 从 <strong>std::ios 使用虚继承派生</strong>。 </p>
+<p><a href="https://zh.cppreference.com/w/cpp/io/basic_iostream" target="_blank" rel="noopener">std::iostream</a> 继承 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 和 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> ，</p>
+<p>故每个 <a href="https://zh.cppreference.com/w/cpp/io/basic_iostream" target="_blank" rel="noopener">std::iostream</a> 实例含一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_ostream" target="_blank" rel="noopener">std::ostream</a> 子对象、一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream" target="_blank" rel="noopener">std::istream</a> 子对象和仅一个 <a href="https://zh.cppreference.com/w/cpp/io/basic_ios" target="_blank" rel="noopener">std::ios</a> 子对象（继而有一个 <a href="https://zh.cppreference.com/w/cpp/io/ios_base" target="_blank" rel="noopener">std::ios_base</a> ）。</p>
+<p><strong>（这里不理解）</strong></p>
+<p><em>所有</em> 虚基类子对象 在 <em>任何</em> 非虚基类子对象 <strong>前 初始化</strong>，故 <em>只有</em> 最终派生类于其<a href="https://zh.cppreference.com/w/cpp/language/initializer_list" target="_blank" rel="noopener">成员初始化器列表</a>调用虚基类的构造函数： </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    B(<span class="keyword">int</span> x) : n(x) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">X</span> :</span> <span class="keyword">virtual</span> B </span><br><span class="line">&#123; </span><br><span class="line">    X() : B(<span class="number">1</span>) &#123;&#125; </span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Y</span> :</span> <span class="keyword">virtual</span> B &#123;</span><br><span class="line">     Y() : B(<span class="number">2</span>) &#123;&#125; </span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AA</span> :</span> X, Y&#123;</span><br><span class="line">    AA() : B(<span class="number">3</span>),X(),Y() &#123;&#125; <span class="comment">//逗号分隔基类列表。前面可以有访问说明。</span></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// AA 的默认构造函数调用 X 和 Y 的默认构造函数</span></span><br><span class="line"><span class="comment">// 但这些构造函数不调用 B 的构造函数，因为 B 是虚基类</span></span><br><span class="line">AA a; <span class="comment">// a.n == 3</span></span><br><span class="line"><span class="comment">// X 的默认构造函数调用 B 的构造函数</span></span><br><span class="line">X x; <span class="comment">// x.n == 1</span></span><br></pre></td></tr></table></figure>
+<p>涉及虚继承时，类成员的非限定名称查找有特殊规则（有时被引用为支配规则），见 <a href="https://zh.cppreference.com/w/cpp/language/unqualified_lookup#.E6.88.90.E5.91.98.E5.87.BD.E6.95.B0.E5.AE.9A.E4.B9.89" target="_blank" rel="noopener">unqualified_lookup#成员函数定义</a>。 </p>
+<h2 id="继承方式"><a href="#继承方式" class="headerlink" title="继承方式"></a>继承方式</h2><p><img src="https://camo.githubusercontent.com/8343d4ad5d56c305c11b720f2597898791e998d6/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232363230343832383937302e706e67" alt="img"></p>
+<h3 id="公开继承-public"><a href="#公开继承-public" class="headerlink" title="公开继承 public"></a><strong>公开继承 public</strong></h3><p>公开继承模拟面向对象编程的子类型关系：派生类对象是（ IS-A ）基类子对象。期待派生类对象的引用和指针，可为使用期待到其任何基类的引用和指针的代码所用（见 <a href="https://en.wikipedia.org/wiki/Liskov_substitution_principle" target="_blank" rel="noopener">LSP</a> ），或者为了 <a href="https://en.wikipedia.org/wiki/Design_by_contract" target="_blank" rel="noopener">DbC</a> ，派生类应该维护其公开基类的类不变量，不应强化任何其所<a href="https://zh.cppreference.com/w/cpp/language/virtual" target="_blank" rel="noopener">覆写</a>的成员函数的前置条件，或弱化任何其后置条件。 </p>
+<h3 id="受保护继承-protected"><a href="#受保护继承-protected" class="headerlink" title="受保护继承 protected"></a><strong>受保护继承 protected</strong></h3><p>受保护继承可用于“受控制的多态”：在派生类的成员中，还有在所有进一步派生类的成员中，派生类是（ IS-A ）基类：到派生类的引用和指针可用于期待到基类的引用和指针处。</p>
+<h3 id="私有继承-private"><a href="#私有继承-private" class="headerlink" title="私有继承 private"></a><strong>私有继承 private</strong></h3><p>私有继承常用于基于策略的设计，因为策略常是空基类，而使用基类可以启用静多态并活用<a href="https://zh.cppreference.com/w/cpp/language/ebo" target="_blank" rel="noopener">空基类优化</a>.</p>
+<p>私有继承亦可用于实现合成关系（基类子对象是派生类对象的实现细节）。成员使用提供更好的封装，而且通常受到偏好，除非派生类要求访问基类的受保护成员（包含构造函数）、需要覆写基类的虚成员、需要基类构造先于或析构后于某其他基类子对象，需要共享虚基类或需要控制虚基类的构造。实现合成的成员使用亦不可应用于从<a href="https://zh.cppreference.com/w/cpp/language/parameter_pack" target="_blank" rel="noopener">参数包</a>多重继承的情况，或在编译时通过模板元编程确定基类身份的情况。</p>
+<p>同受保护继承，私有继承亦可用于受控制的多态：在派生类的成员内（但不在进一步派生类内），派生类是（ IS-A ）基类。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Transport&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">service</span> :</span> Transport  <span class="comment">// 从 Transport 策略私有继承</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">transmit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;send(...);  <span class="comment">// 发送传输所提供的任何内容</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// TCP 传输策略</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">tcp</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">send</span><span class="params">(...)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// UDP 传输策略</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">udp</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">send</span><span class="params">(...)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">service&lt;tcp&gt; service(host, port); </span><br><span class="line">service.transmit(...); <span class="comment">// 发送完毕 TCP</span></span><br></pre></td></tr></table></figure>
+<h2 id="成员名称查找（不理解）"><a href="#成员名称查找（不理解）" class="headerlink" title="成员名称查找（不理解）"></a>成员名称查找（不理解）</h2><p>类成员非限定及限定名称查找的规则详细列于<a href="https://zh.cppreference.com/w/cpp/language/lookup" target="_blank" rel="noopener">名称查找</a>。</p>
+<h2 id="C-11新增"><a href="#C-11新增" class="headerlink" title="C++11新增"></a>C++11新增</h2><p>派生类内部<strong>必须</strong>对所有重定义的虚函数进行声明，可以在函数前加上virtual关键字，也可以不加。</p>
+<p>只有虚函数才能被覆盖。签名要匹配。</p>
+<p>为了方便编译器找出错误。C++通过override和final显式说明派生类的虚函数，这两个说明符在语句的<strong>最后</strong>。</p>
+<h3 id="override"><a href="#override" class="headerlink" title="override"></a><strong>override</strong></h3><p>在成员函数声明或定义中， <code>override</code> 可以<strong>显式</strong>地指出该函数为虚函数，并覆写来自基类的虚函数。 </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bar</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> :</span> A</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> <span class="keyword">const</span> override</span>; <span class="comment">// 错误： B::foo 不覆写 A::foo</span></span><br><span class="line">                               <span class="comment">// （签名不匹配）</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> override</span>; <span class="comment">// OK ： B::foo 覆写 A::foo</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bar</span><span class="params">()</span> override</span>; <span class="comment">// 错误： A::bar 非虚</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="final"><a href="#final" class="headerlink" title="final"></a><strong>final</strong></h3><p>在虚函数声明或定义中使用时， <code>final</code> 确保函数为虚，且不可被派生类覆写。</p>
+<p> <code>final</code> 亦可用于<a href="https://zh.cppreference.com/w/cpp/language/union" target="_blank" rel="noopener">联合体</a>定义，此情况下它无效（除了 <a href="https://zh.cppreference.com/w/cpp/types/is_final" target="_blank" rel="noopener">std::is_final</a> 上的结果），因为不能派生联合体。final 是在用于成员函数声明或类头部时有特殊含义的标识符。其他语境中它非保留而且可用于命名对象或函数。 </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span> :</span> Base</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> final</span>; <span class="comment">// A::foo 被覆写且是最终覆写</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bar</span><span class="params">()</span> final</span>; <span class="comment">// 错误：非虚函数不能被覆写或是 final</span></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> <span class="title">final</span> :</span> A <span class="comment">// struct B 为 final</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> override</span>; <span class="comment">// 错误： foo 不能被覆写，因为它在 A 中是 final</span></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">C</span> :</span> B <span class="comment">// 错误： B 为 final</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="动态绑定-非常重要）"><a href="#动态绑定-非常重要）" class="headerlink" title="动态绑定(非常重要）"></a>动态绑定(非常重要）</h1><p>使用基类的引用或指针，调用一个虚函数，虚函数运行时，形参的版本由实参对象的类型决定。</p>
+<p>C++ OOP的关键：基类和派生类之间的类型转换。</p>
+<h2 id="对象模型：虚表和虚指针"><a href="#对象模型：虚表和虚指针" class="headerlink" title="对象模型：虚表和虚指针"></a>对象模型：虚表和虚指针</h2><p><img src="https://camo.githubusercontent.com/81c7475882568e2b22c3612df37b0693a4af8cf3/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232373231323933393332312e706e67" alt="img"></p>
+<ul>
+<li>函数也占内存，也有地址。虚函数才有虚指针，虚函数表（里面都是指向函数的指针。</li>
+<li>c调用： 静态绑定 call+地址。c++调用：动态绑定。指向C的指针p想调用虚函数v1（动态绑定）通过指针找到vptr虚指针，找到vtbl虚函数表，得到要调用的函数地址。</li>
+<li>p-&gt;vptr[n]是c语言的描述，n是虚函数在vtbl中的第几个位置。编译器在编译的时候看vfun是第几个出现的，就确定了n的值。 </li>
+<li>类的内存：父类数据+自己数据+1个或0个虚指针。</li>
+</ul>
+<p><img src="https://camo.githubusercontent.com/ede097c19de3d35faa8f51ec7538bcd8f853f0ce/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232373232313132393632312e706e67" alt="img"></p>
+<ul>
+<li>容器里装的一定是一个指向父类的指针。list&lt;A*&gt;，因为没法确定形状的大小所以是指针，而且必须得是父类。</li>
+<li>只有虚函数才能被override（c++)。不用像c那样去判断类型。因为父类可能加新的子类。</li>
+</ul>
+<p>##动态绑定的三个条件</p>
+<ol>
+<li>通过指针或引用调用。</li>
+<li>指针必须向上转型。由子类转向父类。</li>
+<li>调用的是虚函数。 </li>
+</ol>
+<h2 id="static-type和dynamic-type区别"><a href="#static-type和dynamic-type区别" class="headerlink" title="static type和dynamic type区别"></a>static type和dynamic type区别</h2><ul>
+<li>静态类型在编译时就被确定了。它是【变量声明时的类型】 或【表达式生成的类型】。</li>
+<li>动态类型在运行时才知道。它是【变量或表达式代表的内存中的对象的类型】。</li>
+</ul>
+<p><img src="https://camo.githubusercontent.com/618aeffadc72a8d022e8dbe38e9be093b240b169/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f323031393032323732323337353533342e706e67" alt="img"></p>
+<h2 id="关于this"><a href="#关于this" class="headerlink" title="关于this"></a>关于this</h2><p><img src="https://camo.githubusercontent.com/91d7a1dc86cf7bddd13b6a350beddb0623930b9c/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303139303232373232323735383231332e706e67" alt="img"></p>
+<ul>
+<li>this是个指针。也可以说this指的那个object。</li>
+<li>main(){derivedclass object;object.func();}相当于调用baseclass::func(&amp;object);&amp;object就是this，通常不写。</li>
+</ul>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>只有在指针和引用之间才有类型转换。在对象之间没有类型转换。</p>
+<hr>
+<h1 id="虚成员、虚函数"><a href="#虚成员、虚函数" class="headerlink" title="虚成员、虚函数"></a>虚成员、虚函数</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
+<li>基类希望该成员在派生类中重新定义，除了构造函数和静态成员，类中任何成员都可以被virtual声明为虚成员。</li>
+<li>该函数在派生类中隐式的也是虚函数。</li>
+</ul>
+<h2 id="调用（重要）"><a href="#调用（重要）" class="headerlink" title="调用（重要）"></a>调用（重要）</h2><p>若使用到基类的指针或引用处理派生类，则对被覆写虚函数的调用，将会调用定义于派生类的行为。</p>
+<p>若使用<a href="https://zh.cppreference.com/w/cpp/language/lookup" target="_blank" rel="noopener">有限定名称查找</a>（作用域解决运算符 <code>::</code> ），调用作用域内部的非虚函数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">   <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"base\n"</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> Base &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> override </span>&#123; <span class="comment">// 'override' 可选</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"derived\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Base b;</span><br><span class="line">    Derived d;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 通过引用调用虚函数</span></span><br><span class="line">    Base&amp; br = b; <span class="comment">// br 的类型是 Base&amp;</span></span><br><span class="line">    Base&amp; dr = d; <span class="comment">// dr 的类型也是 Base&amp;</span></span><br><span class="line">    br.f(); <span class="comment">// 打印 "base"</span></span><br><span class="line">    dr.f(); <span class="comment">// 打印 "derived"</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 通过指针调用虚函数</span></span><br><span class="line">    Base* bp = &amp;b; <span class="comment">// bp 的类型是 Base*</span></span><br><span class="line">    Base* dp = &amp;d; <span class="comment">// dp 的类型也是 Base*</span></span><br><span class="line">    bp-&gt;f(); <span class="comment">// 打印 "base"</span></span><br><span class="line">    dp-&gt;f(); <span class="comment">// 打印 "derived"</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 非虚函数调用</span></span><br><span class="line">    br.Base::f(); <span class="comment">// 打印 "base"</span></span><br><span class="line">    dr.Base::f(); <span class="comment">// 打印 "base"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="覆写（重要）"><a href="#覆写（重要）" class="headerlink" title="覆写（重要）"></a>覆写（重要）</h2><p>若某成员函数 <code>vf</code> 在类 <code>Base</code> 中声明为 <code>virtual</code> ，且某个直接或间接从 <code>Base</code> 派生的类 <code>Derived</code> 拥有下列几点与之相同的成员函数声明</p>
+<ul>
+<li>名称</li>
+<li>参数列表（但非返回类型）</li>
+<li>cv 限定符</li>
+<li>引用限定符</li>
+</ul>
+<p>则类 <code>Derived</code> 中的此函数亦为<em>虚</em>（无论是否于其声明使用关键词 <code>virtual</code> ）并<em>覆写</em> Base::vf （无论是否于其声明使用词 <code>override</code>）。</p>
+<p>要覆写的 <code>Base::vf</code> 不需要可见（可声明为 private ，或用私有继承继承）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">do_f</span><span class="params">()</span></span>; <span class="comment">// 私有成员</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123; do_f(); &#125; <span class="comment">// 公开继承</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">D</span> :</span> <span class="keyword">public</span> B &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">do_f</span><span class="params">()</span> override</span>; <span class="comment">// 覆写 B::do_f</span></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    D d;</span><br><span class="line">    B* bp = &amp;d;</span><br><span class="line">    bp-&gt;f(); <span class="comment">// 内部调用 D::do_f();</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于每个虚函数，存在<em>最终覆写者</em>，它在虚函数调用进行时执行。基类 <code>Base</code> 虚成员函数 <code>vf</code> 是最终覆写者，除非派生类声明或继承（通过多重继承）另一覆写 <code>vf</code> 的函数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span> &#123;</span> <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; &#125;;     <span class="comment">// A::f 为 virtual</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> :</span> A &#123; <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; &#125;;         <span class="comment">// B::f 覆写 A::f in B</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">C</span> :</span> <span class="keyword">virtual</span> B &#123; <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; &#125;; <span class="comment">// C::f 覆写 A::f in C</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">D</span> :</span> <span class="keyword">virtual</span> B &#123;&#125;; <span class="comment">// D 不引入覆写者， B::f 在 D 中为最终</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">E</span> :</span> C, D  &#123;       <span class="comment">// E 不引入覆写者， C::f 在 E 中为最终</span></span><br><span class="line">    <span class="keyword">using</span> A::f; <span class="comment">// 非函数声明，仅令 A::f 能为查找所见</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   E e;</span><br><span class="line">   e.f();    <span class="comment">// 虚调用调用 C::f ， e 中的最终覆写者</span></span><br><span class="line">   e.E::f(); <span class="comment">// 非虚调用调用 A::f ，它在 E 中可见</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虚函数只能有一个最终覆写者：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">VB1</span> :</span> <span class="keyword">virtual</span> A &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; <span class="comment">// 覆写 A::f</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">VB2</span> :</span> <span class="keyword">virtual</span> A &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; <span class="comment">// 覆写 A::f</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// struct Error : VB1, VB2 &#123;</span></span><br><span class="line"><span class="comment">//     // 错误： A::f 在 Error 中拥有二个最终覆写者</span></span><br><span class="line"><span class="comment">// &#125;;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Okay</span> :</span> VB1, VB2 &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; <span class="comment">// OK ：这是 A::f 的最终覆写者</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">VB1a</span> :</span> <span class="keyword">virtual</span> A &#123;&#125;; <span class="comment">// 不声明覆写者</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Da</span> :</span> VB1a, VB2 &#123;</span><br><span class="line">    <span class="comment">// Da 中， A::f 的最终覆写者是 VB2::f</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>拥有同名和相异参数列表的函数不覆写同名的基类函数，但<em>隐藏</em>它：在<a href="https://zh.cppreference.com/w/cpp/language/lookup" target="_blank" rel="noopener">非限定名称查找</a>检验派生类的作用域时，查找找到该声明，且不检验基类。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">D</span> :</span> B &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span>)</span></span>; <span class="comment">// D::f 隐藏 B::f （错误的参数列表）</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">D2</span> :</span> D &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; <span class="comment">// D2::f 覆写 B::f （它不可见是不要紧的）</span></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    B b;   B&amp; b_as_b   = b;</span><br><span class="line">    D d;   B&amp; d_as_b   = d;    D&amp; d_as_d = d;</span><br><span class="line">    D2 d2; B&amp; d2_as_b  = d2;   D&amp; d2_as_d = d2;</span><br><span class="line"> </span><br><span class="line">    b_as_b.f(); <span class="comment">// 调用 B::f()</span></span><br><span class="line">    d_as_b.f(); <span class="comment">// 调用 B::f()</span></span><br><span class="line">    d2_as_b.f(); <span class="comment">// 调用 D2::f()</span></span><br><span class="line"> </span><br><span class="line">    d_as_d.f(); <span class="comment">// 错误： D 中的查找只找到 f(int)</span></span><br><span class="line">    d2_as_d.f(); <span class="comment">// 错误： D 中的查找只找到 f(int)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>非成员函数和静态成员函数不能为虚。</p>
+<p>函数模板不能为虚 <code>virtual</code> 。这只应用于自身是模板的函数——类模板的常规成员函数能声明为虚。</p>
+<p>在编译时替换虚函数的<a href="https://zh.cppreference.com/w/cpp/language/default_arguments" target="_blank" rel="noopener">默认实参</a>。</p>
+<h2 id="协变返回类型"><a href="#协变返回类型" class="headerlink" title="协变返回类型"></a>协变返回类型</h2><p>若函数 <code>Derived::f</code> 覆写 <code>Base::f</code> ，则其返回类型必须相同或为<em>协变</em>。若满足所有下列要求，则二个类型为协变：</p>
+<ul>
+<li>二个类型均为到类的指针或引用（左值或右值）。不允许多级指针或引用。</li>
+<li><code>Base::f()</code> 的返回类型中被引用/指向的类，必须是 <code>Derived::f()</code> 的返回类型中被引用/指向的类的无歧义且可直接或间接访问的基类。</li>
+<li><code>Derived::f()</code> 的返回类型必须有相对于 <code>Base::f()</code> 的返回类型的相等或较少的 <a href="https://zh.cppreference.com/w/cpp/language/cv" target="_blank" rel="noopener">cv 限定</a>。</li>
+</ul>
+<p><code>Derived::f</code> 的返回类型中的类必须是 <code>Derived</code> 自身，或必须是于 <code>Derived::f</code> 声明点的<a href="https://zh.cppreference.com/w/cpp/language/type#.E4.B8.8D.E5.AE.8C.E6.95.B4.E7.B1.BB.E5.9E.8B" target="_blank" rel="noopener">完整类型</a>。</p>
+<p>进行虚函数调用时，最终覆写者的返回类型被<a href="https://zh.cppreference.com/w/cpp/language/implicit_conversion" target="_blank" rel="noopener">隐式转换</a>成本该调用的被覆写函数的返回类型：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> &#123;</span>&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">vf1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">vf2</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">vf3</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> B* <span class="title">vf4</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> B* <span class="title">vf5</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span> :</span> <span class="keyword">private</span> B &#123;</span><br><span class="line">    <span class="keyword">friend</span> <span class="class"><span class="keyword">struct</span> <span class="title">Derived</span>;</span> <span class="comment">// Derived 中， B 是 D 的可访问基类</span></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>;</span> <span class="comment">// 前置声明类是不完整类型</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> <span class="keyword">public</span> Base &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">vf1</span><span class="params">()</span></span>;    <span class="comment">// 虚，覆写 Base::vf1()</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">vf2</span><span class="params">(<span class="keyword">int</span>)</span></span>; <span class="comment">// 非虚，隐藏 Base::vf2()</span></span><br><span class="line"><span class="comment">//  char vf3();    // 错误：覆写 Base::vf3 ，但有相异而非协变返回类型</span></span><br><span class="line">    <span class="function">D* <span class="title">vf4</span><span class="params">()</span></span>;      <span class="comment">// 覆写 Base::vf4() 并用有协变返回类型</span></span><br><span class="line"><span class="comment">//  A* vf5();      // 错误： A 是不完整类型</span></span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Derived d;</span><br><span class="line">    Base&amp; br = d;</span><br><span class="line">    Derived&amp; dr = d;</span><br><span class="line"> </span><br><span class="line">    br.vf1(); <span class="comment">// 调用 Derived::vf1()</span></span><br><span class="line">    br.vf2(); <span class="comment">// 调用 Base::vf2()</span></span><br><span class="line"><span class="comment">//  dr.vf2(); // 错误： vf2(int) 隐藏 vf2()</span></span><br><span class="line"> </span><br><span class="line">    B* p = br.vf4(); <span class="comment">// 调用 Derived::vf4() 并转换结果为 B*</span></span><br><span class="line">    D* q = dr.vf4(); <span class="comment">// 调用 Derived::vf4() 并不转换结果为 B*</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="在构造与析构期间"><a href="#在构造与析构期间" class="headerlink" title="在构造与析构期间"></a>在构造与析构期间</h2><ul>
+<li>派生类构造函数。首先初始化基类的部分。再按照声明的顺序依次初始化派生类的成员。</li>
+<li>每个类控制它自己的成员初始化过程。（关键;要想与类的对象交互。必须使用该类的接口。）</li>
+</ul>
+<p>当直接或间接从构造函数或从析构函数调用虚函数（包含在类的非静态成员函数的构造或析构期间，例如在<a href="https://zh.cppreference.com/w/cpp/language/initializer_list" target="_blank" rel="noopener">初始化器列表</a>中），且应用调用的对象是正在构造或析构中的对象，则所调用的函数是构造函数或析构函数的类中的最终覆写者，而非进一步派生类中的覆写者。 换言之，在构造和析构期间，进一步派生类不存在。</p>
+<p>构建有多分支的复杂类时，在属于一个分支的构造函数内，多态被限制到该类与其基类：若它获得到其子层级外的基类子对象的指针，且试图进行虚函数调用（例如通过显式成员访问），则行为未定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">V</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">g</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span> :</span> <span class="keyword">virtual</span> V &#123;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; <span class="comment">// A::f 是 V::f 在 A 中的最终覆写者</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> :</span> <span class="keyword">virtual</span> V &#123;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">g</span><span class="params">()</span></span>; <span class="comment">// B::g 是 V::g 在 B 中的最终覆写者</span></span><br><span class="line">    B(V*, A*);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">D</span> :</span> A, B &#123;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; <span class="comment">// D::f 是 V::f 在 D 中的最终覆写者</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">g</span><span class="params">()</span></span>; <span class="comment">// D::g 是 V::g 在 D 中的最终覆写者</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 注意： A 初始化先于 B</span></span><br><span class="line">    D() : B((A*)<span class="keyword">this</span>, <span class="keyword">this</span>) </span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// B 的构造函数，从 D 的构造函数调用 </span></span><br><span class="line">B::B(V* v, A* a)</span><br><span class="line">&#123;</span><br><span class="line">    f(); <span class="comment">// 对 V::f 的虚调用（尽管 D 拥有最终覆写者， D 也不存在）</span></span><br><span class="line">    g(); <span class="comment">// 对 B::g 的虚调用，在 B 中是最终覆写者</span></span><br><span class="line"> </span><br><span class="line">    v-&gt;g(); <span class="comment">// v 的类型 V 是 B 的基类，虚调用如前调用 B::g</span></span><br><span class="line"> </span><br><span class="line">    a-&gt;f(); <span class="comment">// a 的类型 A 不是 B 的基类，它属于层级中的不同分支。</span></span><br><span class="line">            <span class="comment">// 尝试通过不同分支的虚调用导致未定义行为，</span></span><br><span class="line">            <span class="comment">// 即使此情况下 A 已完全构造</span></span><br><span class="line">            <span class="comment">// （它在 B 前构造，因为它在 D 的基类列表中出现先于 B ）</span></span><br><span class="line">            <span class="comment">// 实践中，对 A::f 的虚调用会试图使用 B 的虚成员函数表，</span></span><br><span class="line">            <span class="comment">// 因为它在 B 的构造中活跃</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="抽象类-与-纯虚类"><a href="#抽象类-与-纯虚类" class="headerlink" title="抽象类 与 纯虚类"></a>抽象类 与 纯虚类</h1><p>定义不能被实例化，但能用作基类的抽象类型。 </p>
+<h2 id="纯虚-pure-virtual-函数"><a href="#纯虚-pure-virtual-函数" class="headerlink" title="纯虚 (pure virtual) 函数"></a><strong>纯虚 (pure virtual) 函数</strong></h2><p>纯虚 (pure virtual) 函数是<a href="https://zh.cppreference.com/w/cpp/language/function" target="_blank" rel="noopener">声明器</a>拥有下列语法的<a href="https://zh.cppreference.com/w/cpp/language/virtual" target="_blank" rel="noopener">虚函数</a>：</p>
+<p>此处序列 <code>**= 0**</code> 被称作 pure-specifier ，且立即出现于 declarator 后或于可选的 virt-specifier （ <a href="https://zh.cppreference.com/w/cpp/language/override" target="_blank" rel="noopener">override</a> 或 <a href="https://zh.cppreference.com/w/cpp/language/final" target="_blank" rel="noopener">final</a> ）后。</p>
+<p>pure-specifier 不能出现于成员函数定义中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span> <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">g</span><span class="params">()</span></span>; <span class="keyword">virtual</span> ~Base() &#123;&#125; &#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span> :</span> Base&#123;</span><br><span class="line">    <span class="comment">// OK ：声明三个成员虚函数，其二为纯</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>, g() override = <span class="number">0</span>, h();</span><br><span class="line">    <span class="comment">// OK ：析构函数亦能为纯</span></span><br><span class="line">    ~A() = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 错误：纯指定符在函数定义上</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">b</span><span class="params">()</span></span>=<span class="number">0</span> &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>abstract class 是定义或继承了至少一个<a href="https://zh.cppreference.com/w/cpp/language/virtual" target="_blank" rel="noopener">最终覆写</a>为 pure virtual 的函数的类。</p>
+<p>抽象类用于表示<strong>通用概念</strong>（例如 Shape 、 Animal ），它可用作具体类（例如 Circle 、 Dog ）的基类。</p>
+<p>不能创建抽象类的实例。抽象类型不能用作参数类型、函数返回类型或显式转换的类型。可以声明到抽象类的指针或引用。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Abstract</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>; <span class="comment">// 纯虚</span></span><br><span class="line">&#125;; <span class="comment">// "Abstract" 为抽象</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Concrete</span> :</span> Abstract &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> override </span>&#123;&#125; <span class="comment">// 非纯虚</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">g</span><span class="params">()</span></span>;     <span class="comment">// 非纯虚</span></span><br><span class="line">&#125;; <span class="comment">// "Concrete" 为非抽象</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Abstract2</span> :</span> Concrete &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">()</span> override </span>= <span class="number">0</span>; <span class="comment">// 纯虚覆写</span></span><br><span class="line">&#125;; <span class="comment">// "Abstract2" 为抽象</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// Abstract a; // 错误：抽象类</span></span><br><span class="line">    Concrete b; <span class="comment">// OK</span></span><br><span class="line">    Abstract&amp; a = b; <span class="comment">// OK ：到抽象基类的引用</span></span><br><span class="line">    a.f(); <span class="comment">// 到 Concrete::f() 的虚派发</span></span><br><span class="line">    <span class="comment">// Abstract2 a2; // 错误：抽象类（ g() 的最终覆写为纯）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以提供纯虚函数的定义（而且若<a href="https://zh.cppreference.com/w/cpp/language/destructor" target="_blank" rel="noopener">析构函数</a>为纯虚则必须提供）：导出类的成员函数可以自由地用有限定函数 id 调用虚基类的纯虚函数。此定义必须在类体外（函数声明的语法不允许纯虚指定符 <code>**= 0**</code> 和函数体一起出现）。</p>
+<p>从抽象类的构造函数或析构函数进行纯虚函数的虚调用是未定义行为（无论纯虚函数是否拥有定义）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Abstract</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>; <span class="comment">// 纯虚</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">g</span><span class="params">()</span> </span>&#123;&#125; <span class="comment">// 非纯虚</span></span><br><span class="line">    ~Abstract() &#123;</span><br><span class="line">        g(); <span class="comment">// OK ：调用 Abstract::g()</span></span><br><span class="line">        <span class="comment">// f(); // 未定义行为！</span></span><br><span class="line">        Abstract::f(); <span class="comment">// OK ：非虚调用</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 纯虚函数的定义</span></span><br><span class="line"><span class="keyword">void</span> Abstract::f() &#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"A::f()\n"</span>; &#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Concrete</span> :</span> Abstract &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> override </span>&#123;</span><br><span class="line">        Abstract::f(); <span class="comment">// OK ：调用纯虚函数</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">()</span> override </span>&#123;&#125;</span><br><span class="line">    ~Concrete() &#123;</span><br><span class="line">        g(); <span class="comment">// OK ：调用 Concrete::g()</span></span><br><span class="line">        f(); <span class="comment">// OK ：调用 Concrete::f()</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for Support.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Lightmare Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/OOP/" rel="tag"># OOP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/24/C-STL篇-IO库/" rel="next" title="C++ STL篇 IO库">
+                <i class="fa fa-chevron-left"></i> C++ STL篇 IO库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/03/LeetCode51-N-Queens/" rel="prev" title="LeetCode51. N-Queens">
+                LeetCode51. N-Queens <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Lightmare">
+            
+              <p class="site-author-name" itemprop="name">Lightmare</p>
+              <p class="site-description motion-element" itemprop="description">~ Magic world , Magical girl ~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
+                      
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_41042404" target="_blank" title="CSDN">
+                      
+                        <i class="iconfont icon-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
+                      
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lightmare625@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                      
+                        <i class="iconfont icon-psn"></i>PSN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
+                      
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://whosurdaddy.ml/" title="Hector" target="_blank">Hector</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wayjam.me/" title="wayjam" target="_blank">wayjam</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基类"><span class="nav-number">2.1.</span> <span class="nav-text">基类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基类的成员函数定义"><span class="nav-number">2.1.1.</span> <span class="nav-text">基类的成员函数定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚析构函数"><span class="nav-number">2.1.2.</span> <span class="nav-text">虚析构函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#派生类"><span class="nav-number">2.2.</span> <span class="nav-text">派生类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空基类优化（本节不理解"><span class="nav-number">2.3.</span> <span class="nav-text">空基类优化（本节不理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚基类"><span class="nav-number">2.4.</span> <span class="nav-text">虚基类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iostream"><span class="nav-number">2.4.1.</span> <span class="nav-text">iostream</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承方式"><span class="nav-number">2.5.</span> <span class="nav-text">继承方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公开继承-public"><span class="nav-number">2.5.1.</span> <span class="nav-text">公开继承 public</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#受保护继承-protected"><span class="nav-number">2.5.2.</span> <span class="nav-text">受保护继承 protected</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私有继承-private"><span class="nav-number">2.5.3.</span> <span class="nav-text">私有继承 private</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成员名称查找（不理解）"><span class="nav-number">2.6.</span> <span class="nav-text">成员名称查找（不理解）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-11新增"><span class="nav-number">2.7.</span> <span class="nav-text">C++11新增</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#override"><span class="nav-number">2.7.1.</span> <span class="nav-text">override</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final"><span class="nav-number">2.7.2.</span> <span class="nav-text">final</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态绑定-非常重要）"><span class="nav-number">3.</span> <span class="nav-text">动态绑定(非常重要）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象模型：虚表和虚指针"><span class="nav-number">3.1.</span> <span class="nav-text">对象模型：虚表和虚指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static-type和dynamic-type区别"><span class="nav-number">3.2.</span> <span class="nav-text">static type和dynamic type区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于this"><span class="nav-number">3.3.</span> <span class="nav-text">关于this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型转换"><span class="nav-number">3.4.</span> <span class="nav-text">类型转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#虚成员、虚函数"><span class="nav-number">4.</span> <span class="nav-text">虚成员、虚函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用（重要）"><span class="nav-number">4.2.</span> <span class="nav-text">调用（重要）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#覆写（重要）"><span class="nav-number">4.3.</span> <span class="nav-text">覆写（重要）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协变返回类型"><span class="nav-number">4.4.</span> <span class="nav-text">协变返回类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在构造与析构期间"><span class="nav-number">4.5.</span> <span class="nav-text">在构造与析构期间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#抽象类-与-纯虚类"><span class="nav-number">5.</span> <span class="nav-text">抽象类 与 纯虚类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#纯虚-pure-virtual-函数"><span class="nav-number">5.1.</span> <span class="nav-text">纯虚 (pure virtual) 函数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-/images/favicon.ico"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lightmare</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

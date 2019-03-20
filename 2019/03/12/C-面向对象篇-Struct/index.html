@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,OOP,struct,sizeof,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="结构体成员存储对齐规则其实字节对齐的细节和具体编译器实现相关，但一般而言，满足三个准则:  struct内每个成员相对struct首地址的offset，都是该成员大小的整数倍。 struct变量的首地址是内部最大成员的倍数; sizeof(struct)为struct最宽基本类型成员大小的整数倍。  准则 1结构(struct)或联合(union)的数据成员，第一个数据成员放在offset为0的地">
+<meta name="keywords" content="C++,OOP,struct,sizeof">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 面向对象篇 Struct">
+<meta property="og:url" content="http://yoursite.com/2019/03/12/C-面向对象篇-Struct/index.html">
+<meta property="og:site_name" content="Lightmare">
+<meta property="og:description" content="结构体成员存储对齐规则其实字节对齐的细节和具体编译器实现相关，但一般而言，满足三个准则:  struct内每个成员相对struct首地址的offset，都是该成员大小的整数倍。 struct变量的首地址是内部最大成员的倍数; sizeof(struct)为struct最宽基本类型成员大小的整数倍。  准则 1结构(struct)或联合(union)的数据成员，第一个数据成员放在offset为0的地">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-20T13:32:13.980Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ 面向对象篇 Struct">
+<meta name="twitter:description" content="结构体成员存储对齐规则其实字节对齐的细节和具体编译器实现相关，但一般而言，满足三个准则:  struct内每个成员相对struct首地址的offset，都是该成员大小的整数倍。 struct变量的首地址是内部最大成员的倍数; sizeof(struct)为struct最宽基本类型成员大小的整数倍。  准则 1结构(struct)或联合(union)的数据成员，第一个数据成员放在offset为0的地">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":15,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/12/C-面向对象篇-Struct/">
+
+
+
+
+
+  <title>C++ 面向对象篇 Struct | Lightmare</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lightmare</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
+            
+            C++
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-questions">
+          <a href="/categories/Questions-Collections/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Questions
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/C-面向对象篇-Struct/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ 面向对象篇 Struct</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T17:13:28+08:00">
+                2019-03-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T21:32:13+08:00">
+                2019-03-20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《C-Primer》/" itemprop="url" rel="index">
+                    <span itemprop="name">《C++ Primer》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="结构体成员存储对齐规则"><a href="#结构体成员存储对齐规则" class="headerlink" title="结构体成员存储对齐规则"></a>结构体成员存储对齐规则</h2><p>其实字节对齐的细节和具体编译器实现相关，但一般而言，满足三个准则:</p>
+<ol>
+<li>struct内每个成员相对struct首地址的offset，都是该成员大小的整数倍。</li>
+<li>struct变量的首地址是内部最大成员的倍数;</li>
+<li>sizeof(struct)为struct最宽基本类型成员大小的整数倍。</li>
+</ol>
+<h2 id="准则-1"><a href="#准则-1" class="headerlink" title="准则 1"></a>准则 1</h2><p>结构(struct)或联合(union)的数据成员，第一个数据成员放在offset为0的地方，每个数据成员存储的起始位置要从该成员(每个成员本身)大小的整数倍开始(比如int在32位机为４字节,则要从４的整数倍地址开始存储)。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">     <span class="keyword">char</span> a;<span class="comment">//1</span></span><br><span class="line">     <span class="keyword">int</span> b<span class="comment">//4</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">sizeof</span>(node)=<span class="number">8</span></span><br></pre></td></tr></table></figure>
+<p>a存放在0offset的位置。b的存储起始位置为1，为了满足对齐原则，int大小为4，b的存储位置应该为4的整数倍，所以要在a后补齐，所以b的存储起始位置为4。所以node大小为8。 </p>
+<h2 id="准则2-结构体作为成员"><a href="#准则2-结构体作为成员" class="headerlink" title="准则2 结构体作为成员"></a>准则2 结构体作为成员</h2><p>如果一个结构里有某些结构体成员,则结构体成员要从<figure class="highlight plain"><figcaption><span>a里存有struct b,b里有char,int ,double等元素,那b应该从8的整数倍开始存储.)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```cpp</span><br><span class="line">struct pa</span><br><span class="line">&#123;</span><br><span class="line">   char a;//1</span><br><span class="line">   node b;//b内部最大元素大小是4，所以b的起始位置要是4的整倍数.在a后面补位。</span><br><span class="line">&#125;</span><br><span class="line">sizeof(pa)=12//4+8=12.</span><br></pre></td></tr></table></figure></p>
+<h2 id="准则3-sizeof-struct"><a href="#准则3-sizeof-struct" class="headerlink" title="准则3 sizeof(struct)"></a>准则3 sizeof(struct)</h2><p>结构体的总大小,也就是sizeof的结果,.必须是其内部最大成员的整数倍（结构体成员以最大成员为代表）.不足的要补齐.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">double</span> a;<span class="comment">//8</span></span><br><span class="line">    <span class="keyword">char</span> b;<span class="comment">//1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">sizeof</span>(node)=<span class="number">16</span><span class="comment">//9-&gt;2*8=16</span></span><br></pre></td></tr></table></figure>
+<p>按1,2原则可计算出结果应为9;<br>但结构体大小应为<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">如果编译器中提供了```#pragma pack(n)```，上述对其模式就不适用了，例如设定变量以n字节对齐方式，则上述成员类型对齐宽度（应当也包括收尾对齐）应该选择```成员类型宽度和n中较小者```；</span><br><span class="line"></span><br><span class="line">## 例子</span><br><span class="line"></span><br><span class="line"> Q: </span><br><span class="line"></span><br><span class="line">```CPP</span><br><span class="line">为什么sizeof操作员返回的结构尺寸大于结构成员的总尺寸？</span><br></pre></td></tr></table></figure></p>
+<p>A:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">X</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">short</span> s; <span class="comment">/* 2 bytes */</span></span><br><span class="line">             <span class="comment">/* 2 padding bytes 准则1。struct内每个成员相对struct首地址的offset，都是该成员大小的整数倍。*/</span></span><br><span class="line">    <span class="keyword">int</span>   i; <span class="comment">/* 4 bytes */</span></span><br><span class="line">    <span class="keyword">char</span>  c; <span class="comment">/* 1 byte */</span></span><br><span class="line">             <span class="comment">/* 3 padding bytes 准则3：sizeof(struct)为struct最宽基本类型成员大小的整数倍*/</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Y</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span>   i; <span class="comment">/* 4 bytes */</span></span><br><span class="line">    <span class="keyword">char</span>  c; <span class="comment">/* 1 byte */</span></span><br><span class="line">             <span class="comment">/* 1 padding byte  准则1。struct内每个成员相对struct首地址的offset，都是该成员大小的整数倍。*/</span></span><br><span class="line">    <span class="keyword">short</span> s; <span class="comment">/* 2 bytes */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Z</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span>   i; <span class="comment">/* 4 bytes */</span></span><br><span class="line">    <span class="keyword">short</span> s; <span class="comment">/* 2 bytes */</span></span><br><span class="line">    <span class="keyword">char</span>  c; <span class="comment">/* 1 byte */</span></span><br><span class="line">             <span class="comment">/* 1 padding byte 准则3：sizeof(struct)为struct最宽基本类型成员大小的整数倍*/</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> sizeX = <span class="keyword">sizeof</span>(struct X); <span class="comment">/* = 12 */</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> sizeY = <span class="keyword">sizeof</span>(struct Y); <span class="comment">/* = 8 */</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> sizeZ = <span class="keyword">sizeof</span>(struct Z); <span class="comment">/* = 8 */</span></span><br><span class="line"></span><br><span class="line">可以通过对齐对成员进行排序来最小化结构的大小（按基本类型中的大小排序）（Z如上例中的结构）。</span><br><span class="line">编译器自动对齐的原因：为了提高程序的性能，数据结构（尤其是栈）应该尽可能地在自然边界上对齐。原因在于，为了访问未对齐的内存，处理器需要作两次内存访问；然而，对齐的内存访问仅需要一次访问。</span><br><span class="line"></span><br><span class="line">重要说明：C和C ++标准都声明结构对齐是实现定义的。因此，每个编译器可能选择以不同方式对齐数据，从而导致不同且不兼容的数据布局。因此，在处理将由不同编译器使用的库时，了解编译器如何对齐数据非常重要。某些编译器具有命令行设置和/或特殊<span class="meta">#<span class="meta-keyword">pragma</span> 语句来更改结构对齐设置。</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for Support.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Lightmare Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/OOP/" rel="tag"># OOP</a>
+          
+            <a href="/tags/struct/" rel="tag"># struct</a>
+          
+            <a href="/tags/sizeof/" rel="tag"># sizeof</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/12/LeetCode215-Kth-Largest-Element-in-an-Array/" rel="next" title="LeetCode215. Kth Largest Element in an Array">
+                <i class="fa fa-chevron-left"></i> LeetCode215. Kth Largest Element in an Array
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/12/C-容器篇-std-priority-queue/" rel="prev" title="C++ 容器篇 std::priority_queue">
+                C++ 容器篇 std::priority_queue <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Lightmare">
+            
+              <p class="site-author-name" itemprop="name">Lightmare</p>
+              <p class="site-description motion-element" itemprop="description">~ Magic world , Magical girl ~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
+                      
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_41042404" target="_blank" title="CSDN">
+                      
+                        <i class="iconfont icon-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
+                      
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lightmare625@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                      
+                        <i class="iconfont icon-psn"></i>PSN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
+                      
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://whosurdaddy.ml/" title="Hector" target="_blank">Hector</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wayjam.me/" title="wayjam" target="_blank">wayjam</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#结构体成员存储对齐规则"><span class="nav-number">1.</span> <span class="nav-text">结构体成员存储对齐规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准则-1"><span class="nav-number">2.</span> <span class="nav-text">准则 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准则2-结构体作为成员"><span class="nav-number">3.</span> <span class="nav-text">准则2 结构体作为成员</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准则3-sizeof-struct"><span class="nav-number">4.</span> <span class="nav-text">准则3 sizeof(struct)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-/images/favicon.ico"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lightmare</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

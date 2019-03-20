@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Math,">
+  <meta name="keywords" content="Math,String,">
 
 
 
@@ -78,14 +78,14 @@
 
 
 <meta name="description" content="Find the nth digit of the infinite integer sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, … Note:n is positive and will fit within the range of a 32-bit signed integer (n &amp;lt; 231). Example 1: 12345Input">
-<meta name="keywords" content="Math">
+<meta name="keywords" content="Math,String">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode400. Nth Digit">
 <meta property="og:url" content="http://yoursite.com/2019/03/20/LeetCode400-Nth-Digit/index.html">
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="Find the nth digit of the infinite integer sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, … Note:n is positive and will fit within the range of a 32-bit signed integer (n &amp;lt; 231). Example 1: 12345Input">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-19T23:24:15.179Z">
+<meta property="og:updated_time" content="2019-03-20T15:44:34.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode400. Nth Digit">
 <meta name="twitter:description" content="Find the nth digit of the infinite integer sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, … Note:n is positive and will fit within the range of a 32-bit signed integer (n &amp;lt; 231). Example 1: 12345Input">
@@ -179,52 +179,62 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-泉水">
-          <a href="/" rel="section">
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tint"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
             
-            泉水
+            C++
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-英雄">
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-questions">
+          <a href="/categories/Questions-Collections/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Questions
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
             
-            英雄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-发育">
-          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-pied-piper-alt"></i> <br>
-            
-            发育
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-打野">
-          <a href="/2019/01/21/leetcode/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-optin-monster"></i> <br>
-            
-            打野
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-奖杯">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-trophy"></i> <br>
-            
-            奖杯
+            About
           </a>
         </li>
       
@@ -237,7 +247,8 @@
 </nav>
 
 
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
  </div>
     </header>
 
@@ -306,7 +317,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T07:24:15+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T23:44:34+08:00">
                 2019-03-20
               </time>
             
@@ -344,6 +355,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
           
 
@@ -378,8 +394,10 @@
 <li><p>注意这里base要用long,否则会溢出。</p>
 </li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (n - base * digit &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		n -= base * digit;</span><br><span class="line">		base *= <span class="number">10</span>;</span><br><span class="line">		digit++;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 </li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (n - base * digit &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        n -= base * digit;</span><br><span class="line">        base *= <span class="number">10</span>;</span><br><span class="line">        digit++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
 <li><p>找到n所在的数是多少-记为num</p>
 <ul>
 <li><p>n=10，nth=(1)/2=0,nth+base=10,他指的数是10,index=(1)%2=1</p>
@@ -451,6 +469,8 @@
         <div class="post-tags">
           
             <a href="/tags/Math/" rel="tag"># Math</a>
+          
+            <a href="/tags/String/" rel="tag"># String</a>
           
         </div>
       
@@ -552,7 +572,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -562,10 +582,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">5</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
-                
+                </a>
               </div>
             
 
@@ -573,10 +593,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">7</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -588,21 +608,27 @@
             <div class="links-of-author motion-element">
                 
                   <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
                     <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
                       
                         <i class="fa fa-fw fa-github"></i>GitHub</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="即刻">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
                       
-                        <i class="iconfont icon-jike"></i>即刻</a>
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
                       
-                        <i class="iconfont icon-psn"></i>PSN</a>
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
                   </span>
                 
                   <span class="links-of-author-item">
@@ -612,21 +638,9 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="博客园">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
                       
-                        <i class="iconfont icon-bokeyuan"></i>博客园</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
-                      
-                        <i class="iconfont icon-LeetCode"></i>LeetCode</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://space.bilibili.com/1688015" target="_blank" title="B站">
-                      
-                        <i class="iconfont icon-bilibili"></i>B站</a>
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
                   </span>
                 
                   <span class="links-of-author-item">
@@ -636,15 +650,27 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="http://my.mtime.com/3278759/" target="_blank" title="前Mtime">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
                       
-                        <i class="iconfont icon-shiguangwang"></i>前Mtime</a>
+                        <i class="iconfont icon-psn"></i>PSN</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="http://my.mtime.com/89767092/" target="_blank" title="现Mtime">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
                       
-                        <i class="iconfont icon-shiguangwang"></i>现Mtime</a>
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
                   </span>
                 
             </div>
@@ -667,7 +693,7 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://hoyyy.me/" title="小贺今天有认真学习吗" target="_blank">小贺今天有认真学习吗</a>
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -737,7 +763,25 @@
 
 
 
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
 
 
 

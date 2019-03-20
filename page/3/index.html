@@ -179,52 +179,62 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-泉水">
-          <a href="/" rel="section">
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tint"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
             
-            泉水
+            C++
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-英雄">
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-questions">
+          <a href="/categories/Questions-Collections/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Questions
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
             
-            英雄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-发育">
-          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-pied-piper-alt"></i> <br>
-            
-            发育
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-打野">
-          <a href="/2019/01/21/leetcode/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-optin-monster"></i> <br>
-            
-            打野
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-奖杯">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-trophy"></i> <br>
-            
-            奖杯
+            About
           </a>
         </li>
       
@@ -237,7 +247,8 @@
 </nav>
 
 
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
  </div>
     </header>
 
@@ -261,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/21/leetcode/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/13/刷题笔记-操作系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lightmare">
@@ -280,7 +291,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/21/leetcode/" itemprop="url">LeetCode Solution</a></h1>
+                <a class="post-title-link" href="/2019/03/13/刷题笔记-操作系统/" itemprop="url">刷题笔记 操作系统</a></h1>
         
 
         <div class="post-meta">
@@ -292,8 +303,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-21T00:21:12+08:00">
-                2019-01-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-13T17:17:06+08:00">
+                2019-03-13
               </time>
             
 
@@ -308,12 +319,34 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T07:42:20+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T22:05:05+08:00">
                 2019-03-20
               </time>
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Questions-Collections/" itemprop="url" rel="index">
+                    <span itemprop="name">Questions Collections</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -344,25 +377,19 @@
       
         
           
-          
-
-
-题号
-解答
-
+          内存管理Q1.
+164位系统和32位系统的区别
+A1.
+1238位的cpu，一次处理一个8位的数据，比如'10001000'，如果'+1'这个运算，cpu要先做'+'，再做'1'传给cpu16位的cpu，一次处理2个字节(16位)32位的cpu，一次处理4个字节
 
 
 
-[1]两数之和
-1. umap.find(target - nums[i])2. umap.count(target-nums[i]) 👍
-
-
-[46]全排列
-1. 递归. 分层布局。1.交换第一个数字。2.第一个数固定。后面的排列。3.交换归位。 2. 递归。回溯。填空
+type
+32bit - by
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/01/21/leetcode/#more" rel="contents">
+            <a class="btn" href="/2019/03/13/刷题笔记-操作系统/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -413,7 +440,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/04/《Effective-C-》-条款04：Stack与Heap-内存管理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/13/C-面向对象篇-Union/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lightmare">
@@ -432,7 +459,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/04/《Effective-C-》-条款04：Stack与Heap-内存管理/" itemprop="url">《Effective C++》 条款04：Stack与Heap / 内存管理</a></h1>
+                <a class="post-title-link" href="/2019/03/13/C-面向对象篇-Union/" itemprop="url">C++ 面向对象篇 Union</a></h1>
         
 
         <div class="post-meta">
@@ -444,8 +471,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-04T12:17:54+08:00">
-                2018-08-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-13T17:13:15+08:00">
+                2019-03-13
               </time>
             
 
@@ -460,8 +487,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-19T23:35:32+08:00">
-                2019-03-19
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T23:24:49+08:00">
+                2019-03-20
               </time>
             
           </span>
@@ -479,8 +506,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/《Effective-C-》/" itemprop="url" rel="index">
-                    <span itemprop="name">《Effective C++》</span>
+                  <a href="/categories/《C-Primer》/" itemprop="url" rel="index">
+                    <span itemprop="name">《C++ Primer》</span>
                   </a>
                 </span>
 
@@ -518,12 +545,504 @@
       
         
           
-          阅读effective c++ 04 （30页） 提到的static对象和堆与栈对象。“不同编译单元内定义的non-local static对象”。
-Stack与Heap / 内存管理stackstack是在某个作用域内的一块内存空间。当调用函数时，函数本身会形成一个栈来保存函数的参数和返回地址。函
+          Rules
+The union is only as big as necessary to hold its [largest data] member. 
+
+The other data members are allocated in the [same bytes] as part of t
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/04/《Effective-C-》-条款04：Stack与Heap-内存管理/#more" rel="contents">
+            <a class="btn" href="/2019/03/13/C-面向对象篇-Union/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/C-语言篇-Named-requirements/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/12/C-语言篇-Named-requirements/" itemprop="url">C++ 语言篇 Named requirements</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T18:55:04+08:00">
+                2019-03-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T22:38:36+08:00">
+                2019-03-20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《C-Primer》/" itemprop="url" rel="index">
+                    <span itemprop="name">《C++ Primer》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Utilities library:Type support
+std::is_objectDefined in header &lt;type_traits> (c++11)
+
+cv-qualified type, value is true. 
+function, reference, or vo
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/12/C-语言篇-Named-requirements/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/C-算法篇-std-sort-heap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/12/C-算法篇-std-sort-heap/" itemprop="url">C++ 算法篇 std::sort_heap</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T17:15:54+08:00">
+                2019-03-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-21T00:16:50+08:00">
+                2019-03-21
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《C-Primer》/" itemprop="url" rel="index">
+                    <span itemprop="name">《C++ Primer》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          STL堆操作(函数模板)
+is_heap(v.begin(), v.end())
+检查范围 [first, last) 中的元素是否为最大堆。[c++11]
+
+auto heap_end = is_heap_until(v.begin(), v.end()); 
+检验范围 [first, last)
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/12/C-算法篇-std-sort-heap/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/C-容器篇-std-priority-queue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/12/C-容器篇-std-priority-queue/" itemprop="url">C++ 容器篇 std::priority_queue</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T17:14:20+08:00">
+                2019-03-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-21T00:17:40+08:00">
+                2019-03-21
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《C-Primer》/" itemprop="url" rel="index">
+                    <span itemprop="name">《C++ Primer》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          priority_queueDefined in header &lt;queue>
+12345template&lt;    class T,    class Container = std::vector&lt;T&gt;,    class Compare = std::less&lt;ty
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/12/C-容器篇-std-priority-queue/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -565,7 +1084,7 @@ Stack与Heap / 内存管理stackstack是在某个作用域内的一块内存空�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -615,7 +1134,7 @@ Stack与Heap / 内存管理stackstack是在某个作用域内的一块内存空�
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -625,10 +1144,10 @@ Stack与Heap / 内存管理stackstack是在某个作用域内的一块内存空�
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">5</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
-                
+                </a>
               </div>
             
 
@@ -636,10 +1155,10 @@ Stack与Heap / 内存管理stackstack是在某个作用域内的一块内存空�
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">7</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -651,21 +1170,27 @@ Stack与Heap / 内存管理stackstack是在某个作用域内的一块内存空�
             <div class="links-of-author motion-element">
                 
                   <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
                     <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
                       
                         <i class="fa fa-fw fa-github"></i>GitHub</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="即刻">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
                       
-                        <i class="iconfont icon-jike"></i>即刻</a>
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
                       
-                        <i class="iconfont icon-psn"></i>PSN</a>
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
                   </span>
                 
                   <span class="links-of-author-item">
@@ -675,21 +1200,9 @@ Stack与Heap / 内存管理stackstack是在某个作用域内的一块内存空�
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="博客园">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
                       
-                        <i class="iconfont icon-bokeyuan"></i>博客园</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
-                      
-                        <i class="iconfont icon-LeetCode"></i>LeetCode</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://space.bilibili.com/1688015" target="_blank" title="B站">
-                      
-                        <i class="iconfont icon-bilibili"></i>B站</a>
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
                   </span>
                 
                   <span class="links-of-author-item">
@@ -699,15 +1212,27 @@ Stack与Heap / 内存管理stackstack是在某个作用域内的一块内存空�
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="http://my.mtime.com/3278759/" target="_blank" title="前Mtime">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
                       
-                        <i class="iconfont icon-shiguangwang"></i>前Mtime</a>
+                        <i class="iconfont icon-psn"></i>PSN</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="http://my.mtime.com/89767092/" target="_blank" title="现Mtime">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
                       
-                        <i class="iconfont icon-shiguangwang"></i>现Mtime</a>
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
                   </span>
                 
             </div>
@@ -730,7 +1255,7 @@ Stack与Heap / 内存管理stackstack是在某个作用域内的一块内存空�
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://hoyyy.me/" title="小贺今天有认真学习吗" target="_blank">小贺今天有认真学习吗</a>
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -784,7 +1309,25 @@ Stack与Heap / 内存管理stackstack是在某个作用域内的一块内存空�
 
 
 
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
 
 
 

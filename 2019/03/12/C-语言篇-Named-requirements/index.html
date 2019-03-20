@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,FunctionObject,Predicate,BinaryPredicate,Compare,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Utilities library:Type support std::is_objectDefined in header &amp;lt;type_traits&amp;gt; (c++11)  cv-qualified type, value is true.  function, reference, or void types, value is false.  12template&amp;lt; class T">
+<meta name="keywords" content="C++,FunctionObject,Predicate,BinaryPredicate,Compare">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 语言篇 Named requirements">
+<meta property="og:url" content="http://yoursite.com/2019/03/12/C-语言篇-Named-requirements/index.html">
+<meta property="og:site_name" content="Lightmare">
+<meta property="og:description" content="Utilities library:Type support std::is_objectDefined in header &amp;lt;type_traits&amp;gt; (c++11)  cv-qualified type, value is true.  function, reference, or void types, value is false.  12template&amp;lt; class T">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-20T14:38:36.822Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ 语言篇 Named requirements">
+<meta name="twitter:description" content="Utilities library:Type support std::is_objectDefined in header &amp;lt;type_traits&amp;gt; (c++11)  cv-qualified type, value is true.  function, reference, or void types, value is false.  12template&amp;lt; class T">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":15,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/12/C-语言篇-Named-requirements/">
+
+
+
+
+
+  <title>C++ 语言篇 Named requirements | Lightmare</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lightmare</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
+            
+            C++
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-questions">
+          <a href="/categories/Questions-Collections/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Questions
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/C-语言篇-Named-requirements/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ 语言篇 Named requirements</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T18:55:04+08:00">
+                2019-03-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T22:38:36+08:00">
+                2019-03-20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《C-Primer》/" itemprop="url" rel="index">
+                    <span itemprop="name">《C++ Primer》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Utilities library:Type support</p>
+<h2 id="std-is-object"><a href="#std-is-object" class="headerlink" title="std::is_object"></a>std::is_object</h2><p>Defined in header &lt;type_traits> (c++11)</p>
+<ul>
+<li><strong>cv-qualified type</strong>, value is true. </li>
+<li><strong>function, reference, or void types</strong>, value is false.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt;</span></span><br><span class="line"><span class="class"> <span class="title">struct</span> <span class="title">is_object</span>;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;type_traits&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">cls</span> &#123;</span>&#125;;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::boolalpha;</span><br><span class="line">    <span class="comment">//IO library:IO manipulators </span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::is_object&lt;<span class="keyword">int</span>&gt;::value &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    <span class="comment">//true,cv-qualified type</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::is_object&lt;<span class="keyword">int</span>&amp;&gt;::value &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    <span class="comment">//false,reference type</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::is_object&lt;cls&gt;::value &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    <span class="comment">//true,cv-qualified type</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::is_object&lt;cls&amp;&gt;::value &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    <span class="comment">//false,reference type</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>Named Requirements: Library-Wide</p>
+<h2 id="FunctionObject"><a href="#FunctionObject" class="headerlink" title="FunctionObject"></a>FunctionObject</h2><ul>
+<li>A <strong>FunctionObject</strong> type is the type of an object that can be used on the <strong>left of the function call operator</strong>. （能以函数调用语法调用的对象。）</li>
+</ul>
+<h3 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h3><p>The type T satisfies FunctionObject if</p>
+<p>The type T satisfies std::is_object, and  Given</p>
+<ul>
+<li>f, a value of type T or const T</li>
+<li>args, suitable argument list, which may be empty</li>
+</ul>
+<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><p>※ <strong>Functions</strong> and <strong>references to functions</strong> are not function object types, but can be used where function object types are expected due to  <strong>function-to-pointer implicit conversion(pointers to functions指向函数的指针)</strong>.</p>
+<h3 id="Standard-library"><a href="#Standard-library" class="headerlink" title="Standard library"></a>Standard library</h3><ul>
+<li>All <strong>pointers to functions</strong> satisfy this requirement.</li>
+<li>All [Function objects] defined in &lt;functional></li>
+<li>Some [return types of functions] of &lt;functional></li>
+</ul>
+<hr>
+<h2 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h2><ul>
+<li><p>The Predicate requirements describe a callable that returns a value testable as a bool.谓词要求描述可调用对象返回可作为 bool 测试的值。 </p>
+</li>
+<li><p>Predicate is typically used with algorithms that take input data (individual objects/containers) and a predicate, which is then called on input data to decide on further course of action. </p>
+</li>
+<li><p>Some examples of predicate usage in C++ standard library are:<br>  std::all_of, std::any_of,std::none_of<br>  Take an array of elements and a predicate as an input. Call predicate on individual input elements, and return true if for all/any/none elements, predicate returns true.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v(<span class="number">10</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">std</span>::partial_sum(v.begin(), v.end(), v.begin());</span><br><span class="line">    <span class="comment">//&lt;numeric&gt;,计算范围 [first, last) 的子范围中元素的部分和，并写入到始于 d_first 的范围。默认版本用 operator+ ，第二版本用给定的二元函数 op 对元素求和.</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Among the numbers: "</span>;</span><br><span class="line">    <span class="built_in">std</span>::copy(v.begin(), v.end(), <span class="built_in">std</span>::ostream_iterator&lt;<span class="keyword">int</span>&gt;(<span class="built_in">std</span>::<span class="built_in">cout</span>, <span class="string">" "</span>));</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//all_of:若一元谓词对范围中所有元素返回 true 则为 true ，否则为 false 。若范围为空则返回 true 。</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">std</span>::all_of(v.begin(), v.end(), [](<span class="keyword">int</span> i)&#123; <span class="keyword">return</span> i % <span class="number">2</span> == <span class="number">0</span>; &#125;)) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"All numbers are even\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//none_of: 若一元谓词不对范围中任何元素返回 true 则为 true ，否则为 false 。若范围为空则返回 true 。</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">std</span>::none_of(v.cbegin(), v.cend(), <span class="built_in">std</span>::bind(<span class="built_in">std</span>::modulus&lt;<span class="keyword">int</span>&gt;(),                  <span class="built_in">std</span>::placeholders::_1, <span class="number">2</span>))) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"None of them are odd\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//any_of: 若一元谓词对范围中至少一个元素返回 true 则为 true ，否则为 false 。若范围为空则返回 false 。</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">DivisibleBy</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">int</span> d;</span><br><span class="line">        DivisibleBy(<span class="keyword">int</span> n) : d(n) &#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> n)</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> n % d == <span class="number">0</span>; &#125;</span><br><span class="line">    &#125;;    </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">std</span>::any_of(v.cbegin(), v.cend(), DivisibleBy(<span class="number">7</span>))) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"At least one number is divisible by 7\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>output:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Among the numbers: <span class="number">2</span> <span class="number">4</span> <span class="number">6</span> <span class="number">8</span> <span class="number">10</span> <span class="number">12</span> <span class="number">14</span> <span class="number">16</span> <span class="number">18</span> <span class="number">20</span> </span><br><span class="line">All numbers are even</span><br><span class="line">None of them are odd</span><br><span class="line">At least one number is divisible by <span class="number">7</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>std::find_if<br>  Take sequence of elements, and a predicate.<br>  Return first element in the sequence, for which predicate returns value equal to true</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n1 = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">int</span> n2 = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> result1 = <span class="built_in">std</span>::find(<span class="built_in">std</span>::begin(v), <span class="built_in">std</span>::end(v), n1);</span><br><span class="line">    <span class="keyword">auto</span> result2 = <span class="built_in">std</span>::find(<span class="built_in">std</span>::begin(v), <span class="built_in">std</span>::end(v), n2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (result1 != <span class="built_in">std</span>::end(v)) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"v contains: "</span> &lt;&lt; n1 &lt;&lt; <span class="string">'\n'</span>;<span class="comment">//v contains: 3</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"v does not contain: "</span> &lt;&lt; n1 &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (result2 != <span class="built_in">std</span>::end(v)) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"v contains: "</span> &lt;&lt; n2 &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"v does not contain: "</span> &lt;&lt; n2 &lt;&lt; <span class="string">'\n'</span>;<span class="comment">//v does not contain: 5</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>In other words, if an algorithm takes a [Predicate] pred and an [iterator] first, it should be able to test the object of the type pointed to by the iterator first using the given predicate via a construct like  if(pred(*first)) {…} .The function object [pred] shall not apply any [non-constant function] through the [dereferenced iterator]. This function object may be a [pointer to function] or [an object of a type with an appropriate function call operator]. </p>
+<hr>
+<h2 id="BinaryPredicate"><a href="#BinaryPredicate" class="headerlink" title="BinaryPredicate"></a>BinaryPredicate</h2><ul>
+<li>BinaryPredicate is a set of requirements expected by some of the standard library facilities from the user-provided arguments.</li>
+<li>Given a BinaryPredicate bin_pred and a pair of iterators iter1 and iter2 or an iterator iter and a value value, the expression bin_pred(<em>iter1, </em>iter2) or, respectively, bin_pred(*iter, value), must be contextually convertible to bool.<br>In addition, evaluation of that expression is not allowed to call non-const member functions of the dereferenced iterators.</li>
+</ul>
+<h3 id="Requirements-1"><a href="#Requirements-1" class="headerlink" title="Requirements"></a>Requirements</h3><ul>
+<li>Predicate</li>
+<li>CopyConstructible (unless otherwise specified)</li>
+</ul>
+<hr>
+<h2 id="Compare"><a href="#Compare" class="headerlink" title="Compare"></a>Compare</h2><ul>
+<li>Compare is a set of requirements expected by some of the standard library facilities from the user-provided function object types.</li>
+<li>The return value of the function call operation applied to an object of a type satisfying Compare, when contextually converted to bool, yields true if the first argument of the call appears before the second in the strict weak ordering relation induced by this type, and false otherwise.</li>
+<li>As with any BinaryPredicate(二元谓词), evaluation of that expression is not allowed to call non-const functions through the dereferenced iterators.</li>
+</ul>
+<h3 id="Requirements-2"><a href="#Requirements-2" class="headerlink" title="Requirements"></a>Requirements</h3><p>The type T satisfies Compare if</p>
+<ul>
+<li>The type T satisfies BinaryPredicate, and<br>Given</li>
+<li>comp, an object of type T</li>
+<li>equiv(a, b), an expression equivalent to !comp(a, b) &amp;&amp; !comp(b, a)</li>
+</ul>
+<p>The following expressions must be valid and have their specified effects</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Expression</th>
+<th style="text-align:center">Return type</th>
+<th style="text-align:center">Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">comp(a, b)</td>
+<td style="text-align:center"><a href="https://en.cppreference.com/w/cpp/language/implicit_cast" target="_blank" rel="noopener">implicitly convertible</a> to bool</td>
+<td style="text-align:center">Establishes <a href="https://en.wikipedia.org/wiki/Strict_weak_ordering" target="_blank" rel="noopener">strict weak ordering</a> relation with the following propertiesFor all <code>a</code>, comp(a,a)==falseIf comp(a,b)==true then comp(b,a)==falseif comp(a,b)==true and comp(b,c)==true then comp(a,c)==true</td>
+</tr>
+<tr>
+<td style="text-align:center">equiv(a, b)</td>
+<td style="text-align:center">bool</td>
+<td style="text-align:center">Establishes equivalence relationship with the following propertiesFor all <code>a</code>, equiv(a,a)==trueIf equiv(a,b)==true, then equiv(b,a)==trueIf equiv(a,b)==true and equiv(b,c)==true, then equiv(a,c)==true</td>
+</tr>
+</tbody>
+</table>
+<p>Note: <code>comp</code> induces a <em>strict total ordering</em> on the equivalence classes determined by <code>equiv</code></p>
+<hr>
+<p>to be continued…<br>to be reviewed…</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for Support.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Lightmare Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/FunctionObject/" rel="tag"># FunctionObject</a>
+          
+            <a href="/tags/Predicate/" rel="tag"># Predicate</a>
+          
+            <a href="/tags/BinaryPredicate/" rel="tag"># BinaryPredicate</a>
+          
+            <a href="/tags/Compare/" rel="tag"># Compare</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/12/C-算法篇-std-sort-heap/" rel="next" title="C++ 算法篇 std::sort_heap">
+                <i class="fa fa-chevron-left"></i> C++ 算法篇 std::sort_heap
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/13/C-面向对象篇-Union/" rel="prev" title="C++ 面向对象篇 Union">
+                C++ 面向对象篇 Union <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Lightmare">
+            
+              <p class="site-author-name" itemprop="name">Lightmare</p>
+              <p class="site-description motion-element" itemprop="description">~ Magic world , Magical girl ~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
+                      
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_41042404" target="_blank" title="CSDN">
+                      
+                        <i class="iconfont icon-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
+                      
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lightmare625@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                      
+                        <i class="iconfont icon-psn"></i>PSN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
+                      
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://whosurdaddy.ml/" title="Hector" target="_blank">Hector</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wayjam.me/" title="wayjam" target="_blank">wayjam</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#std-is-object"><span class="nav-number">1.</span> <span class="nav-text">std::is_object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FunctionObject"><span class="nav-number">2.</span> <span class="nav-text">FunctionObject</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirements"><span class="nav-number">2.1.</span> <span class="nav-text">Requirements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Notes"><span class="nav-number">2.2.</span> <span class="nav-text">Notes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Standard-library"><span class="nav-number">2.3.</span> <span class="nav-text">Standard library</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Predicate"><span class="nav-number">3.</span> <span class="nav-text">Predicate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BinaryPredicate"><span class="nav-number">4.</span> <span class="nav-text">BinaryPredicate</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirements-1"><span class="nav-number">4.1.</span> <span class="nav-text">Requirements</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compare"><span class="nav-number">5.</span> <span class="nav-text">Compare</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirements-2"><span class="nav-number">5.1.</span> <span class="nav-text">Requirements</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-/images/favicon.ico"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lightmare</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

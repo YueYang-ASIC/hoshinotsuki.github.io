@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="C++,">
+  <meta name="keywords" content="C++,const,reference,">
 
 
 
@@ -78,14 +78,14 @@
 
 
 <meta name="description" content="Range-For[c++11] What is the correct way of using C++11’s range-based for?What syntax should be used? for (auto elem : container), or for (auto&amp;amp; elem : container) or for (const auto&amp;amp; elem : co">
-<meta name="keywords" content="C++">
+<meta name="keywords" content="C++,const,reference">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 语言篇 Range-For：Observing and Modifying [c++11]">
 <meta property="og:url" content="http://yoursite.com/2019/03/10/C-语言篇-Range-For-c-11/index.html">
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="Range-For[c++11] What is the correct way of using C++11’s range-based for?What syntax should be used? for (auto elem : container), or for (auto&amp;amp; elem : container) or for (const auto&amp;amp; elem : co">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-19T15:37:20.011Z">
+<meta property="og:updated_time" content="2019-03-20T15:24:43.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ 语言篇 Range-For：Observing and Modifying [c++11]">
 <meta name="twitter:description" content="Range-For[c++11] What is the correct way of using C++11’s range-based for?What syntax should be used? for (auto elem : container), or for (auto&amp;amp; elem : container) or for (const auto&amp;amp; elem : co">
@@ -179,52 +179,62 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-泉水">
-          <a href="/" rel="section">
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tint"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
             
-            泉水
+            C++
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-英雄">
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-questions">
+          <a href="/categories/Questions-Collections/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Questions
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
             
-            英雄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-发育">
-          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-pied-piper-alt"></i> <br>
-            
-            发育
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-打野">
-          <a href="/2019/01/21/leetcode/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-optin-monster"></i> <br>
-            
-            打野
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-奖杯">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-trophy"></i> <br>
-            
-            奖杯
+            About
           </a>
         </li>
       
@@ -237,7 +247,8 @@
 </nav>
 
 
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
  </div>
     </header>
 
@@ -306,8 +317,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-19T23:37:20+08:00">
-                2019-03-19
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T23:24:43+08:00">
+                2019-03-20
               </time>
             
           </span>
@@ -344,6 +355,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
           
 
@@ -369,6 +385,7 @@
 <p>答案直接在Generic code 部分。<br>下面是解释：</p>
 </blockquote>
 <p>There’re some difference between <strong>observing the elements in the continer</strong> vs. <strong>modifying them in place</strong>.</p>
+<hr>
 <h2 id="Observing"><a href="#Observing" class="headerlink" title="Observing"></a>Observing</h2><h3 id="cheap-to-copy-by-value"><a href="#cheap-to-copy-by-value" class="headerlink" title="cheap-to-copy :by value"></a>cheap-to-copy :by value</h3><p>适用简单类型的元素，比如 int,double</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> elem : container)</span><br></pre></td></tr></table></figure>
 <h4 id="for-auto-x-v-简单类型"><a href="#for-auto-x-v-简单类型" class="headerlink" title="for (auto x : v) 简单类型"></a>for (auto x : v) 简单类型</h4><p>observing “int” in “vector”.</p>
@@ -386,6 +403,7 @@
 <h4 id="for-const-auto-amp-x-v"><a href="#for-const-auto-amp-x-v" class="headerlink" title="for (const auto&amp; x : v)"></a>for (const auto&amp; x : v)</h4><p>所以最好的观测方法是常量引用传递 const auto &amp; </p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;X&gt; v = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>&#125;;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"\nElements:\n"</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; x : v)</span><br><span class="line">&#123; </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>output:没有 拷贝构造函数 调用。更加高效。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Elements:</span><br><span class="line"><span class="number">1</span> <span class="number">3</span> <span class="number">5</span> <span class="number">7</span> <span class="number">9</span></span><br></pre></td></tr></table></figure></p>
+<hr>
 <h2 id="Modifying"><a href="#Modifying" class="headerlink" title="Modifying"></a>Modifying</h2><p>如果要修改容器中的元素， for (auto elem : container)  或者 for (const auto&amp; elem : container) 的写法是错误的。</p>
 <h3 id="for-auto-elem-container"><a href="#for-auto-elem-container" class="headerlink" title="for (auto elem : container)"></a>for (auto elem : container)</h3><p>修改的是拷贝局部临时变量的值，不是原始数据<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> x : v)  <span class="comment">// &lt;-- capture by value (copy)</span></span><br><span class="line">    x *= <span class="number">10</span>;      <span class="comment">// &lt;-- a local temporary copy ("x") is modified,</span></span><br><span class="line">                  <span class="comment">//     *not* the original vector element.</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> x : v)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">' '</span>;</span><br></pre></td></tr></table></figure></p>
 <p>output<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="number">3</span> <span class="number">5</span> <span class="number">7</span> <span class="number">9</span></span><br></pre></td></tr></table></figure></p>
@@ -394,6 +412,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; v = &#123;<span class="string">"Bob"</span>, <span class="string">"Jeff"</span>, <span class="string">"Connie"</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Modify elements in place: use "auto &amp;"</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; x : v)</span><br><span class="line">    x = <span class="string">"Hi "</span> + x + <span class="string">"!"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Output elements (*observing* --&gt; use "const auto&amp;")</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; x : v)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="string">' '</span>;</span><br></pre></td></tr></table></figure>
 <p>output</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi Bob! Hi Jeff! Hi Connie!</span><br></pre></td></tr></table></figure>
+<hr>
 <h2 id="Case-of-Proxy-Iterator"><a href="#Case-of-Proxy-Iterator" class="headerlink" title="Case of  Proxy Iterator"></a>Case of  <strong>Proxy Iterator</strong></h2><p>需求：想通过非常量引用修改容器中bool的状态。</p>
 <h3 id="for-auto-amp-x-v-1"><a href="#for-auto-amp-x-v-1" class="headerlink" title="for (auto&amp; x : v)"></a>for (auto&amp; x : v)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; v = &#123;<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">true</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; x : v)</span><br><span class="line">    x = !x;</span><br></pre></td></tr></table></figure>
 <p>编译不通过</p>
@@ -413,6 +432,7 @@
 <li>proxy iterators也遵从observing的for (const auto&amp; elem : container)</li>
 <li>for (auto&amp;&amp; elem : container)也适用ordinary (non-proxy) iterators,比如vector&lt;int>或者vector&lt;string>。</li>
 </ul>
+<hr>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
 <li>If the objects are cheap to copy (like ints, doubles, etc.) OR NEED to <strong>make a local copy</strong>.</li>
 </ul>
@@ -429,7 +449,8 @@
 <li>If the container uses “proxy iterators” (like std::vector&lt;bool>) </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp;&amp; elem : container)    <span class="comment">// capture by &amp;&amp;</span></span><br></pre></td></tr></table></figure>
-<h3 id="Generic-code"><a href="#Generic-code" class="headerlink" title="Generic code"></a>Generic code</h3><ul>
+<hr>
+<h2 id="Generic-code"><a href="#Generic-code" class="headerlink" title="Generic code"></a>Generic code</h2><ul>
 <li>For observing the elements </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; elem : container)    <span class="comment">// capture by const reference</span></span><br></pre></td></tr></table></figure>
@@ -480,6 +501,10 @@
           
             <a href="/tags/C/" rel="tag"># C++</a>
           
+            <a href="/tags/const/" rel="tag"># const</a>
+          
+            <a href="/tags/reference/" rel="tag"># reference</a>
+          
         </div>
       
 
@@ -491,8 +516,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/07/C-语言篇-Inline/" rel="next" title="C++ 语言篇 Inline">
-                <i class="fa fa-chevron-left"></i> C++ 语言篇 Inline
+              <a href="/2019/03/08/排序算法/" rel="next" title="排序算法">
+                <i class="fa fa-chevron-left"></i> 排序算法
               </a>
             
           </div>
@@ -501,8 +526,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/12/C-语言篇-Pointer-to-Function/" rel="prev" title="C++ 语言篇 Pointer to Function">
-                C++ 语言篇 Pointer to Function <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/10/Leetcode169-Majority-Element/" rel="prev" title="Leetcode169. Majority Element">
+                Leetcode169. Majority Element <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -584,7 +609,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -594,10 +619,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">5</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
-                
+                </a>
               </div>
             
 
@@ -605,10 +630,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">7</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -620,21 +645,27 @@
             <div class="links-of-author motion-element">
                 
                   <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
                     <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
                       
                         <i class="fa fa-fw fa-github"></i>GitHub</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="即刻">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
                       
-                        <i class="iconfont icon-jike"></i>即刻</a>
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
                       
-                        <i class="iconfont icon-psn"></i>PSN</a>
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
                   </span>
                 
                   <span class="links-of-author-item">
@@ -644,21 +675,9 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="博客园">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
                       
-                        <i class="iconfont icon-bokeyuan"></i>博客园</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
-                      
-                        <i class="iconfont icon-LeetCode"></i>LeetCode</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://space.bilibili.com/1688015" target="_blank" title="B站">
-                      
-                        <i class="iconfont icon-bilibili"></i>B站</a>
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
                   </span>
                 
                   <span class="links-of-author-item">
@@ -668,15 +687,27 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="http://my.mtime.com/3278759/" target="_blank" title="前Mtime">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
                       
-                        <i class="iconfont icon-shiguangwang"></i>前Mtime</a>
+                        <i class="iconfont icon-psn"></i>PSN</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="http://my.mtime.com/89767092/" target="_blank" title="现Mtime">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
                       
-                        <i class="iconfont icon-shiguangwang"></i>现Mtime</a>
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
                   </span>
                 
             </div>
@@ -699,7 +730,7 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://hoyyy.me/" title="小贺今天有认真学习吗" target="_blank">小贺今天有认真学习吗</a>
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -725,7 +756,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Range-For-c-11"><span class="nav-number">1.</span> <span class="nav-text">Range-For[c++11]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Observing"><span class="nav-number">2.</span> <span class="nav-text">Observing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cheap-to-copy-by-value"><span class="nav-number">2.1.</span> <span class="nav-text">cheap-to-copy :by value</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#for-auto-x-v-简单类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">for (auto x : v) 简单类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#general-case-by-const-reference"><span class="nav-number">2.2.</span> <span class="nav-text">general case : by const reference</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#for-auto-x-v-复杂类型"><span class="nav-number">2.2.1.</span> <span class="nav-text">for (auto x : v) 复杂类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for-const-auto-amp-x-v"><span class="nav-number">2.2.2.</span> <span class="nav-text">for (const auto&amp; x : v)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modifying"><span class="nav-number">3.</span> <span class="nav-text">Modifying</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-auto-elem-container"><span class="nav-number">3.1.</span> <span class="nav-text">for (auto elem : container)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-const-auto-amp-elem-container"><span class="nav-number">3.2.</span> <span class="nav-text">for (const auto&amp; elem : container)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-auto-amp-x-v"><span class="nav-number">3.3.</span> <span class="nav-text">for (auto&amp; x : v)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-of-Proxy-Iterator"><span class="nav-number">4.</span> <span class="nav-text">Case of  Proxy Iterator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-auto-amp-x-v-1"><span class="nav-number">4.1.</span> <span class="nav-text">for (auto&amp; x : v)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-auto-amp-amp-x-v"><span class="nav-number">4.2.</span> <span class="nav-text">for (auto&amp;&amp; x : v)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">5.</span> <span class="nav-text">Summary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generic-code"><span class="nav-number">5.1.</span> <span class="nav-text">Generic code</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Range-For-c-11"><span class="nav-number">1.</span> <span class="nav-text">Range-For[c++11]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Observing"><span class="nav-number">2.</span> <span class="nav-text">Observing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cheap-to-copy-by-value"><span class="nav-number">2.1.</span> <span class="nav-text">cheap-to-copy :by value</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#for-auto-x-v-简单类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">for (auto x : v) 简单类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#general-case-by-const-reference"><span class="nav-number">2.2.</span> <span class="nav-text">general case : by const reference</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#for-auto-x-v-复杂类型"><span class="nav-number">2.2.1.</span> <span class="nav-text">for (auto x : v) 复杂类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for-const-auto-amp-x-v"><span class="nav-number">2.2.2.</span> <span class="nav-text">for (const auto&amp; x : v)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modifying"><span class="nav-number">3.</span> <span class="nav-text">Modifying</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-auto-elem-container"><span class="nav-number">3.1.</span> <span class="nav-text">for (auto elem : container)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-const-auto-amp-elem-container"><span class="nav-number">3.2.</span> <span class="nav-text">for (const auto&amp; elem : container)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-auto-amp-x-v"><span class="nav-number">3.3.</span> <span class="nav-text">for (auto&amp; x : v)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-of-Proxy-Iterator"><span class="nav-number">4.</span> <span class="nav-text">Case of  Proxy Iterator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-auto-amp-x-v-1"><span class="nav-number">4.1.</span> <span class="nav-text">for (auto&amp; x : v)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-auto-amp-amp-x-v"><span class="nav-number">4.2.</span> <span class="nav-text">for (auto&amp;&amp; x : v)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">5.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generic-code"><span class="nav-number">6.</span> <span class="nav-text">Generic code</span></a></li></ol></div>
             
 
           </div>
@@ -769,7 +800,25 @@
 
 
 
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
 
 
 

@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://github.com/hoshinotsuki/pacman-game/raw/master/res/play3.JPG">
 <meta property="og:image" content="https://github.com/hoshinotsuki/pacman-game/raw/master/res/map.JPG">
 <meta property="og:image" content="https://github.com/hoshinotsuki/pacman-game/raw/master/res/WIN.JPG">
-<meta property="og:updated_time" content="2019-03-19T15:37:39.041Z">
+<meta property="og:updated_time" content="2019-03-20T14:03:32.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用C++写的一个吃豆人的小游戏">
 <meta name="twitter:description" content="刷题太自闭了，不如做个小游戏减减压吧。下午摸鱼看了个视频，用c++做了一个小游戏，吃豆人。主要收获是学了一点点OOP+数学+数据结构+操作系统。游戏思路如下。 消息队列每一个窗口程序有一个消息队列,系统把消息放到队列里面,设置一个循环来翻译队列中的消息.然后分发这个消息. 12345678910// 主消息循环:    //while (GetMessage(&amp;amp;msg, nullptr,">
@@ -187,52 +187,62 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-泉水">
-          <a href="/" rel="section">
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tint"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
             
-            泉水
+            C++
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-英雄">
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-questions">
+          <a href="/categories/Questions-Collections/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Questions
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
             
-            英雄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-发育">
-          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-pied-piper-alt"></i> <br>
-            
-            发育
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-打野">
-          <a href="/2019/01/21/leetcode/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-optin-monster"></i> <br>
-            
-            打野
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-奖杯">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-trophy"></i> <br>
-            
-            奖杯
+            About
           </a>
         </li>
       
@@ -245,7 +255,8 @@
 </nav>
 
 
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
  </div>
     </header>
 
@@ -314,8 +325,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-19T23:37:39+08:00">
-                2019-03-19
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T22:03:32+08:00">
+                2019-03-20
               </time>
             
           </span>
@@ -351,6 +362,11 @@
           
           
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
           
 
           
@@ -415,8 +431,6 @@
 <h2 id="游戏主体逻辑"><a href="#游戏主体逻辑" class="headerlink" title="游戏主体逻辑"></a>游戏主体逻辑</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 玩家对象,智能指针</span></span><br><span class="line"><span class="comment">// 自己 </span></span><br><span class="line"><span class="keyword">auto</span> g_me = <span class="built_in">std</span>::make_shared&lt;PacMan&gt;(P_ROW, P_COLUMS);</span><br><span class="line"><span class="comment">// 设定四个敌人对象</span></span><br><span class="line"><span class="keyword">auto</span> e1 = <span class="built_in">std</span>::make_shared&lt;RedOne&gt;(E_ROW, E_COLUMS);</span><br><span class="line"><span class="keyword">auto</span> e2 = <span class="built_in">std</span>::make_shared&lt;RedOne&gt;(E_ROW, E_COLUMS);</span><br><span class="line"><span class="keyword">auto</span> e3 = <span class="built_in">std</span>::make_shared&lt;BlueOne&gt;(E_ROW, E_COLUMS);</span><br><span class="line"><span class="keyword">auto</span> e4 = <span class="built_in">std</span>::make_shared&lt;YellowOne&gt;(E_ROW, E_COLUMS);</span><br><span class="line"></span><br><span class="line"><span class="comment">//静态变量，初始化为第一关地图</span></span><br><span class="line">GObject::pStage = MapArray[s_n]; </span><br><span class="line"></span><br><span class="line"><span class="comment">//引用静态成员变量</span></span><br><span class="line"><span class="comment">// 设定玩家</span></span><br><span class="line">Enermy::player = g_me;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 主消息循环:</span></span><br><span class="line"><span class="comment">// 玩家没有被抓,并且关卡&lt;3</span></span><br><span class="line"><span class="keyword">while</span> (!g_me-&gt;IsOver() &amp;&amp; s_n &lt; STAGE_COUNT) &#123;</span><br><span class="line"><span class="comment">// 判断是否赢得比赛</span></span><br><span class="line"><span class="keyword">if</span> (g_me-&gt;IsWin()) &#123;</span><br><span class="line">s_n++;</span><br><span class="line"><span class="comment">// 重设自己和敌人位置 </span></span><br><span class="line"><span class="comment">// 判断是否完成了3关,如果完成,退出游戏,否则进入下一关</span></span><br><span class="line"><span class="keyword">if</span> (s_n &lt; <span class="number">3</span>) &#123; </span><br><span class="line"><span class="keyword">continue</span>;&#125;<span class="comment">// 继续进行循环</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">break</span>;&#125;<span class="comment">// 跳出循环</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取消息</span></span><br><span class="line"><span class="keyword">if</span> (PeekMessage(&amp;msg, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>, PM_REMOVE)) &#123;</span><br><span class="line">TranslateMessage(&amp;msg);</span><br><span class="line">DispatchMessage(&amp;msg);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 判断时间,否则画得太快，敌人一下就把我们抓住了就游戏结束了</span></span><br><span class="line"><span class="keyword">if</span> (GetTickCount() - dwLastTime &gt;= <span class="number">40</span>) &#123;</span><br><span class="line">dwLastTime = GetTickCount();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line"><span class="comment">// 时间不到,本次不进行绘画</span></span><br><span class="line"><span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 获得设备</span></span><br><span class="line">HDC hdc = ::GetDC(g_hwnd);</span><br><span class="line"><span class="comment">// 不使用时自动释放</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;HDC__&gt; dc(hdc, [](<span class="keyword">auto</span> hdc) &#123;</span><br><span class="line">::ReleaseDC(g_hwnd, hdc);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 画豆子</span></span><br><span class="line">MapArray[s_n]-&gt;DrawPeas(hdc);</span><br><span class="line"><span class="comment">// 画地图</span></span><br><span class="line">MapArray[s_n]-&gt;DrawMap(hdc);</span><br><span class="line"><span class="comment">// 画敌人及自动运动 </span></span><br><span class="line"><span class="comment">// 画自己 </span></span><br><span class="line"><span class="comment">// 自己向前移动 </span></span><br><span class="line"><span class="comment">// 获取按键 : 控制自己的方向</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 如果游戏结束</span></span><br><span class="line"><span class="keyword">if</span> (g_me-&gt;IsOver()) &#123;... &#125;</span><br><span class="line"><span class="comment">// 否则,提示赢得游戏</span></span><br><span class="line"><span class="keyword">else</span> &#123; ...&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="金手指"><a href="#金手指" class="headerlink" title="金手指"></a>金手指</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//快速通关</span></span><br><span class="line"><span class="keyword">if</span> (GetAsyncKeyState(<span class="string">'B'</span>) &amp; <span class="number">0x8000</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAPLENTH; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; MAPLENTH; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            peaMapData[i][j] = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="https://github.com/hoshinotsuki/pacman-game/raw/master/res/WIN.JPG" alt="画线"></p>
-<p>@Lightmare小蒟蒻</p>
-<p>2019.3.17</p>
 
       
     </div>
@@ -475,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/15/Kadane-s-Algorithm/" rel="next" title="Kadane's Algorithm">
-                <i class="fa fa-chevron-left"></i> Kadane's Algorithm
+              <a href="/2019/03/15/LeetCode172-Factorial-Trailing-Zeroes/" rel="next" title="LeetCode172. Factorial Trailing Zeroes">
+                <i class="fa fa-chevron-left"></i> LeetCode172. Factorial Trailing Zeroes
               </a>
             
           </div>
@@ -568,7 +582,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -578,10 +592,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">5</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
-                
+                </a>
               </div>
             
 
@@ -589,10 +603,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">7</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -604,21 +618,27 @@
             <div class="links-of-author motion-element">
                 
                   <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
                     <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
                       
                         <i class="fa fa-fw fa-github"></i>GitHub</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="即刻">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
                       
-                        <i class="iconfont icon-jike"></i>即刻</a>
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
                       
-                        <i class="iconfont icon-psn"></i>PSN</a>
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
                   </span>
                 
                   <span class="links-of-author-item">
@@ -628,21 +648,9 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="博客园">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
                       
-                        <i class="iconfont icon-bokeyuan"></i>博客园</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
-                      
-                        <i class="iconfont icon-LeetCode"></i>LeetCode</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://space.bilibili.com/1688015" target="_blank" title="B站">
-                      
-                        <i class="iconfont icon-bilibili"></i>B站</a>
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
                   </span>
                 
                   <span class="links-of-author-item">
@@ -652,15 +660,27 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="http://my.mtime.com/3278759/" target="_blank" title="前Mtime">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
                       
-                        <i class="iconfont icon-shiguangwang"></i>前Mtime</a>
+                        <i class="iconfont icon-psn"></i>PSN</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="http://my.mtime.com/89767092/" target="_blank" title="现Mtime">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
                       
-                        <i class="iconfont icon-shiguangwang"></i>现Mtime</a>
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
                   </span>
                 
             </div>
@@ -683,7 +703,7 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://hoyyy.me/" title="小贺今天有认真学习吗" target="_blank">小贺今天有认真学习吗</a>
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -753,7 +773,25 @@
 
 
 
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
 
 
 

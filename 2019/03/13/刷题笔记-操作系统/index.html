@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Operating System,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="内存管理Q1. 164位系统和32位系统的区别 A1. 1238位的cpu，一次处理一个8位的数据，比如&apos;10001000&apos;，如果&apos;+1&apos;这个运算，cpu要先做&apos;+&apos;，再做&apos;1&apos;传给cpu16位的cpu，一次处理2个字节(16位)32位的cpu，一次处理4个字节    type 32bit - byte count 64bit - byte count range     bool 1  ture">
+<meta name="keywords" content="Operating System">
+<meta property="og:type" content="article">
+<meta property="og:title" content="刷题笔记 操作系统">
+<meta property="og:url" content="http://yoursite.com/2019/03/13/刷题笔记-操作系统/index.html">
+<meta property="og:site_name" content="Lightmare">
+<meta property="og:description" content="内存管理Q1. 164位系统和32位系统的区别 A1. 1238位的cpu，一次处理一个8位的数据，比如&apos;10001000&apos;，如果&apos;+1&apos;这个运算，cpu要先做&apos;+&apos;，再做&apos;1&apos;传给cpu16位的cpu，一次处理2个字节(16位)32位的cpu，一次处理4个字节    type 32bit - byte count 64bit - byte count range     bool 1  ture">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-20T14:05:05.632Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="刷题笔记 操作系统">
+<meta name="twitter:description" content="内存管理Q1. 164位系统和32位系统的区别 A1. 1238位的cpu，一次处理一个8位的数据，比如&apos;10001000&apos;，如果&apos;+1&apos;这个运算，cpu要先做&apos;+&apos;，再做&apos;1&apos;传给cpu16位的cpu，一次处理2个字节(16位)32位的cpu，一次处理4个字节    type 32bit - byte count 64bit - byte count range     bool 1  ture">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":15,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/13/刷题笔记-操作系统/">
+
+
+
+
+
+  <title>刷题笔记 操作系统 | Lightmare</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lightmare</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
+            
+            C++
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-questions">
+          <a href="/categories/Questions-Collections/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Questions
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/13/刷题笔记-操作系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">刷题笔记 操作系统</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-13T17:17:06+08:00">
+                2019-03-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T22:05:05+08:00">
+                2019-03-20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Questions-Collections/" itemprop="url" rel="index">
+                    <span itemprop="name">Questions Collections</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><p>Q1.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">64</span>位系统和<span class="number">32</span>位系统的区别</span><br></pre></td></tr></table></figure>
+<p>A1.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">8位的cpu，一次处理一个8位的数据，比如'10001000'，如果'+1'这个运算，cpu要先做'+'，再做'1'传给cpu</span><br><span class="line"><span class="number">16</span>位的cpu，一次处理<span class="number">2</span>个字节(<span class="number">16</span>位)</span><br><span class="line"><span class="number">32</span>位的cpu，一次处理<span class="number">4</span>个字节</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">type</th>
+<th>32bit - byte count</th>
+<th>64bit - byte count</th>
+<th>range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">bool</td>
+<td>1</td>
+<td></td>
+<td>ture,false</td>
+</tr>
+<tr>
+<td style="text-align:left">char</td>
+<td>1</td>
+<td></td>
+<td>-128~127(-2^7~2^7-1)</td>
+</tr>
+<tr>
+<td style="text-align:left">unsigned char</td>
+<td>1</td>
+<td></td>
+<td>0~255(0~2^8-1)</td>
+</tr>
+<tr>
+<td style="text-align:left">short</td>
+<td>2</td>
+<td></td>
+<td>-32768~32767(-2^15~2^15-1)</td>
+</tr>
+<tr>
+<td style="text-align:left">unsigned short</td>
+<td>2</td>
+<td></td>
+<td>0~65535(2^16-1)</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td>4</td>
+<td></td>
+<td>(-2^31~2^31-1)</td>
+</tr>
+<tr>
+<td style="text-align:left">unsigned int</td>
+<td>4</td>
+<td></td>
+<td>(0~2^32-1)</td>
+</tr>
+<tr>
+<td style="text-align:left">long</td>
+<td>4</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">unsigned long</td>
+<td>4</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">long long</td>
+<td>8</td>
+<td></td>
+<td>-2^64~2^64-1</td>
+</tr>
+<tr>
+<td style="text-align:left">float</td>
+<td>4</td>
+<td></td>
+<td>-2^128~2^128，精度为6~7位有效数字</td>
+</tr>
+<tr>
+<td style="text-align:left">double</td>
+<td>8</td>
+<td></td>
+<td>-2^1024~2^1024，精度为15~16位</td>
+</tr>
+<tr>
+<td style="text-align:left">long double</td>
+<td>8</td>
+<td></td>
+<td>-2^1024~2^1024，精度为15~16位</td>
+</tr>
+<tr>
+<td style="text-align:left">*</td>
+<td>4</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>除了long和指针有区别之外，其它不变。</p>
+<h2 id="进程线程"><a href="#进程线程" class="headerlink" title="进程线程"></a>进程线程</h2><p>Q:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">下面哪些方式可以用于线程之间的同步？ </span><br><span class="line">临界区。√</span><br><span class="line">互斥区。√</span><br><span class="line">事件。√</span><br><span class="line">信号量。√</span><br></pre></td></tr></table></figure>
+<p>A:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">进程中线程同步的四种常用方式：</span><br><span class="line">- 临界区（CCriticalSection）</span><br><span class="line">　　当多个线程访问一个独占性共享资源时，可以使用临界区对象。[拥有临界区的线程]可以访问被保护起来的资源或代码段，其他线程若想访问，则被挂起，直到拥有临界区的线程放弃临界区为止。具体应用方式：</span><br><span class="line">　　<span class="number">1.</span> 定义临界区对象CcriticalSection g_CriticalSection;</span><br><span class="line">　　<span class="number">2.</span> 在访问共享资源（代码或变量）之前，先获得临界区对象，g_CriticalSection.Lock（）；</span><br><span class="line">　　<span class="number">3.</span> 访问共享资源后，则放弃临界区对象，g_CriticalSection.Unlock（）；</span><br><span class="line">　　</span><br><span class="line">- 事件（CEvent）</span><br><span class="line">　　事件机制，则允许一个线程在处理完一个任务后，主动唤醒另外一个线程执行任务。比如在某些网络应用程序中，一个线程如A负责侦听通信端口，另外一个线程B负责更新用户数据，利用事件机制，则线程A可以通知线程B何时更新用户数据。</span><br><span class="line">　　每个Cevent对象可以有两种状态：有信号状态和无信号状态。</span><br><span class="line">　　Cevent类对象有两种类型：人工事件和自动事件。</span><br><span class="line">　　自动事件对象，在被至少一个线程释放后自动返回到无信号状态；</span><br><span class="line">　　人工事件对象，获得信号后，释放可利用线程，但直到调用成员函数ReSet()才将其设置为无信号状态。</span><br><span class="line">　　在创建Cevent对象时，默认创建的是自动事件。</span><br><span class="line">　　<span class="number">1.</span> <span class="number">1234</span>CEvent(</span><br><span class="line">      BOOL bInitiallyOwn=FALSE,</span><br><span class="line">      <span class="comment">//指定事件对象初始化状态，TRUE为有信号，FALSE为无信号；</span></span><br><span class="line">      BOOL bManualReset=FALSE,</span><br><span class="line">      <span class="comment">//指定要创建的事件是属于人工事件还是自动事件。TRUE为人工事件，FALSE为自动事件；</span></span><br><span class="line">      LPCTSTR lpszName=<span class="literal">NULL</span>,          </span><br><span class="line">      LPSECURITY_ATTRIBUTES lpsaAttribute=<span class="literal">NULL</span>);  </span><br><span class="line">　　<span class="number">2.</span> BOOL CEvent：：SetEvent();</span><br><span class="line">　　将Cevent类对象的状态设置为有信号状态。</span><br><span class="line">　　如果事件是人工事件，则Cevent类对象保持为有信号状态，直到调用成员函数ResetEvent()将其重新设为无信号状态时为止。</span><br><span class="line">　　如果为自动事件，则在SetEvent（）后将事件设置为有信号状态，由系统自动重置为无信号状态。　　</span><br><span class="line">　　<span class="number">3.</span> BOOL CEvent：：ResetEvent();</span><br><span class="line">　　将事件的状态设置为无信号状态，并保持该状态直至SetEvent（）被调用为止。</span><br><span class="line">　　由于自动事件是由系统自动重置，故自动事件不需要调用该函数。</span><br><span class="line">　　<span class="number">4.</span> 一般通过调用WaitForSingleObject（）函数来监视事件状态。</span><br><span class="line">　　</span><br><span class="line">- 互斥量（CMutex）</span><br><span class="line">　　互斥对象和临界区对象非常相似，只是其[允许在进程间]使用，而临界区[只限制与同一进程的各个线程]之间使用，但是更节省资源，更有效率。</span><br><span class="line">　　</span><br><span class="line">- 信号量（CSemphore）</span><br><span class="line">　　当需要一个计数器来[限制可以使用某共享资源的线程数目]时，可以使用“信号量”对象。</span><br><span class="line">　　CSemaphore类对象保存了对当前访问某一个指定资源的线程的计数值，该计数值是[当前还可以使用该资源的线程数目]。</span><br><span class="line">　　如果这个计数达到了零，则所有对这个CSemaphore类对象所控制的资源的访问尝试都被放入到一个队列中等待，直到超时或计数值不为零为止。</span><br><span class="line">　　CSemaphore(</span><br><span class="line">　　LONG lInitialCount = <span class="number">1</span>,</span><br><span class="line">      <span class="comment">//信号量对象的初始计数值，即可访问线程数目的初始值；</span></span><br><span class="line">　　LONG lMaxCount = <span class="number">1</span>,</span><br><span class="line">      <span class="comment">//信号量对象计数值的最大值，该参数决定了同一时刻可访问由信号量保护的资源的线程最大数目；</span></span><br><span class="line">　　LPCTSTR pstrName = <span class="literal">NULL</span>,</span><br><span class="line">　　LPSECURITY_ATTRIBUTES lpsaAttributes = <span class="literal">NULL</span></span><br><span class="line">　　); </span><br><span class="line">　　一般是将当前可用资源计数设置为最大资源计数，每增加一个线程对共享资源的访问，当前可用资源计数就减<span class="number">1</span>，只要当前可用资源计数大于<span class="number">0</span>，就可以发出信号量信号。如果为<span class="number">0</span>，则放入一个队列中等待。</span><br><span class="line">　　线程在处理完共享资源后，应在离开的同时通过ReleaseSemaphore（）函数将当前可用资源数加<span class="number">1</span>。</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for Support.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Lightmare Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Operating-System/" rel="tag"># Operating System</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/13/C-面向对象篇-Union/" rel="next" title="C++ 面向对象篇 Union">
+                <i class="fa fa-chevron-left"></i> C++ 面向对象篇 Union
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/13/刷题笔记-C-C-基础/" rel="prev" title="刷题笔记 C/C++基础">
+                刷题笔记 C/C++基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Lightmare">
+            
+              <p class="site-author-name" itemprop="name">Lightmare</p>
+              <p class="site-description motion-element" itemprop="description">~ Magic world , Magical girl ~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
+                      
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_41042404" target="_blank" title="CSDN">
+                      
+                        <i class="iconfont icon-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
+                      
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lightmare625@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                      
+                        <i class="iconfont icon-psn"></i>PSN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
+                      
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://whosurdaddy.ml/" title="Hector" target="_blank">Hector</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wayjam.me/" title="wayjam" target="_blank">wayjam</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存管理"><span class="nav-number">1.</span> <span class="nav-text">内存管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程线程"><span class="nav-number">2.</span> <span class="nav-text">进程线程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-/images/favicon.ico"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lightmare</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

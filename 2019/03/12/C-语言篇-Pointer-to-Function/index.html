@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="C++,">
+  <meta name="keywords" content="C++,pointer,function,">
 
 
 
@@ -78,14 +78,14 @@
 
 
 <meta name="description" content="pointer to functionInitialized &amp;amp; Implicit Conversion A [pointer to function] can be initialized with an address of a [non-member function] or a [static member function].   [function-to-pointer imp">
-<meta name="keywords" content="C++">
+<meta name="keywords" content="C++,pointer,function">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 语言篇 Pointer to Function">
 <meta property="og:url" content="http://yoursite.com/2019/03/12/C-语言篇-Pointer-to-Function/index.html">
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="pointer to functionInitialized &amp;amp; Implicit Conversion A [pointer to function] can be initialized with an address of a [non-member function] or a [static member function].   [function-to-pointer imp">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-19T15:37:14.798Z">
+<meta property="og:updated_time" content="2019-03-20T15:24:29.958Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ 语言篇 Pointer to Function">
 <meta name="twitter:description" content="pointer to functionInitialized &amp;amp; Implicit Conversion A [pointer to function] can be initialized with an address of a [non-member function] or a [static member function].   [function-to-pointer imp">
@@ -179,52 +179,62 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-泉水">
-          <a href="/" rel="section">
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tint"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
             
-            泉水
+            C++
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-英雄">
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-questions">
+          <a href="/categories/Questions-Collections/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Questions
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
             
-            英雄
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-发育">
-          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-pied-piper-alt"></i> <br>
-            
-            发育
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-打野">
-          <a href="/2019/01/21/leetcode/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-optin-monster"></i> <br>
-            
-            打野
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-奖杯">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-trophy"></i> <br>
-            
-            奖杯
+            About
           </a>
         </li>
       
@@ -237,7 +247,8 @@
 </nav>
 
 
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
  </div>
     </header>
 
@@ -306,8 +317,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-19T23:37:14+08:00">
-                2019-03-19
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T23:24:29+08:00">
+                2019-03-20
               </time>
             
           </span>
@@ -344,6 +355,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
           
 
@@ -376,9 +392,9 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">int</span> (*p)() = f;  </span><br><span class="line"><span class="comment">// pointer p is pointing to f</span></span><br><span class="line"><span class="keyword">int</span> (&amp;r)() = *p; </span><br><span class="line"><span class="comment">// the [lvalue that identifies f] is bound to a [reference]</span></span><br><span class="line">r();             </span><br><span class="line"><span class="comment">// function f invoked through [lvalue reference]</span></span><br><span class="line">(*p)();          </span><br><span class="line"><span class="comment">// function f invoked through the [function lvalue]</span></span><br><span class="line">p();             </span><br><span class="line"><span class="comment">// function f invoked directly through the [pointer]</span></span><br></pre></td></tr></table></figure>
 <h2 id="Initialized-from-an-overload"><a href="#Initialized-from-an-overload" class="headerlink" title="Initialized from an overload"></a>Initialized from an overload</h2><p>A pointer to function may be initialized from an overload set which may include <strong>functions, function template specializations, and function templates</strong>, if only one overload matches the type of the pointer (see address of an overloaded function for more detail):</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="function">T <span class="title">f</span><span class="params">(T n)</span> </span>&#123; <span class="keyword">return</span> n; &#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">f</span><span class="params">(<span class="keyword">double</span> n)</span> </span>&#123; <span class="keyword">return</span> n; &#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> (*p)(<span class="keyword">int</span>) = f; <span class="comment">// instantiates and selects f&lt;int&gt;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Equality comparison operators are defined for pointers to functions (they compare equal if pointing to the same function). </p>
-<p>@Lightmare</p>
-<p>19/3/12</p>
+<p>Equality comparison operators are defined for pointers to functions (they compare equal if pointing to the same function).  </p>
+<hr>
+<p>to be continued…</p>
 
       
     </div>
@@ -422,6 +438,10 @@
           
             <a href="/tags/C/" rel="tag"># C++</a>
           
+            <a href="/tags/pointer/" rel="tag"># pointer</a>
+          
+            <a href="/tags/function/" rel="tag"># function</a>
+          
         </div>
       
 
@@ -433,8 +453,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/10/C-语言篇-Range-For-c-11/" rel="next" title="C++ 语言篇 Range-For：Observing and Modifying [c++11]">
-                <i class="fa fa-chevron-left"></i> C++ 语言篇 Range-For：Observing and Modifying [c++11]
+              <a href="/2019/03/11/C-算法篇-std-sort/" rel="next" title="C++ 算法篇 std::sort">
+                <i class="fa fa-chevron-left"></i> C++ 算法篇 std::sort
               </a>
             
           </div>
@@ -443,8 +463,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/14/C-语言篇-cv-const-and-volatile-type-qualifiers/" rel="prev" title="C++ 语言篇 CV(const and volatile) Type Qualifiers">
-                C++ 语言篇 CV(const and volatile) Type Qualifiers <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/12/LeetCode215-Kth-Largest-Element-in-an-Array/" rel="prev" title="LeetCode215. Kth Largest Element in an Array">
+                LeetCode215. Kth Largest Element in an Array <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -526,7 +546,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -536,10 +556,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">5</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">categories</span>
-                
+                </a>
               </div>
             
 
@@ -547,10 +567,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">7</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -562,21 +582,27 @@
             <div class="links-of-author motion-element">
                 
                   <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
                     <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
                       
                         <i class="fa fa-fw fa-github"></i>GitHub</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="即刻">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
                       
-                        <i class="iconfont icon-jike"></i>即刻</a>
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
                       
-                        <i class="iconfont icon-psn"></i>PSN</a>
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
                   </span>
                 
                   <span class="links-of-author-item">
@@ -586,21 +612,9 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="博客园">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
                       
-                        <i class="iconfont icon-bokeyuan"></i>博客园</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
-                      
-                        <i class="iconfont icon-LeetCode"></i>LeetCode</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://space.bilibili.com/1688015" target="_blank" title="B站">
-                      
-                        <i class="iconfont icon-bilibili"></i>B站</a>
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
                   </span>
                 
                   <span class="links-of-author-item">
@@ -610,15 +624,27 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="http://my.mtime.com/3278759/" target="_blank" title="前Mtime">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
                       
-                        <i class="iconfont icon-shiguangwang"></i>前Mtime</a>
+                        <i class="iconfont icon-psn"></i>PSN</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="http://my.mtime.com/89767092/" target="_blank" title="现Mtime">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
                       
-                        <i class="iconfont icon-shiguangwang"></i>现Mtime</a>
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
                   </span>
                 
             </div>
@@ -641,7 +667,7 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://hoyyy.me/" title="小贺今天有认真学习吗" target="_blank">小贺今天有认真学习吗</a>
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -711,7 +737,25 @@
 
 
 
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
 
 
 
