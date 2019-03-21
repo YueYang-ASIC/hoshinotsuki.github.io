@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="STL,Sort,Algorithms library,Quicksort,Partition,">
+  <meta name="keywords" content="STL,Sort,Algorithms library,Partition,Quicksort,">
 
 
 
@@ -77,21 +77,21 @@
 
 
 
-<meta name="description" content="Quicksort Also known as (partition-exchange sort).  Average : O(nlogn), Worst : O(n^2)，但一般O(n^2)不常见。  Faster than other O(nlogn) algorithms，因为Quicksort的inner loop在大部分的架构上很有效率被实现。   Algorithm divide an">
-<meta name="keywords" content="STL,Sort,Algorithms library,Quicksort,Partition">
+<meta name="description" content="STL   Defined in header &amp;lt;algorithm&amp;gt;      template&amp;lt; class RandomIt &amp;gt; void sort( RandomIt first, RandomIt last ); (until C++20)   template&amp;lt; class RandomIt &amp;gt; constexpr void sort( Random">
+<meta name="keywords" content="STL,Sort,Algorithms library,Partition,Quicksort">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 算法篇 std::sort">
 <meta property="og:url" content="http://yoursite.com/2019/03/11/C-算法篇-std-sort/index.html">
 <meta property="og:site_name" content="Lightmare">
-<meta property="og:description" content="Quicksort Also known as (partition-exchange sort).  Average : O(nlogn), Worst : O(n^2)，但一般O(n^2)不常见。  Faster than other O(nlogn) algorithms，因为Quicksort的inner loop在大部分的架构上很有效率被实现。   Algorithm divide an">
+<meta property="og:description" content="STL   Defined in header &amp;lt;algorithm&amp;gt;      template&amp;lt; class RandomIt &amp;gt; void sort( RandomIt first, RandomIt last ); (until C++20)   template&amp;lt; class RandomIt &amp;gt; constexpr void sort( Random">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://includecmath.github.io/2017/01/08/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/400px-Partition_example.svg.png">
 <meta property="og:image" content="https://includecmath.github.io/2017/01/08/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/quicksort_partition1.png">
 <meta property="og:image" content="https://includecmath.github.io/2017/01/08/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/quicksort_21.png">
-<meta property="og:updated_time" content="2019-03-20T15:44:44.465Z">
+<meta property="og:updated_time" content="2019-03-21T17:06:55.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ 算法篇 std::sort">
-<meta name="twitter:description" content="Quicksort Also known as (partition-exchange sort).  Average : O(nlogn), Worst : O(n^2)，但一般O(n^2)不常见。  Faster than other O(nlogn) algorithms，因为Quicksort的inner loop在大部分的架构上很有效率被实现。   Algorithm divide an">
+<meta name="twitter:description" content="STL   Defined in header &amp;lt;algorithm&amp;gt;      template&amp;lt; class RandomIt &amp;gt; void sort( RandomIt first, RandomIt last ); (until C++20)   template&amp;lt; class RandomIt &amp;gt; constexpr void sort( Random">
 <meta name="twitter:image" content="https://includecmath.github.io/2017/01/08/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/400px-Partition_example.svg.png">
 
 
@@ -321,8 +321,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-20T23:44:44+08:00">
-                2019-03-20
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-22T01:06:55+08:00">
+                2019-03-22
               </time>
             
           </span>
@@ -382,7 +382,76 @@
       
 
       
-        <h2 id="Quicksort"><a href="#Quicksort" class="headerlink" title="Quicksort"></a>Quicksort</h2><ul>
+        <h2 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Defined in header <code>&lt;algorithm&gt;</code></th>
+<th style="text-align:right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">template&lt; class RandomIt &gt; <br>void sort( RandomIt first, RandomIt last );</td>
+<td style="text-align:right">(until C++20)</td>
+</tr>
+<tr>
+<td style="text-align:left">template&lt; class RandomIt &gt; <br>constexpr void sort( RandomIt first, RandomIt last );</td>
+<td style="text-align:right">(since C++20)</td>
+</tr>
+<tr>
+<td style="text-align:left">template&lt; class ExecutionPolicy, class RandomIt &gt; <br>void sort( ExecutionPolicy&amp;&amp; policy, RandomIt first, RandomIt last );</td>
+<td style="text-align:right">(since C++17)</td>
+</tr>
+<tr>
+<td style="text-align:left">template&lt; class RandomIt, class Compare &gt; <br>void sort( RandomIt first, RandomIt last, Compare comp );</td>
+<td style="text-align:right">(until C++20)</td>
+</tr>
+<tr>
+<td style="text-align:left">template&lt; class RandomIt, class Compare &gt; <br>constexpr void sort( RandomIt first, RandomIt last, Compare comp );</td>
+<td style="text-align:right">(since C++20)</td>
+</tr>
+<tr>
+<td style="text-align:left">template&lt; class ExecutionPolicy, class RandomIt, class Compare &gt; <br>void sort( ExecutionPolicy&amp;&amp; policy, RandomIt first, RandomIt last, Compare comp );</td>
+<td style="text-align:right">(since C++17)</td>
+</tr>
+</tbody>
+</table>
+<p>Sorts the elements in the range <code>[first, last)</code> in ascending order. The order of equal elements is not guaranteed to be preserved.</p>
+<p>1) Elements are compared using <code>operator&lt;</code>.</p>
+<p>3) Elements are compared using the given binary comparison function <code>comp</code>.</p>
+<p>2,4) Same as (1,3), but executed according to <code>policy</code>. These overloads do not participate in overload resolution unless <a href="http://en.cppreference.com/w/cpp/algorithm/is_execution_policy" target="_blank" rel="noopener">std::is_execution_policy_v</a>&lt;<a href="http://en.cppreference.com/w/cpp/types/decay" target="_blank" rel="noopener">std::decay_t</a><executionpolicy>&gt; is true</executionpolicy></p>
+<h3 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h3><ul>
+<li><p><strong>first, last</strong> - the range of elements to sort</p>
+</li>
+<li><p><strong>policy</strong> - the execution policy to use. See <a href="https://en.cppreference.com/w/cpp/algorithm/execution_policy_tag_t" target="_blank" rel="noopener">execution policy</a> for details.</p>
+</li>
+<li><p><strong>comp</strong> - comparison <strong>function object</strong> (i.e. an object that satisfies the requirements of  <em>Compare</em> ) which returns  <strong>true</strong>  if the first argument is <strong>less than</strong> (i.e. is <strong>ordered</strong> before) the second. 若第一参数<em>小于</em>（即<em>先</em>序于）第二参数则返回 true。</p>
+<p>The signature of the comparison function should be equivalent to the following:</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> Type1 &amp;a, <span class="keyword">const</span> Type2 &amp;b)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>  While the signature does not need to have const &amp;, the function must not modify the objects passed to it and must be able to accept all values of type (possibly const) <code>Type1</code> and <code>Type2</code>regardless of <a href="https://en.cppreference.com/w/cpp/language/value_category" target="_blank" rel="noopener">value category</a> (thus, Type1 &amp; is not allowed, nor is Type1 unless for <code>Type1</code> a move is equivalent to a copy (since C++11)).虽然签名不必有 const &amp; ，函数也不能修改传递给它的对象，而且必须接受（可为 const 的）类型 <code>Type1</code> 与 <code>Type2</code> 的值，无关乎<a href="https://zh.cppreference.com/w/cpp/language/value_category" target="_blank" rel="noopener">值类别</a>（从而不允许 Type1 &amp; ，亦不允许 Type1 ，除非 <code>Type1</code> 的移动等价于复制(C++11 起)）。<br>  The types Type1 and Type2 must be such that an object of type RandomIt <strong>can be dereferenced</strong> and then <strong>implicitly converted</strong> to both of them. 类型 Type1 与 Type2 必须使得 RandomIt 类型的对象能在解引用后隐式转换到这两个类型。 </p>
+<h3 id="Complexity"><a href="#Complexity" class="headerlink" title="Complexity"></a>Complexity</h3><table>
+<thead>
+<tr>
+<th><em>O(N·log(N))</em>, where N = <a href="http://en.cppreference.com/w/cpp/iterator/distance" target="_blank" rel="noopener">std::distance</a>(first, last) comparisons on average.</th>
+<th>(until C++11)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>O(N·log(N))</em>, where N = <a href="http://en.cppreference.com/w/cpp/iterator/distance" target="_blank" rel="noopener">std::distance</a>(first, last) comparisons.</td>
+<td>(since C++11)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;array&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="keyword">int</span>, 10&gt; s = &#123;<span class="number">5</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">3</span>&#125;; </span><br><span class="line"> </span><br><span class="line">    <span class="comment">// sort using the default operator&lt;</span></span><br><span class="line">    <span class="built_in">std</span>::sort(s.begin(), s.end());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> a : s) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// sort using a standard library compare function object</span></span><br><span class="line">    <span class="built_in">std</span>::sort(s.begin(), s.end(), <span class="built_in">std</span>::greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> a : s) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// sort using a custom function object</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">        </span>&#123;   </span><br><span class="line">            <span class="keyword">return</span> a &lt; b;</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125; customLess;</span><br><span class="line">    <span class="built_in">std</span>::sort(s.begin(), s.end(), customLess);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> a : s) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// sort using a lambda expression </span></span><br><span class="line">    <span class="built_in">std</span>::sort(s.begin(), s.end(), [](<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">        <span class="keyword">return</span> a &gt; b;   </span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> a : s) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span> </span><br><span class="line"><span class="number">9</span> <span class="number">8</span> <span class="number">7</span> <span class="number">6</span> <span class="number">5</span> <span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span> <span class="number">0</span> </span><br><span class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span> </span><br><span class="line"><span class="number">9</span> <span class="number">8</span> <span class="number">7</span> <span class="number">6</span> <span class="number">5</span> <span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>how to implement ?</p>
+<h2 id="Quicksort"><a href="#Quicksort" class="headerlink" title="Quicksort"></a>Quicksort</h2><ul>
 <li><p>Also known as (partition-exchange sort).</p>
 </li>
 <li><p>Average : O(nlogn), Worst : O(n^2)，但一般O(n^2)不常见。</p>
@@ -474,9 +543,9 @@
           
             <a href="/tags/Algorithms-library/" rel="tag"># Algorithms library</a>
           
-            <a href="/tags/Quicksort/" rel="tag"># Quicksort</a>
-          
             <a href="/tags/Partition/" rel="tag"># Partition</a>
+          
+            <a href="/tags/Quicksort/" rel="tag"># Quicksort</a>
           
         </div>
       
@@ -582,7 +651,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -593,7 +662,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -604,7 +673,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -729,7 +798,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quicksort"><span class="nav-number">1.</span> <span class="nav-text">Quicksort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithm"><span class="nav-number">2.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Partition"><span class="nav-number">3.</span> <span class="nav-text">Partition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Easy-version-S-Ω-n"><span class="nav-number">3.1.</span> <span class="nav-text">Easy-version(S:Ω(n))</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pseudocode"><span class="nav-number">3.1.1.</span> <span class="nav-text">Pseudocode:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-place-version-S-O-log-n"><span class="nav-number">3.2.</span> <span class="nav-text">In-place-version(S:O(log n))</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pseudocode-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">Pseudocode:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pseudocode-2"><span class="nav-number">3.2.2.</span> <span class="nav-text">Pseudocode:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementation"><span class="nav-number">4.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-way-scanning"><span class="nav-number">4.1.</span> <span class="nav-text">One-way scanning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-C"><span class="nav-number">4.2.</span> <span class="nav-text">In C++:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Two-way-scanning"><span class="nav-number">4.3.</span> <span class="nav-text">Two-way scanning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-C-1"><span class="nav-number">4.4.</span> <span class="nav-text">In C++:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimizations"><span class="nav-number">5.</span> <span class="nav-text">Optimizations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#STL"><span class="nav-number">1.</span> <span class="nav-text">STL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameters"><span class="nav-number">1.1.</span> <span class="nav-text">Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Complexity"><span class="nav-number">1.2.</span> <span class="nav-text">Complexity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">1.3.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quicksort"><span class="nav-number">2.</span> <span class="nav-text">Quicksort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithm"><span class="nav-number">3.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Partition"><span class="nav-number">4.</span> <span class="nav-text">Partition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Easy-version-S-Ω-n"><span class="nav-number">4.1.</span> <span class="nav-text">Easy-version(S:Ω(n))</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pseudocode"><span class="nav-number">4.1.1.</span> <span class="nav-text">Pseudocode:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-place-version-S-O-log-n"><span class="nav-number">4.2.</span> <span class="nav-text">In-place-version(S:O(log n))</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pseudocode-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">Pseudocode:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pseudocode-2"><span class="nav-number">4.2.2.</span> <span class="nav-text">Pseudocode:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementation"><span class="nav-number">5.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#One-way-scanning"><span class="nav-number">5.1.</span> <span class="nav-text">One-way scanning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-C"><span class="nav-number">5.2.</span> <span class="nav-text">In C++:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Two-way-scanning"><span class="nav-number">5.3.</span> <span class="nav-text">Two-way scanning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-C-1"><span class="nav-number">5.4.</span> <span class="nav-text">In C++:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimizations"><span class="nav-number">6.</span> <span class="nav-text">Optimizations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
