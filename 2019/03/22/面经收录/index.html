@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,Operating System,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="《C/C++程序员面试宝典》 梁镇宇 清华大学出版社  C/C++ C++基础数据类型：整数型、浮点型、void型。  操作符优先级：从右至左结合的有三个：单目运算符、条件运算符、赋值运算符。  左值和右值：左值是一个地址，右值是一个地址存放的内容。右值不能放在赋值语句的左边。变量是左值，可以出现在赋值语句的左边。数字字面值是右值，不能被赋值。  变量初始化：复制初始化、直接初始化。如果变量在定义">
+<meta name="keywords" content="C++,Operating System">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面经收录">
+<meta property="og:url" content="http://yoursite.com/2019/03/22/面经收录/index.html">
+<meta property="og:site_name" content="Lightmare">
+<meta property="og:description" content="《C/C++程序员面试宝典》 梁镇宇 清华大学出版社  C/C++ C++基础数据类型：整数型、浮点型、void型。  操作符优先级：从右至左结合的有三个：单目运算符、条件运算符、赋值运算符。  左值和右值：左值是一个地址，右值是一个地址存放的内容。右值不能放在赋值语句的左边。变量是左值，可以出现在赋值语句的左边。数字字面值是右值，不能被赋值。  变量初始化：复制初始化、直接初始化。如果变量在定义">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-22T15:54:32.529Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面经收录">
+<meta name="twitter:description" content="《C/C++程序员面试宝典》 梁镇宇 清华大学出版社  C/C++ C++基础数据类型：整数型、浮点型、void型。  操作符优先级：从右至左结合的有三个：单目运算符、条件运算符、赋值运算符。  左值和右值：左值是一个地址，右值是一个地址存放的内容。右值不能放在赋值语句的左边。变量是左值，可以出现在赋值语句的左边。数字字面值是右值，不能被赋值。  变量初始化：复制初始化、直接初始化。如果变量在定义">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":15,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/22/面经收录/">
+
+
+
+
+
+  <title>面经收录 | Lightmare</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lightmare</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
+            
+            C++
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-interview">
+          <a href="/categories/Interview/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Interview
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/面经收录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面经收录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-22T12:59:13+08:00">
+                2019-03-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-22T23:54:32+08:00">
+                2019-03-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Interview/" itemprop="url" rel="index">
+                    <span itemprop="name">Interview</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>《C/C++程序员面试宝典》 梁镇宇 清华大学出版社</p>
+<hr>
+<h1 id="C-C"><a href="#C-C" class="headerlink" title="C/C++"></a>C/C++</h1><ol>
+<li><p>C++基础数据类型：整数型、浮点型、void型。</p>
+</li>
+<li><p>操作符优先级：从右至左结合的有三个：单目运算符、条件运算符、赋值运算符。</p>
+</li>
+<li><p>左值和右值：左值是一个地址，右值是一个地址存放的内容。右值不能放在赋值语句的左边。变量是左值，可以出现在赋值语句的左边。数字字面值是右值，不能被赋值。</p>
+</li>
+<li><p>变量初始化：复制初始化、直接初始化。如果变量在定义的时候没有被初始化，他的值是不确定的。直接初始化的执行效率更高，复制初始化要擦除对象的当前值并用新值代替。系统有时候会默认初始化变量。内置类型变量是否自动初始化取决于变量定义的位置。函数体外定义的变量都初始化为0，函数体内的内置类型变量不自动初始化，除了作为赋值操作符的左操作数，否则未初始化的变量没有意义。类自身定义了怎么初始化，构造函数，如果类中没有定义某个类中变量的初始化，使用默认构造函数。</p>
+</li>
+<li><p>声明和定义：extern:声明变量名但不定义它。不会分配存储空间，它说明变量定义在程序的其它地方，含有初始化的extern声明被当作是定义，变量可以声明多次，只能定义一次。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> a;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><ol>
+<li><p>os：管理计算机的硬件资源，软件资源，数据资源，控制程序运行，提供操作接口，为其它应用软件提供支持等的软件系统。</p>
+</li>
+<li><p>根据任务的处理方式</p>
+<ol>
+<li><p>简单批处理系统</p>
+</li>
+<li><p>多道程序批处理系统：利用了处理机的空闲时间。</p>
+</li>
+<li><p>多道程序分时系统：现代操作系统。一个作业只在一个时间片的时间内使用cpu，时间到就剥夺作业的cpu使用权，根据算法将cpu分给其它作业使用。Unix,Linux，DOS,Windows,Mac等。</p>
+</li>
+<li><p>网络操作系统：一台计算机通过一个网络接口控制器连接网络，进行网络通信功能，网络资源的管理和使用的操作系统。</p>
+</li>
+</ol>
+</li>
+<li><p>操作系统的最小调度单位：线程。进程是操作系统中正在运行的一个应用程序，线程是系统分配处理器时间资源的基本单元。一个进程至少包括一个线程，通常称作主线程。</p>
+</li>
+<li><p>资源的最小单位是进程。进程由进程控制块、程序段、数据段三部分组成。使用线程可以实现应用程序同时做几件事互不干扰。线程自己不拥有系统资源，只拥有一点在运行中必不可少的资源。线程与同属一个进程的其它线程共享进程所有的全部资源，一个线程可以创建和撤销另一个线程，同一进程中的多个线程之间可以并发执行。子进程和父进程有不同代码和数据空间，多个线程共享进程的数据空间，每个线程由自己的执行堆栈和程序计数器为其执行上下文。多线程主要为了利用CPU时间，同时在一个进程内运行多个任务。</p>
+</li>
+<li><p>进程和线程的区别：</p>
+<ol>
+<li>一个程序至少由一个进程，一个进程至少有一个线程。</li>
+<li>进程在执行过程中拥有独立的内存单元，多个线程共享进程所拥有的内存。</li>
+<li>进程可以独立运行，线程不能独立执行，必须依存在进程中，使用该进程的应用程序提供多个线程执行控制。</li>
+</ol>
+</li>
+<li><p>任何实现多线程同步：多线程是为了使得线程并行地工作以完成多项任务，以提高系统的效率。</p>
+<p>好处：</p>
+<ol>
+<li><p>把占据长时间的程序中的任务作为一个单独的线程放到后台处理。用户界面可以继续响应用户的操作。</p>
+</li>
+<li><p>加快程序的处理速度。</p>
+</li>
+<li><p>在一些等待的任务实现上，如用户输入、文件读写、网络收发数据等，可以释放一些资源如内存占用等。</p>
+</li>
+</ol>
+<p>多线程同步：思想是避免多个线程对同一资源的访问，这个资源可以是一个对象、或者是一个方法、或者是一段代码。</p>
+<p>实现方法：</p>
+<ol>
+<li>临界区</li>
+<li>互斥量</li>
+<li>信号量</li>
+</ol>
+</li>
+</ol>
+<h1 id="C-C-面试题实战"><a href="#C-C-面试题实战" class="headerlink" title="C/C++面试题实战"></a>C/C++面试题实战</h1><ol>
+<li><p>进程之间通信的途径：</p>
+<ol>
+<li>共享存储系统</li>
+<li>消息传递系统</li>
+<li>管道：以文件系统为基础</li>
+</ol>
+</li>
+<li><p>进程死锁的原因：死锁是两个或多个并发进程中，如果每个进程持有某种资源而又等待别的进程释放他们保持的资源，否则不能向前推进。</p>
+<p>根本原因是：系统能够提供的资源个数比要求该资源的进程数少，具体如下：</p>
+<ol>
+<li>系统资源不足</li>
+<li>进程推进顺序非法</li>
+</ol>
+</li>
+<li><p>死锁的4个必要条件：</p>
+<ol>
+<li>互斥条件：一个资源每次只能被一个进程使用。</li>
+<li>请求和保持条件:一个进程因请求资源而阻塞时，对以获得的资源保持不放。</li>
+<li>不剥夺条件：进程已获得的资源，在没使用完之前，不能强行剥夺。</li>
+<li>循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系。</li>
+</ol>
+</li>
+<li><p>死锁的处理：</p>
+<ol>
+<li>鸵鸟算法忽略该问题。</li>
+<li>检测死锁并恢复。</li>
+<li>仔细地对资源进行动态分配，以避免死锁。</li>
+<li>破环死锁产生的4个必要条件之一，防止死锁产生。</li>
+</ol>
+</li>
+<li><p>操作系统中进程调度策略：</p>
+<ol>
+<li>windows和linux的区别</li>
+<li>FCFS先来先服务</li>
+<li>优先级</li>
+<li>时间片轮转</li>
+<li>多级反馈</li>
+</ol>
+</li>
+<li><p>类的静态成员和非静态成员的区别</p>
+<ol>
+<li>类的static成员在类被实例化前创建，类的静态成员每个类中只有一个，静态函数的实现里不能使用非静态成员。</li>
+</ol>
+</li>
+<li><p>纯虚函数怎么定义：此函数是一个接口，子类定义时必须实现该接口。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组和链表区别：数组大小固定，顺序存储。链表大小可变，随机存储。</p>
+</li>
+<li>ISO七层模型：物理层、物理链路层、网络层、运输层、会话层、表示层、应用层。</li>
+</ol>
+<hr>
+<p>to be continued…</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for Support.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Lightmare Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/Operating-System/" rel="tag"># Operating System</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/22/C-语言篇-constexpr/" rel="next" title="C++ 语言篇 constexpr">
+                <i class="fa fa-chevron-left"></i> C++ 语言篇 constexpr
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/22/我的offer之路/" rel="prev" title="我的offer之路">
+                我的offer之路 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Lightmare">
+            
+              <p class="site-author-name" itemprop="name">Lightmare</p>
+              <p class="site-description motion-element" itemprop="description">~ Magic world , Magical girl ~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
+                      
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_41042404" target="_blank" title="CSDN">
+                      
+                        <i class="iconfont icon-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
+                      
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lightmare625@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                      
+                        <i class="iconfont icon-psn"></i>PSN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
+                      
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://whosurdaddy.ml/" title="Hector" target="_blank">Hector</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wayjam.me/" title="wayjam" target="_blank">wayjam</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-C"><span class="nav-number">1.</span> <span class="nav-text">C/C++</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作系统"><span class="nav-number">2.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-C-面试题实战"><span class="nav-number">3.</span> <span class="nav-text">C/C++面试题实战</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-/images/favicon.ico"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lightmare</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
