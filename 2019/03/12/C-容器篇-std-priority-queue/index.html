@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="STL,Containers library,Sort,priority_queue,">
+  <meta name="keywords" content="STL,priority_queue,Sort,Containers library,">
 
 
 
@@ -78,14 +78,14 @@
 
 
 <meta name="description" content="priority_queueDefined in header &amp;lt;queue&amp;gt; 12345template&amp;lt;    class T,    class Container = std::vector&amp;lt;T&amp;gt;,    class Compare = std::less&amp;lt;typename Container::value_type&amp;gt;&amp;gt; class priorit">
-<meta name="keywords" content="STL,Containers library,Sort,priority_queue">
+<meta name="keywords" content="STL,priority_queue,Sort,Containers library">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 容器篇 std::priority_queue">
 <meta property="og:url" content="http://yoursite.com/2019/03/12/C-容器篇-std-priority-queue/index.html">
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="priority_queueDefined in header &amp;lt;queue&amp;gt; 12345template&amp;lt;    class T,    class Container = std::vector&amp;lt;T&amp;gt;,    class Compare = std::less&amp;lt;typename Container::value_type&amp;gt;&amp;gt; class priorit">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-20T16:17:40.753Z">
+<meta property="og:updated_time" content="2019-03-23T09:41:09.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ 容器篇 std::priority_queue">
 <meta name="twitter:description" content="priority_queueDefined in header &amp;lt;queue&amp;gt; 12345template&amp;lt;    class T,    class Container = std::vector&amp;lt;T&amp;gt;,    class Compare = std::less&amp;lt;typename Container::value_type&amp;gt;&amp;gt; class priorit">
@@ -240,9 +240,41 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -317,8 +349,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-21T00:17:40+08:00">
-                2019-03-21
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-23T17:41:09+08:00">
+                2019-03-23
               </time>
             
           </span>
@@ -381,11 +413,27 @@
         <h2 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority_queue"></a>priority_queue</h2><p>Defined in header &lt;queue></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">T</span>,</span></span><br><span class="line"><span class="class">    <span class="title">class</span> <span class="title">Container</span> = <span class="title">std</span>:</span>:<span class="built_in">vector</span>&lt;T&gt;,</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Compare</span> = <span class="title">std</span>:</span>:less&lt;<span class="keyword">typename</span> Container::value_type&gt;</span><br><span class="line">&gt; <span class="class"><span class="keyword">class</span> <span class="title">priority_queue</span>;</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>A <strong>container adaptor</strong> : O(1) for lookup of the largest element(by default) ; O(logn) for insertion and extraction.</li>
-<li>Compare: change the ordering, e.g. using std::greater&lt;T> makes the top the smallest.</li>
+<li>A <strong>container adaptor</strong> : O(1) for lookup of the <strong>largest</strong> element(by default) ; O(logn) for insertion and extraction.</li>
+<li>Compare: change the ordering, e.g. using std::<strong>greater&lt;T></strong> makes the top the smallest.</li>
 <li>Similar to managing a heap in some <strong>random access container</strong>, with the benefit of not being able to accidentally invalidate the heap.</li>
 </ul>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">void</span> <span class="title">print_queue</span><span class="params">(T&amp; q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(!q.empty()) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; q.top() &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        q.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::priority_queue&lt;<span class="keyword">int</span>&gt; q; </span><br><span class="line">    <span class="comment">//largest element(by default)</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n : &#123;<span class="number">1</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">9</span>,<span class="number">7</span>,<span class="number">2</span>&#125;)</span><br><span class="line">        q.push(n); </span><br><span class="line">    print_queue(q);<span class="comment">//9 8 7 6 5 4 3 2 1 0 </span></span><br><span class="line"> </span><br><span class="line">    <span class="built_in">std</span>::priority_queue&lt;<span class="keyword">int</span>, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, <span class="built_in">std</span>::greater&lt;<span class="keyword">int</span>&gt; &gt; q2;</span><br><span class="line">    <span class="comment">//the top is the smallest.</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n : &#123;<span class="number">1</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">9</span>,<span class="number">7</span>,<span class="number">2</span>&#125;)</span><br><span class="line">        q2.push(n);</span><br><span class="line">    print_queue(q2);<span class="comment">//0 1 2 3 4 5 6 7 8 9</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Using lambda to compare elements.</span></span><br><span class="line">    <span class="keyword">auto</span> cmp = [](<span class="keyword">int</span> left, <span class="keyword">int</span> right) &#123; <span class="keyword">return</span> (left ^ <span class="number">1</span>) &lt; (right ^ <span class="number">1</span>);&#125;;</span><br><span class="line">    <span class="built_in">std</span>::priority_queue&lt;<span class="keyword">int</span>, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, <span class="keyword">decltype</span>(cmp)&gt; q3(cmp); </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n : &#123;<span class="number">1</span>,<span class="number">8</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">9</span>,<span class="number">7</span>,<span class="number">2</span>&#125;)</span><br><span class="line">        q3.push(n); </span><br><span class="line">    print_queue(q3);<span class="comment">//8 9 6 7 4 5 2 3 0 1 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="decltype-c-11"><a href="#decltype-c-11" class="headerlink" title="decltype[c++11]"></a>decltype[c++11]</h3><ul>
+<li>分析表达式并得到它的类型，而不计算表达式的值。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">decltype</span>(f()) sum=x;<span class="comment">//sum的类型就是函数f的返回类型</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果decltype使用的表达式是一个变量，则decltype返回该变量的类型（包括顶层const和引用在内）</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci=<span class="number">0</span>,&amp;cj=ci;</span><br><span class="line"><span class="keyword">decltype</span>(ci) x=<span class="number">0</span>;<span class="comment">//x的类型是const int</span></span><br><span class="line"><span class="keyword">decltype</span>(cj) y=x;<span class="comment">//y的类型是const int&amp;，y绑定到x</span></span><br><span class="line"><span class="keyword">decltype</span>(cj) z;<span class="comment">//错误。引用必须初始化。</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果decltype使用的表达式不是变量，则返回该表达式对应的结果的类型（是个左值，可能是引用，所以定义的时候需要初始化）。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">42</span>,*p=&amp;i,&amp;r=i;</span><br><span class="line"><span class="keyword">decltype</span>(r+<span class="number">0</span>) b;<span class="comment">//r是一个引用，如果想让返回的类型是r所指的类型，必须得把r作为表达式的一部分，r+0就是一个具体的值，而不是引用。</span></span><br><span class="line"><span class="keyword">decltype</span>(*p) c;<span class="comment">//表达式的内容是解引用操作，</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>decltype((var))的结果永远是引用，decltype(var)的结果只有当var是引用时才是引用。因为在c++中，如果为变量加上括号，编译器就会把他当作作为赋值语句左值的表达式。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">31</span>;</span><br><span class="line"><span class="keyword">decltype</span>((i)) b;<span class="comment">//错。b是int&amp;，必须初始化。</span></span><br><span class="line"><span class="keyword">decltype</span>(i) e;<span class="comment">//正确。r是int，未初始化的。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <hr>
 <p>to be continued…</p>
 <p>next time to complete whats the meaning of decltype..</p>
@@ -432,11 +480,11 @@
           
             <a href="/tags/STL/" rel="tag"># STL</a>
           
-            <a href="/tags/Containers-library/" rel="tag"># Containers library</a>
+            <a href="/tags/priority-queue/" rel="tag"># priority_queue</a>
           
             <a href="/tags/Sort/" rel="tag"># Sort</a>
           
-            <a href="/tags/priority-queue/" rel="tag"># priority_queue</a>
+            <a href="/tags/Containers-library/" rel="tag"># Containers library</a>
           
         </div>
       
@@ -542,7 +590,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -564,7 +612,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -689,7 +737,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#priority-queue"><span class="nav-number">1.</span> <span class="nav-text">priority_queue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-number">2.</span> <span class="nav-text">Example</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#priority-queue"><span class="nav-number">1.</span> <span class="nav-text">priority_queue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-number">2.</span> <span class="nav-text">Example</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#decltype-c-11"><span class="nav-number">2.1.</span> <span class="nav-text">decltype[c++11]</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -888,6 +936,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'manual') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 

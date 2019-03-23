@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="STL,Function Object,lambda,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="以下为从wiki、侯捷老师的深入STL、stackoverflow中research的资料。 wikic++11提供了匿名函数的支持，叫做lambda表达式，形式如下： 1[capture](parameters) mutable exception attribute -&amp;gt; return_type &amp;#123;body&amp;#125; 必须用[]括起来的capture列表来开始一个lambda">
+<meta name="keywords" content="STL,Function Object,lambda">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 函数篇 lambda表达式">
+<meta property="og:url" content="http://yoursite.com/2019/03/23/C-函数篇-lambda表达式/index.html">
+<meta property="og:site_name" content="Lightmare">
+<meta property="og:description" content="以下为从wiki、侯捷老师的深入STL、stackoverflow中research的资料。 wikic++11提供了匿名函数的支持，叫做lambda表达式，形式如下： 1[capture](parameters) mutable exception attribute -&amp;gt; return_type &amp;#123;body&amp;#125; 必须用[]括起来的capture列表来开始一个lambda">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-23T08:23:31.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ 函数篇 lambda表达式">
+<meta name="twitter:description" content="以下为从wiki、侯捷老师的深入STL、stackoverflow中research的资料。 wikic++11提供了匿名函数的支持，叫做lambda表达式，形式如下： 1[capture](parameters) mutable exception attribute -&amp;gt; return_type &amp;#123;body&amp;#125; 必须用[]括起来的capture列表来开始一个lambda">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":15,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/23/C-函数篇-lambda表达式/">
+
+
+
+
+
+  <title>C++ 函数篇 lambda表达式 | Lightmare</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lightmare</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
+            
+            C++
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-interview">
+          <a href="/categories/Interview/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Interview
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/23/C-函数篇-lambda表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++ 函数篇 lambda表达式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-23T09:39:57+08:00">
+                2019-03-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-23T16:23:31+08:00">
+                2019-03-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《C-Primer》/" itemprop="url" rel="index">
+                    <span itemprop="name">《C++ Primer》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>以下为从wiki、侯捷老师的深入STL、stackoverflow中research的资料。</p>
+<h3 id="wiki"><a href="#wiki" class="headerlink" title="wiki"></a>wiki</h3><p>c++11提供了匿名函数的支持，叫做lambda表达式，形式如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[capture](parameters) <span class="keyword">mutable</span> exception attribute -&gt; return_type &#123;body&#125;</span><br></pre></td></tr></table></figure>
+<p>必须用[]括起来的capture列表来开始一个lambda表达式的定义。</p>
+<ul>
+<li><p>lambda函数的形参表比普通函数的形参表多了三条限制：</p>
+<ul>
+<li>参数不能有缺省值</li>
+<li>不能有可变长参数列表</li>
+<li>不能有无名参数</li>
+</ul>
+</li>
+<li><p>如果没有形参，且没有mutable、exception、attribute声明，参数的圆括号可以省略。如果有声明，即使参数为空，也不能省略。</p>
+</li>
+<li>如果函数体就只有一个return语句，或者返回值为void，那么返回值类型声明可以省略：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### Example</span><br><span class="line"></span><br><span class="line">```cpp</span><br><span class="line">[](int x,int y)&#123;return x+y;&#125;//return中隐式获得返回值类型，返回值类型是decltype(x+y)。</span><br><span class="line">[](int&amp; x)&#123;++x;&#125;//没有return语句，返回值为void</span><br><span class="line">[]()&#123;++global_x;&#125;</span><br><span class="line">[]&#123;++global_x;&#125;//没有参数，可以省略()</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><ul>
+<li>lambda函数可以捕获lambda函数外的具有automatic storage duration的变量，即函数的局部变量与函数形参变量。函数体与这些变量的集合合起来称做<a href="https://zh.wikipedia.org/wiki/%E9%97%AD%E5%8C%85_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6" target="_blank" rel="noopener">闭包</a>)。</li>
+<li>这些外部变量在声明lambda表达式时列在在方括号[]中。空的方括号表示没有外界变量被capture或者按照默认方式捕获外界变量。这些变量被传值捕获或者引用捕获。</li>
+<li>对于传值捕获的变量，默认为只读（这是由于lambda表达式生成的为一个函数对象，它的<code>operator()</code>成员缺省有const属性）。修改这些传值捕获变量将导致编译报错。</li>
+<li>但在lambda表达式的参数表的圆括号后面使用mutable关键字，就允许lambda函数体内的语句修改传值捕获变量，这些修改与lambda表达式（实际上是用函数对象实现）有相同的生命期，但不影响被传值捕获的外部变量的值。</li>
+<li>lambda函数可以直接使用具有static存储期的变量。如果在lambda函数的捕获列表中给出了static存储期的变量，编译时会给出警告，仍然按照lambda函数直接使用这些外部变量来处理。因此具有static存储期的变量即使被声明为传值捕获，修改该变量实际上直接修改了这些外部变量。</li>
+<li>编译器生成lambda函数对应的函数对象时，不会用函数对象的数据成员来保持被“捕获”的static存储期的变量。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[]<span class="comment">//没有定义任何变量，但是必须列出空的方括号。lambda表达式中尝试使用任何外部变量都会导致编译错误。</span></span><br><span class="line">[x,&amp;y] <span class="comment">//x按值传递，y按引用传递</span></span><br><span class="line">[&amp;]<span class="comment">//任何被使用的外部变量都按引用传递</span></span><br><span class="line">[=]<span class="comment">//任何被使用的外部变量都按值传递</span></span><br><span class="line">[&amp;,x]<span class="comment">//x按值传入，其它变量按引用传入</span></span><br><span class="line">[=,&amp;z]<span class="comment">//z按引用传入，其它变量按值传入</span></span><br></pre></td></tr></table></figure>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; some_list&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> total=<span class="number">0</span>;</span><br><span class="line">for_each(begin(some_list),end(some_list),</span><br><span class="line">        [&amp;total](<span class="keyword">int</span> x)&#123;total+=x;&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="this指针"><a href="#this指针" class="headerlink" title="this指针"></a>this指针</h4><p>在类的非静态成员函数中定义的lambda表达式可以显式或隐式捕捉this指针，从而可以引用所在类对象的数据成员与函数成员。</p>
+<p>lambda函数的函数体中，可以访问下述变量：</p>
+<ul>
+<li>函数参数</li>
+<li>局部声明的变量</li>
+<li>类数据成员：要求lambda表达式声明在类成员函数中，对象的this指针必需显式捕获声明。</li>
+<li>具有静态存储期的变量（如全局变量）</li>
+<li>被捕获的外部变量</li>
+<li>显式捕获的变量</li>
+<li>隐式捕获的变量，使用默认捕获模式（传值或引用）来访问。</li>
+</ul>
+<h4 id="模板类型"><a href="#模板类型" class="headerlink" title="模板类型"></a>模板类型</h4><p>lambda函数的数据类型是函数对象，保存时必须用std::function模板类型或auto关键字。 </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">eval</span><span class="params">(<span class="built_in">std</span>::function &lt;<span class="keyword">double</span>(<span class="keyword">double</span>)&gt; f, <span class="keyword">double</span> x = <span class="number">2.0</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> f(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::function&lt;<span class="keyword">double</span>(<span class="keyword">double</span>)&gt; f0 = [](<span class="keyword">double</span> x) &#123;<span class="keyword">return</span> <span class="number">1</span>; &#125;;</span><br><span class="line">	<span class="keyword">auto</span>                          f1 = [](<span class="keyword">double</span> x) &#123;<span class="keyword">return</span> x; &#125;;</span><br><span class="line">	<span class="keyword">decltype</span>(f0)                  fa[<span class="number">3</span>] = &#123; f0,f1,[](<span class="keyword">double</span> x) &#123;<span class="keyword">return</span> x*x; &#125; &#125;;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">decltype</span>(f0)&gt;     fv = &#123; f0,f1 &#125;;</span><br><span class="line">	fv.push_back([](<span class="keyword">double</span> x) &#123;<span class="keyword">return</span> x*x; &#125;);<span class="comment">//fv.size()=3</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;fv.size(); i++)</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; fv[i](<span class="number">2.0</span>) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;<span class="comment">//1,2,4</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">3</span>; i++)</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; fa[i](<span class="number">2.0</span>) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;<span class="comment">//1,2,4</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> &amp;f : fv)</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; f(<span class="number">2.0</span>) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;<span class="comment">//1,2,4</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> &amp;f : fa)</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; f(<span class="number">2.0</span>) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;<span class="comment">//1,2,4</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; eval(f0) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;<span class="comment">//1</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; eval(f1) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;<span class="comment">//2</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; eval([](<span class="keyword">double</span> x) &#123;<span class="keyword">return</span> x*x; &#125;) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;<span class="comment">//4</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="C-11-侯捷"><a href="#C-11-侯捷" class="headerlink" title="C++11  侯捷"></a>C++11  侯捷</h3><ul>
+<li><p>C++ 11 introdued lamndas,allowing the definition of inline functionality,which can  be used as a parameter or a local object.</p>
+</li>
+<li><p>Lambdas change the way the C++ standard  library is used.</p>
+<p>仿函数。其实是一个对象类型。用()可以直接调用，一个仿函数对象。</p>
+</li>
+<li><p>A lambda is a definition of functionality that can be defined inside statements and expressions.</p>
+</li>
+<li><p>You can use a lambda as an inline function.</p>
+</li>
+<li><p>The minimal lambda funcion hsa no paramemter and simply does something: </p>
+</li>
+</ul>
+<h4 id="Lambdas"><a href="#Lambdas" class="headerlink" title="Lambdas"></a>Lambdas</h4><ul>
+<li><p>The type of a lambda is an anonymous function object(or functor) that is unique for each lambda expression.</p>
+</li>
+<li><p>To declare objects of that type,you need templates or auto.</p>
+</li>
+<li><p>If you need type ,you can use decltype(),which is ,required to pass a lambda as hash function or ordering or sorting criterion to associative or unordered containers.</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> cmp=[](<span class="keyword">const</span> Person&amp;p1,<span class="keyword">const</span> Person&amp;p2)&#123;</span><br><span class="line">  <span class="keyword">return</span> p1.lastname()&lt;p2.lastname()||</span><br><span class="line">      (p1.lastname()==p2.lastname()&amp;&amp;</span><br><span class="line">      p1.firstname()&lt;p2.firstname());</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">set</span>&lt;Person,<span class="keyword">decltype</span>(cmp)&gt; coll(cmp);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>You need the type of the lambda for the declaration of the set, decltype must be used,which yields the type of a lambda object,such as cmp.</p>
+</li>
+<li><p>Note that you also have to pass the lambda object to the constructor of coll;otherwise,coll would call the default constructor for the sorting criterion(准则) passed,and by rule lambdas have no default constructor and no assignment operator.(lambda没有默认构造函数，也没有赋值操作。)</p>
+</li>
+<li><p>So,for a sorting criterion,a class defining the function objects might still be more intuitive.（如果用lambda写排序准则，由于没有默认构造函数，所以使用的时候容易出错。</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">Key</span>,</span></span><br><span class="line"><span class="class">		 <span class="title">class</span> <span class="title">Compare</span>=<span class="title">less</span>&lt;Key&gt;,</span></span><br><span class="line"><span class="class">		 <span class="title">class</span> <span class="title">Alloc</span>=<span class="title">alloc</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">set</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="comment">//typedefs:</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">typedef</span> Compare key_compare;</span><br><span class="line"><span class="keyword">typedef</span> Compare value_compare;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="keyword">typedef</span> rb_tree&lt;key_type,value_type,</span><br><span class="line">				identity&lt;value_type&gt;,</span><br><span class="line">				key_compare,Alloc&gt;rep_type;</span><br><span class="line">rep_type t;<span class="comment">//red-black tree representing set</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">...</span><br><span class="line"><span class="built_in">set</span>():t(Compare())&#123;&#125;<span class="comment">//调用默认构造函数</span></span><br><span class="line">explicit set(const Compare&amp; comp):t(const)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Function objects are a very powerful way to <strong>customize the behavior of STL algorithms,and can encapsulate both code and data</strong> (unlike plain functions).</li>
+<li>But Function objects are inconvenient to define because of the need to entire classes.</li>
+<li>Moreover,they are not defined in the place in yout source code where you are trying to use them, and the <strong>non-locality</strong> makes them more difficult to use.</li>
+<li>Libraries have attempted to mitigate(减轻) some of the problems of <strong>verbosity(冗长)</strong> and <strong>non-locality</strong> ,but dont offer much help because the syntax becomes complicated and the compiler errors are not very friendly.</li>
+<li>Using function objects from libraries is also less efficient since the function objects defined as data members are <strong>not in-lined</strong>.</li>
+</ul>
+<ul>
+<li><p>Lambda expressions  address these problems.</p>
+</li>
+<li><p>The following code snippet shows a lambda expression used in a program to integers between variables x and y from a vector of integers.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi&#123;<span class="number">5</span>,<span class="number">28</span>,<span class="number">50</span>,<span class="number">83</span>,<span class="number">70</span>,<span class="number">590</span>,<span class="number">245</span>,<span class="number">59</span>,<span class="number">24</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> x = <span class="number">30</span>;</span><br><span class="line"><span class="keyword">int</span> y = <span class="number">100</span>;</span><br><span class="line">vi.erase(remove_if(vi.begin(),vi.end(),</span><br><span class="line">                  [x,y](<span class="keyword">int</span> n)&#123;<span class="keyword">return</span> x&lt;n&amp;&amp;n&lt;y;&#125;),</span><br><span class="line">         vi.end());<span class="comment">//把(30,100)内的数字拿掉</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> i:vi)</span><br><span class="line">    cout&lt;&lt;i&lt;&lt;'';//5 28 590 245 24</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LambdaFunctor</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  	LambdaFunctor(<span class="keyword">int</span> a,<span class="keyword">int</span> b):m_a(a),m_b(b)&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> n)</span> <span class="keyword">const</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> m_a&lt;n&amp;&amp;n&lt;m_b;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> m_a;</span><br><span class="line">    <span class="keyword">int</span> m_b;    </span><br><span class="line">&#125;;</span><br><span class="line">v.erase(remove_if(v.begin(),v.end(),</span><br><span class="line">                 LambdaFunctor(x,y)),</span><br><span class="line">       v.end());</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="stackoverflow"><a href="#stackoverflow" class="headerlink" title="stackoverflow"></a>stackoverflow</h3><p>ref:<a href="https://stackoverflow.com/questions/7627098/what-is-a-lambda-expression-in-c11" target="_blank" rel="noopener">stackoverflow</a></p>
+<p>Q:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">What is a lambda expression in C++<span class="number">11</span>? When would I use one? What <span class="class"><span class="keyword">class</span> <span class="title">of</span> <span class="title">problem</span> <span class="title">do</span> <span class="title">they</span> <span class="title">solve</span> <span class="title">that</span> <span class="title">wasn</span>'<span class="title">t</span> <span class="title">possible</span> <span class="title">prior</span> <span class="title">to</span> <span class="title">their</span> <span class="title">introduction</span>?</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">A</span> <span class="title">few</span> <span class="title">examples</span>, <span class="title">and</span> <span class="title">use</span> <span class="title">cases</span> <span class="title">would</span> <span class="title">be</span> <span class="title">useful</span>.</span></span><br></pre></td></tr></table></figure>
+<p>A:</p>
+<h4 id="The-problem"><a href="#The-problem" class="headerlink" title="The problem"></a>The problem</h4><ul>
+<li><p>C++ includes useful generic functions like <code>std::for_each</code> and <code>std::transform</code>, which can be very handy. </p>
+</li>
+<li><p>Unfortunately they can also be quite cumbersome to use, particularly if the <a href="https://stackoverflow.com/questions/356950/c-functors-and-their-uses" target="_blank" rel="noopener">functor</a> you would like to apply is unique to the particular function.</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> &#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">f</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span>)</span> </span>&#123;</span><br><span class="line">      <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; v)</span> </span>&#123;</span><br><span class="line">  f f;</span><br><span class="line">  <span class="built_in">std</span>::for_each(v.begin(), v.end(), f);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>If you only use <code>f</code> once and in that specific place it seems overkill to be writing a whole class just to do something trivial and one off.</p>
+</li>
+<li><p>In C++03 you might be tempted to write something like the following, to keep the functor local:</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func2</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; v)</span> </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span>)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; f;</span><br><span class="line">  <span class="built_in">std</span>::for_each(v.begin(), v.end(), f);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>however this is not allowed, <code>f</code> cannot be passed to a <a href="https://en.cppreference.com/w/cpp/language/function_template" target="_blank" rel="noopener">template</a> function in C++03.</p>
+<h4 id="The-new-solution"><a href="#The-new-solution" class="headerlink" title="The new solution"></a>The new solution</h4><p>C++11 introduces lambdas allow you to write an inline, anonymous functor to replace the <code>struct f</code>. For small simple examples this can be cleaner to read (it keeps everything in one place) and potentially simpler to maintain, for example in the simplest form:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func3</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; v)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::for_each(v.begin(), v.end(), [](<span class="keyword">int</span>) &#123; <span class="comment">/* do something here*/</span> &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Lambda functions are just syntactic（句法） sugar for anonymous functors.</p>
+<h4 id="Return-types"><a href="#Return-types" class="headerlink" title="Return types"></a>Return types</h4><p>In simple cases the return type of the lambda is deduced(推导) for you, e.g.:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;&amp; v)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::transform(v.begin(), v.end(), v.begin(),</span><br><span class="line">                 [](<span class="keyword">double</span> d) &#123; <span class="keyword">return</span> d &lt; <span class="number">0.00001</span> ? <span class="number">0</span> : d; &#125;</span><br><span class="line">                 );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>however when you start to write more complex lambdas you will quickly encounter cases where the return type cannot be deduced by the compiler, e.g.:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;&amp; v)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::transform(v.begin(), v.end(), v.begin(),</span><br><span class="line">        [](<span class="keyword">double</span> d) &#123;</span><br><span class="line">            <span class="keyword">if</span> (d &lt; <span class="number">0.0001</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> d;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="gt-：explicitly-specify-a-return-type"><a href="#gt-：explicitly-specify-a-return-type" class="headerlink" title="-&gt;：explicitly specify a return type"></a>-&gt;：explicitly specify a return type</h4><p>To resolve this you are allowed to explicitly specify a return type for a lambda function, using <code>-&gt; T</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;&amp; v)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::transform(v.begin(), v.end(), v.begin(),</span><br><span class="line">        [](<span class="keyword">double</span> d) -&gt; <span class="keyword">double</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (d &lt; <span class="number">0.0001</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> d;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="“Capturing”-variables"><a href="#“Capturing”-variables" class="headerlink" title="“Capturing” variables"></a>“Capturing” variables</h4><p>So far we’ve not used anything other than what was passed to the lambda within it, but we can also use other variables, within the lambda. If you want to access other variables you can use the capture clause (the <code>[]</code> of the expression), which has so far been unused in these examples, e.g.:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func5</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;&amp; v, <span class="keyword">const</span> <span class="keyword">double</span>&amp; epsilon)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::transform(v.begin(), v.end(), v.begin(),</span><br><span class="line">        [epsilon](<span class="keyword">double</span> d) -&gt; <span class="keyword">double</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (d &lt; epsilon) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> d;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>You can capture by both reference and value, which you can specify using <code>&amp;</code> and <code>=</code>respectively。（见闭包）</p>
+<p>The generated <code>operator()</code> is <code>const</code> by default, with the implication(意义) that captures will be <code>const</code> when you access them by default. This has the effect that each call with the same input would produce the same result, however you can <a href="https://stackoverflow.com/questions/5501959/why-does-c0xs-lambda-require-mutable-keyword-for-capture-by-value-by-defaul" target="_blank" rel="noopener">mark the lambda as <code>mutable</code></a> to request that the <code>operator()</code> that is produced is not <code>const</code>.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for Support.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Lightmare Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/STL/" rel="tag"># STL</a>
+          
+            <a href="/tags/Function-Object/" rel="tag"># Function Object</a>
+          
+            <a href="/tags/lambda/" rel="tag"># lambda</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/22/记一次游戏沙龙分享会/" rel="next" title="记一次游戏沙龙分享会">
+                <i class="fa fa-chevron-left"></i> 记一次游戏沙龙分享会
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/23/C-STL篇-仿函数/" rel="prev" title="C++ STL篇 仿函数">
+                C++ STL篇 仿函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Lightmare">
+            
+              <p class="site-author-name" itemprop="name">Lightmare</p>
+              <p class="site-description motion-element" itemprop="description">~ Magic world , Magical girl ~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
+                      
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_41042404" target="_blank" title="CSDN">
+                      
+                        <i class="iconfont icon-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
+                      
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lightmare625@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                      
+                        <i class="iconfont icon-psn"></i>PSN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
+                      
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://whosurdaddy.ml/" title="Hector" target="_blank">Hector</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wayjam.me/" title="wayjam" target="_blank">wayjam</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#wiki"><span class="nav-number">1.</span> <span class="nav-text">wiki</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">1.1.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">1.2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#this指针"><span class="nav-number">1.3.</span> <span class="nav-text">this指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板类型"><span class="nav-number">1.4.</span> <span class="nav-text">模板类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-11-侯捷"><span class="nav-number">2.</span> <span class="nav-text">C++11  侯捷</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambdas"><span class="nav-number">2.1.</span> <span class="nav-text">Lambdas</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stackoverflow"><span class="nav-number">3.</span> <span class="nav-text">stackoverflow</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-problem"><span class="nav-number">3.1.</span> <span class="nav-text">The problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-new-solution"><span class="nav-number">3.2.</span> <span class="nav-text">The new solution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Return-types"><span class="nav-number">3.3.</span> <span class="nav-text">Return types</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gt-：explicitly-specify-a-return-type"><span class="nav-number">3.4.</span> <span class="nav-text">-&gt;：explicitly specify a return type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“Capturing”-variables"><span class="nav-number">3.5.</span> <span class="nav-text">“Capturing” variables</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-/images/favicon.ico"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lightmare</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'manual') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
