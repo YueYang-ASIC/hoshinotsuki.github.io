@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="以下为从wiki、侯捷老师的深入STL、stackoverflow中research的资料。 wikic++11提供了匿名函数的支持，叫做lambda表达式，形式如下： 1[capture](parameters) mutable exception attribute -&amp;gt; return_type &amp;#123;body&amp;#125; 必须用[]括起来的capture列表来开始一个lambda">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-23T08:23:31.845Z">
+<meta property="og:updated_time" content="2019-03-23T12:01:53.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ 函数篇 lambda表达式">
 <meta name="twitter:description" content="以下为从wiki、侯捷老师的深入STL、stackoverflow中research的资料。 wikic++11提供了匿名函数的支持，叫做lambda表达式，形式如下： 1[capture](parameters) mutable exception attribute -&amp;gt; return_type &amp;#123;body&amp;#125; 必须用[]括起来的capture列表来开始一个lambda">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-23T16:23:31+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-23T20:01:53+08:00">
                 2019-03-23
               </time>
             
@@ -424,8 +424,11 @@
 </li>
 <li><p>如果没有形参，且没有mutable、exception、attribute声明，参数的圆括号可以省略。如果有声明，即使参数为空，也不能省略。</p>
 </li>
-<li>如果函数体就只有一个return语句，或者返回值为void，那么返回值类型声明可以省略：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### Example</span><br><span class="line"></span><br><span class="line">```cpp</span><br><span class="line">[](int x,int y)&#123;return x+y;&#125;//return中隐式获得返回值类型，返回值类型是decltype(x+y)。</span><br><span class="line">[](int&amp; x)&#123;++x;&#125;//没有return语句，返回值为void</span><br><span class="line">[]()&#123;++global_x;&#125;</span><br><span class="line">[]&#123;++global_x;&#125;//没有参数，可以省略()</span><br></pre></td></tr></table></figure></li>
+<li><p>如果函数体就只有一个return语句，或者返回值为void，那么返回值类型声明可以省略：</p>
+</li>
 </ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[capture](para)&#123;body&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[](<span class="keyword">int</span> x,<span class="keyword">int</span> y)&#123;<span class="keyword">return</span> x+y;&#125;<span class="comment">//return中隐式获得返回值类型，返回值类型是decltype(x+y)。</span></span><br><span class="line">[](<span class="keyword">int</span>&amp; x)&#123;++x;&#125;<span class="comment">//没有return语句，返回值为void</span></span><br><span class="line">[]()&#123;++global_x;&#125;</span><br><span class="line">[]&#123;++global_x;&#125;<span class="comment">//没有参数，可以省略()</span></span><br></pre></td></tr></table></figure>
 <h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><ul>
 <li>lambda函数可以捕获lambda函数外的具有automatic storage duration的变量，即函数的局部变量与函数形参变量。函数体与这些变量的集合合起来称做<a href="https://zh.wikipedia.org/wiki/%E9%97%AD%E5%8C%85_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6" target="_blank" rel="noopener">闭包</a>)。</li>
 <li>这些外部变量在声明lambda表达式时列在在方括号[]中。空的方括号表示没有外界变量被capture或者按照默认方式捕获外界变量。这些变量被传值捕获或者引用捕获。</li>
@@ -435,7 +438,7 @@
 <li>编译器生成lambda函数对应的函数对象时，不会用函数对象的数据成员来保持被“捕获”的static存储期的变量。</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[]<span class="comment">//没有定义任何变量，但是必须列出空的方括号。lambda表达式中尝试使用任何外部变量都会导致编译错误。</span></span><br><span class="line">[x,&amp;y] <span class="comment">//x按值传递，y按引用传递</span></span><br><span class="line">[&amp;]<span class="comment">//任何被使用的外部变量都按引用传递</span></span><br><span class="line">[=]<span class="comment">//任何被使用的外部变量都按值传递</span></span><br><span class="line">[&amp;,x]<span class="comment">//x按值传入，其它变量按引用传入</span></span><br><span class="line">[=,&amp;z]<span class="comment">//z按引用传入，其它变量按值传入</span></span><br></pre></td></tr></table></figure>
-<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; some_list&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> total=<span class="number">0</span>;</span><br><span class="line">for_each(begin(some_list),end(some_list),</span><br><span class="line">        [&amp;total](<span class="keyword">int</span> x)&#123;total+=x;&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; some_list&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> total=<span class="number">0</span>;</span><br><span class="line">for_each(begin(some_list),end(some_list),</span><br><span class="line">        [&amp;total](<span class="keyword">int</span> x)&#123;total+=x;&#125;);</span><br></pre></td></tr></table></figure>
 <h4 id="this指针"><a href="#this指针" class="headerlink" title="this指针"></a>this指针</h4><p>在类的非静态成员函数中定义的lambda表达式可以显式或隐式捕捉this指针，从而可以引用所在类对象的数据成员与函数成员。</p>
 <p>lambda函数的函数体中，可以访问下述变量：</p>
 <ul>
@@ -680,7 +683,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -691,7 +694,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -702,7 +705,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -827,7 +830,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#wiki"><span class="nav-number">1.</span> <span class="nav-text">wiki</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">1.1.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">1.2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#this指针"><span class="nav-number">1.3.</span> <span class="nav-text">this指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板类型"><span class="nav-number">1.4.</span> <span class="nav-text">模板类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-11-侯捷"><span class="nav-number">2.</span> <span class="nav-text">C++11  侯捷</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambdas"><span class="nav-number">2.1.</span> <span class="nav-text">Lambdas</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stackoverflow"><span class="nav-number">3.</span> <span class="nav-text">stackoverflow</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-problem"><span class="nav-number">3.1.</span> <span class="nav-text">The problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-new-solution"><span class="nav-number">3.2.</span> <span class="nav-text">The new solution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Return-types"><span class="nav-number">3.3.</span> <span class="nav-text">Return types</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gt-：explicitly-specify-a-return-type"><span class="nav-number">3.4.</span> <span class="nav-text">-&gt;：explicitly specify a return type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“Capturing”-variables"><span class="nav-number">3.5.</span> <span class="nav-text">“Capturing” variables</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#wiki"><span class="nav-number">1.</span> <span class="nav-text">wiki</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">1.1.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">1.2.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-1"><span class="nav-number">1.3.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#this指针"><span class="nav-number">1.4.</span> <span class="nav-text">this指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板类型"><span class="nav-number">1.5.</span> <span class="nav-text">模板类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-11-侯捷"><span class="nav-number">2.</span> <span class="nav-text">C++11  侯捷</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambdas"><span class="nav-number">2.1.</span> <span class="nav-text">Lambdas</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stackoverflow"><span class="nav-number">3.</span> <span class="nav-text">stackoverflow</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-problem"><span class="nav-number">3.1.</span> <span class="nav-text">The problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-new-solution"><span class="nav-number">3.2.</span> <span class="nav-text">The new solution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Return-types"><span class="nav-number">3.3.</span> <span class="nav-text">Return types</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gt-：explicitly-specify-a-return-type"><span class="nav-number">3.4.</span> <span class="nav-text">-&gt;：explicitly specify a return type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“Capturing”-variables"><span class="nav-number">3.5.</span> <span class="nav-text">“Capturing” variables</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="第一题Write a program to check whether a given number is an ugly number. Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. Example 1: 123Input: 6Output: trueExplanation: 6 = 2 ×">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-23T11:16:20.172Z">
+<meta property="og:updated_time" content="2019-03-23T11:48:13.482Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode263. Ugly Number">
 <meta name="twitter:description" content="第一题Write a program to check whether a given number is an ugly number. Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. Example 1: 123Input: 6Output: trueExplanation: 6 = 2 ×">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-23T19:16:20+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-23T19:48:13+08:00">
                 2019-03-23
               </time>
             
@@ -427,9 +427,14 @@
 </li>
 </ol>
 <hr>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>丑数就是因子不能包含除了2，3，5以外的数，1也是丑数。</p>
-<p>从2开始，将n除以2，一直除到不包含2这个因子为止；然后开始整除3；开始整除5;最后将2，3，5三个因子除尽，丑数必为1，判断是否为1即可。</p>
-<p>可以直接写成for(int i=2;i&lt;=5;i++)，里面包含4，因为4可以拆成2*2,不影响丑数的定义。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li><p>丑数就是因子不能包含除了2，3，5以外的数，1也是丑数。</p>
+</li>
+<li><p>从2开始，将n除以2，一直除到不包含2这个因子为止；然后开始整除3；开始整除5;最后将2，3，5三个因子除尽，丑数必为1，判断是否为1即可。</p>
+</li>
+<li><p>可以直接写成for(int i=2;i&lt;=5;i++)，里面包含4，因为4可以拆成2*2,不影响丑数的定义。</p>
+</li>
+</ul>
 <h2 id="C-code"><a href="#C-code" class="headerlink" title="C++ code"></a>C++ code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isUgly</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="number">5</span>&amp;&amp;num;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(num%i==<span class="number">0</span>)</span><br><span class="line">            num/=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> num==<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <hr>
 <h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p>找到第n个丑数</p>
@@ -440,8 +445,10 @@
 <p><strong>Note:</strong>  </p>
 <ol>
 <li><code>1</code> is typically treated as an ugly number.</li>
-<li><p><code>n</code> <strong>does not exceed 1690</strong>.</p>
-<h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2></li>
+<li><code>n</code> <strong>does not exceed 1690</strong>.</li>
+</ol>
+<hr>
+<h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><ol>
 <li><p>The naive approach is to call <code>isUgly</code> for every number until you reach the nth one. Most numbers are <em>not</em> ugly. Try to focus your effort on generating only the ugly ones.</p>
 </li>
 <li><p>An ugly number must be multiplied by either 2, 3, or 5 from a smaller ugly number.</p>
@@ -451,8 +458,7 @@
 <li><p>Assume you have Uk, the kth ugly number. Then Uk+1 must be Min(L1 <em> 2, L2 </em> 3, L3 * 5).</p>
 </li>
 </ol>
-<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><p>​    uglynum.push_back(1);//将第一个丑数塞入容器</p>
-<ul>
+<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><ul>
 <li>uglynum容器中的每一个数都要经过2，3，5的洗礼，取到接受洗礼的数中最小的一个作为勇者并放入丑数容器中。如果被选中的勇者是经过2洗礼的，那么就让2取洗礼容器中的下一个数，所以2的指针++</li>
 <li>为什么不用if else判断呢，因为在选中最小的数中，是最小公倍数，所以有可能因子包含2，3，5，所以只要判断是不是当前指针所指数的倍数就好，如果是的话，就要洗礼丑数容器中的下一个数。</li>
 </ul>
@@ -535,6 +541,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/03/23/Leetcode387-First-Unique-Character-in-a-String/" rel="prev" title="Leetcode387. First Unique Character in a String">
+                Leetcode387. First Unique Character in a String <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -614,7 +624,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -625,7 +635,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -636,7 +646,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
