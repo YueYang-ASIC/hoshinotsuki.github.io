@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[I see a red node, and I want it painted black!]]></title>
+    <url>%2F2019%2F03%2F24%2FI-see-a-red-node-and-I-want-it-painted-black%2F</url>
+    <content type="text"><![CDATA[本文是阅读《Painting Nodes Black With Red-Black Trees》的读书笔记，文章来自Vaidehi Joshi在medium上发布basecs系列中的一篇文章，该栏目用可爱的漫画来生动地解释计算机基础、数据结构、算法、理论在实践中的应用。 Intro Different approaches to solving similar problems. We depend on as programmers daily are actually built upon more naive solutions that were initially invented by someone else: Merge sort was derived as early as 1945. bubble sort and the earliest iterations of insertion sort, were invented in 1956. timsort: a hybrid of both insertion and merge sort , in 2002. It is wise to lean on solutions that have already been created by others and build upon them to create our own. AVL trees, a type of self-balancing tree that build upon the ideas of binary search trees. Red-black tree builds upon both of these two tree structures. A very disciplined tree Red-black trees were invented in 1978, by two researchers named Leonidas J. Guibas and Robert Sedgewick, at Xerox PARC, a research and development company based in Palo Alto, California. Definition a type of self-balancing binary search tree,very similar to other self-balancing trees, such as AVL trees. adhere to a strict set of rules to maintain a log time complexity and stays balanced. Rules Every single node in the tree must be either red or black. The root node of the tree must always be black. Two red nodes can never appear consecutively, one after another; a red node must always be preceded by a black node (it must have a black parent node), and a red node must always have black children nodes. Every branch path — the path from a root node to an empty (null) leaf node — must pass through the exact same number of black nodes. A branch path from the root to an empty leaf node is also known as an unsuccessful search path, since it represents the path we would take if we were to search for a node that didn’t exist within the tree. Example a null leaf node is always considered to be a black node, not red. these 4 rules are super strict and very easy to break. Proof A chain of three nodes cannot possibly every be a valid red-black tree. Following the rules of red The trickiest time to follow the rules of red-black trees is when we’re growing or shrinking the tree. A perfectly-balanced red-black tree is great, but most data structures tend to have elements and data inserted and removed from them. When it comes to red-black trees, this can be a little daunting at first. inserting a nodestrategy 1 : red Inserting a node and immediately coloring it red makes it much easier to identify and subsequently fix any violations. The first step is basically ignoring the red-black rules, and initially just figuring out where the node would go according to the rules of a normal binary search tree. At first, when we insert this node, we’ll break rule four.Instead, if we recolor our inserted node with a value of 3 to be red, instead of black, we don’t violate any of our four red-black tree rules. insert another nodestrategy 2 : recoloring recoloring nodes is one well-used technique for handling insertions and deletions into a red-black tree. locate the position for the node and recolor it to be red. However, we could also recolor the black parent node, 4, to be red instead of black. strategy 3 : rotations Rotations tend to move around and restructure the subtrees of a larger red-black tree, which can also be helpful in preventing any rule violations. left-rotation : left-rotating on the root node, 4, so that it’s right child, 11, becomes the new parent ; the subtree of 9-5-10 moved from the right subtree to the left. right-rotation : right-rotate on the new parent node, 11, and shift it down so that it once again becomes the right child of 11 ; The same subtree of 9-5-10 moved from the left subtree back to the right. Example 1Remember it’s easiest to start off by always inserting a red node, and then recoloring and rotation as necessary, afterwards. start with a single root node of 21, which will be red. recolor node 21 to be black. insert a node with a value of 8 , as the left child of the root. We can insert it as a red node. insert a node with a value of 3. rotate the grandparent node (the root) and then recolor. right-rotate the root node, and shift 21 down to become the right child of 8. recolor our original parent node of the newly-inserted node (which is now the right child), 21, and the root node, 8. If we recolor 8 and 21, our root node is back to being black, and our two child nodes are both red. The benefits of painting it blackwhat about inserting elements into a much larger red-black tree? Complicated Example 2 recoloring the parent nodes of our newly-inserted node, 10. This at least solves the problem of rule three being broken! can’t recolor 16 to be black, because if we did that, we’d be violating rule four. there are no parent nodes left to recolor (except for the root node, which we don’t want to make red!), we can now lean on rotations to help us out. rotating node 16 to the right, we’ve effectively pushed down nodes 21, 27, and 29.注意这里将16的右子树移到21的左边了! two consecutive red nodes that are still breaking rule three: 16 and 21. left-rotating node 16 and making it the new root node. perform a left-rotation on nodes 9 and 10 so that they both are on the left subtree rather than the right subtree. recolor our root (as well as it’s left child, to make sure that we don’t violate rule 4). Time Complexity and Space Complexity Compared to AVL trees, red-black trees are less-perfectly balanced. generally need fewer rotations during insertion/deletion with a red-black tree, which makes red-black trees superior for growing or shrinking a free, but less efficient for searching compared to AVL trees. The best example of a red-black trees in use today is the Linux kernel’s Completely Fair Scheduler (CFS), which was introduced as recently as 2007. This scheduler handles resource allocation for executing process from within the CPU, and actually uses red-black trees under the hood! The duality二元性 of color in red-black trees is a key part to all four of its rules, and an important part of keeping the tree balanced. As we already know, each node in a red-black tree must be either red or black. This is effectively an added piece of information that every single node must keep track of; at first, this might seem silly, because we’re tracking yet another piece of information in each node, which takes up space! However, tracking the color of a node requires only 1 bit of storage. 1 bit is a single **binary digit , is a super minuscule amount of space to store either the color red or black. StoryRobert Sedgewick, who is now a professor at Princeton (and teaches an online algorithms course!), explained this story himself: A lot of people ask why did we use the name red–black. Well, we invented this data structure, this way of looking at balanced trees, at Xerox PARC which was the home of the personal computer and many other innovations that we live with today entering[sic] graphic user interfaces, ethernet and object-oriented programmings[sic] and many other things. But one of the things that was invented there was laser printing and we were very excited to have nearby color laser printer that could print things out in color and out of the colors the red looked the best. So, that’s why we picked the color red to distinguish red links, the types of links, in three nodes. Resources Coursera Lecture 45 — Red-Black BSTs, Robert Sedgewick Generic Red-Black Tree, Dr. Richard Wiener Red-Black Trees, Professor Jim Skrentny Red/Black Tree Visualization, Professor David Galles Red-Black Tree Introduction, GeeksforGeeks]]></content>
+      <categories>
+        <category>Data Structure</category>
+      </categories>
+      <tags>
+        <tag>RBT</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[我在JitHub上的插眼汇总]]></title>
     <url>%2F2019%2F03%2F23%2F%E6%88%91%E5%9C%A8JitHub%E4%B8%8A%E7%9A%84%E6%8F%92%E7%9C%BC%E6%B1%87%E6%80%BB%2F</url>
     <content type="text"><![CDATA[💎 build-your-own-x - 制作你的 ?写轮子总是一件愉快的事情，做完之后绝对会感到很多的成就感！ 这个项目收集了很多方面的很多教程，比较有趣的有：搜索引擎、AR、Bot、前端库、数据库、神经网络、操作系统还有程序设计语言等等，够你玩了！ 不过这些内容都是全英文的，对英文要求较高~ 快去制作你的轮子吧！ GitHub 项目地址🔗 github.com Creating Your Own Containers Write your own Operating System Implementing a Key-Value Store 输了一大串命令回车后才发现命令打错字母了怎么办？输入f*ck帮你轻松搞定😈️GitHub项目 TheFuck：github.com]]></content>
@@ -14,7 +26,7 @@
   <entry>
     <title><![CDATA[B tree,B+ tree,B* tree,RBT,AVL]]></title>
     <url>%2F2019%2F03%2F23%2FB-tree-B-tree-B-tree-RBT-AVL%2F</url>
-    <content type="text"><![CDATA[whats B tree? self balancing search tree. each node can hold multiple keys. all leaf nodes are the same distance from the root. an extension of self-balancing binary search trees. allow each node to hold multiple keys and have multiple children. designed to take advantage of systems that can read and write in large blocks, and are commonly used in databases and file systems. B-Tree，RBT or AVL tree? When using a RB tree, B- tree or an AVL tree? What are the key points before deciding on the choice? explain with a scenario . Answer B-tree 适合存海量数据 When you’re managing more than thousands of items and you’re paging them from a disk or some slow storage medium. Can have variable number of children which allow it to hold many records but still maintain a short height tree. A good general-purpose ordered container data structure, even in main memory. Even when virtual memory isn’t an issue, cache-friendliness缓存友好 often is. B+ trees are particularly good for sequential access - the same asymptotic渐近 performance as a linked list, but with cache-friendliness close to a simple array. All this and O(log n) search, insert and delete. B+ trees do have problems, though - such as the items moving around within nodes when you do inserts/deletes, invalidating pointers to those items. this means you get fairly easy O(n) merging of trees - convert both trees to lists, merge them, then convert back to a tree. RB tree 适合增删 when you’re doing fairly frequent inserts, deletes and retrievals检索 on the tree. Has less strict rules around rebalancing which make insertions/deletions quicker than AVL tree. RB trees also have better performance O(1) on the rebalance which makes them more suitable for persistent datastructures with roll-back and roll-forward. AVL tree 适合检索 when your inserts and deletes are infrequent relative to your retrievals. More strictly balanced so lookups are faster than RB tree. B-Tree vs Hash Table In MySQL, an index type is a b-tree, and access an element in a b-tree is in logarithmic amortized time O(log(n)). On the other hand, accessing an element in a hash table is in O(1). Why is a hash table not used instead of a b-tree in order to access data inside a database? Answer You can only access elements by their primary key in a hashtable. This is faster than with a tree algorithm (O(1) instead of log(n)), but you cannot select ranges (everything in between xand y). Tree algorithms support this in Log(n) whereas hash indexes can result in a full table scan O(n). Also the constant overhead of hash indexes is usually bigger (which is no factor in theta notation, but it still exists). Also tree algorithms are usually easier to maintain, grow with data, scale, etc. Hash indexes work with pre-defined hash sizes, so you end up with some “buckets” where the objects are stored in. These objects are looped over again to really find the right one inside this partition. Todays hash tables algorithms usually scale, but scaling can be inefficient. There are indeed scalable hashing algorithms. they evolved(进化) from scalable replication where re-hashing is not easy. Its called RUSH - Replication Under Scalable Hashing, and those algorithms are thus called RUSH algorithms. However there may be a point where your index exceeds a tolerable size compared to your hash sizes and your entire index needs to be re-built. Usually this is not a problem, but for huge-huge-huge databases, this can take days. The trade off for tree algorithms is small and they are suitable for almost every use case and thus are default. B trees and B+ trees? In a b- tree you can store both keys and data in the internal and leaf nodes In a b+ tree you have to store the data in the leaf nodes only. Is there any advantage of doing the above in a b+ tree? Why not use b-trees instead of b+ trees everywhere, as intuitively they seem much faster? I mean, why do you need to replicate the key(data) in a b+ tree? Answear Advantages of B+ trees: B+ trees don’t have data associated with interior内部 nodes, more keys can fit on a page of memory. Therefore, it will require fewer cache misses in order to access data that is on a leaf node. The leaf nodes of B+ trees are linked, so doing a full scan of all objects in a tree requires just one linear pass through all the leaf nodes. A B tree would require a traversal of every level in the tree. This full-tree traversal will likely involve more cache misses than the linear traversal of B+ leaves. Advantage of B trees: Because B trees contain data with each key, frequently accessed nodes can lie closer to the root, and therefore can be accessed more quickly. What’s a B*Tree? Did they just mean binary search tree? Answer No. A node in a B*Tree can have many keys (which point to many children). They operate by comparing keys in order to select a child node, much like a binary tree. But, the intent is that each node is stored on disk, and can be read into memory at once. Thus, the number of disk accesses required would match the depth of the tree. Note that the * indicates the nodes are at least 2/3 full. Reference When to choose RB tree, B-Tree or AVL tree? B-Tree vs Hash Table Differences between B trees and B+ trees What’s a B*Tree? to be continued… Further Reading Painting Nodes Black With Red-Black Trees Busying Oneself With B-Trees]]></content>
+    <content type="text"><![CDATA[whats B tree? self balancing search tree. each node can hold multiple keys. all leaf nodes are the same distance from the root. an extension of self-balancing binary search trees. allow each node to hold multiple keys and have multiple children. designed to take advantage of systems that can read and write in large blocks, and are commonly used in databases and file systems. B-Tree，RBT or AVL tree? When using a RB tree, B- tree or an AVL tree? What are the key points before deciding on the choice? explain with a scenario . Answer B-tree 适合存海量数据 When you’re managing more than thousands of items and you’re paging them from a disk or some slow storage medium. Can have variable number of children which allow it to hold many records but still maintain a short height tree. A good general-purpose ordered container data structure, even in main memory. Even when virtual memory isn’t an issue, cache-friendliness缓存友好 often is. B+ trees are particularly good for sequential access - the same asymptotic渐近 performance as a linked list, but with cache-friendliness close to a simple array. All this and O(log n) search, insert and delete. B+ trees do have problems, though - such as the items moving around within nodes when you do inserts/deletes, invalidating pointers to those items. this means you get fairly easy O(n) merging of trees - convert both trees to lists, merge them, then convert back to a tree. RB tree 适合增删 when you’re doing fairly frequent inserts, deletes and retrievals检索 on the tree. Has less strict rules around rebalancing which make insertions/deletions quicker than AVL tree. RB trees also have better performance O(1) on the rebalance which makes them more suitable for persistent datastructures with roll-back and roll-forward. AVL tree 适合检索 when your inserts and deletes are infrequent relative to your retrievals. More strictly balanced so lookups are faster than RB tree. B-Tree vs Hash Table In MySQL, an index type is a b-tree, and access an element in a b-tree is in logarithmic amortized time O(log(n)). On the other hand, accessing an element in a hash table is in O(1). Why is a hash table not used instead of a b-tree in order to access data inside a database? Answer You can only access elements by their primary key in a hashtable. This is faster than with a tree algorithm (O(1) instead of log(n)), but you cannot select ranges (everything in between xand y). Tree algorithms support this in Log(n) whereas hash indexes can result in a full table scan O(n). Also the constant overhead of hash indexes is usually bigger (which is no factor in theta notation, but it still exists). Also tree algorithms are usually easier to maintain, grow with data, scale, etc. Hash indexes work with pre-defined hash sizes, so you end up with some “buckets” where the objects are stored in. These objects are looped over again to really find the right one inside this partition. Todays hash tables algorithms usually scale, but scaling can be inefficient. There are indeed scalable hashing algorithms. they evolved(进化) from scalable replication where re-hashing is not easy. Its called RUSH - Replication Under Scalable Hashing, and those algorithms are thus called RUSH algorithms. However there may be a point where your index exceeds a tolerable size compared to your hash sizes and your entire index needs to be re-built. Usually this is not a problem, but for huge-huge-huge databases, this can take days. The trade off for tree algorithms is small and they are suitable for almost every use case and thus are default. B trees and B+ trees? In a b- tree you can store both keys and data in the internal and leaf nodes In a b+ tree you have to store the data in the leaf nodes only. Is there any advantage of doing the above in a b+ tree? Why not use b-trees instead of b+ trees everywhere, as intuitively they seem much faster? I mean, why do you need to replicate the key(data) in a b+ tree? Answear Advantages of B+ trees: B+ trees don’t have data associated with interior内部 nodes, more keys can fit on a page of memory. Therefore, it will require fewer cache misses in order to access data that is on a leaf node. The leaf nodes of B+ trees are linked, so doing a full scan of all objects in a tree requires just one linear pass through all the leaf nodes. A B tree would require a traversal of every level in the tree. This full-tree traversal will likely involve more cache misses than the linear traversal of B+ leaves. Advantage of B trees: Because B trees contain data with each key, frequently accessed nodes can lie closer to the root, and therefore can be accessed more quickly. What’s a B*Tree? Did they just mean binary search tree? Answer No. A node in a B*Tree can have many keys (which point to many children). They operate by comparing keys in order to select a child node, much like a binary tree. But, the intent is that each node is stored on disk, and can be read into memory at once. Thus, the number of disk accesses required would match the depth of the tree. Note that the * indicates the nodes are at least 2/3 full. Reference When to choose RB tree, B-Tree or AVL tree? B-Tree vs Hash Table Differences between B trees and B+ trees What’s a B*Tree? to be continued… Further Reading Painting Nodes Black With Red-Black Trees Busying Oneself With B-Trees How does a red-black tree work? How to easily remember Red-Black Tree insert and delete? Red Black Tree versus B Tree Applications of red-black trees Red-Black Trees What additional rotation is required for deletion from a Top-Down 2-3-4 Left-leaning Red Black tree? Statistical performance of purely functional maps and sets Red black tree over avl tree Difference between red-black trees and AVL trees bitmap]]></content>
       <categories>
         <category>Data Structure</category>
       </categories>
@@ -50,9 +62,9 @@
       </categories>
       <tags>
         <tag>pointer</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Math</tag>
         <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -101,13 +113,13 @@
       </categories>
       <tags>
         <tag>C++</tag>
-        <tag>Heap</tag>
         <tag>Linux</tag>
         <tag>Operating System</tag>
         <tag>process</tag>
         <tag>TCP/IP</tag>
         <tag>quicksort</tag>
         <tag>Btree</tag>
+        <tag>Heap</tag>
         <tag>linkedList</tag>
       </tags>
   </entry>
@@ -144,9 +156,9 @@
       </categories>
       <tags>
         <tag>Sort</tag>
-        <tag>String</tag>
         <tag>Array</tag>
         <tag>Permutations</tag>
+        <tag>String</tag>
       </tags>
   </entry>
   <entry>
@@ -242,8 +254,8 @@
       </categories>
       <tags>
         <tag>AVL</tag>
-        <tag>priority_queue</tag>
         <tag>Heapsort</tag>
+        <tag>priority_queue</tag>
       </tags>
   </entry>
   <entry>
@@ -255,8 +267,8 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Sort</tag>
         <tag>Algorithms library</tag>
+        <tag>Sort</tag>
       </tags>
   </entry>
   <entry>
@@ -317,12 +329,12 @@
         <category>《C++ Primer》</category>
       </categories>
       <tags>
-        <tag>RBT</tag>
         <tag>STL</tag>
-        <tag>Sort</tag>
-        <tag>priority_queue</tag>
+        <tag>RBT</tag>
         <tag>Algorithms library</tag>
+        <tag>Sort</tag>
         <tag>Heapsort</tag>
+        <tag>priority_queue</tag>
         <tag>multiset</tag>
       </tags>
   </entry>
@@ -335,9 +347,9 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Containers library</tag>
         <tag>Sort</tag>
         <tag>priority_queue</tag>
+        <tag>Containers library</tag>
       </tags>
   </entry>
   <entry>
@@ -363,10 +375,10 @@
       </categories>
       <tags>
         <tag>RBT</tag>
-        <tag>Sort</tag>
-        <tag>priority_queue</tag>
         <tag>Algorithms library</tag>
+        <tag>Sort</tag>
         <tag>Heapsort</tag>
+        <tag>priority_queue</tag>
         <tag>multiset</tag>
         <tag>Partition</tag>
       </tags>
@@ -393,8 +405,8 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Sort</tag>
         <tag>Algorithms library</tag>
+        <tag>Sort</tag>
         <tag>Partition</tag>
         <tag>Quicksort</tag>
       </tags>
@@ -475,8 +487,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>String</tag>
         <tag>Array</tag>
+        <tag>String</tag>
         <tag>Backtracking</tag>
       </tags>
   </entry>
@@ -535,8 +547,8 @@
       </categories>
       <tags>
         <tag>static</tag>
-        <tag>Stack</tag>
         <tag>Heap</tag>
+        <tag>Stack</tag>
         <tag>Memory</tag>
       </tags>
   </entry>
