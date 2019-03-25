@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="lightmare, developer, back-end">
+  <meta name="keywords" content="TCP/IP,">
 
 
 
@@ -77,17 +77,21 @@
 
 
 
-<meta name="description" content="~ Magic world , Magical girl ~">
-<meta name="keywords" content="back-end,c++,algorithm,data structure">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lightmare">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+<meta name="description" content="本文是阅读《Understanding the TCP/IP protocol suite》 的读书笔记，文章来自Nassos Katsaounis在serverdensity上发布的博客。   Intro TCP/IP: Transmission Control Protocol/Internet Protocol  Developed in the mid 1970’s and widely">
+<meta name="keywords" content="TCP&#x2F;IP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding the TCP&#x2F;IP protocol suite">
+<meta property="og:url" content="http://yoursite.com/2019/03/25/Understanding-the-TCP-IP-protocol-suite/index.html">
 <meta property="og:site_name" content="Lightmare">
-<meta property="og:description" content="~ Magic world , Magical girl ~">
+<meta property="og:description" content="本文是阅读《Understanding the TCP/IP protocol suite》 的读书笔记，文章来自Nassos Katsaounis在serverdensity上发布的博客。   Intro TCP/IP: Transmission Control Protocol/Internet Protocol  Developed in the mid 1970’s and widely">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Understanding-the-TCP-IP-protocol-suite/TCPIP%20Protocal%20Suite.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Understanding-the-TCP-IP-protocol-suite/three%20way%20handshake.png">
+<meta property="og:updated_time" content="2019-03-25T15:38:51.511Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lightmare">
-<meta name="twitter:description" content="~ Magic world , Magical girl ~">
+<meta name="twitter:title" content="Understanding the TCP&#x2F;IP protocol suite">
+<meta name="twitter:description" content="本文是阅读《Understanding the TCP/IP protocol suite》 的读书笔记，文章来自Nassos Katsaounis在serverdensity上发布的博客。   Intro TCP/IP: Transmission Control Protocol/Internet Protocol  Developed in the mid 1970’s and widely">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/25/Understanding-the-TCP-IP-protocol-suite/TCPIP%20Protocal%20Suite.png">
 
 
 
@@ -117,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/25/Understanding-the-TCP-IP-protocol-suite/">
 
 
 
 
 
-  <title>Archive | Lightmare</title>
+  <title>Understanding the TCP/IP protocol suite | Lightmare</title>
   
 
 
@@ -142,7 +146,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -289,106 +293,353 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 45 posts in total. Keep on posting.
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/Understanding-the-TCP-IP-protocol-suite/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">Understanding the TCP/IP protocol suite</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-25T21:58:23+08:00">
+                2019-03-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-25T23:38:51+08:00">
+                2019-03-25
+              </time>
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/19/ubuntu-16-04-连接-wifi/" itemprop="url">
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="name">ubuntu 16.04 连接 wifi</span>
+                <span class="post-meta-item-text">In</span>
               
-            </a>
-        
-      </h2>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Network</span>
+                  </a>
+                </span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-08-19T16:40:36+08:00" content="2018-08-19">
-          08-19
-        </time>
-      </div>
+                
+                
+              
+            </span>
+          
 
-    </header>
-  </article>
+          
+            
+          
 
+          
+          
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.1k words
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  6 mins
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/04/《Effective-C-》-条款04：Stack与Heap-内存管理/" itemprop="url">
-              
-                <span itemprop="name">《Effective C++》 条款04：Stack与Heap / 内存管理</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-08-04T12:17:54+08:00" content="2018-08-04">
-          08-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p>本文是阅读《<a href="https://blog.serverdensity.com/tcpip-three-way-handshake-traceroute/" target="_blank" rel="noopener">Understanding the TCP/IP protocol suite</a>》 的读书笔记，文章来自<strong>Nassos Katsaounis</strong>在serverdensity上发布的博客。 </p>
+<hr>
+<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><ul>
+<li>TCP/IP: Transmission Control Protocol/Internet Protocol </li>
+<li>Developed in the mid 1970’s and widely adopted in the early 1980’s, it has been the standard of computer networking for over 35 years.</li>
+</ul>
+<hr>
+<h1 id="TCP-IP-basics"><a href="#TCP-IP-basics" class="headerlink" title="TCP/IP basics"></a>TCP/IP basics</h1><p><img src="/2019/03/25/Understanding-the-TCP-IP-protocol-suite/TCPIP Protocal Suite.png" alt="TCPIP Protocal Suite"></p>
+<ul>
+<li>TCP/IP plays a particularly important role in two specific layers:</li>
+</ul>
+<ol>
+<li>In the <strong>Transport</strong> Layer, where <strong>correct delivery</strong> of data is ensured</li>
+<li>In the <strong>Network</strong> Layer, where the correct <strong>recipient is located</strong></li>
+</ol>
+<hr>
+<h2 id="Application-Layer"><a href="#Application-Layer" class="headerlink" title="Application Layer"></a>Application Layer</h2><ul>
+<li>This layer provides <strong>applications</strong> the ability to access the <strong>services</strong> of the other layers</li>
+<li>Defines the <strong>protocols</strong> that applications use to <strong>exchange</strong> data. </li>
+<li>This layer adds it’s own <strong>header</strong> and sends down to the <strong>Transport</strong> layer.</li>
+<li>Some of the popular protocols of this layer are :<a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" target="_blank" rel="noopener">HTTP</a>, <a href="https://en.wikipedia.org/wiki/File_Transfer_Protocol" target="_blank" rel="noopener">FTP</a>, <a href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol" target="_blank" rel="noopener">SMTP</a>, <a href="https://en.wikipedia.org/wiki/Telnet" target="_blank" rel="noopener">Telnet</a>, <a href="https://en.wikipedia.org/wiki/Secure_Shell" target="_blank" rel="noopener">NFS</a>, <a href="https://en.wikipedia.org/wiki/Routing_Information_Protocol" target="_blank" rel="noopener">RIP</a>, etc.</li>
+</ul>
+<hr>
+<h2 id="Transport-Layer"><a href="#Transport-Layer" class="headerlink" title="Transport Layer"></a>Transport Layer</h2><ul>
+<li>It is mainly responsible for <strong>providing the application</strong> layer with session and datagram communication services. 下层为上层提供服务</li>
+<li>This layer adds it’s own <strong>headers</strong> and sends down to the <strong>Network</strong> layer.</li>
+<li>ensure that all the split pieces arrive correctly at the other end. </li>
+<li>It is concerned with <strong>end-to-end</strong> transportation of data and setups up a <strong>logical connection between the hosts</strong>.数据端到端传输，建立主机间逻辑连接。</li>
+<li>There are two protocols available in this layer:<a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol" target="_blank" rel="noopener">TCP</a> and <a href="https://en.wikipedia.org/wiki/User_Datagram_Protocol" target="_blank" rel="noopener">UDP</a></li>
+</ul>
+<h3 id="TCP-in-Transport-Layer-“How”"><a href="#TCP-in-Transport-Layer-“How”" class="headerlink" title="TCP in Transport Layer (“How”)"></a>TCP in Transport Layer (“How”)</h3><ul>
+<li>establishing <strong>reliable</strong> <strong>data exchange</strong> between applications. </li>
+<li>This ensures that data is <strong>not lost or misinterpreted</strong> along the way: TCP confirms that the message <strong>sent</strong> is the message actually <strong>received</strong>.</li>
+<li>open a <strong>channel of communication</strong> between the two computers. </li>
+<li>breaks the data into <strong>small units</strong> of information (“<strong>segments</strong>” or “<strong>packets</strong>”) as required, confirms <strong>correct delivery</strong> and <strong>reassembles</strong> them at the destination.</li>
+</ul>
+<hr>
+<h2 id="Network-Layer"><a href="#Network-Layer" class="headerlink" title="Network Layer"></a>Network Layer</h2><ul>
+<li>The <strong>segments</strong> sent by the above layers are received here. </li>
+<li>send this segment of data to a <strong>destination host</strong> which could be anywhere ( in the <strong>same network</strong> or may be <strong>external network</strong>). </li>
+<li><p>It provides <strong>logical addressing</strong>, <strong>path</strong> determination for the segments to be sent and forwarding .</p>
+</li>
+<li><p>This layer also adds it’s own <strong>headers</strong> and convert and send the received segments in form of <strong>packets</strong>.网络层以包的形式传递报文段</p>
+</li>
+<li><p>Some of the popular protocols of this layer are :<a href="https://en.wikipedia.org/wiki/Internet_Protocol" target="_blank" rel="noopener">Internet Protocol (IP)</a>, <a href="https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol" target="_blank" rel="noopener">ICMP</a>, etc.</p>
+</li>
+</ul>
+<h3 id="IP-in-Network-Layer-“Where”"><a href="#IP-in-Network-Layer-“Where”" class="headerlink" title="IP in Network Layer (“Where”)"></a>IP in Network Layer (“Where”)</h3><ul>
+<li>send the data to the <strong>correct recipient</strong>. </li>
+<li>determines <strong>how</strong> data will find its <strong>intended destination</strong> through interconnected networks. </li>
+<li>dictates the <strong>roadmap</strong> that data will have to follow. </li>
+<li>ensures that all <strong>packets</strong> include the information necessary for each node to be able to forward them to the next.</li>
+</ul>
+<hr>
+<h2 id="Network-Access-Layer-Data-Link-Physical-Layer"><a href="#Network-Access-Layer-Data-Link-Physical-Layer" class="headerlink" title="Network Access Layer ( Data Link + Physical Layer)"></a>Network Access Layer ( Data Link + Physical Layer)</h2><ul>
+<li>This layer defines the <strong>protocols</strong> and <strong>hardware required</strong> to connect a host to a physical network and to deliver data across it. </li>
+<li><p>For delivery within a given <strong>physical network</strong>, packets are sent from the above layer to this layer.</p>
+</li>
+<li><p>The destination can be <strong>another host</strong> in the network, <strong>itself</strong>, or a <strong>router</strong> for further forwarding. </p>
+</li>
+<li><p>So the Network layer has a view of the entire Network whereas the Network Access layer is limited to the <strong>physical layer boundary</strong> that is often defined by a layer 3 device such as a router.</p>
+</li>
+<li><p>When the <strong>physical network</strong> is <strong>LAN</strong>, <a href="https://en.wikipedia.org/wiki/Ethernet" target="_blank" rel="noopener"><strong>Ethernet(802.3)</strong></a> ; if the physical network is a <strong>WAN</strong>, protocols such as <a href="https://en.wikipedia.org/wiki/Point-to-Point_Protocol" target="_blank" rel="noopener"><strong>Point to Point Protocol (PPP)</strong></a> and Frame relay are common.</p>
+</li>
+</ul>
+<hr>
+<h2 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works"></a>How it works</h2><ul>
+<li>TCP is activated with every <strong>network request/response</strong>.For example:<ol>
+<li>in an <strong>HTTP request</strong>, </li>
+<li>TCP takes over as soon as the browser knows where the request should be <strong>routed</strong>, i.e. after <strong>DNS resolution</strong> has been completed. </li>
+<li>Based on the <strong>socket</strong> provided (combination of <strong>IP address and server port</strong>), the <strong>request</strong> will reach the <strong>target</strong> computer and application through the network. </li>
+<li>The necessary communication <strong>channel</strong> will open up. </li>
+<li>data will be broken down to appropriately sized <strong>packets</strong>. </li>
+<li>Then, they will be sent over to the <strong>server</strong>. </li>
+<li>While the <strong>server</strong> handles the request and prepares the <strong>response</strong> accordingly, TCP <strong>makes sure</strong> that this particular <strong>connection channel</strong> remains open <strong>until</strong> the <strong>response</strong> reaches the <strong>source of the request</strong> successfully.</li>
+</ol>
+</li>
+<li>While moving data around, TCP/IP protocols annotate segments with extra information (<strong>headers</strong>) in order to be able to perform all the above tasks successfully. Headers include:<ol>
+<li>information regarding the <strong>segment sequence number</strong>,</li>
+<li>a number (checksum) to allow confirmation of <strong>data validity</strong></li>
+<li>information about <strong>sender and recipient</strong>.</li>
+</ol>
+</li>
+<li>This added information allows data to be <strong>segmented</strong> and transmitted as <strong>efficiently</strong> as possible, making sure it is <strong>correctly restructured</strong> at the destination, without worrying about structure during transportation. But it also plays an important role in the Three-Way Handshake.</li>
+</ul>
+<hr>
+<h1 id="Three-way-handshake"><a href="#Three-way-handshake" class="headerlink" title="Three-way handshake"></a>Three-way handshake</h1><ul>
+<li>Unlike User Datagram Protocol (UDP), <strong>reliability</strong> is a top priority for TCP/IP. UDP serves as an alternative to TCP for different types of communication services where there is <strong>no time or need</strong> for confirmation that the <strong>correct message</strong> was successfully received by the intended party. An example of a case like that is a <strong>voice call over IP</strong>.</li>
+<li>But in most cases, such confirmation is absolutely necessary.</li>
+<li>To ensure reliability in communications, TCP establishes a verified connection between the client and the server computer before actual data is transmitted. This is done through the Three-Way Handshake using three segments (hence the “three-way”).</li>
+</ul>
+<hr>
+<h2 id="How-it-works-1"><a href="#How-it-works-1" class="headerlink" title="How it works"></a>How it works</h2><ol>
+<li>To initiate the process, the client sends a <strong>SYN segment</strong> to the server. SYN stands for <strong>Synchronization</strong>, and it means that the client requests that the server synchronizes with the <strong>sequence numbers</strong> that the client will use (<strong>new</strong> sequence numbers are generated with every new transaction).</li>
+<li>Upon receiving the request, the server <strong>responds</strong> with a similar message. <ol>
+<li>it <strong>acknowledges (ACK)</strong> the request by confirming the Sequence Numbers sent by the client.</li>
+<li>it also requests <strong>synchronization (SYN)</strong> of the client’s <strong>Sequence Numbers</strong> with its own.</li>
+</ol>
+</li>
+<li>The final step comes from the <strong>client</strong> again, that <strong>acknowledges (ACK)</strong> the Sequence Numbers sent by the server. Transmission is ready to begin.</li>
+</ol>
+<p>Click <a href="https://support.microsoft.com/en-gb/help/172983/explanation-of-the-three-way-handshake-via-tcp-ip" target="_blank" rel="noopener">here</a> to read more about the Three-Way Handshake.</p>
+<p><img src="/2019/03/25/Understanding-the-TCP-IP-protocol-suite/three way handshake.png" alt="three way handshake"></p>
+<hr>
+<p>to be continued…</p>
+<hr>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li><a href="https://codeburst.io/learning-tcp-ip-protocol-suite-6947b601ea11" target="_blank" rel="noopener">Learning the TCP/IP Protocol Suite,codeburst.io.</a></li>
+<li><a href="https://hpbn.co/building-blocks-of-tcp/" target="_blank" rel="noopener">Building Blocks of TCP,hpbn.co.</a></li>
+<li><a href="https://codeburst.io/learning-the-osi-model-32b48cc55bdd" target="_blank" rel="noopener">Learning the OSI Model,codeburst.io.</a></li>
+<li><a href="https://community.fs.com/blog/tcpip-vs-osi-whats-the-difference-between-the-two-models.html" target="_blank" rel="noopener">TCP/IP vs. OSI: What’s the Difference Between the Two Models?</a></li>
+<li><a href="https://www.geeksforgeeks.org/computer-network-tutorials/" target="_blank" rel="noopener">Computer network tutorials,geeksforgeeks.</a></li>
+</ol>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for Support.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Lightmare Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TCP-IP/" rel="tag"># TCP/IP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/25/Leetcode387-First-Unique-Character-in-a-String/" rel="next" title="Leetcode387. First Unique Character in a String">
+                <i class="fa fa-chevron-left"></i> Leetcode387. First Unique Character in a String
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -396,6 +647,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -418,8 +673,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -573,6 +837,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-basics"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP basics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Layer"><span class="nav-number">2.1.</span> <span class="nav-text">Application Layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transport-Layer"><span class="nav-number">2.2.</span> <span class="nav-text">Transport Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-in-Transport-Layer-“How”"><span class="nav-number">2.2.1.</span> <span class="nav-text">TCP in Transport Layer (“How”)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Layer"><span class="nav-number">2.3.</span> <span class="nav-text">Network Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP-in-Network-Layer-“Where”"><span class="nav-number">2.3.1.</span> <span class="nav-text">IP in Network Layer (“Where”)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Access-Layer-Data-Link-Physical-Layer"><span class="nav-number">2.4.</span> <span class="nav-text">Network Access Layer ( Data Link + Physical Layer)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-it-works"><span class="nav-number">2.5.</span> <span class="nav-text">How it works</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Three-way-handshake"><span class="nav-number">3.</span> <span class="nav-text">Three-way handshake</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#How-it-works-1"><span class="nav-number">3.1.</span> <span class="nav-text">How it works</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -729,6 +1009,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

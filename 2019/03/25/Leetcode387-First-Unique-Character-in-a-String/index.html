@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="Given a string, find the first non-repeating character in it and return it’s index. If it doesn’t exist, return -1. Examples: 12345s = &amp;quot;leetcode&amp;quot;return 0.s = &amp;quot;loveleetcode&amp;quot;,return">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-25T13:34:32.358Z">
+<meta property="og:updated_time" content="2019-03-25T13:57:23.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode387. First Unique Character in a String">
 <meta name="twitter:description" content="Given a string, find the first non-repeating character in it and return it’s index. If it doesn’t exist, return -1. Examples: 12345s = &amp;quot;leetcode&amp;quot;return 0.s = &amp;quot;loveleetcode&amp;quot;,return">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-25T21:34:32+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-25T21:57:23+08:00">
                 2019-03-25
               </time>
             
@@ -404,7 +404,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  377 words
+                  477 words
                 </span>
               
 
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1 mins
+                  2 mins
                 </span>
               
             </div>
@@ -453,8 +453,13 @@
 <li>从头到尾遍历字符串，将每个字符对应的value都更新(次数|index)</li>
 </ul>
 <h2 id="Code-in-C"><a href="#Code-in-C" class="headerlink" title="Code in C++"></a>Code in C++</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">firstUniqChar</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt; m;<span class="comment">//key:char:字符。value：int；次数,int:index</span></span><br><span class="line">        <span class="keyword">int</span> index =s.size();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            m[s[i]].first++;<span class="comment">//value.first:出现次数++</span></span><br><span class="line">            m[s[i]].second=i;<span class="comment">//value.sencon:字符出现的索引更新为最新</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> <span class="keyword">const</span> &amp;it : m)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(it.second.first==<span class="number">1</span>)<span class="comment">//这里不能忘记写second啊，只有second才说明是value！</span></span><br><span class="line">            &#123;</span><br><span class="line">                index=min(index,it.second.second);<span class="comment">//这里一定要写min(index,curindex)，否则会返回最后一次的index,而不是第一次出现的！！</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> index==s.size()?<span class="number">-1</span>:index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h1><ol>
+<li>int index =s.size();定义一个全局变量，最后判断index有没有变化，没有变化说明没有唯一字符，返回-1.</li>
+<li>if(it.second.first==1)//这里不能忘记写second啊，只有second才说明是value！</li>
+<li>index=min(index,it.second.second);//这里一定要写min(index,curindex)，否则会返回最后一次的index,而不是第一次出现的！！</li>
+</ol>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
-<li><p>看到字符串计数问题就要想到hash table，很快的查找O(1)。因为统计次数，所以key不能重复，也就是不能用multimap,所以用unordered_map.</p>
+<li><p>看到字符串计数问题就要想到hash table，用空间换时间，很快查找O(1)。因为统计次数，所以key不能重复，也就是不能用multimap,所以用unordered_map！！</p>
 </li>
 <li><p>注意是无序!!不要用map，他是rbt实现的，构建树的时候就已经排好了序，计数类的题目是不需要排序的，很浪费时间!!O(logn)。</p>
 </li>
@@ -528,6 +533,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/25/Understanding-the-TCP-IP-protocol-suite/" rel="prev" title="Understanding the TCP/IP protocol suite">
+                Understanding the TCP/IP protocol suite <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -608,7 +617,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -619,7 +628,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -755,7 +764,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-in-C"><span class="nav-number">2.</span> <span class="nav-text">Code in C++</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-in-C"><span class="nav-number">2.</span> <span class="nav-text">Code in C++</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#细节"><span class="nav-number"></span> <span class="nav-text">细节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></li></div>
             
 
           </div>
@@ -796,7 +805,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">54.5k</span>
+    <span title="Site words total count">55.7k</span>
   
 </div>
 
