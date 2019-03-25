@@ -78,9 +78,9 @@
       </categories>
       <tags>
         <tag>pointer</tag>
-        <tag>Math</tag>
         <tag>Dynamic Programming</tag>
         <tag>Array</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -185,8 +185,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>String</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -270,8 +270,8 @@
       </categories>
       <tags>
         <tag>AVL</tag>
-        <tag>Heapsort</tag>
         <tag>priority_queue</tag>
+        <tag>Heapsort</tag>
       </tags>
   </entry>
   <entry>
@@ -283,8 +283,8 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Algorithms library</tag>
         <tag>Sort</tag>
+        <tag>Algorithms library</tag>
       </tags>
   </entry>
   <entry>
@@ -347,10 +347,10 @@
       <tags>
         <tag>RBT</tag>
         <tag>STL</tag>
-        <tag>Algorithms library</tag>
         <tag>Sort</tag>
-        <tag>Heapsort</tag>
         <tag>priority_queue</tag>
+        <tag>Algorithms library</tag>
+        <tag>Heapsort</tag>
         <tag>multiset</tag>
       </tags>
   </entry>
@@ -363,9 +363,9 @@
       </categories>
       <tags>
         <tag>STL</tag>
+        <tag>Containers library</tag>
         <tag>Sort</tag>
         <tag>priority_queue</tag>
-        <tag>Containers library</tag>
       </tags>
   </entry>
   <entry>
@@ -391,10 +391,10 @@
       </categories>
       <tags>
         <tag>RBT</tag>
-        <tag>Algorithms library</tag>
         <tag>Sort</tag>
-        <tag>Heapsort</tag>
         <tag>priority_queue</tag>
+        <tag>Algorithms library</tag>
+        <tag>Heapsort</tag>
         <tag>multiset</tag>
         <tag>Partition</tag>
       </tags>
@@ -421,8 +421,8 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Algorithms library</tag>
         <tag>Sort</tag>
+        <tag>Algorithms library</tag>
         <tag>Partition</tag>
         <tag>Quicksort</tag>
       </tags>
