@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hash Table,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文是阅读《Taking Hash Tables Off The Shelf》和《Hashing Out Hash Functions》的读书笔记，文章来自Vaidehi Joshi在medium上发布baseCS系列，该栏目用可爱的漫画来生动地解释计算机基础、数据结构、算法、理论在实践中的应用。   Part 1. Intro It’s hard to understand breadth fi">
+<meta name="keywords" content="Hash Table">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Taking Hash Tables Off The Shelf">
+<meta property="og:url" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/index.html">
+<meta property="og:site_name" content="Lightmare">
+<meta property="og:description" content="本文是阅读《Taking Hash Tables Off The Shelf》和《Hashing Out Hash Functions》的读书笔记，文章来自Vaidehi Joshi在medium上发布baseCS系列，该栏目用可爱的漫画来生动地解释计算机基础、数据结构、算法、理论在实践中的应用。   Part 1. Intro It’s hard to understand breadth fi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/We%20can%20think%20of%20our%20book%20collection%20as%20a%20dataset.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Imagine%20a%20library%20as%20a%20data%20structure.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/What%20exactly%20is%20a%20hash%20table.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/A%20hash%20table%20with%20a%20size%20of12.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/A%20collision%20occurs%20when%20two%20elements%20are%20supposed%20to%20be%20inserted%20at%20the%20same%20place%20in%20an%20array..jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Hash%20functions%20that%20lean%20on%20alphabetization%20always%20result%20in%2026%20hash%20buckets..jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Hash%20tables%20leverage%20constant%20time%20search,%20which%20is%20what%20makes%20them%20so%20powerful..jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Maggie%20Appleton.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/What%20makes%20a%20good%20hash%20table.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Collisions%20occur%20whenever%20a%20hash%20function%20generates%20the%20same%20key%20for%20two%20elements.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Linear%20probing.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Clustered%20vs.%20well-balanced%20tables.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Chaining.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Chaining%20still%20averages%20out%20to%20a%20constant%20search%20time.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Using%20a%20hash%20table%20to%20implement%20a%20spell%20checker.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/unordered_multiset.JPG">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/unordered_multiset.JPG">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/unordered_set.JPG">
+<meta property="og:updated_time" content="2019-03-25T11:29:01.896Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Taking Hash Tables Off The Shelf">
+<meta name="twitter:description" content="本文是阅读《Taking Hash Tables Off The Shelf》和《Hashing Out Hash Functions》的读书笔记，文章来自Vaidehi Joshi在medium上发布baseCS系列，该栏目用可爱的漫画来生动地解释计算机基础、数据结构、算法、理论在实践中的应用。   Part 1. Intro It’s hard to understand breadth fi">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/We%20can%20think%20of%20our%20book%20collection%20as%20a%20dataset.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":15,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/">
+
+
+
+
+
+  <title>Taking Hash Tables Off The Shelf | Lightmare</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lightmare</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-c++">
+          <a href="/2019/03/03/C++%E7%AC%94%E8%AE%B0%E6%9C%AC/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
+            
+            C++
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/2019/01/21/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-interview">
+          <a href="/categories/Interview/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question"></i> <br>
+            
+            Interview
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-folder"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lightmare">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lightmare">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Taking Hash Tables Off The Shelf</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-25T14:21:00+08:00">
+                2019-03-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-25T19:29:01+08:00">
+                2019-03-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structures/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structures</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"> Views:</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文是阅读《<a href="https://medium.com/basecs/taking-hash-tables-off-the-shelf-139cbf4752f0" target="_blank" rel="noopener">Taking Hash Tables Off The Shelf</a>》和《<a href="https://medium.com/basecs/hashing-out-hash-functions-ea5dd8beb4dd" target="_blank" rel="noopener">Hashing Out Hash Functions</a>》的读书笔记，文章来自Vaidehi Joshi在medium上发布<a href="https://medium.com/basecs" target="_blank" rel="noopener">baseCS</a>系列，该栏目用可爱的漫画来生动地解释计算机基础、数据结构、算法、理论在实践中的应用。 </p>
+<hr>
+<h1 id="Part-1-Intro"><a href="#Part-1-Intro" class="headerlink" title="Part 1. Intro"></a>Part 1. Intro</h1><ul>
+<li>It’s hard to understand breadth first search if you don’t already know Big O notation. And Big O notation doesn’t mean anything to you unless you’ve seen it in action, in the context of an algorithm.</li>
+<li>Metaphors比喻 can be a great way of learning through analogy类比, and they’re useful in illustrating otherwise complicated concepts.</li>
+</ul>
+<hr>
+<h1 id="Books-on-books-on-books"><a href="#Books-on-books-on-books" class="headerlink" title="Books on books on books"></a>Books on books on books</h1><p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/We can think of our book collection as a dataset.jpg" alt="We can think of our book collection as a dataset"></p>
+<p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Imagine a library as a data structure.jpg" alt="Imagine a library as a data structure"></p>
+<ul>
+<li>array or linked list:O(n) space+time</li>
+<li>using binary search : O(logn) space+time</li>
+<li>not the most efficient to find</li>
+</ul>
+<hr>
+<h1 id="Mappings-to-make-our-lives-easier"><a href="#Mappings-to-make-our-lives-easier" class="headerlink" title="Mappings to make our lives easier"></a>Mappings to make our lives easier</h1><p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/What exactly is a hash table.jpg" alt="What exactly is a hash table"></p>
+<ul>
+<li>Hash tables  : <strong>an array + a hash function</strong></li>
+<li>what makes them so efficient for our purposes is that they create a <strong>mapping</strong>, which is a relationship between two sets of data. </li>
+<li>Hash tables are made up of sets of pairs: a key and a value, often referred to as <em>(k, v)</em>. The idea here is that if you have the key in one set of data, you can find the value that corresponds to it in another set of data.</li>
+</ul>
+<blockquote>
+<ul>
+<li>In the case of a hash table, it is the hash function that creates the mapping. Since we’re working with arrays, the key is the <strong>index</strong> of the array, and the value is the <strong>data that lives at that index</strong>. </li>
+<li>The hash function’s job is to take an <strong>item</strong> in as <strong>input</strong>, and calculate and return the <strong>key</strong> for where that item should live in the hash table.</li>
+</ul>
+</blockquote>
+<h2 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h2><h2 id="Hash-buckets"><a href="#Hash-buckets" class="headerlink" title="Hash buckets"></a>Hash buckets</h2><p>Hash table has a size of 12,   every single book needs to be stored <strong><em>somewhere</em></strong> within these twelve slots.</p>
+<p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/A hash table with a size of12.jpg" alt="A hash table with a size of12"></p>
+<h3 id="Code-in-JS"><a href="#Code-in-JS" class="headerlink" title="Code in JS"></a>Code in JS</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bookHashing</span>(<span class="params">bookTitle, hashTableSize</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Remove any spaces from book title.</span></span><br><span class="line">  <span class="keyword">var</span> strippedBookTitle = bookTitle.replace(<span class="regexp">/\s/g</span>, <span class="string">''</span>)</span><br><span class="line">  <span class="comment">// Divide the length of the title by the hash table size.</span></span><br><span class="line">  <span class="comment">// Return the remainder.</span></span><br><span class="line">  <span class="keyword">return</span> strippedBookTitle.length % hashTableSize;</span><br><span class="line">&#125;</span><br><span class="line">bookHashing(<span class="string">"The Grapes of Wrath"</span>, <span class="number">12</span>);</span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line">bookHashing(<span class="string">"The Sound and the Fury"</span>, <span class="number">12</span>);</span><br><span class="line"><span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<h2 id="Collision"><a href="#Collision" class="headerlink" title="Collision"></a>Collision</h2><p>A collision occurs when two elements are supposed to be inserted at the same place in an array.</p>
+<p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/A collision occurs when two elements are supposed to be inserted at the same place in an array..jpg" alt="A collision occurs when two elements are supposed to be inserted at the same place in an array."></p>
+<blockquote>
+<ul>
+<li>For starters, we can be sure that no hash function will always return a unique hash bucket value for every item that give it. </li>
+<li>In fact, a hash function will always input multiple elements to the same output (hash bucket), because the size of our dataset will usually be <strong>larger than</strong> the size of our hash table.</li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="Super-cool-constant-time"><a href="#Super-cool-constant-time" class="headerlink" title="Super cool constant time"></a>Super cool constant time</h1><h2 id="Practical-context"><a href="#Practical-context" class="headerlink" title="Practical context"></a>Practical context</h2><p>Hash functions that lean on alphabetization always result in 26 hash buckets.</p>
+<p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Hash functions that lean on alphabetization always result in 26 hash buckets..jpg" alt="Hash functions that lean on alphabetization always result in 26 hash buckets."></p>
+<ul>
+<li><em>An equal distribution of data amongst all the possible hash buckets.</em>  </li>
+</ul>
+<h2 id="Efficiency"><a href="#Efficiency" class="headerlink" title="Efficiency"></a>Efficiency</h2><p>Hash tables leverage <strong>constant time search</strong>, which is what makes them so powerful.</p>
+<p> <img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Hash tables leverage constant time search, which is what makes them so powerful..jpg" alt="Hash tables leverage constant time search, which is what makes them so powerful."></p>
+<ul>
+<li>It also only takes <strong>constant time</strong> to <strong>insert or delete</strong> an item into a hash table, because we’re always going to lean on our <strong>hash function</strong> to determine where to add or remove something!</li>
+<li>Libraries around the world use the <a href="https://en.wikipedia.org/wiki/Dewey_Decimal_Classification" target="_blank" rel="noopener">Dewey Decimal Classification System</a>, which is really just a hash table with 10 buckets (and of course, a complex hash function that still I don’t quite understand yet).</li>
+</ul>
+<p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Maggie Appleton.jpg" alt="Maggie Appleton"></p>
+<hr>
+<h1 id="Part-2-Intro"><a href="#Part-2-Intro" class="headerlink" title="Part 2. Intro"></a>Part 2. Intro</h1><ul>
+<li>everything has its drawbacks.</li>
+<li>Hash tables, are really great options for <strong>storing</strong> and <strong>retrieving</strong> specific data, quickly. They’re not <em>always</em> the best tool for the job — for example, they’re not great for finding <strong>ordered data</strong> .</li>
+<li>hash tables do intrinsically have some issues of their own, and the <strong>usefulness</strong> of a hash table is tied directly to its <strong><em>hash function</em></strong>. </li>
+</ul>
+<hr>
+<h1 id="Hash-table-are-you-any-good"><a href="#Hash-table-are-you-any-good" class="headerlink" title="Hash table, are you any good?"></a>Hash table, are you any good?</h1><h2 id="a-good-hash-table"><a href="#a-good-hash-table" class="headerlink" title="a good hash table"></a>a good hash table</h2><ul>
+<li><em>hinges on how good of a <strong>hash function</strong> the hash table has.</em></li>
+</ul>
+<p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/What makes a good hash table.jpg" alt="What makes a good hash table"></p>
+<h2 id="Collisions-occur-whenever"><a href="#Collisions-occur-whenever" class="headerlink" title="Collisions occur whenever"></a>Collisions occur whenever</h2><p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Collisions occur whenever a hash function generates the same key for two elements.jpg" alt="Collisions occur whenever a hash function generates the same key for two elements"></p>
+<hr>
+<h1 id="Collision-resolution-tactics"><a href="#Collision-resolution-tactics" class="headerlink" title="Collision resolution tactics"></a>Collision resolution tactics</h1><ul>
+<li>There are a handful of ways to handle collisions in a hash function, and the important thing to remember that <strong>none</strong> of them is necessarily the “right tactic” to use.</li>
+<li>It all depends on your <strong>dataset</strong>, the <strong>size</strong> of your hash table, and what <strong>operations</strong> you know you’ll want to perform on the table later on.</li>
+</ul>
+<h2 id="Linear-Probing"><a href="#Linear-Probing" class="headerlink" title="Linear Probing"></a>Linear Probing</h2><ul>
+<li>looking for the next empty hash bucket nearby.</li>
+<li>This is a kind of <strong>rehashing</strong>, and this technique is known as <strong>linear probing</strong>.</li>
+</ul>
+<blockquote>
+<p>The interesting thing about linear probing is that if the next hash bucket is also filled by an element, the hash function will just <strong>continue</strong> to probe through the hash table until it finds an empty bucket, cycling back if necessary.</p>
+</blockquote>
+<p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Linear probing.jpg" alt="Linear probing"></p>
+<h3 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h3><ul>
+<li>simply moving over to the next available hash bucket and inserting an element at the “next free space” leads to something called <strong>clustering</strong>.<ul>
+<li>either our hash function isn’t using up the <strong>entire</strong> hash table range</li>
+<li>it’s <strong>not spreading</strong> data evenly <strong>across</strong> the hash buckets of our hash table.  </li>
+</ul>
+</li>
+<li><strong>well-spaced</strong> :  data is spread across the table, across many different hash buckets, and spans the entire range of the table </li>
+</ul>
+<h3 id="Clustered-vs-well-balanced-tables"><a href="#Clustered-vs-well-balanced-tables" class="headerlink" title="Clustered vs. well-balanced tables"></a>Clustered vs. well-balanced tables</h3><p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Clustered vs. well-balanced tables.jpg" alt="Clustered vs. well-balanced tables"></p>
+<ul>
+<li>this again depends on our dataset. </li>
+<li>If we have a lot of elements that are ending up at <strong>one hash bucket</strong>, and we use linear probing to solve the problem of collision,  we’ll end up with a clustered table! </li>
+<li>if designed a <strong>good hashing function</strong>, and table is <strong>big</strong> enough to accommodate our dataset, then <strong>linear probing</strong> can be a great solution for handling collisions.</li>
+</ul>
+<h2 id="Chaining"><a href="#Chaining" class="headerlink" title="Chaining"></a>Chaining</h2><ul>
+<li><p>store multiple things in <em>one</em> hash bucket.</p>
+</li>
+<li><p>a handy dandy <a href="https://medium.com/basecs/whats-a-linked-list-anyway-part-1-d8b7e6508b9d" target="_blank" rel="noopener">linked list</a>!!</p>
+<blockquote>
+<p>Instead of storing a single item at each hash bucket, we can chain multiple elements together so that each <strong>key</strong> of the table has a <strong>pointer</strong> that references a <strong>linked list</strong>.</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Chaining.jpg" alt="Chaining"></p>
+<ul>
+<li><strong>O(n)</strong> time:searching through a linked list takes as much time as there are elements.</li>
+</ul>
+<p>Chaining still averages out to a constant search time</p>
+<p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Chaining still averages out to a constant search time.jpg" alt="Chaining still averages out to a constant search time"></p>
+<ul>
+<li>we should have approximately the same size of linked lists at any hash bucket where there is a collision.</li>
+<li>The great thing about this is that, with a good hash function, chaining still averages out to have a search time of <em>O(1)</em>, or constant lookup time.</li>
+</ul>
+<hr>
+<h1 id="The-power-is-all-in-the-function"><a href="#The-power-is-all-in-the-function" class="headerlink" title="The power is all in the function"></a>The power is all in the function</h1><ul>
+<li><p>Unix and Linux operating systems use an <strong>internal hash table</strong> in order to store the contents of all the directories that are referenced by the environmental <code>PATH</code>variable.</p>
+</li>
+<li><p>If you’ve ever used a version of the <code>rehash</code> command, what you were <em>really</em> doing when you ran that command was recomputing and <strong>rehashing</strong> the system’s internal hash table!</p>
+</li>
+</ul>
+<h2 id="Spell-checker"><a href="#Spell-checker" class="headerlink" title="Spell checker"></a>Spell checker</h2><p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/Using a hash table to implement a spell checker.jpg" alt="Using a hash table to implement a spell checker"></p>
+<hr>
+<h2 id="C-中无序容器的支持"><a href="#C-中无序容器的支持" class="headerlink" title="C++中无序容器的支持"></a>C++中无序容器的支持</h2><p>关联式容器用于搜索大量数据。用hash table的时间复杂度为O(1)。</p>
+<h3 id="unordered-multiset"><a href="#unordered-multiset" class="headerlink" title="unordered_multiset"></a>unordered_multiset</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_unordered_multiset</span><span class="params">(<span class="keyword">long</span>&amp; value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"\ntest_unordered_multiset().......... \n"</span>;</span><br><span class="line">     </span><br><span class="line">    <span class="built_in">unordered_multiset</span>&lt;<span class="built_in">string</span>&gt; c;<span class="comment">//note.1  	</span></span><br><span class="line">    <span class="keyword">char</span> buf[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">clock_t</span> timeStart = clock();								</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">long</span> i=<span class="number">0</span>; i&lt; value; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">try</span> &#123;</span><br><span class="line">    		<span class="built_in">snprintf</span>(buf, <span class="number">10</span>, <span class="string">"%d"</span>, rand());</span><br><span class="line">        	c.insert(<span class="built_in">string</span>(buf));<span class="comment">//note.2   			  		</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span>(exception&amp; p) &#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"i="</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; p.what() &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line">			<span class="built_in">abort</span>();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"milli-seconds : "</span> &lt;&lt; (clock()-timeStart) &lt;&lt; <span class="built_in">endl</span>;		</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_multiset.size()= "</span> &lt;&lt; c.size() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_multiset.max_size()= "</span> &lt;&lt; c.max_size() &lt;&lt; <span class="built_in">endl</span>;	<span class="comment">//357913941</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_multiset.bucket_count()= "</span> &lt;&lt; c.bucket_count() &lt;&lt; <span class="built_in">endl</span>;	<span class="comment">//note.3</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_multiset.load_factor()= "</span> &lt;&lt; c.load_factor() &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_multiset.max_load_factor()= "</span> &lt;&lt; c.max_load_factor() &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//note.4	</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_multiset.max_bucket_count()= "</span> &lt;&lt; c.max_bucket_count() &lt;&lt; <span class="built_in">endl</span>;				</span><br><span class="line">  	<span class="keyword">for</span> (<span class="keyword">unsigned</span> i=<span class="number">0</span>; i&lt; <span class="number">20</span>; ++i) &#123;</span><br><span class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"bucket #"</span> &lt;&lt; i &lt;&lt; <span class="string">" has "</span> &lt;&lt; c.bucket_size(i) &lt;&lt; <span class="string">" elements.\n"</span>;</span><br><span class="line">  	&#125;					</span><br><span class="line">				</span><br><span class="line"><span class="built_in">string</span> target = get_a_target_string();	</span><br><span class="line">	&#123;</span><br><span class="line">    timeStart = clock();</span><br><span class="line">	<span class="keyword">auto</span> pItem = find(c.begin(), c.end(), target);	<span class="comment">//比 c.find(...) 慢很多	</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"std::find(), milli-seconds : "</span> &lt;&lt; (clock()-timeStart) &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line">	<span class="keyword">if</span> (pItem != c.end())</span><br><span class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"found, "</span> &lt;&lt; *pItem &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  	<span class="keyword">else</span></span><br><span class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"not found! "</span> &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line"> 	&#125;</span><br><span class="line"> </span><br><span class="line"> 	&#123;</span><br><span class="line">    timeStart = clock();		</span><br><span class="line">	<span class="keyword">auto</span> pItem = c.find(target); <span class="comment">//比 std::find(...) 快很多	.note.5						</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"c.find(), milli-seconds : "</span> &lt;&lt; (clock()-timeStart) &lt;&lt; <span class="built_in">endl</span>;	 </span><br><span class="line">	<span class="keyword">if</span> (pItem != c.end())</span><br><span class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"found, "</span> &lt;&lt; *pItem &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//note.6</span></span><br><span class="line">  	<span class="keyword">else</span></span><br><span class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"not found! "</span> &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line"> 	&#125;		</span><br><span class="line">	 </span><br><span class="line">    c.clear(); 	 	 		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/unordered_multiset.JPG" alt="unordered_multiset"></p>
+<ol>
+<li>定义set时只用声明value的类型即可，因为key等于value:unordered_multiset<string> c; </string></li>
+<li>set直接插入value即可:c.insert(string(buf));</li>
+<li>容器总bucket数：c.bucket_count()。篮子数一定比元素总数多，当篮子数等于元素总数时，篮子总数就会double,然后打散元素重新放入到篮子中去。每个bucket中不一定有元素。选取的前二十个bucket中没有一个有元素很正常。</li>
+<li>载重因子:c.load_factor()，最大为1。每个篮子的链表不能太长，否则影响查找效率。</li>
+<li>容器自带的find永远比std的find快，上篇已经讲过了。</li>
+<li>set打印时，直接解引用：*pItem。 </li>
+</ol>
+<h3 id="unordered-multimap"><a href="#unordered-multimap" class="headerlink" title="unordered_multimap"></a>unordered_multimap</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_unordered_multimap</span><span class="params">(<span class="keyword">long</span>&amp; value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"\ntest_unordered_multimap().......... \n"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">unordered_multimap</span>&lt;<span class="keyword">long</span>, <span class="built_in">string</span>&gt; c;<span class="comment">//note.1</span></span><br><span class="line">    <span class="keyword">char</span> buf[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">clock_t</span> timeStart = clock();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0</span>; i&lt; value; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="built_in">snprintf</span>(buf, <span class="number">10</span>, <span class="string">"%d"</span>, rand());</span><br><span class="line">            <span class="comment">//multimap 不可使用 [] 進行 insertion </span></span><br><span class="line">            c.insert(pair&lt;<span class="keyword">long</span>, <span class="built_in">string</span>&gt;(i, buf));<span class="comment">//note.2</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (exception&amp; p) &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"i="</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; p.what() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            <span class="built_in">abort</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"milli-seconds : "</span> &lt;&lt; (clock() - timeStart) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_multimap.size()= "</span> &lt;&lt; c.size() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_multimap.max_size()= "</span> &lt;&lt; c.max_size() &lt;&lt; <span class="built_in">endl</span>;	<span class="comment">//357913941	</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> target = get_a_target_long();</span><br><span class="line">    timeStart = clock();</span><br><span class="line">    <span class="keyword">auto</span> pItem = c.find(target);<span class="comment">//note.3</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"c.find(), milli-seconds : "</span> &lt;&lt; (clock() - timeStart) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">if</span> (pItem != c.end())</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"found, value="</span> &lt;&lt; (*pItem).second &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//note.4</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"not found! "</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/unordered_multiset.JPG" alt="unordered_multiset"></p>
+<ol>
+<li>定义map的时候，注意模板类型：unordered_multimap&lt;long, string&gt; c; 。</li>
+<li>要注意的依旧是multimap 不可使用 [] 進行 insertion，需要用pair分别指定key和value的类型。因为key是可以重复的: c.insert(pair&lt;long, string&gt;(i, buf));</li>
+<li>target是key,根据key找到item:auto pItem = c.find(target);</li>
+<li>取得value的方法,pair的第二个：(*pItem).second 。</li>
+</ol>
+<h3 id="unordered-set"><a href="#unordered-set" class="headerlink" title="unordered_set"></a>unordered_set</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_unordered_set</span><span class="params">(<span class="keyword">long</span>&amp; value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"\ntest_unordered_set().......... \n"</span>;</span><br><span class="line">     </span><br><span class="line">    <span class="built_in">unordered_set</span>&lt;<span class="built_in">string</span>&gt; c;  	</span><br><span class="line">    <span class="keyword">char</span> buf[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">clock_t</span> timeStart = clock();								</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">long</span> i=<span class="number">0</span>; i&lt; value; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">try</span> &#123;</span><br><span class="line">    		<span class="built_in">snprintf</span>(buf, <span class="number">10</span>, <span class="string">"%d"</span>, rand());</span><br><span class="line">        	c.insert(<span class="built_in">string</span>(buf));    			 		</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span>(exception&amp; p) &#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"i="</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; p.what() &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line">			<span class="built_in">abort</span>();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"milli-seconds : "</span> &lt;&lt; (clock()-timeStart) &lt;&lt; <span class="built_in">endl</span>;		</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_set.size()= "</span> &lt;&lt; c.size() &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_set.max_size()= "</span> &lt;&lt; c.max_size() &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">//357913941</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_set.bucket_count()= "</span> &lt;&lt; c.bucket_count() &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_set.load_factor()= "</span> &lt;&lt; c.load_factor() &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_set.max_load_factor()= "</span> &lt;&lt; c.max_load_factor() &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_set.max_bucket_count()= "</span> &lt;&lt; c.max_bucket_count() &lt;&lt; <span class="built_in">endl</span>;			</span><br><span class="line">  	<span class="keyword">for</span> (<span class="keyword">unsigned</span> i=<span class="number">0</span>; i&lt; <span class="number">20</span>; ++i) &#123;</span><br><span class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"bucket #"</span> &lt;&lt; i &lt;&lt; <span class="string">" has "</span> &lt;&lt; c.bucket_size(i) &lt;&lt; <span class="string">" elements.\n"</span>;</span><br><span class="line">  	&#125;			</span><br><span class="line">	</span><br><span class="line"><span class="built_in">string</span> target = get_a_target_string();	</span><br><span class="line">	&#123;</span><br><span class="line">    timeStart = clock();</span><br><span class="line"><span class="keyword">auto</span> pItem = find(c.begin(), c.end(), target);	<span class="comment">//比 c.find(...) 慢很多	</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"std::find(), milli-seconds : "</span> &lt;&lt; (clock()-timeStart) &lt;&lt; <span class="built_in">endl</span>;		</span><br><span class="line">	<span class="keyword">if</span> (pItem != c.end())</span><br><span class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"found, "</span> &lt;&lt; *pItem &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  	<span class="keyword">else</span></span><br><span class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"not found! "</span> &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line"> 	&#125;</span><br><span class="line"> </span><br><span class="line"> 	&#123;</span><br><span class="line">    timeStart = clock();		</span><br><span class="line"><span class="keyword">auto</span> pItem = c.find(target);		<span class="comment">//比 std::find(...) 快很多							</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"c.find(), milli-seconds : "</span> &lt;&lt; (clock()-timeStart) &lt;&lt; <span class="built_in">endl</span>;		 </span><br><span class="line">	<span class="keyword">if</span> (pItem != c.end())</span><br><span class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"found, "</span> &lt;&lt; *pItem &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  	<span class="keyword">else</span></span><br><span class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"not found! "</span> &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line"> 	&#125;	</span><br><span class="line">&#125;															 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/25/Taking-Hash-Tables-Off-The-Shelf/unordered_set.JPG" alt="unordered_set"></p>
+<h3 id="unordered-map"><a href="#unordered-map" class="headerlink" title="unordered_map"></a>unordered_map</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_unordered_map</span><span class="params">(<span class="keyword">long</span>&amp; value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"\ntest_unordered_map().......... \n"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">long</span>, <span class="built_in">string</span>&gt; c;  	</span><br><span class="line">    <span class="keyword">char</span> buf[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">clock_t</span> timeStart = clock();								</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">long</span> i=<span class="number">0</span>; i&lt; value; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">try</span> &#123;</span><br><span class="line">    		<span class="built_in">snprintf</span>(buf, <span class="number">10</span>, <span class="string">"%d"</span>, rand());</span><br><span class="line">			c[i] = <span class="built_in">string</span>(buf);  		</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span>(exception&amp; p) &#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"i="</span> &lt;&lt; i &lt;&lt; <span class="string">" "</span> &lt;&lt; p.what() &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line">			<span class="built_in">abort</span>();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"milli-seconds : "</span> &lt;&lt; (clock()-timeStart) &lt;&lt; <span class="built_in">endl</span>;		</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_map.size()= "</span> &lt;&lt; c.size() &lt;&lt; <span class="built_in">endl</span>;	<span class="comment">//357913941</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"unordered_map.max_size()= "</span> &lt;&lt; c.max_size() &lt;&lt; <span class="built_in">endl</span>;	</span><br><span class="line">	</span><br><span class="line"><span class="keyword">long</span> target = get_a_target_long();		</span><br><span class="line">    timeStart = clock();	</span><br><span class="line"><span class="comment">//! auto pItem = find(c.begin(), c.end(), target);	//map 不適用 std::find() 			</span></span><br><span class="line"><span class="keyword">auto</span> pItem = c.find(target);</span><br><span class="line">						</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"c.find(), milli-seconds : "</span> &lt;&lt; (clock()-timeStart) &lt;&lt; <span class="built_in">endl</span>;		 </span><br><span class="line">	<span class="keyword">if</span> (pItem != c.end())</span><br><span class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"found, value="</span> &lt;&lt; (*pItem).second &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  	<span class="keyword">else</span></span><br><span class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"not found! "</span> &lt;&lt; <span class="built_in">endl</span>;		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h1><ol>
+<li><a href="https://www.hackerearth.com/practice/data-structures/hash-tables/basics-of-hash-tables/tutorial/" target="_blank" rel="noopener">Basics of Hash Tables</a>, Prateek Garg</li>
+<li><a href="https://www.tutorialspoint.com/data_structures_algorithms/hash_data_structure.htm" target="_blank" rel="noopener">Data Structure and Algorithms — Hash Table</a>, Tutorialspoint</li>
+<li><a href="https://www.cs.auckland.ac.nz/software/AlgAnim/hash_tables.html" target="_blank" rel="noopener">Hash Tables</a>, Professor John Morris</li>
+<li><a href="http://www.cs.uregina.ca/Links/class-info/210/Hash/" target="_blank" rel="noopener">CS210 Lab: Hash Table</a>,University of Regina, Dept. of Computer Science</li>
+<li><a href="http://www.sparknotes.com/cs/searching/hashtables/section1.rhtml" target="_blank" rel="noopener">Hash Tables</a>, SparkNotes</li>
+<li><a href="http://cs.boisestate.edu/~scutchin/cs321_spring2015/lectures/0305_hashtables.pdf" target="_blank" rel="noopener">Introduction to Hash Table</a>s, Professor Steve Cutchin</li>
+<li><a href="http://mathworld.wolfram.com/HashFunction.html" target="_blank" rel="noopener">Hash Function</a>, Wolfram Mathworld</li>
+<li><a href="http://web.engr.oregonstate.edu/~sinisa/courses/OSU/CS261/CS261_Textbook/Chapter12.pdf" target="_blank" rel="noopener">Dictionaries and Hash Tables</a>, Professor Sinisa Todorovic</li>
+<li><a href="http://www.cs.rmit.edu.au/online/blackboard/chapter/05/documents/contribute/chapter/05/linear-probing.html" target="_blank" rel="noopener">Linear Probing Hash Tables</a>, Department of Computer Science, RMIT University</li>
+<li><a href="http://interactivepython.org/runestone/static/pythonds/SortSearch/Hashing.html" target="_blank" rel="noopener">Problem Solving with Algorithms and Data Structures: Hashing</a>, Interactive Python</li>
+<li><a href="http://algs4.cs.princeton.edu/34hash/" target="_blank" rel="noopener">Hash Tables</a>, Professors Robert Sedgewick &amp; Kevin Wayne</li>
+<li><a href="https://www.cs.cmu.edu/~guna/15-123S11/Lectures/Lecture17.pdf" target="_blank" rel="noopener">Introduction to Hashing</a>, Professor Ananda Gunawardena</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Thanks for Support.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Lightmare Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hash-Table/" rel="tag"># Hash Table</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/24/I-see-a-red-node-and-I-want-it-painted-black/" rel="next" title="I see a red node, and I want it painted black!">
+                <i class="fa fa-chevron-left"></i> I see a red node, and I want it painted black!
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Lightmare">
+            
+              <p class="site-author-name" itemprop="name">Lightmare</p>
+              <p class="site-description motion-element" itemprop="description">~ Magic world , Magical girl ~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://web.okjike.com/user/6B098034-14C3-487C-865F-07B2141B8367" target="_blank" title="Jike">
+                      
+                        <i class="iconfont icon-jike"></i>Jike</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hoshinotsuki" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=107847982" target="_blank" title="music">
+                      
+                        <i class="iconfont icon-wangyiyun"></i>music</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode-cn.com/lightmare625/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_41042404" target="_blank" title="CSDN">
+                      
+                        <i class="iconfont icon-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.cnblogs.com/lightmare/" target="_blank" title="cnBlog">
+                      
+                        <i class="iconfont icon-bokeyuan"></i>cnBlog</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lightmare625@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://my.playstation.com/profile/hoshinozuki" target="_blank" title="PSN">
+                      
+                        <i class="iconfont icon-psn"></i>PSN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/1688015" target="_blank" title="Bilibili">
+                      
+                        <i class="iconfont icon-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/3278759/" target="_blank" title="Mtime1">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime1</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://my.mtime.com/89767092/" target="_blank" title="Mtime2">
+                      
+                        <i class="iconfont icon-shiguangwang"></i>Mtime2</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://whosurdaddy.ml/" title="Hector" target="_blank">Hector</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hoyyy.me/" title="Christoper Hoy" target="_blank">Christoper Hoy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wayjam.me/" title="wayjam" target="_blank">wayjam</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-1-Intro"><span class="nav-number">1.</span> <span class="nav-text">Part 1. Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Books-on-books-on-books"><span class="nav-number">2.</span> <span class="nav-text">Books on books on books</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mappings-to-make-our-lives-easier"><span class="nav-number">3.</span> <span class="nav-text">Mappings to make our lives easier</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-1"><span class="nav-number">3.1.</span> <span class="nav-text">Example 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash-buckets"><span class="nav-number">3.2.</span> <span class="nav-text">Hash buckets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-in-JS"><span class="nav-number">3.2.1.</span> <span class="nav-text">Code in JS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collision"><span class="nav-number">3.3.</span> <span class="nav-text">Collision</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Super-cool-constant-time"><span class="nav-number">4.</span> <span class="nav-text">Super cool constant time</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Practical-context"><span class="nav-number">4.1.</span> <span class="nav-text">Practical context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Efficiency"><span class="nav-number">4.2.</span> <span class="nav-text">Efficiency</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Part-2-Intro"><span class="nav-number">5.</span> <span class="nav-text">Part 2. Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hash-table-are-you-any-good"><span class="nav-number">6.</span> <span class="nav-text">Hash table, are you any good?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-good-hash-table"><span class="nav-number">6.1.</span> <span class="nav-text">a good hash table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collisions-occur-whenever"><span class="nav-number">6.2.</span> <span class="nav-text">Collisions occur whenever</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Collision-resolution-tactics"><span class="nav-number">7.</span> <span class="nav-text">Collision resolution tactics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Probing"><span class="nav-number">7.1.</span> <span class="nav-text">Linear Probing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clustering"><span class="nav-number">7.1.1.</span> <span class="nav-text">Clustering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clustered-vs-well-balanced-tables"><span class="nav-number">7.1.2.</span> <span class="nav-text">Clustered vs. well-balanced tables</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chaining"><span class="nav-number">7.2.</span> <span class="nav-text">Chaining</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-power-is-all-in-the-function"><span class="nav-number">8.</span> <span class="nav-text">The power is all in the function</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spell-checker"><span class="nav-number">8.1.</span> <span class="nav-text">Spell checker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-中无序容器的支持"><span class="nav-number">8.2.</span> <span class="nav-text">C++中无序容器的支持</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#unordered-multiset"><span class="nav-number">8.2.1.</span> <span class="nav-text">unordered_multiset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unordered-multimap"><span class="nav-number">8.2.2.</span> <span class="nav-text">unordered_multimap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unordered-set"><span class="nav-number">8.2.3.</span> <span class="nav-text">unordered_set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unordered-map"><span class="nav-number">8.2.4.</span> <span class="nav-text">unordered_map</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Resources"><span class="nav-number">9.</span> <span class="nav-text">Resources</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-/images/favicon.ico"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lightmare</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">Page views : <span id="busuanzi_value_site_pv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">Visits : <span id="busuanzi_value_site_uv"></span> times</span>
+    <span class="post-meta-divider">|</span>
+
+ 
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'manual') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
