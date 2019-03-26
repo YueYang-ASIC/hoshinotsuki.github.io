@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Linux]]></title>
-    <url>%2F2019%2F03%2F26%2FLinux%2F</url>
-    <content type="text"><![CDATA[Coming soon…]]></content>
+    <title><![CDATA[Socket Programming]]></title>
+    <url>%2F2019%2F03%2F26%2FSocket-Programming%2F</url>
+    <content type="text"><![CDATA[Topics Network programming (sockets, RPC(远程过程调用)（Remote Procedure Call）) Network (esp. Internet) architecture Switching, Routing, Congestion control, TCP/IP, Wirelessnetworks Using the network Interface hardware &amp; low-level implementation issues,Naming (DNS域名服务器), Error detection, compression(压缩) Higher level issues Encryption(加密) and Security, caching &amp; content distribution,Peer-to-peer systems(对等网络系统) Building blocks Nodes: Computers, dedicated routers, . . . Links: Coax(同轴电缆), twisted pair(双绞线), fibers, radio . . . point-to-point multiple access – every node sees every packet //每个节点都能互相访问 From Links to Networks: To scale to more nodes, use switching nodes can connect multiple other nodes //多点连接 Recursively, one node can connect multiple networks Protocol layering Application TCP or UDP IP Link Layer Can view network encapsulation as a stack A network packet from A to D must be put in link packets A to B, B to C, and C to D Each layer produces packets that become the payload of the lower-layer’s packets //上层向下层传包 This is almost correct, but TCP/UDP “cheat” to detect certain errors in IP-level information like address （？ OSI layers Physical – sends individual bits Data link – sends frames, handles access control toshared media (e.g., coax) 电缆 Network – delivers packets, using routing Transport – demultiplexes(解复用), provides reliability &amp;flow control Session – can tie together multiple streams (e.g.,audio &amp; video) Presentation – crypto(加密), conversion betweenrepresentations Application – what end user gets, e.g., HTTP (web) Addressing 定址 Each node typically has unique address (or at least is made to think it does when there is shortage) //ipv4可能地址不足 Each layer can have its own addressing Link layer: e.g., 48-bit Ethernet address (interface) //6Bytes Ethernet address Network layer: 32-bit IP address (node) //IPv4 4Bytes, IPv6 8Bytes. IPv4 address IPv4 vs. IPv6 Transport layer: 16-bit TCP port (service) //2Bytes TCP port // HTTP 80 Routing is process of delivering data to destination across multiple link hops hopone portion of the path between source and destination. The hop count refers to the number of intermediate devices through which data must pass between source and destination. A large number of hops between source and destination implies lower real-time performance. Special addresses can exist for broadcast/multicast (???) Hourglass 沙漏 Many application protocols over TCP &amp; UDP IP works over many types of network This is “Hourglass” philosophy of Internet Idea: If everybody just supports IP, can use many different applications over many different networks In practice, some claim narrow waist is now network and transport layers, due to NAT (lecture 12) （插眼。。ip掩蔽 Internet protocol Most computer nets connected by Internet protocol Runs over a variety of physical networks, so can connect Ethernet, Wireless, people behind modem lines, etc. //IP 凌驾于物理网络之上 Every host has a unique 4-byte IP address E.g., www.ietf.org ! 132.151.6.21 //IPv4 Given a node’s IP address, the network knows how to route a packet (lectures 3+4) //有IP地址就可以向他路由包了 But how do you build something like the web? Need naming (look up www.ietf.org) – DNS (lecture 8) Need API for browser, server (CS110/this lecture) Need demultiplexing within a host—E.g., which packets are for web server, which for mail server, etc.? (lecture 4) //主机内部分解包 Want abstraction of inter-process (not just inter-node) communication //进程间通信 ：封装 + IP Solution: Encapsulate another protocol within IP UDP and TCP UDP and TCP most popular protocols on IP 都使用 16位端口号 + 32位IP地址 Applications bind a port &amp; receive traffic to that port 应用从端口收发消息 UDP – unreliable datagram protocol 不可靠报文协议 Exposes packet-switched nature of Internet 透明 Sent packets may be dropped, reordered, even duplicated (but generally not corrupted) 丢包 无序 重复 TCP – transmission control protocol 传输控制协议 Provides illusion of a reliable “pipe” between to processes on two different machines (lecture 5) 在两个主机的进程间提供虚拟可靠”管道” Handles congestion &amp; flow control (lecture 6) 处理 阻塞 和 流量控制 Most applications use TCP Easier interface to program to (reliability, lecture 5) Automatically avoids congestion (don’t need to worry about taking down network, lecture 6) Servers typically listen on well-known ports SSH: 22 Email: 25 Finger: 79 Web / HTTP: 80 Programming Sockets Berkeley sockets API Bottom-level OS interface to networking Important to know and do once Higher-level APIs build on them CS110 review: System calls System calls invoke code in the OS kernel Kernel runs in a more privileged mode than application Can execute special instructions that application cannot Can interact directly with devices such as network card Higher-level functions built on syscall interface printf, scanf, gets, etc. all user-level code File descriptors Most IO done on file descriptors Small integers referencing per-process table in the kernel Examples of system calls with file descriptors: int open(char *path, int flags, …); Returns new file descriptor bound to file path int read (int fd, void *buf, int nbytes); Returns number of bytes read Returns 0 bytes at end of file, or -1 on error int write (int fd, void *buf, int nbytes); Returns number of bytes written, -1 on error (Never returns 0 if nbytes &gt; 0) int close (int fd); Deallocates file descriptor (not underlying I/O resource) to be continued… Reference TCP/IP Ports and Sockets Explained Hop (networking))]]></content>
+      <categories>
+        <category>Computer Network</category>
+      </categories>
+      <tags>
+        <tag>TCP/IP</tag>
+        <tag>Socket</tag>
+        <tag>port</tag>
+        <tag>OSI</tag>
+        <tag>Addressings</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Network Map]]></title>
     <url>%2F2019%2F03%2F26%2FNetwork-Map%2F</url>
-    <content type="text"><![CDATA[众所周知，计网对于服务器工程师来说很重要，所以现在把计网的框架也加入到主菜单中了！ 现在只是列了一些查找过的科普文，当然这些是远远不够的，也不系统，所以最近正在补基础课~~接下来会整理系统的文章发布的~！ Transport Layer Understanding the TCP/IP protocol suite tcpip四层模型 三次握手 追踪路由 工具 Network layer IPv4 vs IPv6 （可能是废文 IPV6的特性 ipv4和ipv6的比较 IPV6的传播模式（？还不懂]]></content>
+    <content type="text"><![CDATA[CS144 Socket programming ReferenceTransport Layer Understanding the TCP/IP protocol suite tcpip四层模型 三次握手 追踪路由 工具 Network layer IPv4 vs IPv6 （可能是废文 IPV6的特性 ipv4和ipv6的比较 IPV6的传播模式（？还不懂]]></content>
   </entry>
   <entry>
     <title><![CDATA[IPv4 vs IPv6]]></title>
@@ -79,10 +89,10 @@
       </categories>
       <tags>
         <tag>Hash Table</tag>
-        <tag>unordered_map</tag>
-        <tag>Unordered Containers</tag>
         <tag>Linux</tag>
         <tag>Operating System</tag>
+        <tag>unordered_map</tag>
+        <tag>Unordered Containers</tag>
         <tag>unordered_set</tag>
         <tag>unordered_multimap</tag>
         <tag>unordered_multiset</tag>
@@ -144,9 +154,9 @@
       </categories>
       <tags>
         <tag>pointer</tag>
-        <tag>Array</tag>
-        <tag>Math</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
@@ -196,8 +206,8 @@
       <tags>
         <tag>B tree</tag>
         <tag>C++</tag>
-        <tag>TCP/IP</tag>
         <tag>Linked List</tag>
+        <tag>TCP/IP</tag>
         <tag>Linux</tag>
         <tag>Heap</tag>
         <tag>Operating System</tag>
@@ -251,8 +261,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>String</tag>
         <tag>Math</tag>
+        <tag>String</tag>
       </tags>
   </entry>
   <entry>
@@ -414,10 +424,10 @@
         <tag>STL</tag>
         <tag>RBT</tag>
         <tag>Algorithms library</tag>
-        <tag>Sort</tag>
         <tag>Heapsort</tag>
         <tag>priority_queue</tag>
         <tag>multiset</tag>
+        <tag>Sort</tag>
       </tags>
   </entry>
   <entry>
@@ -429,8 +439,8 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Sort</tag>
         <tag>priority_queue</tag>
+        <tag>Sort</tag>
         <tag>Containers library</tag>
       </tags>
   </entry>
@@ -458,10 +468,10 @@
       <tags>
         <tag>RBT</tag>
         <tag>Algorithms library</tag>
-        <tag>Sort</tag>
         <tag>Heapsort</tag>
         <tag>priority_queue</tag>
         <tag>multiset</tag>
+        <tag>Sort</tag>
         <tag>Partition</tag>
       </tags>
   </entry>
@@ -526,8 +536,8 @@
         <category>Algorithms</category>
       </categories>
       <tags>
-        <tag>Sort</tag>
         <tag>Heapsort</tag>
+        <tag>Sort</tag>
         <tag>Quicksort</tag>
       </tags>
   </entry>
@@ -633,5 +643,10 @@
         <tag>Heap</tag>
         <tag>Memory</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux]]></title>
+    <url>%2F2018%2F03%2F26%2FLinux%2F</url>
+    <content type="text"><![CDATA[Coming soon…]]></content>
   </entry>
 </search>
