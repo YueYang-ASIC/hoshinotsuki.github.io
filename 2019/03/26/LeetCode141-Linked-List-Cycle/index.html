@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist.png">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test2.png">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test3.png">
-<meta property="og:updated_time" content="2019-03-26T02:15:06.989Z">
+<meta property="og:updated_time" content="2019-03-26T03:54:59.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode141. Linked List Cycle">
 <meta name="twitter:description" content="EasyGiven a linked list, determine if it has a cycle in it. To represent a cycle in the given linked list, we use an integer pos which represents the position (0-indexed) in the linked list where tail">
@@ -356,7 +356,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-26T10:15:06+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-26T11:54:59+08:00">
                 2019-03-26
               </time>
             
@@ -524,7 +524,7 @@
 <li>相遇时，slow走的总路程： L1 + L2</li>
 <li>相遇时，fast走的总路程：L1 + L2 + n * C</li>
 <li>因为fast走的是slow的两倍：<ul>
-<li>2 <em> (L1+L2) = L1 + L2 + n </em> C </li>
+<li>2 * (L1+L2) = L1 + L2 + n * C </li>
 <li>L1 + L2 = n * C</li>
 <li>L1 = (n - 1) C + (C - L2)</li>
 </ul>
@@ -533,7 +533,11 @@
 </li>
 <li><p>由此推得：</p>
 <ol>
-<li>快慢指针第一次相遇时，头节点和入口节点的距离=(沿着指针移动的方向，)相遇节点和入口节点的距离.L1 = (n - 1) C + (C - L2) ,这一步很关键！！！<figure class="highlight plain"><figcaption><span>(slow </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2. 同时 入口指针 也开始和 slow指针 一样走动了，一次走一步。</span><br><span class="line"></span><br><span class="line">3. 当他们相遇时入口指针就指向入口节点。```return entry;</span><br></pre></td></tr></table></figure></li>
+<li>快慢指针第一次相遇时，头节点和入口节点的距离=(沿着指针移动的方向，)相遇节点和入口节点的距离.L1 = (n - 1) C + (C - L2) ,这一步很关键！！！ if (slow == fast)  </li>
+<li><p>同时 入口指针 也开始和 slow指针 一样走动了，一次走一步。</p>
+</li>
+<li><p>当他们相遇时入口指针就指向入口节点。 return entry; </p>
+</li>
 </ol>
 </li>
 </ul>

@@ -87,7 +87,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/03/25/Understanding-the-TCP-IP-protocol-suite/TCPIP%20Protocal%20Suite.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/25/Understanding-the-TCP-IP-protocol-suite/three%20way%20handshake.png">
-<meta property="og:updated_time" content="2019-03-25T15:38:51.511Z">
+<meta property="og:updated_time" content="2019-03-26T05:50:37.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Understanding the TCP&#x2F;IP protocol suite">
 <meta name="twitter:description" content="本文是阅读《Understanding the TCP/IP protocol suite》 的读书笔记，文章来自Nassos Katsaounis在serverdensity上发布的博客。   Intro TCP/IP: Transmission Control Protocol/Internet Protocol  Developed in the mid 1970’s and widely">
@@ -352,8 +352,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-25T23:38:51+08:00">
-                2019-03-25
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-26T13:50:37+08:00">
+                2019-03-26
               </time>
             
           </span>
@@ -512,7 +512,7 @@
 <hr>
 <h2 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works"></a>How it works</h2><ul>
 <li>TCP is activated with every <strong>network request/response</strong>.For example:<ol>
-<li>in an <strong>HTTP request</strong>, </li>
+<li>In an <strong>HTTP request</strong>, </li>
 <li>TCP takes over as soon as the browser knows where the request should be <strong>routed</strong>, i.e. after <strong>DNS resolution</strong> has been completed. </li>
 <li>Based on the <strong>socket</strong> provided (combination of <strong>IP address and server port</strong>), the <strong>request</strong> will reach the <strong>target</strong> computer and application through the network. </li>
 <li>The necessary communication <strong>channel</strong> will open up. </li>
@@ -530,25 +530,36 @@
 <li>This added information allows data to be <strong>segmented</strong> and transmitted as <strong>efficiently</strong> as possible, making sure it is <strong>correctly restructured</strong> at the destination, without worrying about structure during transportation. But it also plays an important role in the Three-Way Handshake.</li>
 </ul>
 <hr>
-<h1 id="Three-way-handshake"><a href="#Three-way-handshake" class="headerlink" title="Three-way handshake"></a>Three-way handshake</h1><ul>
+<h1 id="Three-way-handshake-important"><a href="#Three-way-handshake-important" class="headerlink" title="Three-way handshake(!important)"></a>Three-way handshake(!important)</h1><ul>
 <li>Unlike User Datagram Protocol (UDP), <strong>reliability</strong> is a top priority for TCP/IP. UDP serves as an alternative to TCP for different types of communication services where there is <strong>no time or need</strong> for confirmation that the <strong>correct message</strong> was successfully received by the intended party. An example of a case like that is a <strong>voice call over IP</strong>.</li>
 <li>But in most cases, such confirmation is absolutely necessary.</li>
 <li>To ensure reliability in communications, TCP establishes a verified connection between the client and the server computer before actual data is transmitted. This is done through the Three-Way Handshake using three segments (hence the “three-way”).</li>
 </ul>
-<hr>
 <h2 id="How-it-works-1"><a href="#How-it-works-1" class="headerlink" title="How it works"></a>How it works</h2><ol>
-<li>To initiate the process, the client sends a <strong>SYN segment</strong> to the server. SYN stands for <strong>Synchronization</strong>, and it means that the client requests that the server synchronizes with the <strong>sequence numbers</strong> that the client will use (<strong>new</strong> sequence numbers are generated with every new transaction).</li>
-<li>Upon receiving the request, the server <strong>responds</strong> with a similar message. <ol>
-<li>it <strong>acknowledges (ACK)</strong> the request by confirming the Sequence Numbers sent by the client.</li>
-<li>it also requests <strong>synchronization (SYN)</strong> of the client’s <strong>Sequence Numbers</strong> with its own.</li>
+<li>C. <strong>SYN</strong>(seq:100) to S. <ol>
+<li>SYN : <strong>Synchronization</strong></li>
+<li>requests that the server synchronizes with the <strong>sequence numbers</strong> that the <strong>client</strong> will use.(seq:100)</li>
+<li><strong>new sequence numbers</strong> are generated with every new transaction</li>
+<li>Client state changes to <strong>SYN-SENT</strong></li>
 </ol>
 </li>
-<li>The final step comes from the <strong>client</strong> again, that <strong>acknowledges (ACK)</strong> the Sequence Numbers sent by the server. Transmission is ready to begin.</li>
+<li>S. <strong>ACK-SYN</strong>(ack:101,seq:200) to C. <ol>
+<li><strong>acknowledges (ACK)</strong> the request by <strong>confirming</strong> the Sequence Numbers sent by the client.(ack:101)</li>
+<li>requests <strong>synchronization (SYN)</strong> of the client’s Sequence Numbers  with <strong>its(server) own</strong>.(seq:200)</li>
+<li>Server state changes to <strong>SYN-RECEVED</strong></li>
+</ol>
+</li>
+<li>C. <strong>ACK</strong>(ack:201,seq:101) to S.<ol>
+<li><strong>acknowledges (ACK)</strong> the Sequence Numbers sent by the server. (ack:201)</li>
+<li>Client state changes to <strong>EATABLISHED</strong></li>
+<li>Server state changes to <strong>EATABLISHED</strong></li>
+<li>Transmission is ready to begin.</li>
+</ol>
+</li>
 </ol>
 <p>Click <a href="https://support.microsoft.com/en-gb/help/172983/explanation-of-the-three-way-handshake-via-tcp-ip" target="_blank" rel="noopener">here</a> to read more about the Three-Way Handshake.</p>
 <p><img src="/2019/03/25/Understanding-the-TCP-IP-protocol-suite/three way handshake.png" alt="three way handshake"></p>
 <hr>
-<p>to be continued…</p>
 <hr>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><a href="https://codeburst.io/learning-tcp-ip-protocol-suite-6947b601ea11" target="_blank" rel="noopener">Learning the TCP/IP Protocol Suite,codeburst.io.</a></li>
@@ -851,7 +862,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-basics"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP basics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Layer"><span class="nav-number">2.1.</span> <span class="nav-text">Application Layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transport-Layer"><span class="nav-number">2.2.</span> <span class="nav-text">Transport Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-in-Transport-Layer-“How”"><span class="nav-number">2.2.1.</span> <span class="nav-text">TCP in Transport Layer (“How”)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Layer"><span class="nav-number">2.3.</span> <span class="nav-text">Network Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP-in-Network-Layer-“Where”"><span class="nav-number">2.3.1.</span> <span class="nav-text">IP in Network Layer (“Where”)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Access-Layer-Data-Link-Physical-Layer"><span class="nav-number">2.4.</span> <span class="nav-text">Network Access Layer ( Data Link + Physical Layer)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-it-works"><span class="nav-number">2.5.</span> <span class="nav-text">How it works</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Three-way-handshake"><span class="nav-number">3.</span> <span class="nav-text">Three-way handshake</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#How-it-works-1"><span class="nav-number">3.1.</span> <span class="nav-text">How it works</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-basics"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP basics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Layer"><span class="nav-number">2.1.</span> <span class="nav-text">Application Layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transport-Layer"><span class="nav-number">2.2.</span> <span class="nav-text">Transport Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-in-Transport-Layer-“How”"><span class="nav-number">2.2.1.</span> <span class="nav-text">TCP in Transport Layer (“How”)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Layer"><span class="nav-number">2.3.</span> <span class="nav-text">Network Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP-in-Network-Layer-“Where”"><span class="nav-number">2.3.1.</span> <span class="nav-text">IP in Network Layer (“Where”)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Access-Layer-Data-Link-Physical-Layer"><span class="nav-number">2.4.</span> <span class="nav-text">Network Access Layer ( Data Link + Physical Layer)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-it-works"><span class="nav-number">2.5.</span> <span class="nav-text">How it works</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Three-way-handshake-important"><span class="nav-number">3.</span> <span class="nav-text">Three-way handshake(!important)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#How-it-works-1"><span class="nav-number">3.1.</span> <span class="nav-text">How it works</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
