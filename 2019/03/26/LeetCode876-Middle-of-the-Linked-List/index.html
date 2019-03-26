@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Linked List,">
+  <meta name="keywords" content="Linked List,Two Pointers,">
 
 
 
@@ -78,14 +78,14 @@
 
 
 <meta name="description" content="Given a non-empty, singly linked list with head node head, return a middle node of linked list. If there are two middle nodes, return the second middle node. Example 1: 12345Input: [1,2,3,4,5]Output:">
-<meta name="keywords" content="Linked List">
+<meta name="keywords" content="Linked List,Two Pointers">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode876. Middle of the Linked List">
 <meta property="og:url" content="http://yoursite.com/2019/03/26/LeetCode876-Middle-of-the-Linked-List/index.html">
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="Given a non-empty, singly linked list with head node head, return a middle node of linked list. If there are two middle nodes, return the second middle node. Example 1: 12345Input: [1,2,3,4,5]Output:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-26T00:17:21.858Z">
+<meta property="og:updated_time" content="2019-03-26T00:37:17.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode876. Middle of the Linked List">
 <meta name="twitter:description" content="Given a non-empty, singly linked list with head node head, return a middle node of linked list. If there are two middle nodes, return the second middle node. Example 1: 12345Input: [1,2,3,4,5]Output:">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-26T08:17:21+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-26T08:37:17+08:00">
                 2019-03-26
               </time>
             
@@ -404,7 +404,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  343 words
+                  421 words
                 </span>
               
 
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1 mins
+                  2 mins
                 </span>
               
             </div>
@@ -454,12 +454,18 @@
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ul>
 <li>快慢指针：一个走两步，一个走一步，走得快的到null时，走得慢的在中间。</li>
 </ul>
-<h1 id="Code-in-C"><a href="#Code-in-C" class="headerlink" title="Code in C++"></a>Code in C++</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function">ListNode* <span class="title">middleNode</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">		ListNode* p1 = head;</span><br><span class="line">		ListNode* p2 = head;</span><br><span class="line">		<span class="keyword">while</span> (p1)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(p1-&gt;next)</span><br><span class="line">			p1 = p1-&gt;next-&gt;next;<span class="comment">//1.不能用p++，链表不是物理存储的</span></span><br><span class="line">								<span class="comment">//2.member access within null pointer of type 'struct ListNode，需要判空</span></span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">break</span>;<span class="comment">//2.p1已经是尾节点，就跳出</span></span><br><span class="line">			&#125;</span><br><span class="line">			p2 = p2-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> p2;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="My-Code-in-C"><a href="#My-Code-in-C" class="headerlink" title="My Code in C++"></a>My Code in C++</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function">ListNode* <span class="title">middleNode</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">		ListNode* p1 = head;</span><br><span class="line">		ListNode* p2 = head;</span><br><span class="line">		<span class="keyword">while</span> (p1)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(p1-&gt;next)</span><br><span class="line">			p1 = p1-&gt;next-&gt;next;<span class="comment">//1.不能用p++，链表不是物理存储的</span></span><br><span class="line">								<span class="comment">//2.member access within null pointer of type 'struct ListNode，需要判空</span></span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">break</span>;<span class="comment">//2.p1已经是尾节点，就跳出</span></span><br><span class="line">			&#125;</span><br><span class="line">			p2 = p2-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> p2;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h1 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h1><ol>
 <li>不能用p++，链表不是物理存储的</li>
 <li>使用p1 = p1-&gt;next-&gt;next时，需要判空，否则会出member access within null pointer of type ‘struct ListNode..的runtime error.如果p1已经是尾节点，p2就不要再走了，p2就是中间节点。</li>
 </ol>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>快慢指针。鲁棒性测试。这道题ali电面问过。</p>
+<h1 id="LC高票"><a href="#LC高票" class="headerlink" title="LC高票"></a>LC高票</h1><h2 id="Code-in-C"><a href="#Code-in-C" class="headerlink" title="Code in C++"></a>Code in C++</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">middleNode</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">    ListNode *slow = head, *fast = head;</span><br><span class="line">    <span class="keyword">while</span> (fast &amp;&amp; fast-&gt;next)</span><br><span class="line">        slow = slow-&gt;next, fast = fast-&gt;next-&gt;next;</span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>人家直接在while里一次把判空做好了。。。</p>
+<h2 id="Code-in-Python"><a href="#Code-in-Python" class="headerlink" title="Code in Python"></a>Code in Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">middleNode</span><span class="params">(self, head)</span>:</span></span><br><span class="line">    slow = fast = head</span><br><span class="line">    <span class="keyword">while</span> fast <span class="keyword">and</span> fast.next:</span><br><span class="line">        slow = slow.next</span><br><span class="line">        fast = fast.next.next</span><br><span class="line">    <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>快慢指针。</li>
+<li>鲁棒性测试：直接fast&amp;&amp;fast-&gt;next一起判空。</li>
+</ul>
 
       
     </div>
@@ -503,6 +509,8 @@
           
             <a href="/tags/Linked-List/" rel="tag"># Linked List</a>
           
+            <a href="/tags/Two-Pointers/" rel="tag"># Two Pointers</a>
+          
         </div>
       
 
@@ -523,6 +531,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/26/LeetCode141-Linked-List-Cycle/" rel="prev" title="LeetCode141. Linked List Cycle">
+                LeetCode141. Linked List Cycle <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -603,7 +615,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -750,7 +762,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Code-in-C"><span class="nav-number">2.</span> <span class="nav-text">Code in C++</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#细节"><span class="nav-number">3.</span> <span class="nav-text">细节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#My-Code-in-C"><span class="nav-number">2.</span> <span class="nav-text">My Code in C++</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#细节"><span class="nav-number">3.</span> <span class="nav-text">细节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LC高票"><span class="nav-number">4.</span> <span class="nav-text">LC高票</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-in-C"><span class="nav-number">4.1.</span> <span class="nav-text">Code in C++</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-in-Python"><span class="nav-number">4.2.</span> <span class="nav-text">Code in Python</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -791,7 +803,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">56k</span>
+    <span title="Site words total count">57.4k</span>
   
 </div>
 
