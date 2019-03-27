@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Dynamic Programming,">
+  <meta name="keywords" content="Dynamic Programming,Array,">
 
 
 
@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="Kadane’s algorithm Aka Maximum Sum of Subarray Dynamic Programming  Maximum Subarray ProblemFrom Wikipedia  In computer science, the maximum subarray problem is the task of finding the contiguous suba">
-<meta name="keywords" content="Dynamic Programming">
+<meta name="description" content="Given an array of integers nums, write a method that returns the “pivot” index of this array. We define the pivot index as the index where the sum of the numbers to the left of the index is equal to t">
+<meta name="keywords" content="Dynamic Programming,Array">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kadane&#39;s Algorithm">
-<meta property="og:url" content="http://yoursite.com/2019/03/15/Kadane-s-Algorithm/index.html">
+<meta property="og:title" content="LeetCode724. Find Pivot Index">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/LeetCode724-Find-Pivot-Index/index.html">
 <meta property="og:site_name" content="Lightmare">
-<meta property="og:description" content="Kadane’s algorithm Aka Maximum Sum of Subarray Dynamic Programming  Maximum Subarray ProblemFrom Wikipedia  In computer science, the maximum subarray problem is the task of finding the contiguous suba">
+<meta property="og:description" content="Given an array of integers nums, write a method that returns the “pivot” index of this array. We define the pivot index as the index where the sum of the numbers to the left of the index is equal to t">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-25T06:34:35.501Z">
+<meta property="og:updated_time" content="2019-03-27T00:59:57.753Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kadane&#39;s Algorithm">
-<meta name="twitter:description" content="Kadane’s algorithm Aka Maximum Sum of Subarray Dynamic Programming  Maximum Subarray ProblemFrom Wikipedia  In computer science, the maximum subarray problem is the task of finding the contiguous suba">
+<meta name="twitter:title" content="LeetCode724. Find Pivot Index">
+<meta name="twitter:description" content="Given an array of integers nums, write a method that returns the “pivot” index of this array. We define the pivot index as the index where the sum of the numbers to the left of the index is equal to t">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/15/Kadane-s-Algorithm/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/27/LeetCode724-Find-Pivot-Index/">
 
 
 
 
 
-  <title>Kadane's Algorithm | Lightmare</title>
+  <title>LeetCode724. Find Pivot Index | Lightmare</title>
   
 
 
@@ -324,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/Kadane-s-Algorithm/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/LeetCode724-Find-Pivot-Index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lightmare">
@@ -341,7 +341,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Kadane's Algorithm</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode724. Find Pivot Index</h1>
         
 
         <div class="post-meta">
@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-15T11:24:21+08:00">
-                2019-03-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-27T08:08:57+08:00">
+                2019-03-27
               </time>
             
 
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-25T14:34:35+08:00">
-                2019-03-25
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-27T08:59:57+08:00">
+                2019-03-27
               </time>
             
           </span>
@@ -388,8 +388,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
                   </a>
                 </span>
 
@@ -424,7 +424,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  288 words
+                  487 words
                 </span>
               
 
@@ -440,7 +440,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1 mins
+                  2 mins
                 </span>
               
             </div>
@@ -461,35 +461,47 @@
       
 
       
-        <h1 id="Kadane’s-algorithm"><a href="#Kadane’s-algorithm" class="headerlink" title="Kadane’s algorithm"></a>Kadane’s algorithm</h1><ul>
-<li>Aka Maximum Sum of Subarray</li>
-<li>Dynamic Programming</li>
-</ul>
-<h2 id="Maximum-Subarray-Problem"><a href="#Maximum-Subarray-Problem" class="headerlink" title="Maximum Subarray Problem"></a>Maximum Subarray Problem</h2><p>From <a href="https://en.wikipedia.org/wiki/Maximum_subarray_problem" target="_blank" rel="noopener">Wikipedia</a></p>
-<blockquote>
-<p>In computer science, the maximum subarray problem is the task of finding the contiguous subarray within a one-dimensional array, a[1…n], of numbers which has the largest sum.</p>
-</blockquote>
-<p>The task is to find a subarray (contiguous elements) of the given array that has the largest sum. For instance:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1, 5, -1, 0, 10]</span><br></pre></td></tr></table></figure>
-<p>The answer would be <code>15</code> or the entire array (it’s also a subarray)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0, -1, -5, 0, -4]</span><br></pre></td></tr></table></figure>
-<p>The answer would be <code>0</code> and so on.</p>
-<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><h3 id="Brute-force"><a href="#Brute-force" class="headerlink" title="Brute-force"></a>Brute-force</h3><p>All you need is going through all sub-arrays, keep the global maximum and compare.</p>
-<h3 id="Dynamic-Programming-Kadane’s-Algorithm"><a href="#Dynamic-Programming-Kadane’s-Algorithm" class="headerlink" title="Dynamic Programming (Kadane’s Algorithm)"></a>Dynamic Programming (Kadane’s Algorithm)</h3><ul>
-<li><code>O(n)</code> runtime complexity </li>
-<li><code>O(1)</code> space.</li>
-</ul>
-<p>Following function shows the Kadane’s algorithm implementation which uses two variables, one to store the <strong>local maximum</strong> and the other to keep track of the <strong>global maximum</strong>:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_subarray</span><span class="params">(A)</span>:</span></span><br><span class="line">    max_ending_here = max_so_far = A[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> A[<span class="number">1</span>:]:</span><br><span class="line">        max_ending_here = max(x, max_ending_here + x)</span><br><span class="line">        max_so_far = max(max_so_far, max_ending_here)</span><br><span class="line">    <span class="keyword">return</span> max_so_far</span><br></pre></td></tr></table></figure>
-<p>So we assume that the largest subarray is the first element, then we go through <code>A[1:]</code> elements (all elements except the first one).</p>
-<p>At each step, what we do is:</p>
+        <p>Given an array of integers <code>nums</code>, write a method that returns the “pivot” index of this array.</p>
+<p>We define the pivot index as the index where the sum of the numbers to the left of the index is equal to the sum of the numbers to the right of the index.</p>
+<p>If no such index exists, we should return -1. If there are multiple pivot indexes, you should return the left-most pivot index.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">nums = [1, 7, 3, 6, 5, 6]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: </span><br><span class="line">The sum of the numbers to the left of index 3 (nums[3] = 6) is equal to the sum of numbers to the right of index 3.</span><br><span class="line">Also, 3 is the first index where this occurs.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">nums = [1, 2, 3]</span><br><span class="line">Output: -1</span><br><span class="line">Explanation: </span><br><span class="line">There is no index that satisfies the conditions in the problem statement.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
 <ul>
-<li>Can current element plus the last largest sum_ help to find a largest subarray (line 4)?</li>
-<li>If yes, update the <code>max_ending_here</code> or our local maximum, otherwise current element is the largest subarray (array of one).</li>
-<li>Then update the global maximum or <code>max_so_far</code> if there is a new global maximum.</li>
+<li>The length of <code>nums</code> will be in the range <code>[0, 10000]</code>.</li>
+<li>Each element <code>nums[i]</code> will be an integer in the range <code>[-1000, 1000]</code>.</li>
 </ul>
-<p>When the loop is over, return the global maximum.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Kadane’s algorithm is a <a href="https://en.wikipedia.org/wiki/Dynamic_programming" target="_blank" rel="noopener">Dynamic Programming</a> approach to solve “the largest contiguous elements in an array” with runtime of O(n). </p>
+<p>Hint:</p>
+<ul>
+<li>We can precompute prefix sums P[i] = nums[0] + nums[1] + … + nums[i-1]. </li>
+<li>Then for each index, the left sum is P[i]</li>
+<li>the right sum is P[P.length - 1] - P[i] - nums[i].</li>
+</ul>
+<hr>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ul>
+<li>dp</li>
+<li>将i的左侧总和记为sum[i]</li>
+<li>i的右侧总和：sum[length] - sum[i] - nums[i]</li>
+<li>跟hint不一样，我的sum.size()=length+1，sum[0]=0.因为i=0时，左侧没有数</li>
+</ul>
+<h1 id="my-code-in-c"><a href="#my-code-in-c" class="headerlink" title="my code in c++"></a>my code in c++</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">pivotIndex</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sum;</span><br><span class="line">		sum.push_back(<span class="number">0</span>);<span class="comment">//nums[0]left的sum是0.不能push_back nums[0]！！！</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=nums.size();i++)</span><br><span class="line">		&#123;</span><br><span class="line">			sum.push_back(sum[i - <span class="number">1</span>] + nums[i<span class="number">-1</span>]); </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (sum[i] == sum[nums.size()] - sum[i] - nums[i])</span><br><span class="line">				<span class="keyword">return</span> i;</span><br><span class="line">    	&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><p>​    1. 我的思路是 sum[i]不包含 nums[i] 本身。所以vector第一个数不是nums[0],是0. </p>
+<h1 id="LC-in-py"><a href="#LC-in-py" class="headerlink" title="LC in py"></a>LC in py</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pivotIndex</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="comment"># Time: O(n)</span></span><br><span class="line">        <span class="comment"># Space: O(1)</span></span><br><span class="line">        left, right = <span class="number">0</span>, sum(nums)</span><br><span class="line">        <span class="keyword">for</span> index, num <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">            right -= num</span><br><span class="line">            <span class="keyword">if</span> left == right:</span><br><span class="line">                <span class="keyword">return</span> index</span><br><span class="line">            left += num</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>设left=0,right=total</li>
+<li>从nums的头开始遍历，right-nums[i], <ul>
+<li>如果left==right,返回当前的i</li>
+<li>否则 left+nums[i]</li>
+</ul>
+</li>
+<li>没有left==right，返-1</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>计算不含nums[i]的leftsum，如果leftsum== total - leftsum -nums[i]，返回i</li>
+<li>设leftsum=0,rightsum=total.从头开始遍历,rightsum-nums[i];如果left=right ,返i，否则left+=nums[i]；没有返-1</li>
+</ol>
 
       
     </div>
@@ -533,6 +545,8 @@
           
             <a href="/tags/Dynamic-Programming/" rel="tag"># Dynamic Programming</a>
           
+            <a href="/tags/Array/" rel="tag"># Array</a>
+          
         </div>
       
 
@@ -544,8 +558,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/14/C-语言篇-cv-const-and-volatile-type-qualifiers/" rel="next" title="C++ 语言篇 CV(const and volatile) Type Qualifiers">
-                <i class="fa fa-chevron-left"></i> C++ 语言篇 CV(const and volatile) Type Qualifiers
+              <a href="/2019/03/27/Array-and-String/" rel="next" title="Array and String">
+                <i class="fa fa-chevron-left"></i> Array and String
               </a>
             
           </div>
@@ -553,10 +567,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/15/LeetCode53-Maximum-Subarray/" rel="prev" title="LeetCode53. Maximum Subarray">
-                LeetCode53. Maximum Subarray <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -784,7 +794,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kadane’s-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Kadane’s algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Maximum-Subarray-Problem"><span class="nav-number">1.1.</span> <span class="nav-text">Maximum Subarray Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solutions"><span class="nav-number">1.2.</span> <span class="nav-text">Solutions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Brute-force"><span class="nav-number">1.2.1.</span> <span class="nav-text">Brute-force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Programming-Kadane’s-Algorithm"><span class="nav-number">1.2.2.</span> <span class="nav-text">Dynamic Programming (Kadane’s Algorithm)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.3.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#my-code-in-c"><span class="nav-number">2.</span> <span class="nav-text">my code in c++</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#细节"><span class="nav-number">2.1.</span> <span class="nav-text">细节</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LC-in-py"><span class="nav-number">3.</span> <span class="nav-text">LC in py</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

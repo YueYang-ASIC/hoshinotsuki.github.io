@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Dynamic Programming,">
+  <meta name="keywords" content="lightmare, developer, back-end">
 
 
 
@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="Kadane’s algorithm Aka Maximum Sum of Subarray Dynamic Programming  Maximum Subarray ProblemFrom Wikipedia  In computer science, the maximum subarray problem is the task of finding the contiguous suba">
-<meta name="keywords" content="Dynamic Programming">
+<meta name="description" content="Introduction to Array store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful">
+<meta name="keywords" content="back-end,c++,algorithm,data structure">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kadane&#39;s Algorithm">
-<meta property="og:url" content="http://yoursite.com/2019/03/15/Kadane-s-Algorithm/index.html">
+<meta property="og:title" content="Array and String">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/Array-and-String/index.html">
 <meta property="og:site_name" content="Lightmare">
-<meta property="og:description" content="Kadane’s algorithm Aka Maximum Sum of Subarray Dynamic Programming  Maximum Subarray ProblemFrom Wikipedia  In computer science, the maximum subarray problem is the task of finding the contiguous suba">
+<meta property="og:description" content="Introduction to Array store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-25T06:34:35.501Z">
+<meta property="og:updated_time" content="2019-03-27T00:08:59.243Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kadane&#39;s Algorithm">
-<meta name="twitter:description" content="Kadane’s algorithm Aka Maximum Sum of Subarray Dynamic Programming  Maximum Subarray ProblemFrom Wikipedia  In computer science, the maximum subarray problem is the task of finding the contiguous suba">
+<meta name="twitter:title" content="Array and String">
+<meta name="twitter:description" content="Introduction to Array store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/15/Kadane-s-Algorithm/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/27/Array-and-String/">
 
 
 
 
 
-  <title>Kadane's Algorithm | Lightmare</title>
+  <title>Array and String | Lightmare</title>
   
 
 
@@ -324,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/Kadane-s-Algorithm/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/Array-and-String/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lightmare">
@@ -341,7 +341,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Kadane's Algorithm</h1>
+          <h1 class="post-title" itemprop="name headline">Array and String</h1>
         
 
         <div class="post-meta">
@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-15T11:24:21+08:00">
-                2019-03-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-27T07:54:37+08:00">
+                2019-03-27
               </time>
             
 
@@ -369,34 +369,12 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-25T14:34:35+08:00">
-                2019-03-25
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-27T08:08:59+08:00">
+                2019-03-27
               </time>
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -424,7 +402,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  288 words
+                  267 words
                 </span>
               
 
@@ -461,35 +439,21 @@
       
 
       
-        <h1 id="Kadane’s-algorithm"><a href="#Kadane’s-algorithm" class="headerlink" title="Kadane’s algorithm"></a>Kadane’s algorithm</h1><ul>
-<li>Aka Maximum Sum of Subarray</li>
-<li>Dynamic Programming</li>
+        <h1 id="Introduction-to-Array"><a href="#Introduction-to-Array" class="headerlink" title="Introduction to Array"></a>Introduction to Array</h1><ul>
+<li>store sequentially</li>
+<li>accessed randomly（index)</li>
+<li>one-dimensional array =  linear array</li>
+<li>a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful</li>
 </ul>
-<h2 id="Maximum-Subarray-Problem"><a href="#Maximum-Subarray-Problem" class="headerlink" title="Maximum Subarray Problem"></a>Maximum Subarray Problem</h2><p>From <a href="https://en.wikipedia.org/wiki/Maximum_subarray_problem" target="_blank" rel="noopener">Wikipedia</a></p>
-<blockquote>
-<p>In computer science, the maximum subarray problem is the task of finding the contiguous subarray within a one-dimensional array, a[1…n], of numbers which has the largest sum.</p>
-</blockquote>
-<p>The task is to find a subarray (contiguous elements) of the given array that has the largest sum. For instance:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1, 5, -1, 0, 10]</span><br></pre></td></tr></table></figure>
-<p>The answer would be <code>15</code> or the entire array (it’s also a subarray)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0, -1, -5, 0, -4]</span><br></pre></td></tr></table></figure>
-<p>The answer would be <code>0</code> and so on.</p>
-<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><h3 id="Brute-force"><a href="#Brute-force" class="headerlink" title="Brute-force"></a>Brute-force</h3><p>All you need is going through all sub-arrays, keep the global maximum and compare.</p>
-<h3 id="Dynamic-Programming-Kadane’s-Algorithm"><a href="#Dynamic-Programming-Kadane’s-Algorithm" class="headerlink" title="Dynamic Programming (Kadane’s Algorithm)"></a>Dynamic Programming (Kadane’s Algorithm)</h3><ul>
-<li><code>O(n)</code> runtime complexity </li>
-<li><code>O(1)</code> space.</li>
-</ul>
-<p>Following function shows the Kadane’s algorithm implementation which uses two variables, one to store the <strong>local maximum</strong> and the other to keep track of the <strong>global maximum</strong>:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_subarray</span><span class="params">(A)</span>:</span></span><br><span class="line">    max_ending_here = max_so_far = A[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> A[<span class="number">1</span>:]:</span><br><span class="line">        max_ending_here = max(x, max_ending_here + x)</span><br><span class="line">        max_so_far = max(max_so_far, max_ending_here)</span><br><span class="line">    <span class="keyword">return</span> max_so_far</span><br></pre></td></tr></table></figure>
-<p>So we assume that the largest subarray is the first element, then we go through <code>A[1:]</code> elements (all elements except the first one).</p>
-<p>At each step, what we do is:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 1. Initialize</span></span><br><span class="line">	<span class="keyword">int</span> a0[<span class="number">5</span>];</span><br><span class="line">	<span class="keyword">int</span> a1[<span class="number">5</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> &#125;;  <span class="comment">// other element will be set as the default value</span></span><br><span class="line">	<span class="comment">// 2. Get Length</span></span><br><span class="line">	<span class="keyword">int</span> size = <span class="keyword">sizeof</span>(a1) / <span class="keyword">sizeof</span>(*a1);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"The size of a1 is: "</span> &lt;&lt; size &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//5</span></span><br><span class="line">	<span class="comment">// 3. Sort</span></span><br><span class="line">	sort(a1, a1 + size);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span>&amp; item : a1) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; item;<span class="comment">//0 0 2 3 4</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Introduction-to-Dynamic-Array"><a href="#Introduction-to-Dynamic-Array" class="headerlink" title="Introduction to Dynamic Array"></a>Introduction to Dynamic Array</h1><hr>
 <ul>
-<li>Can current element plus the last largest sum_ help to find a largest subarray (line 4)?</li>
-<li>If yes, update the <code>max_ending_here</code> or our local maximum, otherwise current element is the largest subarray (array of one).</li>
-<li>Then update the global maximum or <code>max_so_far</code> if there is a new global maximum.</li>
+<li>dynamic array:  random access list</li>
+<li>variable size</li>
+<li><p>vector</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1. initialize</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v0;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1(<span class="number">5</span>, <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. make a copy</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v2(v1.begin(), v1.end());</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v3(v2);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. cast an array to a vector</span></span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v4(a, *(&amp;a + <span class="number">1</span>));<span class="comment">//copy</span></span><br><span class="line">    </span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 5. iterate the vector </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v4.size(); ++i) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; v4[i];</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> <span class="keyword">const</span>&amp; item : v4) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; item;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> item = v4.begin(); item != v4.end(); ++item) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; *item;</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 7. sort</span></span><br><span class="line">    sort(v4.begin(), v4.end()); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>When the loop is over, return the global maximum.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Kadane’s algorithm is a <a href="https://en.wikipedia.org/wiki/Dynamic_programming" target="_blank" rel="noopener">Dynamic Programming</a> approach to solve “the largest contiguous elements in an array” with runtime of O(n). </p>
 
       
     </div>
@@ -529,12 +493,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Dynamic-Programming/" rel="tag"># Dynamic Programming</a>
-          
-        </div>
-      
 
       
       
@@ -544,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/14/C-语言篇-cv-const-and-volatile-type-qualifiers/" rel="next" title="C++ 语言篇 CV(const and volatile) Type Qualifiers">
-                <i class="fa fa-chevron-left"></i> C++ 语言篇 CV(const and volatile) Type Qualifiers
+              <a href="/2019/03/26/Socket-Programming/" rel="next" title="Socket Programming">
+                <i class="fa fa-chevron-left"></i> Socket Programming
               </a>
             
           </div>
@@ -554,8 +512,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/15/LeetCode53-Maximum-Subarray/" rel="prev" title="LeetCode53. Maximum Subarray">
-                LeetCode53. Maximum Subarray <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/27/LeetCode724-Find-Pivot-Index/" rel="prev" title="LeetCode724. Find Pivot Index">
+                LeetCode724. Find Pivot Index <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -784,7 +742,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kadane’s-algorithm"><span class="nav-number">1.</span> <span class="nav-text">Kadane’s algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Maximum-Subarray-Problem"><span class="nav-number">1.1.</span> <span class="nav-text">Maximum Subarray Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solutions"><span class="nav-number">1.2.</span> <span class="nav-text">Solutions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Brute-force"><span class="nav-number">1.2.1.</span> <span class="nav-text">Brute-force</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Programming-Kadane’s-Algorithm"><span class="nav-number">1.2.2.</span> <span class="nav-text">Dynamic Programming (Kadane’s Algorithm)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.3.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-to-Array"><span class="nav-number">1.</span> <span class="nav-text">Introduction to Array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-to-Dynamic-Array"><span class="nav-number">2.</span> <span class="nav-text">Introduction to Dynamic Array</span></a></li></ol></div>
             
 
           </div>
