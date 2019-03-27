@@ -77,18 +77,21 @@
 
 
 
-<meta name="description" content="Introduction to ArrayArray store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and waste">
+<meta name="description" content="ArrayArray store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful  12345678910">
 <meta name="keywords" content="back-end,c++,algorithm,data structure">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Array and String">
 <meta property="og:url" content="http://yoursite.com/2019/03/27/Array-and-String/index.html">
 <meta property="og:site_name" content="Lightmare">
-<meta property="og:description" content="Introduction to ArrayArray store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and waste">
+<meta property="og:description" content="ArrayArray store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful  12345678910">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-27T01:11:44.528Z">
+<meta property="og:image" content="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/03/31/screen-shot-2018-03-31-at-161748.png">
+<meta property="og:image" content="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/03/31/screen-shot-2018-03-31-at-162857.png">
+<meta property="og:updated_time" content="2019-03-27T03:50:48.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Array and String">
-<meta name="twitter:description" content="Introduction to ArrayArray store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and waste">
+<meta name="twitter:description" content="ArrayArray store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful  12345678910">
+<meta name="twitter:image" content="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/03/31/screen-shot-2018-03-31-at-161748.png">
 
 
 
@@ -369,7 +372,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-27T09:11:44+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-27T11:50:48+08:00">
                 2019-03-27
               </time>
             
@@ -402,7 +405,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  276 words
+                  649 words
                 </span>
               
 
@@ -418,7 +421,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1 mins
+                  3 mins
                 </span>
               
             </div>
@@ -439,7 +442,7 @@
       
 
       
-        <h1 id="Introduction-to-Array"><a href="#Introduction-to-Array" class="headerlink" title="Introduction to Array"></a>Introduction to Array</h1><h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><ul>
+        <h1 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h1><h2 id="Array-1"><a href="#Array-1" class="headerlink" title="Array"></a>Array</h2><ul>
 <li>store sequentially</li>
 <li>accessed randomly（index)</li>
 <li>one-dimensional array =  linear array</li>
@@ -455,7 +458,28 @@
 </ul>
 <h2 id="Leetcode"><a href="#Leetcode" class="headerlink" title="Leetcode"></a>Leetcode</h2><ul>
 <li>[724] <a href="/2019/03/27/LeetCode724-Find-Pivot-Index/">寻找数组的中心索引</a></li>
-<li></li>
+<li>[66] <a href="/2019/03/27/LeetCode66-Plus-One/">加一</a></li>
+<li>[747] <a href="/2019/03/27/LeetCode747-Largest-Number-At-Least-Twice-of-Others/">至少是其他数字两倍的最大数</a></li>
+</ul>
+<hr>
+<h1 id="2D-Array"><a href="#2D-Array" class="headerlink" title="2D Array"></a>2D Array</h1><ul>
+<li>sequence of elements</li>
+<li>rectangular grid  </li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">size_t</span> n, <span class="keyword">size_t</span> m&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span> <span class="keyword">const</span>(&amp;a)[n][m])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; ++j) &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; a[i][j] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Example I:"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">5</span>];</span><br><span class="line">    printArray(a);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Example II:"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">int</span> b[<span class="number">2</span>][<span class="number">5</span>] = &#123;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;&#125;;</span><br><span class="line">    printArray(b);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Example III:"</span>&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">int</span> c[][<span class="number">5</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;;</span><br><span class="line">    printArray(c);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Example IV:"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">int</span> d[][<span class="number">5</span>] = &#123;&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;, &#123;<span class="number">5</span>, <span class="number">6</span>&#125;, &#123;<span class="number">7</span>&#125;&#125;;</span><br><span class="line">    printArray(d);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>output</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Example I:</span><br><span class="line"><span class="number">-858993460</span> <span class="number">-858993460</span> <span class="number">-858993460</span> <span class="number">-858993460</span> <span class="number">-858993460</span></span><br><span class="line"><span class="number">-858993460</span> <span class="number">-858993460</span> <span class="number">-858993460</span> <span class="number">-858993460</span> <span class="number">-858993460</span></span><br><span class="line">Example II:</span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line">Example III:</span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line"><span class="number">6</span> <span class="number">7</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line">Example IV:</span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">0</span></span><br><span class="line"><span class="number">5</span> <span class="number">6</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">7</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>##Principle</p>
+<p>In some languages, the multidimensional array is actually <code>implemented internally as a one-dimensional array</code> while in some other languages, there is <code>actually no multidimensional array</code> at all.</p>
+<p><strong>1. C++ stores the two-dimensional array as a one-dimensional array.</strong></p>
+<p>The picture below shows the actual structure of a M * N array A:<img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/03/31/screen-shot-2018-03-31-at-161748.png" alt="img"></p>
+<p>So actually A[i][j] equals to A[i <em> N + j] if we defined </em>A<em> as a one-dimensional array which also contains M </em> Nelements.</p>
+<p><strong>2. In Java, the two-dimensional array is actually a one-dimensional array which contains M elements, each of which is an array of N integers.</strong></p>
+<p>The picture below shows the actual structure of a two-dimensional array A in Java:</p>
+<p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/03/31/screen-shot-2018-03-31-at-162857.png" alt="img"></p>
+<h2 id="Dynamic-2D-Array"><a href="#Dynamic-2D-Array" class="headerlink" title="Dynamic 2D Array"></a>Dynamic 2D Array</h2><p>Similar to the one-dimensional dynamic array, we can also define a dynamic two-dimensional array. Actually, it can be just <code>a nested dynamic array</code>. You can try it out by yourself.</p>
+<h2 id="Leetcode-1"><a href="#Leetcode-1" class="headerlink" title="Leetcode"></a>Leetcode</h2><ul>
+<li>[498] <a href="/2019/03/27/LeetCode498-Diagonal-Traverse/">对角线遍历</a></li>
 </ul>
 
       
@@ -598,7 +622,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -620,7 +644,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -745,7 +769,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-to-Array"><span class="nav-number">1.</span> <span class="nav-text">Introduction to Array</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Array"><span class="nav-number">1.1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-Array"><span class="nav-number">1.2.</span> <span class="nav-text">Dynamic Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode"><span class="nav-number">1.3.</span> <span class="nav-text">Leetcode</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Array"><span class="nav-number">1.</span> <span class="nav-text">Array</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-1"><span class="nav-number">1.1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-Array"><span class="nav-number">1.2.</span> <span class="nav-text">Dynamic Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode"><span class="nav-number">1.3.</span> <span class="nav-text">Leetcode</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2D-Array"><span class="nav-number">2.</span> <span class="nav-text">2D Array</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-2D-Array"><span class="nav-number">2.1.</span> <span class="nav-text">Dynamic 2D Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode-1"><span class="nav-number">2.2.</span> <span class="nav-text">Leetcode</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -786,7 +810,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">61.3k</span>
+    <span title="Site words total count">62k</span>
   
 </div>
 
