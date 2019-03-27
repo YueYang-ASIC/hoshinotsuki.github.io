@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="Introduction to Array store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful">
+<meta name="description" content="Introduction to ArrayArray store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and waste">
 <meta name="keywords" content="back-end,c++,algorithm,data structure">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Array and String">
 <meta property="og:url" content="http://yoursite.com/2019/03/27/Array-and-String/index.html">
 <meta property="og:site_name" content="Lightmare">
-<meta property="og:description" content="Introduction to Array store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful">
+<meta property="og:description" content="Introduction to ArrayArray store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and waste">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-27T00:08:59.243Z">
+<meta property="og:updated_time" content="2019-03-27T01:11:44.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Array and String">
-<meta name="twitter:description" content="Introduction to Array store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful">
+<meta name="twitter:description" content="Introduction to ArrayArray store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and waste">
 
 
 
@@ -369,7 +369,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-27T08:08:59+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-27T09:11:44+08:00">
                 2019-03-27
               </time>
             
@@ -402,7 +402,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  267 words
+                  276 words
                 </span>
               
 
@@ -439,20 +439,23 @@
       
 
       
-        <h1 id="Introduction-to-Array"><a href="#Introduction-to-Array" class="headerlink" title="Introduction to Array"></a>Introduction to Array</h1><ul>
+        <h1 id="Introduction-to-Array"><a href="#Introduction-to-Array" class="headerlink" title="Introduction to Array"></a>Introduction to Array</h1><h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><ul>
 <li>store sequentially</li>
 <li>accessed randomly（index)</li>
 <li>one-dimensional array =  linear array</li>
 <li>a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 1. Initialize</span></span><br><span class="line">	<span class="keyword">int</span> a0[<span class="number">5</span>];</span><br><span class="line">	<span class="keyword">int</span> a1[<span class="number">5</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> &#125;;  <span class="comment">// other element will be set as the default value</span></span><br><span class="line">	<span class="comment">// 2. Get Length</span></span><br><span class="line">	<span class="keyword">int</span> size = <span class="keyword">sizeof</span>(a1) / <span class="keyword">sizeof</span>(*a1);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"The size of a1 is: "</span> &lt;&lt; size &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//5</span></span><br><span class="line">	<span class="comment">// 3. Sort</span></span><br><span class="line">	sort(a1, a1 + size);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span>&amp; item : a1) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; item;<span class="comment">//0 0 2 3 4</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Introduction-to-Dynamic-Array"><a href="#Introduction-to-Dynamic-Array" class="headerlink" title="Introduction to Dynamic Array"></a>Introduction to Dynamic Array</h1><hr>
-<ul>
+<h2 id="Dynamic-Array"><a href="#Dynamic-Array" class="headerlink" title="Dynamic Array"></a>Dynamic Array</h2><ul>
 <li>dynamic array:  random access list</li>
 <li>variable size</li>
 <li><p>vector</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1. initialize</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v0;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1(<span class="number">5</span>, <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. make a copy</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v2(v1.begin(), v1.end());</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v3(v2);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. cast an array to a vector</span></span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v4(a, *(&amp;a + <span class="number">1</span>));<span class="comment">//copy</span></span><br><span class="line">    </span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 5. iterate the vector </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v4.size(); ++i) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; v4[i];</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> <span class="keyword">const</span>&amp; item : v4) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; item;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> item = v4.begin(); item != v4.end(); ++item) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; *item;</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 7. sort</span></span><br><span class="line">    sort(v4.begin(), v4.end()); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+<h2 id="Leetcode"><a href="#Leetcode" class="headerlink" title="Leetcode"></a>Leetcode</h2><ul>
+<li>[724] <a href="/2019/03/27/LeetCode724-Find-Pivot-Index/">寻找数组的中心索引</a></li>
+<li></li>
 </ul>
 
       
@@ -595,7 +598,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -742,7 +745,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-to-Array"><span class="nav-number">1.</span> <span class="nav-text">Introduction to Array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-to-Dynamic-Array"><span class="nav-number">2.</span> <span class="nav-text">Introduction to Dynamic Array</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-to-Array"><span class="nav-number">1.</span> <span class="nav-text">Introduction to Array</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Array"><span class="nav-number">1.1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-Array"><span class="nav-number">1.2.</span> <span class="nav-text">Dynamic Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode"><span class="nav-number">1.3.</span> <span class="nav-text">Leetcode</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -783,7 +786,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">60.3k</span>
+    <span title="Site words total count">60.7k</span>
   
 </div>
 
