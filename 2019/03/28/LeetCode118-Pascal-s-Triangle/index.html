@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="2D Array,Iteration,vector,Dynamic Programming,Easy,">
+  <meta name="keywords" content="Dynamic Programming,2D Array,Easy,Iteration,vector,">
 
 
 
@@ -78,7 +78,7 @@
 
 
 <meta name="description" content="Given a non-negative integer numRows, generate the first numRows of Pascal’s triangle. In Pascal’s triangle, each number is the sum of the two numbers directly above it. Example: 123456789Input: 5Outp">
-<meta name="keywords" content="2D Array,Iteration,vector,Dynamic Programming,Easy">
+<meta name="keywords" content="Dynamic Programming,2D Array,Easy,Iteration,vector">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode118. Pascal&#39;s Triangle">
 <meta property="og:url" content="http://yoursite.com/2019/03/28/LeetCode118-Pascal-s-Triangle/index.html">
@@ -86,7 +86,7 @@
 <meta property="og:description" content="Given a non-negative integer numRows, generate the first numRows of Pascal’s triangle. In Pascal’s triangle, each number is the sum of the two numbers directly above it. Example: 123456789Input: 5Outp">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif">
-<meta property="og:updated_time" content="2019-03-28T05:10:47.518Z">
+<meta property="og:updated_time" content="2019-03-28T07:03:11.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode118. Pascal&#39;s Triangle">
 <meta name="twitter:description" content="Given a non-negative integer numRows, generate the first numRows of Pascal’s triangle. In Pascal’s triangle, each number is the sum of the two numbers directly above it. Example: 123456789Input: 5Outp">
@@ -371,7 +371,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T13:10:47+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T15:03:11+08:00">
                 2019-03-28
               </time>
             
@@ -506,14 +506,14 @@
 <li>各种数组越界。自己画图试试再写啊！</li>
 </ol>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
-<li>第一种方法用的是resize，先已经分配了rows个容器了，这样性能不好，会初始化两次</li>
-<li>第二张方法是动态规划（迭代），用的push_back.<ol>
-<li>判空，返空</li>
+<li>第一种方法用的是resize，先已经分配了rows个容器了，这样性能不好，会初始化两次。</li>
+<li>第二张方法是动态规划（迭代），用的push_back。<ol>
+<li>判空，返空。</li>
 <li>开始初始化第一行，push_back(vector\<int>(1,1))。这里一定要写两个参数，不然就只是定义了大小，默认初始化是0的。</int></li>
 <li>再push_back,构造剩下的索引row为 1~(numrows-1),每行建个sub一维容器。<ol>
-<li>sub第一个塞1</li>
-<li>从sub第二个开始，塞上层的和。解释一下，col&lt;row,最好自己画图，因为row是num-1,而每行的size其实是row+1,最后一个不塞，所以要塞的最后一个索引是(row+1)-1-1，即row-1，所以是col&lt;row</li>
-<li>sub最后一个塞1</li>
+<li>sub第一个塞1。</li>
+<li>从sub第二个开始，塞上层的和。解释一下，col&lt;row,最好自己画图，因为row是num-1,而每行的size其实是row+1,最后一个不塞，所以要塞的最后一个索引是(row+1)-1-1，即row-1，所以是col&lt;row。</li>
+<li>sub最后一个塞1。</li>
 </ol>
 </li>
 </ol>
@@ -560,15 +560,15 @@
       
         <div class="post-tags">
           
+            <a href="/tags/Dynamic-Programming/" rel="tag"># Dynamic Programming</a>
+          
             <a href="/tags/2D-Array/" rel="tag"># 2D Array</a>
+          
+            <a href="/tags/Easy/" rel="tag"># Easy</a>
           
             <a href="/tags/Iteration/" rel="tag"># Iteration</a>
           
             <a href="/tags/vector/" rel="tag"># vector</a>
-          
-            <a href="/tags/Dynamic-Programming/" rel="tag"># Dynamic Programming</a>
-          
-            <a href="/tags/Easy/" rel="tag"># Easy</a>
           
         </div>
       
@@ -862,7 +862,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">63.9k</span>
+    <span title="Site words total count">64.2k</span>
   
 </div>
 

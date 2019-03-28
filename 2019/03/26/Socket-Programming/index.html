@@ -87,14 +87,17 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/From%20Links%20to%20Networks.JPG">
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/osi.JPG">
+<meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/osi.vs.tcpip.JPG">
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/Ethernet%20address.JPG">
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/ip%20add.JPG">
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/IP4%20ip6.JPG">
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/tcp%20port.JPG">
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/hops.JPG">
-<meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/hourglass.JPG">
+<meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/hourglass.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/encapsulate.JPG">
-<meta property="og:updated_time" content="2019-03-28T00:35:30.286Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/cs110reviw.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/IMG_0013.JPG">
+<meta property="og:updated_time" content="2019-03-28T15:34:36.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Socket Programming">
 <meta name="twitter:description" content="Topics Network programming (sockets, RPC(远程过程调用)(Remote Procedure Call)) Network (esp. Internet) architecture Switching, Routing, Congestion control, TCP/IP, Wireless networks Using the network   Inte">
@@ -379,7 +382,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T08:35:30+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T23:34:36+08:00">
                 2019-03-28
               </time>
             
@@ -434,7 +437,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  993 words
+                  793 words
                 </span>
               
 
@@ -450,7 +453,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5 mins
+                  4 mins
                 </span>
               
             </div>
@@ -533,15 +536,7 @@
 </ul>
 <hr>
 <h1 id="OSI-layers"><a href="#OSI-layers" class="headerlink" title="OSI layers"></a>OSI layers</h1><p><img src="/2019/03/26/Socket-Programming/osi.JPG" alt="osi"></p>
-<ol>
-<li>Physical – sends individual <strong>bits</strong></li>
-<li>Data link – sends <strong>frames</strong>, handles access control to    shared media (e.g., <strong>coax</strong>) 电缆</li>
-<li>Network – delivers <strong>packets</strong>, using <strong>routing</strong></li>
-<li>Transport – <strong>demultiplexes</strong>(解复用), provides <strong>reliability &amp; flow</strong> control</li>
-<li>Session – can <strong>tie together</strong> multiple <strong>streams</strong> (e.g.,    audio &amp; video)</li>
-<li>Presentation – <strong>crypto</strong>(加密), conversion between    representations</li>
-<li>Application – what end user gets, e.g., <strong>HTTP (web)</strong> </li>
-</ol>
+<p><img src="/2019/03/26/Socket-Programming/osi.vs.tcpip.JPG" alt="osi.vs.tcpip"></p>
 <hr>
 <h1 id="Addressing-定址"><a href="#Addressing-定址" class="headerlink" title="Addressing 定址"></a>Addressing 定址</h1><ul>
 <li><p>Each node typically has <strong>unique</strong> address</p>
@@ -578,7 +573,7 @@
 </li>
 </ul>
 <hr>
-<h1 id="Hourglass-沙漏"><a href="#Hourglass-沙漏" class="headerlink" title="Hourglass 沙漏"></a>Hourglass 沙漏</h1><p><img src="/2019/03/26/Socket-Programming/hourglass.JPG" alt="hourglass"></p>
+<h1 id="Hourglass-沙漏"><a href="#Hourglass-沙漏" class="headerlink" title="Hourglass 沙漏"></a>Hourglass 沙漏</h1><p> <img src="/2019/03/26/Socket-Programming/hourglass.jpg" alt="hourglass"></p>
 <ul>
 <li>Many <strong>application</strong> protocols over <strong>TCP &amp; UDP</strong></li>
 <li><strong>IP</strong> works over many types of <strong>network</strong></li>
@@ -653,48 +648,9 @@
 </li>
 </ul>
 <hr>
-<p>CS110 review:</p>
-<h1 id="System-calls"><a href="#System-calls" class="headerlink" title="System calls"></a>System calls</h1><ul>
-<li><strong>System calls</strong> invoke code in the OS kernel<ul>
-<li><strong>Kernel runs</strong> in a more <strong>privileged</strong> mode than application</li>
-<li>Can execute special instructions that application cannot</li>
-<li>Can interact <strong>directly</strong> with <strong>devices</strong> such as network card</li>
-</ul>
-</li>
-<li>Higher-level functions built on <strong>syscall interface</strong><ul>
-<li>printf, scanf, gets, etc. all user-level code </li>
-</ul>
-</li>
-</ul>
-<h1 id="File-descriptors"><a href="#File-descriptors" class="headerlink" title="File descriptors"></a>File descriptors</h1><ul>
-<li>Most IO done on file descriptors<ul>
-<li>Small integers referencing per-process table in the kernel</li>
-</ul>
-</li>
-<li>Examples of system calls with file descriptors:<ul>
-<li>int open(char *path, int flags, …);<ul>
-<li>Returns new <strong>file descriptor</strong> bound to file path</li>
-</ul>
-</li>
-<li>int read (int fd, void *buf, int nbytes);<ul>
-<li>Returns <strong>number of bytes</strong> read</li>
-<li>Returns <strong>0</strong> bytes at <strong>end</strong> of file, or <strong>-1</strong> on <strong>error</strong></li>
-</ul>
-</li>
-<li>int write (int fd, void *buf, int nbytes);<ul>
-<li>Returns number of bytes written, -1 on error</li>
-<li>(Never returns 0 if nbytes &gt; 0)</li>
-</ul>
-</li>
-<li>int close (int fd);<ul>
-<li>Deallocates file descriptor (not underlying I/O resource) </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<h1 id="CS110-review"><a href="#CS110-review" class="headerlink" title="CS110 review"></a>CS110 review</h1><p> <img src="/2019/03/26/Socket-Programming/cs110reviw.jpg" alt="cs110reviw"></p>
 <hr>
-<hr>
+<h1 id="Sockets"><a href="#Sockets" class="headerlink" title="Sockets"></a>Sockets</h1><h2 id="Communication-between-machines"><a href="#Communication-between-machines" class="headerlink" title="Communication between machines"></a>Communication between machines</h2><h2 id="Socket-naming"><a href="#Socket-naming" class="headerlink" title="Socket naming"></a>Socket naming</h2><h2 id="System-calls-for-using-TCP"><a href="#System-calls-for-using-TCP" class="headerlink" title="System calls for using TCP"></a>System calls for using TCP</h2><p> <img src="/2019/03/26/Socket-Programming/IMG_0013.JPG" alt="IMG_0013"></p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><p><a href="http://www.steves-internet-guide.com/tcpip-ports-sockets/" target="_blank" rel="noopener">TCP/IP Ports and Sockets Explained</a></p>
 </li>
@@ -1003,7 +959,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Topics"><span class="nav-number">1.</span> <span class="nav-text">Topics</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Building-blocks"><span class="nav-number">2.</span> <span class="nav-text">Building blocks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Protocol-layering"><span class="nav-number">3.</span> <span class="nav-text">Protocol layering</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OSI-layers"><span class="nav-number">4.</span> <span class="nav-text">OSI layers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Addressing-定址"><span class="nav-number">5.</span> <span class="nav-text">Addressing 定址</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ethernet-address"><span class="nav-number">5.1.</span> <span class="nav-text">Ethernet address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4-address"><span class="nav-number">5.2.</span> <span class="nav-text">IPv4 address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4-vs-IPv6"><span class="nav-number">5.3.</span> <span class="nav-text">IPv4 vs. IPv6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-port-HTTP-80"><span class="nav-number">5.4.</span> <span class="nav-text">TCP port // HTTP 80</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hop"><span class="nav-number">5.5.</span> <span class="nav-text">hop</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hourglass-沙漏"><span class="nav-number">6.</span> <span class="nav-text">Hourglass 沙漏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Internet-protocol"><span class="nav-number">7.</span> <span class="nav-text">Internet protocol</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UDP-and-TCP"><span class="nav-number">8.</span> <span class="nav-text">UDP and TCP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Programming-Sockets"><span class="nav-number">9.</span> <span class="nav-text">Programming Sockets</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#System-calls"><span class="nav-number">10.</span> <span class="nav-text">System calls</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#File-descriptors"><span class="nav-number">11.</span> <span class="nav-text">File descriptors</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">12.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Topics"><span class="nav-number">1.</span> <span class="nav-text">Topics</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Building-blocks"><span class="nav-number">2.</span> <span class="nav-text">Building blocks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Protocol-layering"><span class="nav-number">3.</span> <span class="nav-text">Protocol layering</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OSI-layers"><span class="nav-number">4.</span> <span class="nav-text">OSI layers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Addressing-定址"><span class="nav-number">5.</span> <span class="nav-text">Addressing 定址</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ethernet-address"><span class="nav-number">5.1.</span> <span class="nav-text">Ethernet address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4-address"><span class="nav-number">5.2.</span> <span class="nav-text">IPv4 address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4-vs-IPv6"><span class="nav-number">5.3.</span> <span class="nav-text">IPv4 vs. IPv6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-port-HTTP-80"><span class="nav-number">5.4.</span> <span class="nav-text">TCP port // HTTP 80</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hop"><span class="nav-number">5.5.</span> <span class="nav-text">hop</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hourglass-沙漏"><span class="nav-number">6.</span> <span class="nav-text">Hourglass 沙漏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Internet-protocol"><span class="nav-number">7.</span> <span class="nav-text">Internet protocol</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UDP-and-TCP"><span class="nav-number">8.</span> <span class="nav-text">UDP and TCP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Programming-Sockets"><span class="nav-number">9.</span> <span class="nav-text">Programming Sockets</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CS110-review"><span class="nav-number">10.</span> <span class="nav-text">CS110 review</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sockets"><span class="nav-number">11.</span> <span class="nav-text">Sockets</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Communication-between-machines"><span class="nav-number">11.1.</span> <span class="nav-text">Communication between machines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket-naming"><span class="nav-number">11.2.</span> <span class="nav-text">Socket naming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System-calls-for-using-TCP"><span class="nav-number">11.3.</span> <span class="nav-text">System calls for using TCP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">12.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -1044,7 +1000,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">63.9k</span>
+    <span title="Site words total count">64.2k</span>
   
 </div>
 

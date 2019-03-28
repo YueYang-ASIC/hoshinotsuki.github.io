@@ -8,27 +8,27 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Dynamic Programming</tag>
         <tag>2D Array</tag>
+        <tag>Easy</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
-        <tag>Dynamic Programming</tag>
-        <tag>Easy</tag>
         <tag>O(1) space</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[LeetCode118. Pascal's Triangle]]></title>
     <url>%2F2019%2F03%2F28%2FLeetCode118-Pascal-s-Triangle%2F</url>
-    <content type="text"><![CDATA[Given a non-negative integer numRows, generate the first numRows of Pascal’s triangle. In Pascal’s triangle, each number is the sum of the two numbers directly above it. Example: 123456789Input: 5Output:[ [1], [1,1], [1,2,1], [1,3,3,1], [1,4,6,4,1]] LC in cpp: v.resize(row+1)思路 初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和。 Unfortunately resize initializes the values in the vector. To gain maximum efficiency ,you should use your own allocator with resize. my code12 ms 8.8 MB 123456789101112131415vector&lt;vector&lt;int&gt;&gt; generate(int numRows) &#123; vector&lt;vector&lt;int&gt;&gt; ret(numRows);//1. for (int row = 0; row&lt;numRows; row++) &#123; ret[row].resize(row + 1);//2. ret[row][0] = ret[row][row] = 1;//3. for (int col = 1; col&lt;row; col++) &#123; ret[row][col] = ret[row - 1][col - 1] + ret[row - 1][col];//4. &#125; &#125; return ret;&#125; 细节 记得初始化，不然开始就数组越界 v.resize(row+1);重新定义容器大小，注意是row+1 头尾是1,因为size是row+1,所以尾是row,不是row-1 中间是上层之和 LC official solution:DPIntuition If we have the a row of Pascal’s triangle, we can easily compute the next row by each pair of adjacent values. the iterative approach can be classified as dynamic programming Algorithm generate the overall triangle list, which will store each row as a sublist. special case of 0 row, return [1] If numRows &gt; 0:initialize triangle with [1] as its first row, and proceed to fill the rows Complexity Analysis O(n^2) Time : n(n+1)/2=n^2 O(n^2) Space my code8 ms 8.8 MB 1234567891011121314151617vector&lt;vector&lt;int&gt;&gt; generate(int numRows) &#123; vector&lt;vector&lt;int&gt;&gt; ret; if (!numRows) return ret;//0. ret.push_back(vector&lt;int&gt;(1,1));//0 row,1. for (int row = 1; row&lt;numRows; row++)//1~numrows-1 row &#123; vector&lt;int&gt; sub; sub.push_back(1);//first col for(int col=1;col&lt;row;col++)//2. sub.push_back(ret[row - 1][col - 1] + ret[row - 1][col]) ;//middle col sub.push_back(1);//last col ret.push_back(sub); &#125; return ret;&#125; 细节 开始一定要判空，不然空容器会返回[1]的！！ vector (1)写错，塞进去的是0，想塞1，这样写vector(1,1) 自己画图到第三层，row实际上是2，col&lt;row就行了 各种数组越界。自己画图试试再写啊！ 总结 第一种方法用的是resize，先已经分配了rows个容器了，这样性能不好，会初始化两次 第二张方法是动态规划（迭代），用的push_back. 判空，返空 开始初始化第一行，push_back(vector\(1,1))。这里一定要写两个参数，不然就只是定义了大小，默认初始化是0的。 再push_back,构造剩下的索引row为 1~(numrows-1),每行建个sub一维容器。 sub第一个塞1 从sub第二个开始，塞上层的和。解释一下，col&lt;row,最好自己画图，因为row是num-1,而每行的size其实是row+1,最后一个不塞，所以要塞的最后一个索引是(row+1)-1-1，即row-1，所以是col&lt;row sub最后一个塞1]]></content>
+    <content type="text"><![CDATA[Given a non-negative integer numRows, generate the first numRows of Pascal’s triangle. In Pascal’s triangle, each number is the sum of the two numbers directly above it. Example: 123456789Input: 5Output:[ [1], [1,1], [1,2,1], [1,3,3,1], [1,4,6,4,1]] LC in cpp: v.resize(row+1)思路 初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和。 Unfortunately resize initializes the values in the vector. To gain maximum efficiency ,you should use your own allocator with resize. my code12 ms 8.8 MB 123456789101112131415vector&lt;vector&lt;int&gt;&gt; generate(int numRows) &#123; vector&lt;vector&lt;int&gt;&gt; ret(numRows);//1. for (int row = 0; row&lt;numRows; row++) &#123; ret[row].resize(row + 1);//2. ret[row][0] = ret[row][row] = 1;//3. for (int col = 1; col&lt;row; col++) &#123; ret[row][col] = ret[row - 1][col - 1] + ret[row - 1][col];//4. &#125; &#125; return ret;&#125; 细节 记得初始化，不然开始就数组越界 v.resize(row+1);重新定义容器大小，注意是row+1 头尾是1,因为size是row+1,所以尾是row,不是row-1 中间是上层之和 LC official solution:DPIntuition If we have the a row of Pascal’s triangle, we can easily compute the next row by each pair of adjacent values. the iterative approach can be classified as dynamic programming Algorithm generate the overall triangle list, which will store each row as a sublist. special case of 0 row, return [1] If numRows &gt; 0:initialize triangle with [1] as its first row, and proceed to fill the rows Complexity Analysis O(n^2) Time : n(n+1)/2=n^2 O(n^2) Space my code8 ms 8.8 MB 1234567891011121314151617vector&lt;vector&lt;int&gt;&gt; generate(int numRows) &#123; vector&lt;vector&lt;int&gt;&gt; ret; if (!numRows) return ret;//0. ret.push_back(vector&lt;int&gt;(1,1));//0 row,1. for (int row = 1; row&lt;numRows; row++)//1~numrows-1 row &#123; vector&lt;int&gt; sub; sub.push_back(1);//first col for(int col=1;col&lt;row;col++)//2. sub.push_back(ret[row - 1][col - 1] + ret[row - 1][col]) ;//middle col sub.push_back(1);//last col ret.push_back(sub); &#125; return ret;&#125; 细节 开始一定要判空，不然空容器会返回[1]的！！ vector (1)写错，塞进去的是0，想塞1，这样写vector(1,1) 自己画图到第三层，row实际上是2，col&lt;row就行了 各种数组越界。自己画图试试再写啊！ 总结 第一种方法用的是resize，先已经分配了rows个容器了，这样性能不好，会初始化两次。 第二张方法是动态规划（迭代），用的push_back。 判空，返空。 开始初始化第一行，push_back(vector\(1,1))。这里一定要写两个参数，不然就只是定义了大小，默认初始化是0的。 再push_back,构造剩下的索引row为 1~(numrows-1),每行建个sub一维容器。 sub第一个塞1。 从sub第二个开始，塞上层的和。解释一下，col&lt;row,最好自己画图，因为row是num-1,而每行的size其实是row+1,最后一个不塞，所以要塞的最后一个索引是(row+1)-1-1，即row-1，所以是col&lt;row。 sub最后一个塞1。]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Dynamic Programming</tag>
         <tag>2D Array</tag>
+        <tag>Easy</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
-        <tag>Dynamic Programming</tag>
-        <tag>Easy</tag>
       </tags>
   </entry>
   <entry>
@@ -40,9 +40,9 @@
       </categories>
       <tags>
         <tag>2D Array</tag>
-        <tag>Medium</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
+        <tag>Medium</tag>
         <tag>Matrix</tag>
       </tags>
   </entry>
@@ -55,9 +55,9 @@
       </categories>
       <tags>
         <tag>2D Array</tag>
-        <tag>Medium</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
+        <tag>Medium</tag>
         <tag>Matrix</tag>
       </tags>
   </entry>
@@ -70,8 +70,8 @@
       </categories>
       <tags>
         <tag>2D Array</tag>
-        <tag>Medium</tag>
         <tag>Iteration</tag>
+        <tag>Medium</tag>
         <tag>Matrix</tag>
       </tags>
   </entry>
@@ -83,9 +83,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Easy</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
-        <tag>Easy</tag>
         <tag>Array</tag>
         <tag>Recursion</tag>
       </tags>
@@ -98,8 +98,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>vector</tag>
         <tag>Easy</tag>
+        <tag>vector</tag>
         <tag>Array</tag>
       </tags>
   </entry>
@@ -111,21 +111,21 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>vector</tag>
         <tag>Dynamic Programming</tag>
         <tag>Easy</tag>
+        <tag>vector</tag>
         <tag>Array</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[Array and String]]></title>
     <url>%2F2019%2F03%2F27%2FArray-and-String%2F</url>
-    <content type="text"><![CDATA[ArrayArray store sequentially accessed randomly（index) one-dimensional array = linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful 12345678910111213141516#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; // 1. Initialize int a0[5]; int a1[5] = &#123; 1, 2, 3 &#125;; // other element will be set as the default value // 2. Get Length int size = sizeof(a1) / sizeof(*a1); cout &lt;&lt; "The size of a1 is: " &lt;&lt; size &lt;&lt; endl;//5 // 3. Sort sort(a1, a1 + size); for (int&amp; item : a1) &#123; cout &lt;&lt; " " &lt;&lt; item;//0 0 2 3 4 &#125;&#125; Dynamic Array dynamic array: random access list variable size vector 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; // 1. initialize vector&lt;int&gt; v0;//v0.size()=0 vector&lt;int&gt; v9(4*3);//v9.size()=12。初始值是0，用()而不是[]。 vector&lt;int&gt; v1(5, 0); // 2. make a copy vector&lt;int&gt; v2(v1.begin(), v1.end()); vector&lt;int&gt; v3(v2); // 2. cast an array to a vector int a[5] = &#123;0, 1, 2, 3, 4&#125;; vector&lt;int&gt; v4(a, *(&amp;a + 1));//copy // 3. insert v4.insert(v4.begin(), 1);//在it前面插入val // 5. iterate the vector for (int i = 0; i &lt; v4.size(); ++i) &#123; cout &lt;&lt; " " &lt;&lt; v4[i]; &#125; for (int const&amp; item : v4) &#123; cout &lt;&lt; " " &lt;&lt; item; &#125; for (auto item = v4.begin(); item != v4.end(); ++item) &#123; cout &lt;&lt; " " &lt;&lt; *item; &#125; // 7. sort sort(v4.begin(), v4.end()); &#125; Leetcode [724] 寻找数组的中心索引 [66] 加一 [747] 至少是其他数字两倍的最大数 2D Array sequence of elements rectangular grid 1234567891011121314151617181920212223242526272829#include &lt;iostream&gt;template &lt;size_t n, size_t m&gt;void printArray(int const(&amp;a)[n][m]) &#123; for (int i = 0; i &lt; n; ++i) &#123; for (int j = 0; j &lt; m; ++j) &#123; cout &lt;&lt; a[i][j] &lt;&lt; " "; &#125; cout &lt;&lt; endl; &#125;&#125;int main() &#123; cout &lt;&lt; "Example I:" &lt;&lt; endl; int a[2][5]; printArray(a); cout &lt;&lt; "Example II:" &lt;&lt; endl; int b[2][5] = &#123;&#123;1, 2, 3&#125;&#125;; printArray(b); cout &lt;&lt; "Example III:"&lt;&lt; endl; int c[][5] = &#123;1, 2, 3, 4, 5, 6, 7&#125;; printArray(c); cout &lt;&lt; "Example IV:" &lt;&lt; endl; int d[][5] = &#123;&#123;1, 2, 3, 4&#125;, &#123;5, 6&#125;, &#123;7&#125;&#125;; printArray(d);&#125; output 12345678910111213Example I:-858993460 -858993460 -858993460 -858993460 -858993460-858993460 -858993460 -858993460 -858993460 -858993460Example II:1 2 3 0 00 0 0 0 0Example III:1 2 3 4 56 7 0 0 0Example IV:1 2 3 4 05 6 0 0 07 0 0 0 0 Principle some other languages, implemented internally as a one-dimensional array some other languages, actually no multidimensional array at all. Dynamic 2D Array a nested dynamic array 123456789vector&lt;int&gt; subret(3);vector&lt;vector&lt;int&gt;&gt; ret(3, subret);for (auto const &amp; it : ret)&#123; for (auto const &amp; it2 : it) cout &lt;&lt; it2&lt;&lt;" "; cout &lt;&lt; endl;&#125; output 1230 0 00 0 00 0 0 Leetcode [498] 对角线遍历 [54] 螺旋矩阵 [59] 螺旋矩阵 II [118] 杨辉三角 [119] 杨辉三角 II]]></content>
+    <content type="text"><![CDATA[ArrayArray store sequentially accessed randomly（index) one-dimensional array = linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful 12345678910111213141516#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; // 1. Initialize int a0[5]; int a1[5] = &#123; 1, 2, 3 &#125;; // other element will be set as the default value // 2. Get Length int size = sizeof(a1) / sizeof(*a1); cout &lt;&lt; "The size of a1 is: " &lt;&lt; size &lt;&lt; endl;//5 // 3. Sort sort(a1, a1 + size); for (int&amp; item : a1) &#123; cout &lt;&lt; " " &lt;&lt; item;//0 0 2 3 4 &#125;&#125; Dynamic Array dynamic array: random access list variable size vector 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; // 1. initialize vector&lt;int&gt; v0;//v0.size()=0 vector&lt;int&gt; v9(4*3);//v9.size()=12。初始值是0，用()而不是[]。 vector&lt;int&gt; v1(5, 0); // 2. make a copy vector&lt;int&gt; v2(v1.begin(), v1.end()); vector&lt;int&gt; v3(v2); // 2. cast an array to a vector int a[5] = &#123;0, 1, 2, 3, 4&#125;; vector&lt;int&gt; v4(a, *(&amp;a + 1));//copy // 3. insert v4.insert(v4.begin(), 1);//在it前面插入val // 5. iterate the vector for (int i = 0; i &lt; v4.size(); ++i) &#123; cout &lt;&lt; " " &lt;&lt; v4[i]; &#125; for (int const&amp; item : v4) &#123; cout &lt;&lt; " " &lt;&lt; item; &#125; for (auto item = v4.begin(); item != v4.end(); ++item) &#123; cout &lt;&lt; " " &lt;&lt; *item; &#125; // 7. sort sort(v4.begin(), v4.end()); &#125; Leetcode [724] 寻找数组的中心索引 [66] 加一 [747] 至少是其他数字两倍的最大数 2D Array sequence of elements rectangular grid 1234567891011121314151617181920212223242526272829#include &lt;iostream&gt;template &lt;size_t n, size_t m&gt;void printArray(int const(&amp;a)[n][m]) &#123; for (int i = 0; i &lt; n; ++i) &#123; for (int j = 0; j &lt; m; ++j) &#123; cout &lt;&lt; a[i][j] &lt;&lt; " "; &#125; cout &lt;&lt; endl; &#125;&#125;int main() &#123; cout &lt;&lt; "Example I:" &lt;&lt; endl; int a[2][5]; printArray(a); cout &lt;&lt; "Example II:" &lt;&lt; endl; int b[2][5] = &#123;&#123;1, 2, 3&#125;&#125;; printArray(b); cout &lt;&lt; "Example III:"&lt;&lt; endl; int c[][5] = &#123;1, 2, 3, 4, 5, 6, 7&#125;; printArray(c); cout &lt;&lt; "Example IV:" &lt;&lt; endl; int d[][5] = &#123;&#123;1, 2, 3, 4&#125;, &#123;5, 6&#125;, &#123;7&#125;&#125;; printArray(d);&#125; output 12345678910111213Example I:-858993460 -858993460 -858993460 -858993460 -858993460-858993460 -858993460 -858993460 -858993460 -858993460Example II:1 2 3 0 00 0 0 0 0Example III:1 2 3 4 56 7 0 0 0Example IV:1 2 3 4 05 6 0 0 07 0 0 0 0 Principle some other languages, implemented internally as a one-dimensional array some other languages, actually no multidimensional array at all. Dynamic 2D Array a nested dynamic array 123456789vector&lt;int&gt; subret(3);vector&lt;vector&lt;int&gt;&gt; ret(3, subret);for (auto const &amp; it : ret)&#123; for (auto const &amp; it2 : it) cout &lt;&lt; it2&lt;&lt;" "; cout &lt;&lt; endl;&#125; output 1230 0 00 0 00 0 0 Leetcode [498] 对角线遍历 [54] 螺旋矩阵 [59] 螺旋矩阵 II [118] 杨辉三角 [119] 杨辉三角 II String an array of unicode characters. Compare Function String has its own compare function However, there is a problem: Can we use “==” to compare two strings? It depends on the answer to the question: Does the language support operator overloading? If the answer is yes (like C++), we may use “==” to compare two strings. If the answer is no (like Java), we may not use “==” to compare two strings. When we use “==”, it actually compares whether these two objects are the same object. C++ 1234567891011121314151617181920#include &lt;iostream&gt;int main() &#123; string s1 = "Hello World"; cout &lt;&lt; "s1 is \"Hello World\"" &lt;&lt; endl; string s2 = s1; cout &lt;&lt; "s2 is initialized by s1" &lt;&lt; endl; string s3(s1); cout &lt;&lt; "s3 is initialized by s1" &lt;&lt; endl; // compare by '==' cout &lt;&lt; "Compared by '==':" &lt;&lt; endl; cout &lt;&lt; "s1 and \"Hello World\": " &lt;&lt; (s1 == "Hello World") &lt;&lt; endl; cout &lt;&lt; "s1 and s2: " &lt;&lt; (s1 == s2) &lt;&lt; endl; cout &lt;&lt; "s1 and s3: " &lt;&lt; (s1 == s3) &lt;&lt; endl; // compare by 'compare' cout &lt;&lt; "Compared by 'compare':" &lt;&lt; endl; cout &lt;&lt; "s1 and \"Hello World\": " &lt;&lt; !s1.compare("Hello World") &lt;&lt; endl; cout &lt;&lt; "s1 and s2: " &lt;&lt; !s1.compare(s2) &lt;&lt; endl; cout &lt;&lt; "s1 and s3: " &lt;&lt; !s1.compare(s3) &lt;&lt; endl;&#125; Java123456789101112131415161718192021222324252627282930// "static void main" must be defined in a public class.public class Main &#123; public static void main(String[] args) &#123; // initialize String s1 = "Hello World"; System.out.println("s1 is \"" + s1 + "\""); String s2 = s1; System.out.println("s2 is another reference to s1."); String s3 = new String(s1); System.out.println("s3 is a copy of s1."); // compare using '==' System.out.println("Compared by '==':"); // true since string is immutable and s1 is binded to "Hello World" System.out.println("s1 and \"Hello World\": " + (s1 == "Hello World")); // true since s1 and s2 is the reference of the same object System.out.println("s1 and s2: " + (s1 == s2)); // false since s3 is refered to another new object System.out.println("s1 and s3: " + (s1 == s3)); // compare using 'equals' System.out.println("Compared by 'equals':"); System.out.println("s1 and \"Hello World\": " + s1.equals("Hello World")); System.out.println("s1 and s2: " + s1.equals(s2)); System.out.println("s1 and s3: " + s1.equals(s3)); // compare using 'compareTo' System.out.println("Compared by 'compareTo':"); System.out.println("s1 and \"Hello World\": " + (s1.compareTo("Hello World") == 0)); System.out.println("s1 and s2: " + (s1.compareTo(s2) == 0)); System.out.println("s1 and s3: " + (s1.compareTo(s3) == 0)); &#125;&#125;]]></content>
   </entry>
   <entry>
     <title><![CDATA[Socket Programming]]></title>
     <url>%2F2019%2F03%2F26%2FSocket-Programming%2F</url>
-    <content type="text"><![CDATA[Topics Network programming (sockets, RPC(远程过程调用)(Remote Procedure Call)) Network (esp. Internet) architecture Switching, Routing, Congestion control, TCP/IP, Wireless networks Using the network Interface hardware &amp; low-level implementation issues, Naming (DNS), Error detection, compression(压缩) Higher level issues Encryption(加密) and Security, caching &amp; content distribution, Peer-to-peer systems(对等网络系统) Building blocks Nodes: Computers, dedicated routers, . . . Links: Coax(同轴电缆), twisted pair(双绞线), fibers, radio . . . point-to-point multiple access – every node sees every packet //每个节点都能互相访问 From Links to Networks: To scale to more nodes, use switching nodes can connect multiple other nodes //多点连接 Recursively, one node can connect multiple networks Protocol layering Application TCP or UDP IP Link Layer Can view network encapsulation as a stack A network packet from A to D must be put in link packets A to B, B to C, and C to D Each layer produces packets that become the payload of the lower-layer’s packets //上层向下层传包 This is almost correct, but TCP/UDP “cheat” to detect certain errors in IP-level information like address （？ OSI layers Physical – sends individual bits Data link – sends frames, handles access control to shared media (e.g., coax) 电缆 Network – delivers packets, using routing Transport – demultiplexes(解复用), provides reliability &amp; flow control Session – can tie together multiple streams (e.g., audio &amp; video) Presentation – crypto(加密), conversion between representations Application – what end user gets, e.g., HTTP (web) Addressing 定址 Each node typically has unique address (or at least is made to think it does when there is shortage) //ipv4可能地址不足 Each layer can have its own addressing Link layer: e.g., 48-bit Ethernet address (interface) //6Bytes Ethernet address Network layer: 32-bit IP address (node) //IPv4 4Bytes, IPv6 8Bytes. IPv4 address IPv4 vs. IPv6 Transport layer: 16-bit TCP port (service) //2Bytes TCP port // HTTP 80 Routing is process of delivering data to destination across multiple link hops hopone portion of the path between source and destination. The hop count refers to the number of intermediate devices through which data must pass between source and destination. A large number of hops between source and destination implies lower real-time performance. Special addresses can exist for broadcast/multicast (???) Hourglass 沙漏 Many application protocols over TCP &amp; UDP IP works over many types of network This is “Hourglass” philosophy of Internet Idea: If everybody just supports IP, can use many different applications over many different networks In practice, some claim narrow waist is now network and transport layers, due to NAT (lecture 12) （插眼。。ip掩蔽 Internet protocol Most computer nets connected by Internet protocol Runs over a variety of physical networks, so can connect Ethernet, Wireless, people behind modem lines, etc. //IP 凌驾于物理网络之上 Every host has a unique 4-byte IP address E.g., www.ietf.org ! 132.151.6.21 //IPv4 Given a node’s IP address, the network knows how to route a packet (lectures 3+4) //有IP地址就可以向他路由包了 But how do you build something like the web? Need naming (look up www.ietf.org) – DNS (lecture 8) Need API for browser, server (CS110/this lecture) Need demultiplexing within a host—E.g., which packets are for web server, which for mail server, etc.? (lecture 4) //主机内部分解包 Want abstraction of inter-process (not just inter-node) communication //进程间通信 ：封装 + IP Solution: Encapsulate another protocol within IP UDP and TCP UDP and TCP most popular protocols on IP 都使用 16位端口号 + 32位IP地址 Applications bind a port &amp; receive traffic to that port 应用从端口收发消息 UDP – unreliable datagram protocol 不可靠报文协议 Exposes packet-switched nature of Internet 透明 Sent packets may be dropped, reordered, even duplicated (but generally not corrupted) 丢包 无序 重复 TCP – transmission control protocol 传输控制协议 Provides illusion of a reliable “pipe” between to processes on two different machines (lecture 5) 在两个主机的进程间提供虚拟可靠”管道” Handles congestion &amp; flow control (lecture 6) 处理 阻塞 和 流量控制 Most applications use TCP Easier interface to program to (reliability, lecture 5) Automatically avoids congestion (don’t need to worry about taking down network, lecture 6) Servers typically listen on well-known ports SSH: 22 Email: 25 Finger: 79 Web / HTTP: 80 Programming Sockets Berkeley sockets API Bottom-level OS interface to networking Important to know and do once Higher-level APIs build on them CS110 review: System calls System calls invoke code in the OS kernel Kernel runs in a more privileged mode than application Can execute special instructions that application cannot Can interact directly with devices such as network card Higher-level functions built on syscall interface printf, scanf, gets, etc. all user-level code File descriptors Most IO done on file descriptors Small integers referencing per-process table in the kernel Examples of system calls with file descriptors: int open(char *path, int flags, …); Returns new file descriptor bound to file path int read (int fd, void *buf, int nbytes); Returns number of bytes read Returns 0 bytes at end of file, or -1 on error int write (int fd, void *buf, int nbytes); Returns number of bytes written, -1 on error (Never returns 0 if nbytes &gt; 0) int close (int fd); Deallocates file descriptor (not underlying I/O resource) Reference TCP/IP Ports and Sockets Explained Hop (networking))]]></content>
+    <content type="text"><![CDATA[Topics Network programming (sockets, RPC(远程过程调用)(Remote Procedure Call)) Network (esp. Internet) architecture Switching, Routing, Congestion control, TCP/IP, Wireless networks Using the network Interface hardware &amp; low-level implementation issues, Naming (DNS), Error detection, compression(压缩) Higher level issues Encryption(加密) and Security, caching &amp; content distribution, Peer-to-peer systems(对等网络系统) Building blocks Nodes: Computers, dedicated routers, . . . Links: Coax(同轴电缆), twisted pair(双绞线), fibers, radio . . . point-to-point multiple access – every node sees every packet //每个节点都能互相访问 From Links to Networks: To scale to more nodes, use switching nodes can connect multiple other nodes //多点连接 Recursively, one node can connect multiple networks Protocol layering Application TCP or UDP IP Link Layer Can view network encapsulation as a stack A network packet from A to D must be put in link packets A to B, B to C, and C to D Each layer produces packets that become the payload of the lower-layer’s packets //上层向下层传包 This is almost correct, but TCP/UDP “cheat” to detect certain errors in IP-level information like address （？ OSI layers Addressing 定址 Each node typically has unique address (or at least is made to think it does when there is shortage) //ipv4可能地址不足 Each layer can have its own addressing Link layer: e.g., 48-bit Ethernet address (interface) //6Bytes Ethernet address Network layer: 32-bit IP address (node) //IPv4 4Bytes, IPv6 8Bytes. IPv4 address IPv4 vs. IPv6 Transport layer: 16-bit TCP port (service) //2Bytes TCP port // HTTP 80 Routing is process of delivering data to destination across multiple link hops hopone portion of the path between source and destination. The hop count refers to the number of intermediate devices through which data must pass between source and destination. A large number of hops between source and destination implies lower real-time performance. Special addresses can exist for broadcast/multicast (???) Hourglass 沙漏 Many application protocols over TCP &amp; UDP IP works over many types of network This is “Hourglass” philosophy of Internet Idea: If everybody just supports IP, can use many different applications over many different networks In practice, some claim narrow waist is now network and transport layers, due to NAT (lecture 12) （插眼。。ip掩蔽 Internet protocol Most computer nets connected by Internet protocol Runs over a variety of physical networks, so can connect Ethernet, Wireless, people behind modem lines, etc. //IP 凌驾于物理网络之上 Every host has a unique 4-byte IP address E.g., www.ietf.org ! 132.151.6.21 //IPv4 Given a node’s IP address, the network knows how to route a packet (lectures 3+4) //有IP地址就可以向他路由包了 But how do you build something like the web? Need naming (look up www.ietf.org) – DNS (lecture 8) Need API for browser, server (CS110/this lecture) Need demultiplexing within a host—E.g., which packets are for web server, which for mail server, etc.? (lecture 4) //主机内部分解包 Want abstraction of inter-process (not just inter-node) communication //进程间通信 ：封装 + IP Solution: Encapsulate another protocol within IP UDP and TCP UDP and TCP most popular protocols on IP 都使用 16位端口号 + 32位IP地址 Applications bind a port &amp; receive traffic to that port 应用从端口收发消息 UDP – unreliable datagram protocol 不可靠报文协议 Exposes packet-switched nature of Internet 透明 Sent packets may be dropped, reordered, even duplicated (but generally not corrupted) 丢包 无序 重复 TCP – transmission control protocol 传输控制协议 Provides illusion of a reliable “pipe” between to processes on two different machines (lecture 5) 在两个主机的进程间提供虚拟可靠”管道” Handles congestion &amp; flow control (lecture 6) 处理 阻塞 和 流量控制 Most applications use TCP Easier interface to program to (reliability, lecture 5) Automatically avoids congestion (don’t need to worry about taking down network, lecture 6) Servers typically listen on well-known ports SSH: 22 Email: 25 Finger: 79 Web / HTTP: 80 Programming Sockets Berkeley sockets API Bottom-level OS interface to networking Important to know and do once Higher-level APIs build on them CS110 review SocketsCommunication between machinesSocket namingSystem calls for using TCP Reference TCP/IP Ports and Sockets Explained Hop (networking))]]></content>
       <categories>
         <category>Computer Network</category>
       </categories>
@@ -166,10 +166,10 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Medium</tag>
+        <tag>Easy</tag>
         <tag>Linked List</tag>
         <tag>Two Pointers</tag>
-        <tag>Easy</tag>
+        <tag>Medium</tag>
       </tags>
   </entry>
   <entry>
@@ -180,9 +180,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Easy</tag>
         <tag>Linked List</tag>
         <tag>Two Pointers</tag>
-        <tag>Easy</tag>
       </tags>
   </entry>
   <entry>
@@ -285,9 +285,9 @@
       </categories>
       <tags>
         <tag>pointer</tag>
-        <tag>vector</tag>
         <tag>Dynamic Programming</tag>
         <tag>Easy</tag>
+        <tag>vector</tag>
         <tag>Math</tag>
         <tag>Array</tag>
       </tags>
@@ -342,10 +342,10 @@
         <tag>TCP/IP</tag>
         <tag>Linked List</tag>
         <tag>Linux</tag>
-        <tag>Heap</tag>
         <tag>Operating System</tag>
         <tag>process</tag>
         <tag>quicksort</tag>
+        <tag>Heap</tag>
       </tags>
   </entry>
   <entry>
@@ -781,8 +781,8 @@
       </categories>
       <tags>
         <tag>static</tag>
-        <tag>Stack</tag>
         <tag>Heap</tag>
+        <tag>Stack</tag>
         <tag>Memory</tag>
       </tags>
   </entry>

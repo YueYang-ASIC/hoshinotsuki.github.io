@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="ArrayArray store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful  12345678910">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-28T05:05:33.216Z">
+<meta property="og:updated_time" content="2019-03-28T07:02:15.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Array and String">
 <meta name="twitter:description" content="ArrayArray store sequentially accessed randomly（index) one-dimensional array =  linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful  12345678910">
@@ -369,7 +369,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T13:05:33+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T15:02:15+08:00">
                 2019-03-28
               </time>
             
@@ -402,7 +402,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  627 words
+                  1.1k words
                 </span>
               
 
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3 mins
+                  6 mins
                 </span>
               
             </div>
@@ -484,6 +484,27 @@
 <li>[119] <a href="/2019/03/28/LeetCode119-Pascal-s-Triangle-II/">杨辉三角 II</a></li>
 </ul>
 <hr>
+<h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><ul>
+<li>an array of unicode characters.  </li>
+</ul>
+<h2 id="Compare-Function"><a href="#Compare-Function" class="headerlink" title="Compare Function"></a>Compare Function</h2><hr>
+<ul>
+<li>String has its own compare function</li>
+</ul>
+<p>However, there is a problem:</p>
+<blockquote>
+<p>Can we use “==” to compare two strings?</p>
+</blockquote>
+<p>It depends on the answer to the question:</p>
+<blockquote>
+<p>Does the language support <code>operator overloading</code>?</p>
+</blockquote>
+<ol>
+<li>If the answer is <code>yes</code> (like C++), we <code>may</code> use “==” to compare two strings.</li>
+<li>If the answer is <code>no</code> (like Java), we <code>may not</code> use “==” to compare two strings. When we use “==”, it actually compares whether these two objects are the same object.</li>
+</ol>
+<h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3> <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> s1 = <span class="string">"Hello World"</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"s1 is \"Hello World\""</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">string</span> s2 = s1;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"s2 is initialized by s1"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">s3</span><span class="params">(s1)</span></span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"s3 is initialized by s1"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">// compare by '=='</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Compared by '==':"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"s1 and \"Hello World\": "</span> &lt;&lt; (s1 == <span class="string">"Hello World"</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"s1 and s2: "</span> &lt;&lt; (s1 == s2) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"s1 and s3: "</span> &lt;&lt; (s1 == s3) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">// compare by 'compare'</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Compared by 'compare':"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"s1 and \"Hello World\": "</span> &lt;&lt; !s1.compare(<span class="string">"Hello World"</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"s1 and s2: "</span> &lt;&lt; !s1.compare(s2) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"s1 and s3: "</span> &lt;&lt; !s1.compare(s3) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// "static void main" must be defined in a public class.</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// initialize</span></span><br><span class="line">        String s1 = <span class="string">"Hello World"</span>;</span><br><span class="line">        System.out.println(<span class="string">"s1 is \""</span> + s1 + <span class="string">"\""</span>);</span><br><span class="line">        String s2 = s1;</span><br><span class="line">        System.out.println(<span class="string">"s2 is another reference to s1."</span>);</span><br><span class="line">        String s3 = <span class="keyword">new</span> String(s1);</span><br><span class="line">        System.out.println(<span class="string">"s3 is a copy of s1."</span>);</span><br><span class="line">        <span class="comment">// compare using '=='</span></span><br><span class="line">        System.out.println(<span class="string">"Compared by '==':"</span>);</span><br><span class="line">        <span class="comment">// true since string is immutable and s1 is binded to "Hello World"</span></span><br><span class="line">        System.out.println(<span class="string">"s1 and \"Hello World\": "</span> + (s1 == <span class="string">"Hello World"</span>));</span><br><span class="line">        <span class="comment">// true since s1 and s2 is the reference of the same object</span></span><br><span class="line">        System.out.println(<span class="string">"s1 and s2: "</span> + (s1 == s2));</span><br><span class="line">        <span class="comment">// false since s3 is refered to another new object</span></span><br><span class="line">        System.out.println(<span class="string">"s1 and s3: "</span> + (s1 == s3));</span><br><span class="line">        <span class="comment">// compare using 'equals'</span></span><br><span class="line">        System.out.println(<span class="string">"Compared by 'equals':"</span>);</span><br><span class="line">        System.out.println(<span class="string">"s1 and \"Hello World\": "</span> + s1.equals(<span class="string">"Hello World"</span>));</span><br><span class="line">        System.out.println(<span class="string">"s1 and s2: "</span> + s1.equals(s2));</span><br><span class="line">        System.out.println(<span class="string">"s1 and s3: "</span> + s1.equals(s3));</span><br><span class="line">        <span class="comment">// compare using 'compareTo'</span></span><br><span class="line">        System.out.println(<span class="string">"Compared by 'compareTo':"</span>);</span><br><span class="line">        System.out.println(<span class="string">"s1 and \"Hello World\": "</span> + (s1.compareTo(<span class="string">"Hello World"</span>) == <span class="number">0</span>));</span><br><span class="line">        System.out.println(<span class="string">"s1 and s2: "</span> + (s1.compareTo(s2) == <span class="number">0</span>));</span><br><span class="line">        System.out.println(<span class="string">"s1 and s3: "</span> + (s1.compareTo(s3) == <span class="number">0</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -772,7 +793,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Array"><span class="nav-number">1.</span> <span class="nav-text">Array</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-1"><span class="nav-number">1.1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-Array"><span class="nav-number">1.2.</span> <span class="nav-text">Dynamic Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode"><span class="nav-number">1.3.</span> <span class="nav-text">Leetcode</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2D-Array"><span class="nav-number">2.</span> <span class="nav-text">2D Array</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Principle"><span class="nav-number">2.1.</span> <span class="nav-text">Principle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-2D-Array"><span class="nav-number">2.2.</span> <span class="nav-text">Dynamic 2D Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode-1"><span class="nav-number">2.3.</span> <span class="nav-text">Leetcode</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Array"><span class="nav-number">1.</span> <span class="nav-text">Array</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-1"><span class="nav-number">1.1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-Array"><span class="nav-number">1.2.</span> <span class="nav-text">Dynamic Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode"><span class="nav-number">1.3.</span> <span class="nav-text">Leetcode</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2D-Array"><span class="nav-number">2.</span> <span class="nav-text">2D Array</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Principle"><span class="nav-number">2.1.</span> <span class="nav-text">Principle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamic-2D-Array"><span class="nav-number">2.2.</span> <span class="nav-text">Dynamic 2D Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode-1"><span class="nav-number">2.3.</span> <span class="nav-text">Leetcode</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String"><span class="nav-number">3.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Compare-Function"><span class="nav-number">3.1.</span> <span class="nav-text">Compare Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C"><span class="nav-number">3.1.1.</span> <span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java"><span class="nav-number">3.1.2.</span> <span class="nav-text">Java</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -813,7 +834,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">63.9k</span>
+    <span title="Site words total count">64.2k</span>
   
 </div>
 
