@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="题号 解答     [1] 两数之和 1. umap.find(target - nums[i])2. umap.count(target-nums[i]) 👍   [46] 全排列 1. 递归. 分层布局。1.交换第一个数字。2.第一个数固定。后面的排列。3.交换归位。 2. 递归。回溯。填空格法。访问数组标记。   [47] 全排列ii set。去重。递归。交换。   [51] N皇后">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-28T04:06:05.393Z">
+<meta property="og:updated_time" content="2019-03-28T06:56:53.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="码不停题">
 <meta name="twitter:description" content="题号 解答     [1] 两数之和 1. umap.find(target - nums[i])2. umap.count(target-nums[i]) 👍   [46] 全排列 1. 递归. 分层布局。1.交换第一个数字。2.第一个数固定。后面的排列。3.交换归位。 2. 递归。回溯。填空格法。访问数组标记。   [47] 全排列ii set。去重。递归。交换。   [51] N皇后">
@@ -369,7 +369,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T12:06:05+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T14:56:53+08:00">
                 2019-03-28
               </time>
             
@@ -424,7 +424,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.2k words
+                  1.3k words
                 </span>
               
 
@@ -527,7 +527,11 @@
 </tr>
 <tr>
 <td>[118] <a href="/2019/03/28/LeetCode118-Pascal-s-Triangle/">杨辉三角</a></td>
-<td>1. <a href="https://github.com/hoshinotsuki/leetcodeSolution/blob/master/src/118.%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92.cpp" target="_blank" rel="noopener">初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和.但是太慢了。</a></td>
+<td>1. <a href="https://github.com/hoshinotsuki/leetcodeSolution/blob/master/src/118.%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92.cpp" target="_blank" rel="noopener">初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和.但是太慢了。</a><br>2.<a href="https://github.com/hoshinotsuki/leetcodeSolution/blob/master/src/118.%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92dp.cpp" target="_blank" rel="noopener">动态规划。空容器返空。初始化第0行[1]。从第一行开始到numrows-1行开始，每行构建个子容器：第一个塞1，中间塞和，最后塞1.</a>👍</td>
+</tr>
+<tr>
+<td>[119] <a href="/2019/03/28/LeetCode119-Pascal-s-Triangle-II/">杨辉三角 II</a></td>
+<td>1. <a href="https://github.com/hoshinotsuki/leetcodeSolution/blob/master/src/119.%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92-ii.cpp" target="_blank" rel="noopener">dp.迭代。清空，塞1，塞中间，塞1，sub=ret</a><br>2. <a href="https://github.com/hoshinotsuki/leetcodeSolution/blob/master/src/119.%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92-iiO(k" target="_blank" rel="noopener">想象成一个栈，从后res[rowIndex]往前迭代，每次更新为前一个数加自身的和。</a>.cpp)</td>
 </tr>
 <tr>
 <td>[138] 复制带随机指针的链表</td>
@@ -539,7 +543,7 @@
 </tr>
 <tr>
 <td>[142] <a href="/2019/03/26/LeetCode141-Linked-List-Cycle/">环形链表 II</a></td>
-<td>1. <a href="https://github.com/hoshinotsuki/leetcodeSolution/blob/master/src/142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-ii.cpp" target="_blank" rel="noopener">快慢指针，计数</a><br>2. <a href="https://github.com/hoshinotsuki/leetcodeSolution/blob/master/src/142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-ii.%E4%B8%89%E4%B8%AA%E6%8C%87%E9%92%88.cpp" target="_blank" rel="noopener">三个指针！环状检测算法！</a></td>
+<td>1. <a href="https://github.com/hoshinotsuki/leetcodeSolution/blob/master/src/142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-ii.cpp" target="_blank" rel="noopener">快慢指针，计数</a><br>2. <a href="https://github.com/hoshinotsuki/leetcodeSolution/blob/master/src/142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-ii.%E4%B8%89%E4%B8%AA%E6%8C%87%E9%92%88.cpp" target="_blank" rel="noopener">三个指针！环状检测算法！</a>👍</td>
 </tr>
 <tr>
 <td>[144] 二叉树的前序遍历</td>
@@ -771,7 +775,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -793,7 +797,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -943,7 +947,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">63.4k</span>
+    <span title="Site words total count">63.9k</span>
   
 </div>
 
