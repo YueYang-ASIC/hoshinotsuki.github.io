@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode118. Pascal's Triangle]]></title>
+    <url>%2F2019%2F03%2F28%2FLeetCode118-Pascal-s-Triangle%2F</url>
+    <content type="text"><![CDATA[Given a non-negative integer numRows, generate the first numRows of Pascal’s triangle. In Pascal’s triangle, each number is the sum of the two numbers directly above it. Example: 123456789Input: 5Output:[ [1], [1,1], [1,2,1], [1,3,3,1], [1,4,6,4,1]] LC in cpp: v.resize(row+1)思路 初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和。 Unfortunately resize initializes the values in the vector. To gain maximum efficiency ,you should use your own allocator with resize. 12 ms 8.8 MB 123456789101112131415vector&lt;vector&lt;int&gt;&gt; generate(int numRows) &#123; vector&lt;vector&lt;int&gt;&gt; ret(numRows);//1. for (int row = 0; row&lt;numRows; row++) &#123; ret[row].resize(row + 1);//2. ret[row][0] = ret[row][row] = 1;//3. for (int col = 1; col&lt;row; col++) &#123; ret[row][col] = ret[row - 1][col - 1] + ret[row - 1][col];//4. &#125; &#125; return ret;&#125; 细节 记得初始化，不然开始就数组越界 v.resize(row+1);重新定义容器大小，注意是row+1 头尾是1,因为size是row+1,所以尾是row,不是row-1 中间是上层之和 LC official solution:DPIntuition If we have the a row of Pascal’s triangle, we can easily compute the next row by each pair of adjacent values. the iterative approach can be classified as dynamic programming Algorithm generate the overall triangle list, which will store each row as a sublist. special case of 0 row, return [1] If numRows &gt; 0:initialize triangle with [1] as its first row, and proceed to fill the rows Complexity Analysis O(n^2) Time : n(n+1)/2=n^2 O(n^2) Space my code8 ms 8.8 MB 1234567891011121314151617vector&lt;vector&lt;int&gt;&gt; generate(int numRows) &#123; vector&lt;vector&lt;int&gt;&gt; ret; if (!numRows) return ret; ret.push_back(vector&lt;int&gt;(1,1));//0 row,1. for (int row = 1; row&lt;numRows; row++)//1~numrows-1 row &#123; vector&lt;int&gt; sub; sub.push_back(1);//first col for(int col=1;col&lt;row;col++)//2. sub.push_back(ret[row - 1][col - 1] + ret[row - 1][col]) ;//middle col sub.push_back(1);//last col ret.push_back(sub); &#125; return ret;&#125; 细节 vector (1)写错，塞进去的是0，想塞1，这样写vector(1,1) 自己画图到第三层，row实际上是2，col&lt;row就行了 各种数组越界。自己画图试试再写啊！ 总结 第一种方法用的是resize，先已经分配了rows个容器了，这样性能不好，会初始化两次 第二张方法是动态规划（迭代），用的push_back. 开始初始化第一行，push_back(vector\(1,1))。这里一定要写两个参数，不然就只是定义了大小，默认初始化是0的。 再push_back,构造剩下的索引row为 1~(numrows-1),每行建个sub一维容器。 sub第一个塞1 从sub第二个开始，塞上层的和。解释一下，col&lt;row,最好自己画图，因为row是num-1,而每行的size其实是row+1,最后一个不塞，所以要塞的最后一个索引是(row+1)-1-1，即row-1，所以是col&lt;row sub最后一个塞1]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Dynamic Programming</tag>
+        <tag>Medium</tag>
+        <tag>vector</tag>
+        <tag>Iteration</tag>
+        <tag>2D Array</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode59. Spiral Matrix II]]></title>
     <url>%2F2019%2F03%2F28%2FLeetCode59-Spiral-Matrix-II%2F</url>
     <content type="text"><![CDATA[Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order. Example: 1234567Input: 3Output:[ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ]] My ac in cpp​ 16 ms 8.9 MB 1234567891011121314151617181920212223242526272829vector&lt;vector&lt;int&gt;&gt; generateMatrix(int n) &#123; int num = 1; int top = 0, right = n - 1, bottom = n - 1, left = 0; vector&lt;vector&lt;int&gt;&gt; ret(n,vector&lt;int&gt;(n));//1. while (num&lt;=n*n) &#123; //top for (int col = left; col &lt;= right; col++) ret[top][col] = num++; if (++top &gt; bottom) break; //right for (int row = top; row &lt;= bottom; row++) ret[row][right] = num++; if (--right &lt; left) break; //bottom for (int col = right; col &gt;= left; col--) ret[bottom][col] = num++; if (--bottom &lt; top) break; //left for (int row = bottom; row &gt;= top; row--) ret[row][left] = num++; if (++left &gt; right) break;//2. &#125; return ret;&#125; 细节 二维数组初始化： vector&lt;vector&gt; ret( n, vector(n) ); 越界大小判断，错了两次了 总结跟螺旋矩阵一样，只不过是逆向思维，套路还是上右下左遍历，更新行列号，判断越界break。]]></content>
@@ -24,10 +39,10 @@
       </categories>
       <tags>
         <tag>Medium</tag>
-        <tag>Array</tag>
         <tag>vector</tag>
         <tag>Matrix</tag>
         <tag>Iteration</tag>
+        <tag>2D Array</tag>
       </tags>
   </entry>
   <entry>
@@ -39,9 +54,9 @@
       </categories>
       <tags>
         <tag>Medium</tag>
-        <tag>Array</tag>
         <tag>Matrix</tag>
         <tag>Iteration</tag>
+        <tag>2D Array</tag>
       </tags>
   </entry>
   <entry>
@@ -89,7 +104,7 @@
   <entry>
     <title><![CDATA[Array and String]]></title>
     <url>%2F2019%2F03%2F27%2FArray-and-String%2F</url>
-    <content type="text"><![CDATA[ArrayArray store sequentially accessed randomly（index) one-dimensional array = linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful 12345678910111213141516#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; // 1. Initialize int a0[5]; int a1[5] = &#123; 1, 2, 3 &#125;; // other element will be set as the default value // 2. Get Length int size = sizeof(a1) / sizeof(*a1); cout &lt;&lt; "The size of a1 is: " &lt;&lt; size &lt;&lt; endl;//5 // 3. Sort sort(a1, a1 + size); for (int&amp; item : a1) &#123; cout &lt;&lt; " " &lt;&lt; item;//0 0 2 3 4 &#125;&#125; Dynamic Array dynamic array: random access list variable size vector 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; // 1. initialize vector&lt;int&gt; v0;//v0.size()=0 vector&lt;int&gt; v9(4*3);//v9.size()=12。初始值是0，用()而不是[]。 vector&lt;int&gt; v1(5, 0); // 2. make a copy vector&lt;int&gt; v2(v1.begin(), v1.end()); vector&lt;int&gt; v3(v2); // 2. cast an array to a vector int a[5] = &#123;0, 1, 2, 3, 4&#125;; vector&lt;int&gt; v4(a, *(&amp;a + 1));//copy // 3. insert v4.insert(v4.begin(), 1);//在it前面插入val // 5. iterate the vector for (int i = 0; i &lt; v4.size(); ++i) &#123; cout &lt;&lt; " " &lt;&lt; v4[i]; &#125; for (int const&amp; item : v4) &#123; cout &lt;&lt; " " &lt;&lt; item; &#125; for (auto item = v4.begin(); item != v4.end(); ++item) &#123; cout &lt;&lt; " " &lt;&lt; *item; &#125; // 7. sort sort(v4.begin(), v4.end()); &#125; Leetcode [724] 寻找数组的中心索引 [66] 加一 [747] 至少是其他数字两倍的最大数 2D Array sequence of elements rectangular grid 1234567891011121314151617181920212223242526272829#include &lt;iostream&gt;template &lt;size_t n, size_t m&gt;void printArray(int const(&amp;a)[n][m]) &#123; for (int i = 0; i &lt; n; ++i) &#123; for (int j = 0; j &lt; m; ++j) &#123; cout &lt;&lt; a[i][j] &lt;&lt; " "; &#125; cout &lt;&lt; endl; &#125;&#125;int main() &#123; cout &lt;&lt; "Example I:" &lt;&lt; endl; int a[2][5]; printArray(a); cout &lt;&lt; "Example II:" &lt;&lt; endl; int b[2][5] = &#123;&#123;1, 2, 3&#125;&#125;; printArray(b); cout &lt;&lt; "Example III:"&lt;&lt; endl; int c[][5] = &#123;1, 2, 3, 4, 5, 6, 7&#125;; printArray(c); cout &lt;&lt; "Example IV:" &lt;&lt; endl; int d[][5] = &#123;&#123;1, 2, 3, 4&#125;, &#123;5, 6&#125;, &#123;7&#125;&#125;; printArray(d);&#125; output 12345678910111213Example I:-858993460 -858993460 -858993460 -858993460 -858993460-858993460 -858993460 -858993460 -858993460 -858993460Example II:1 2 3 0 00 0 0 0 0Example III:1 2 3 4 56 7 0 0 0Example IV:1 2 3 4 05 6 0 0 07 0 0 0 0 Principle some other languages, implemented internally as a one-dimensional array some other languages, actually no multidimensional array at all. Dynamic 2D Array a nested dynamic array 123456789vector&lt;int&gt; subret(3);vector&lt;vector&lt;int&gt;&gt; ret(3, subret);for (auto const &amp; it : ret)&#123; for (auto const &amp; it2 : it) cout &lt;&lt; it2&lt;&lt;" "; cout &lt;&lt; endl;&#125; output 1230 0 00 0 00 0 0 Leetcode [498] 对角线遍历 [54] 螺旋矩阵]]></content>
+    <content type="text"><![CDATA[ArrayArray store sequentially accessed randomly（index) one-dimensional array = linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful 12345678910111213141516#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; // 1. Initialize int a0[5]; int a1[5] = &#123; 1, 2, 3 &#125;; // other element will be set as the default value // 2. Get Length int size = sizeof(a1) / sizeof(*a1); cout &lt;&lt; "The size of a1 is: " &lt;&lt; size &lt;&lt; endl;//5 // 3. Sort sort(a1, a1 + size); for (int&amp; item : a1) &#123; cout &lt;&lt; " " &lt;&lt; item;//0 0 2 3 4 &#125;&#125; Dynamic Array dynamic array: random access list variable size vector 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; // 1. initialize vector&lt;int&gt; v0;//v0.size()=0 vector&lt;int&gt; v9(4*3);//v9.size()=12。初始值是0，用()而不是[]。 vector&lt;int&gt; v1(5, 0); // 2. make a copy vector&lt;int&gt; v2(v1.begin(), v1.end()); vector&lt;int&gt; v3(v2); // 2. cast an array to a vector int a[5] = &#123;0, 1, 2, 3, 4&#125;; vector&lt;int&gt; v4(a, *(&amp;a + 1));//copy // 3. insert v4.insert(v4.begin(), 1);//在it前面插入val // 5. iterate the vector for (int i = 0; i &lt; v4.size(); ++i) &#123; cout &lt;&lt; " " &lt;&lt; v4[i]; &#125; for (int const&amp; item : v4) &#123; cout &lt;&lt; " " &lt;&lt; item; &#125; for (auto item = v4.begin(); item != v4.end(); ++item) &#123; cout &lt;&lt; " " &lt;&lt; *item; &#125; // 7. sort sort(v4.begin(), v4.end()); &#125; Leetcode [724] 寻找数组的中心索引 [66] 加一 [747] 至少是其他数字两倍的最大数 2D Array sequence of elements rectangular grid 1234567891011121314151617181920212223242526272829#include &lt;iostream&gt;template &lt;size_t n, size_t m&gt;void printArray(int const(&amp;a)[n][m]) &#123; for (int i = 0; i &lt; n; ++i) &#123; for (int j = 0; j &lt; m; ++j) &#123; cout &lt;&lt; a[i][j] &lt;&lt; " "; &#125; cout &lt;&lt; endl; &#125;&#125;int main() &#123; cout &lt;&lt; "Example I:" &lt;&lt; endl; int a[2][5]; printArray(a); cout &lt;&lt; "Example II:" &lt;&lt; endl; int b[2][5] = &#123;&#123;1, 2, 3&#125;&#125;; printArray(b); cout &lt;&lt; "Example III:"&lt;&lt; endl; int c[][5] = &#123;1, 2, 3, 4, 5, 6, 7&#125;; printArray(c); cout &lt;&lt; "Example IV:" &lt;&lt; endl; int d[][5] = &#123;&#123;1, 2, 3, 4&#125;, &#123;5, 6&#125;, &#123;7&#125;&#125;; printArray(d);&#125; output 12345678910111213Example I:-858993460 -858993460 -858993460 -858993460 -858993460-858993460 -858993460 -858993460 -858993460 -858993460Example II:1 2 3 0 00 0 0 0 0Example III:1 2 3 4 56 7 0 0 0Example IV:1 2 3 4 05 6 0 0 07 0 0 0 0 Principle some other languages, implemented internally as a one-dimensional array some other languages, actually no multidimensional array at all. Dynamic 2D Array a nested dynamic array 123456789vector&lt;int&gt; subret(3);vector&lt;vector&lt;int&gt;&gt; ret(3, subret);for (auto const &amp; it : ret)&#123; for (auto const &amp; it2 : it) cout &lt;&lt; it2&lt;&lt;" "; cout &lt;&lt; endl;&#125; output 1230 0 00 0 00 0 0 Leetcode [498] 对角线遍历 [54] 螺旋矩阵 [59] 螺旋矩阵 II [118] 杨辉三角]]></content>
   </entry>
   <entry>
     <title><![CDATA[Socket Programming]]></title>
@@ -135,9 +150,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Easy</tag>
         <tag>Linked List</tag>
         <tag>Two Pointers</tag>
-        <tag>Easy</tag>
         <tag>Medium</tag>
       </tags>
   </entry>
@@ -149,9 +164,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Easy</tag>
         <tag>Linked List</tag>
         <tag>Two Pointers</tag>
-        <tag>Easy</tag>
       </tags>
   </entry>
   <entry>
@@ -255,8 +270,8 @@
       <tags>
         <tag>pointer</tag>
         <tag>Dynamic Programming</tag>
-        <tag>Easy</tag>
         <tag>Math</tag>
+        <tag>Easy</tag>
         <tag>Array</tag>
         <tag>vector</tag>
       </tags>
@@ -364,8 +379,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Easy</tag>
         <tag>Math</tag>
+        <tag>Easy</tag>
         <tag>String</tag>
       </tags>
   </entry>
@@ -402,8 +417,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Easy</tag>
         <tag>Math</tag>
+        <tag>Easy</tag>
       </tags>
   </entry>
   <entry>
@@ -467,8 +482,8 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Algorithms library</tag>
         <tag>Sort</tag>
+        <tag>Algorithms library</tag>
       </tags>
   </entry>
   <entry>
@@ -531,9 +546,9 @@
       <tags>
         <tag>RBT</tag>
         <tag>STL</tag>
-        <tag>Algorithms library</tag>
         <tag>Sort</tag>
         <tag>priority_queue</tag>
+        <tag>Algorithms library</tag>
         <tag>Heapsort</tag>
         <tag>multiset</tag>
       </tags>
@@ -547,8 +562,8 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Sort</tag>
         <tag>Containers library</tag>
+        <tag>Sort</tag>
         <tag>priority_queue</tag>
       </tags>
   </entry>
@@ -575,9 +590,9 @@
       </categories>
       <tags>
         <tag>RBT</tag>
-        <tag>Algorithms library</tag>
         <tag>Sort</tag>
         <tag>priority_queue</tag>
+        <tag>Algorithms library</tag>
         <tag>Heapsort</tag>
         <tag>multiset</tag>
         <tag>Medium</tag>
@@ -606,8 +621,8 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Algorithms library</tag>
         <tag>Sort</tag>
+        <tag>Algorithms library</tag>
         <tag>Partition</tag>
         <tag>Quicksort</tag>
       </tags>
@@ -723,9 +738,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode Solution]]></title>
+    <title><![CDATA[码不停题]]></title>
     <url>%2F2019%2F01%2F21%2Fleetcode%2F</url>
-    <content type="text"><![CDATA[题号 解答 [1] 两数之和 1. umap.find(target - nums[i])2. umap.count(target-nums[i]) 👍 [46] 全排列 1. 递归. 分层布局。1.交换第一个数字。2.第一个数固定。后面的排列。3.交换归位。 2. 递归。回溯。填空格法。访问数组标记。 [47] 全排列ii set。去重。递归。交换。 [51] N皇后 回溯。排序。基于条件对string进行排序。H [52] N皇后ii 回溯。计数。跟51题一样。 [53] 最大子序和 1. 2*O(n/2)+O(1)=O(n)。分治法。max(divide,merge)。2. O(n)。Kadane’s algorithm。DP。分为子问题。 [54] 螺旋矩阵 上右下左四个方向，依次打印。每次打印完一行后更新变量，判断越界。 [66] 加一 1.迭代O(1)space,O(n)time👍2. 递归O(n)space,O(n)time [77] 组合 1. 公式法：C(K,N)=C(K-1,N-1)+C(K,N-1)。2. 回溯法。递归+循环。M [94] 二叉树的中序遍历 1. 中序遍历。递归。E2. 中序遍历。1个栈。M。👍3. 中序遍历。O1,非递归+不用栈。线索二叉树。H。 [104] 二叉树的最大深度 dfs.递归。E [105] 从前序与中序遍历序列构造二叉树 递归。二分查找。mid.start.end. pos=distance(.begin,find( , , )) [111] 二叉树的最小深度 dfs.递归。E [138] 复制带随机指针的链表 链表/复制原始(copy,link,next)/复制随机(copy,next)/分离。M [141] 环形链表 快慢指针。fast&amp;&amp;fast-&gt;next一起判空。有环必走不到空，指针相遇就有环。 [142] 环形链表 II 1. 快慢指针，计数2. 三个指针！环状检测算法！ [144] 二叉树的前序遍历 1. 递归2. 迭代+栈👍 [145] 二叉树的后序遍历 1. 递归2. 迭代+1个栈👍3. 迭代+2个栈 [169] 求众数 1. 快排。找中位数。O(nlogn)2. 不修改数组的方法O(n) 👍 [172] 阶乘后的零 1. 数学。递归。2. 数学。迭代。 [179] 最大数 字符串排序,sort.lambda.string [215] 数组中的第K个最大元素 1. O(nlogn)。快排sort()。reverse()。会修改数组。2. O(n)。快排in-place partition/one way。会修改数组。3. O(nlogk)。priorityqueue-default-maxheap。基于堆。所有元素放入pq，弹出k-1次堆顶，返回pq.top()。不需要修改数组，适用于处理海量数据。4. O(nlogk)。multiset-default-minheap。基于rbt,设置一个大小为k的最小堆。最后弹出*set.begin()。不需要修改数组，适用于处理海量数据。.cpp) [233] 数字1的个数 数学。T:O(logn),S:O(1)1. 公式法：n/(10d)d + min(d,max(0,n\%(10d)-d+1))2.划分法。满二进一位（满载），如果量级的最后一位是1，要加上余数+1 [263] 丑数 数学。迭代。 [264] 丑数ii 动态规划.3个指针 [295] 数据流的中位数 1. 增删O(logn),查O(1).maxheap，两个stl::pq,一个放前一半大的数，一个放后一半大的负数。2. AVL。maxheap和minheap。优先队列。 [297] 二叉树的序列化与反序列化 1. bfs/queue/stringstream2. dfs递归/stringstream in(str)/obj.str()返回值 [387] 字符串中的第一个唯一字符 无序关联式容器，哈希表，计数。unordered_map&gt; [400] 第N个数字 迭代。数学。tostring(int)。(string)char。stoi(const string&amp;) [426] 把二叉搜索树转化为有序双向链表 分治法。递归。指针引用。中序遍历。M [463] 岛屿的周长 1. 岛屿边界处：在数组最左边，或者左边格子没有岛屿2. 先假设算4个边，判断左边和上边是否有岛屿 👍 [498] 对角线遍历 iteration：对角线索引 = 对角线坐标和；根据对角线index奇偶i，swap坐标;越界跳出 [700] 二叉搜索树的查找 1. 递归。BST。E2. 迭代。BST。E。 [701] 二叉搜索树的插入 1. 递归。BST。2. 迭代。BST。break。 [705] 设计哈希集合 hashset。二维数组。value=0或者1.代表集合中是否存在。E。 [706] 设计哈希映射 hashmap。key-value。映射。初值为-1。E。 [724] 寻找数组的中心索引 1. 计算不含nums[i]的leftsum，如果leftsum== total - leftsum -nums[i]，返回i2. left=0,right=total;right-sum[i],if(==),return i;left+nums[i];return -1 [747] 至少是其他数字两倍的最大数 第一遍找到最大并记录索引。第二遍如果又发现不符合条件的返-1。否则返index [804] 国际摩尔斯密码 unordered_set。hash。E。 [876] 链表的中间结点 快慢指针。链表。]]></content>
+    <content type="text"><![CDATA[题号 解答 [1] 两数之和 1. umap.find(target - nums[i])2. umap.count(target-nums[i]) 👍 [46] 全排列 1. 递归. 分层布局。1.交换第一个数字。2.第一个数固定。后面的排列。3.交换归位。 2. 递归。回溯。填空格法。访问数组标记。 [47] 全排列ii set。去重。递归。交换。 [51] N皇后 回溯。排序。基于条件对string进行排序。H [52] N皇后ii 回溯。计数。跟51题一样。 [53] 最大子序和 1. 2*O(n/2)+O(1)=O(n)。分治法。max(divide,merge)。2. O(n)。Kadane’s algorithm。DP。分为子问题。 [54] 螺旋矩阵 上右下左四个方向，依次打印。每次打印完一行后更新变量，判断越界。 [59] 螺旋矩阵 II 跟54螺旋矩阵一样，只不过是逆向思维，套路还是上右下左遍历，更新行列号，判断越界break。 [66] 加一 1.迭代O(1)space,O(n)time👍2. 递归O(n)space,O(n)time [77] 组合 1. 公式法：C(K,N)=C(K-1,N-1)+C(K,N-1)。2. 回溯法。递归+循环。M [94] 二叉树的中序遍历 1. 中序遍历。递归。E2. 中序遍历。1个栈。M。👍3. 中序遍历。O1,非递归+不用栈。线索二叉树。H。 [104] 二叉树的最大深度 dfs.递归。E [105] 从前序与中序遍历序列构造二叉树 递归。二分查找。mid.start.end. pos=distance(.begin,find( , , )) [111] 二叉树的最小深度 dfs.递归。E [118] 杨辉三角 1. 初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和.但是太慢了。 [138] 复制带随机指针的链表 链表/复制原始(copy,link,next)/复制随机(copy,next)/分离。M [141] 环形链表 快慢指针。fast&amp;&amp;fast-&gt;next一起判空。有环必走不到空，指针相遇就有环。 [142] 环形链表 II 1. 快慢指针，计数2. 三个指针！环状检测算法！ [144] 二叉树的前序遍历 1. 递归2. 迭代+栈👍 [145] 二叉树的后序遍历 1. 递归2. 迭代+1个栈👍3. 迭代+2个栈 [169] 求众数 1. 快排。找中位数。O(nlogn)2. 不修改数组的方法O(n) 👍 [172] 阶乘后的零 1. 数学。递归。2. 数学。迭代。 [179] 最大数 字符串排序,sort.lambda.string [215] 数组中的第K个最大元素 1. O(nlogn)。快排sort()。reverse()。会修改数组。2. O(n)。快排in-place partition/one way。会修改数组。3. O(nlogk)。priorityqueue-default-maxheap。基于堆。所有元素放入pq，弹出k-1次堆顶，返回pq.top()。不需要修改数组，适用于处理海量数据。4. O(nlogk)。multiset-default-minheap。基于rbt,设置一个大小为k的最小堆。最后弹出*set.begin()。不需要修改数组，适用于处理海量数据。.cpp) [233] 数字1的个数 数学。T:O(logn),S:O(1)1. 公式法：n/(10d)d + min(d,max(0,n\%(10d)-d+1))2.划分法。满二进一位（满载），如果量级的最后一位是1，要加上余数+1 [263] 丑数 数学。迭代。 [264] 丑数ii 动态规划.3个指针 [295] 数据流的中位数 1. 增删O(logn),查O(1).maxheap，两个stl::pq,一个放前一半大的数，一个放后一半大的负数。2. AVL。maxheap和minheap。优先队列。 [297] 二叉树的序列化与反序列化 1. bfs/queue/stringstream2. dfs递归/stringstream in(str)/obj.str()返回值 [387] 字符串中的第一个唯一字符 无序关联式容器，哈希表，计数。unordered_map&gt; [400] 第N个数字 迭代。数学。tostring(int)。(string)char。stoi(const string&amp;) [426] 把二叉搜索树转化为有序双向链表 分治法。递归。指针引用。中序遍历。M [463] 岛屿的周长 1. 岛屿边界处：在数组最左边，或者左边格子没有岛屿2. 先假设算4个边，判断左边和上边是否有岛屿 👍 [498] 对角线遍历 iteration：对角线索引 = 对角线坐标和；根据对角线index奇偶i，swap坐标;越界跳出 [700] 二叉搜索树的查找 1. 递归。BST。E2. 迭代。BST。E。 [701] 二叉搜索树的插入 1. 递归。BST。2. 迭代。BST。break。 [705] 设计哈希集合 hashset。二维数组。value=0或者1.代表集合中是否存在。E。 [706] 设计哈希映射 hashmap。key-value。映射。初值为-1。E。 [724] 寻找数组的中心索引 1. 计算不含nums[i]的leftsum，如果leftsum== total - leftsum -nums[i]，返回i2. left=0,right=total;right-sum[i],if(==),return i;left+nums[i];return -1 [747] 至少是其他数字两倍的最大数 第一遍找到最大并记录索引。第二遍如果又发现不符合条件的返-1。否则返index [804] 国际摩尔斯密码 unordered_set。hash。E。 [876] 链表的中间结点 快慢指针。链表。]]></content>
       <categories>
         <category>Interview</category>
       </categories>

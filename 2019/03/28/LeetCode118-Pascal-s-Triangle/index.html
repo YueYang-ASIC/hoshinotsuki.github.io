@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Medium,Matrix,Iteration,2D Array,">
+  <meta name="keywords" content="Dynamic Programming,Medium,vector,Iteration,2D Array,">
 
 
 
@@ -77,20 +77,20 @@
 
 
 
-<meta name="description" content="Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as shown in the below image. Example: 12345678910Input:[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]">
-<meta name="keywords" content="Medium,Matrix,Iteration,2D Array">
+<meta name="description" content="Given a non-negative integer numRows, generate the first numRows of Pascal’s triangle. In Pascal’s triangle, each number is the sum of the two numbers directly above it. Example: 123456789Input: 5Outp">
+<meta name="keywords" content="Dynamic Programming,Medium,vector,Iteration,2D Array">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode498. Diagonal Traverse">
-<meta property="og:url" content="http://yoursite.com/2019/03/27/LeetCode498-Diagonal-Traverse/index.html">
+<meta property="og:title" content="LeetCode118. Pascal&#39;s Triangle">
+<meta property="og:url" content="http://yoursite.com/2019/03/28/LeetCode118-Pascal-s-Triangle/index.html">
 <meta property="og:site_name" content="Lightmare">
-<meta property="og:description" content="Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as shown in the below image. Example: 12345678910Input:[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]">
+<meta property="og:description" content="Given a non-negative integer numRows, generate the first numRows of Pascal’s triangle. In Pascal’s triangle, each number is the sum of the two numbers directly above it. Example: 123456789Input: 5Outp">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://assets.leetcode.com/uploads/2018/10/12/diagonal_traverse.png">
-<meta property="og:updated_time" content="2019-03-28T04:02:00.452Z">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif">
+<meta property="og:updated_time" content="2019-03-28T04:58:58.465Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode498. Diagonal Traverse">
-<meta name="twitter:description" content="Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as shown in the below image. Example: 12345678910Input:[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]">
-<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2018/10/12/diagonal_traverse.png">
+<meta name="twitter:title" content="LeetCode118. Pascal&#39;s Triangle">
+<meta name="twitter:description" content="Given a non-negative integer numRows, generate the first numRows of Pascal’s triangle. In Pascal’s triangle, each number is the sum of the two numbers directly above it. Example: 123456789Input: 5Outp">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/27/LeetCode498-Diagonal-Traverse/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/28/LeetCode118-Pascal-s-Triangle/">
 
 
 
 
 
-  <title>LeetCode498. Diagonal Traverse | Lightmare</title>
+  <title>LeetCode118. Pascal's Triangle | Lightmare</title>
   
 
 
@@ -326,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/LeetCode498-Diagonal-Traverse/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/LeetCode118-Pascal-s-Triangle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lightmare">
@@ -343,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode498. Diagonal Traverse</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode118. Pascal's Triangle</h1>
         
 
         <div class="post-meta">
@@ -355,8 +355,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-27T10:28:29+08:00">
-                2019-03-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-28T10:54:00+08:00">
+                2019-03-28
               </time>
             
 
@@ -371,7 +371,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T12:02:00+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T12:58:58+08:00">
                 2019-03-28
               </time>
             
@@ -426,7 +426,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  348 words
+                  677 words
                 </span>
               
 
@@ -442,7 +442,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1 mins
+                  3 mins
                 </span>
               
             </div>
@@ -463,35 +463,57 @@
       
 
       
-        <p>Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as shown in the below image.</p>
+        <p>Given a non-negative integer <em>numRows</em>, generate the first <em>numRows</em> of Pascal’s triangle.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif" alt="img"><br>In Pascal’s triangle, each number is the sum of the two numbers directly above it.</p>
 <p><strong>Example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[</span><br><span class="line"> [ 1, 2, 3 ],</span><br><span class="line"> [ 4, 5, 6 ],</span><br><span class="line"> [ 7, 8, 9 ]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">Output:  [1,2,4,7,5,3,6,8,9]</span><br><span class="line"></span><br><span class="line">Explanation:</span><br></pre></td></tr></table></figure>
-<p> <img src="https://assets.leetcode.com/uploads/2018/10/12/diagonal_traverse.png" alt></p>
-<p><strong>Note:</strong></p>
-<p>The total number of elements of the given matrix will not exceed 10,000.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input: 5</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">     [1],</span><br><span class="line">    [1,1],</span><br><span class="line">   [1,2,1],</span><br><span class="line">  [1,3,3,1],</span><br><span class="line"> [1,4,6,4,1]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <hr>
-<h1 id="LC-in-C"><a href="#LC-in-C" class="headerlink" title="LC in C++"></a>LC in C++</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; findDiagonalOrder(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">    <span class="keyword">if</span>(matrix.empty()) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> N = matrix.size();</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> M = matrix[<span class="number">0</span>].size();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> s = <span class="number">0</span>; s &lt;= N + M - <span class="number">2</span>; ++s)<span class="comment">//1.</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// for all i + j = s</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">0</span>; x &lt;= s; ++x) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> i = x;</span><br><span class="line">            <span class="keyword">int</span> j = s - i;</span><br><span class="line">            <span class="keyword">if</span>(s % <span class="number">2</span> == <span class="number">0</span>) swap(i, j);<span class="comment">//2.inner loop每次都是(0,s)开始的，但是偶数对角线是(s,0)开始的，所以要交换</span></span><br><span class="line">            <span class="keyword">if</span>(i &gt;= N || j &gt;= M) <span class="keyword">continue</span>;<span class="comment">//3.</span></span><br><span class="line">            res.push_back(matrix[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="LC-in-cpp-v-resize-row-1"><a href="#LC-in-cpp-v-resize-row-1" class="headerlink" title="LC in cpp: v.resize(row+1)"></a>LC in cpp: v.resize(row+1)</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和。</li>
+<li>Unfortunately resize initializes the values in the vector. </li>
+<li>To gain <strong>maximum efficiency</strong> ,you should use your own allocator with resize.</li>
+</ul>
+<p>12 ms    8.8 MB</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; generate(<span class="keyword">int</span> numRows) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ret(numRows);<span class="comment">//1.</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> row = <span class="number">0</span>; row&lt;numRows; row++)</span><br><span class="line">    &#123;</span><br><span class="line">        ret[row].resize(row + <span class="number">1</span>);<span class="comment">//2.</span></span><br><span class="line">        ret[row][<span class="number">0</span>] = ret[row][row] = <span class="number">1</span>;<span class="comment">//3.</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> col = <span class="number">1</span>; col&lt;row; col++)</span><br><span class="line">        &#123;</span><br><span class="line">            ret[row][col] = ret[row - <span class="number">1</span>][col - <span class="number">1</span>] </span><br><span class="line">                		  + ret[row - <span class="number">1</span>][col];<span class="comment">//4.</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><ol>
-<li>i+j = <strong>diaindex</strong> (diagonal number - 1)对角线的坐标和，等于，对角线的索引<ol>
-<li>maxdiaindex  = ((N-1) + (M-1)) = N + M - 2</li>
+<li>记得初始化，不然开始就数组越界</li>
+<li>v.resize(row+1);重新定义容器大小，注意是row+1</li>
+<li>头尾是1,因为size是row+1,所以尾是row,不是row-1</li>
+<li>中间是上层之和</li>
 </ol>
-</li>
-<li>iterate through all <strong>diaindex</strong> (denote this as s ) <ol>
-<li>find pairs (i, j) : i + j = s . </li>
-<li>the order :  <ol>
-<li>even start : (s, 0),swap (i,j)</li>
-<li>odd  start:(0, s)</li>
+<hr>
+<h1 id="LC-official-solution-DP"><a href="#LC-official-solution-DP" class="headerlink" title="LC official solution:DP"></a>LC official solution:DP</h1><h2 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a><strong>Intuition</strong></h2><ul>
+<li>If we have the a row of Pascal’s triangle, we can easily compute the next row by each pair of adjacent values.</li>
+<li>the <strong>iterative</strong> approach  can be classified as <strong>dynamic programming</strong> </li>
+</ul>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a><strong>Algorithm</strong></h2><ol>
+<li>generate the overall triangle list, which will store each row as a sublist. </li>
+<li>special case of 0 row,  return [1]</li>
+<li>If numRows &gt; 0:initialize triangle with [1] as its first row, and proceed to fill the rows </li>
 </ol>
-</li>
-</ol>
-</li>
-<li>边界控制，越界continue</li>
+<h2 id="Complexity-Analysis"><a href="#Complexity-Analysis" class="headerlink" title="Complexity Analysis"></a><strong>Complexity Analysis</strong></h2><ul>
+<li>O(n^2) Time : n(n+1)/2=n^2</li>
+<li>O(n^2) Space</li>
+</ul>
+<h2 id="my-code"><a href="#my-code" class="headerlink" title="my code"></a>my code</h2><p>8 ms    8.8 MB</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; generate(<span class="keyword">int</span> numRows) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ret;</span><br><span class="line">    <span class="keyword">if</span> (!numRows)</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    ret.push_back(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">1</span>,<span class="number">1</span>));<span class="comment">//0 row,1.</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> row = <span class="number">1</span>; row&lt;numRows; row++)<span class="comment">//1~numrows-1 row</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sub;</span><br><span class="line">        sub.push_back(<span class="number">1</span>);<span class="comment">//first col</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> col=<span class="number">1</span>;col&lt;row;col++)<span class="comment">//2.</span></span><br><span class="line">            sub.push_back(ret[row - <span class="number">1</span>][col - <span class="number">1</span>] </span><br><span class="line">                        + ret[row - <span class="number">1</span>][col]) ;<span class="comment">//middle col</span></span><br><span class="line">        sub.push_back(<span class="number">1</span>);<span class="comment">//last col</span></span><br><span class="line">        ret.push_back(sub); </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="细节-1"><a href="#细节-1" class="headerlink" title="细节"></a>细节</h2><ol>
+<li>vector<int> (1)写错，塞进去的是0，想塞1，这样写vector<int>(1,1)</int></int></li>
+<li>自己画图到第三层，row实际上是2，col&lt;row就行了</li>
+<li>各种数组越界。自己画图试试再写啊！</li>
 </ol>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
-<li>主要是对角线索引== 坐标索引之和，跟矩阵内部的数 一点关系都没有，从坐标下手</li>
-<li>知道row就可以推断出col=s-row。</li>
-<li>顺序的话，因为row++,每次都是(0,s)开始的。按题意，如果s是even，就swap(i,j)</li>
-<li>另外注意每次iteration的时候，越界跳出，continue</li>
+<li>第一种方法用的是resize，先已经分配了rows个容器了，这样性能不好，会初始化两次</li>
+<li>第二张方法是动态规划（迭代），用的push_back.<ol>
+<li>开始初始化第一行，push_back(vector\<int>(1,1))。这里一定要写两个参数，不然就只是定义了大小，默认初始化是0的。</int></li>
+<li>再push_back,构造剩下的索引row为 1~(numrows-1),每行建个sub一维容器。<ol>
+<li>sub第一个塞1</li>
+<li>从sub第二个开始，塞上层的和。解释一下，col&lt;row,最好自己画图，因为row是num-1,而每行的size其实是row+1,最后一个不塞，所以要塞的最后一个索引是(row+1)-1-1，即row-1，所以是col&lt;row</li>
+<li>sub最后一个塞1</li>
+</ol>
+</li>
+</ol>
+</li>
 </ol>
 
       
@@ -534,9 +556,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/Dynamic-Programming/" rel="tag"># Dynamic Programming</a>
+          
             <a href="/tags/Medium/" rel="tag"># Medium</a>
           
-            <a href="/tags/Matrix/" rel="tag"># Matrix</a>
+            <a href="/tags/vector/" rel="tag"># vector</a>
           
             <a href="/tags/Iteration/" rel="tag"># Iteration</a>
           
@@ -553,8 +577,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/27/LeetCode66-Plus-One/" rel="next" title="LeetCode66. Plus One">
-                <i class="fa fa-chevron-left"></i> LeetCode66. Plus One
+              <a href="/2019/03/28/LeetCode59-Spiral-Matrix-II/" rel="next" title="LeetCode59. Spiral Matrix II">
+                <i class="fa fa-chevron-left"></i> LeetCode59. Spiral Matrix II
               </a>
             
           </div>
@@ -562,10 +586,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/27/LeetCode54-Spiral-Matrix/" rel="prev" title="LeetCode54. Spiral Matrix">
-                LeetCode54. Spiral Matrix <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -793,7 +813,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LC-in-C"><span class="nav-number">1.</span> <span class="nav-text">LC in C++</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#细节"><span class="nav-number">1.1.</span> <span class="nav-text">细节</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LC-in-cpp-v-resize-row-1"><span class="nav-number">1.</span> <span class="nav-text">LC in cpp: v.resize(row+1)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#细节"><span class="nav-number">1.2.</span> <span class="nav-text">细节</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LC-official-solution-DP"><span class="nav-number">2.</span> <span class="nav-text">LC official solution:DP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intuition"><span class="nav-number">2.1.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithm"><span class="nav-number">2.2.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Complexity-Analysis"><span class="nav-number">2.3.</span> <span class="nav-text">Complexity Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#my-code"><span class="nav-number">2.4.</span> <span class="nav-text">my code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#细节-1"><span class="nav-number">2.5.</span> <span class="nav-text">细节</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
