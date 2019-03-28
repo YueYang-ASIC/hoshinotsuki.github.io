@@ -77,13 +77,13 @@
 
 
 
-<meta name="description" content="Topics Network programming (sockets, RPC(远程过程调用)（Remote Procedure Call）) Network (esp. Internet) architecture Switching, Routing, Congestion control, TCP/IP, Wirelessnetworks Using the network   Inter">
+<meta name="description" content="Topics Network programming (sockets, RPC(远程过程调用)(Remote Procedure Call)) Network (esp. Internet) architecture Switching, Routing, Congestion control, TCP/IP, Wireless networks Using the network   Inte">
 <meta name="keywords" content="TCP&#x2F;IP,Socket,port,OSI,Addressings">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Socket Programming">
 <meta property="og:url" content="http://yoursite.com/2019/03/26/Socket-Programming/index.html">
 <meta property="og:site_name" content="Lightmare">
-<meta property="og:description" content="Topics Network programming (sockets, RPC(远程过程调用)（Remote Procedure Call）) Network (esp. Internet) architecture Switching, Routing, Congestion control, TCP/IP, Wirelessnetworks Using the network   Inter">
+<meta property="og:description" content="Topics Network programming (sockets, RPC(远程过程调用)(Remote Procedure Call)) Network (esp. Internet) architecture Switching, Routing, Congestion control, TCP/IP, Wireless networks Using the network   Inte">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/From%20Links%20to%20Networks.JPG">
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/osi.JPG">
@@ -94,10 +94,10 @@
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/hops.JPG">
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/hourglass.JPG">
 <meta property="og:image" content="http://yoursite.com/2019/03/26/Socket-Programming/encapsulate.JPG">
-<meta property="og:updated_time" content="2019-03-26T15:37:12.214Z">
+<meta property="og:updated_time" content="2019-03-28T00:35:30.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Socket Programming">
-<meta name="twitter:description" content="Topics Network programming (sockets, RPC(远程过程调用)（Remote Procedure Call）) Network (esp. Internet) architecture Switching, Routing, Congestion control, TCP/IP, Wirelessnetworks Using the network   Inter">
+<meta name="twitter:description" content="Topics Network programming (sockets, RPC(远程过程调用)(Remote Procedure Call)) Network (esp. Internet) architecture Switching, Routing, Congestion control, TCP/IP, Wireless networks Using the network   Inte">
 <meta name="twitter:image" content="http://yoursite.com/2019/03/26/Socket-Programming/From%20Links%20to%20Networks.JPG">
 
 
@@ -379,8 +379,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-26T23:37:12+08:00">
-                2019-03-26
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T08:35:30+08:00">
+                2019-03-28
               </time>
             
           </span>
@@ -434,7 +434,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  998 words
+                  993 words
                 </span>
               
 
@@ -472,17 +472,17 @@
 
       
         <h1 id="Topics"><a href="#Topics" class="headerlink" title="Topics"></a>Topics</h1><ul>
-<li>Network programming (sockets, RPC(远程过程调用)（Remote Procedure Call）)</li>
+<li>Network programming (sockets, RPC(远程过程调用)(Remote Procedure Call))</li>
 <li>Network (esp. Internet) architecture</li>
-<li>Switching, Routing, Congestion control, TCP/IP, Wireless<br>networks<ul>
+<li>Switching, Routing, Congestion control, TCP/IP, Wireless networks<ul>
 <li>Using the network</li>
 </ul>
 </li>
-<li>Interface hardware &amp; low-level implementation issues,<br>Naming (DNS域名服务器), Error detection, compression(压缩)<ul>
+<li>Interface hardware &amp; low-level implementation issues, Naming (DNS), Error detection, compression(压缩)<ul>
 <li>Higher level issues</li>
 </ul>
 </li>
-<li>Encryption(加密) and Security, caching &amp; content distribution,<br>Peer-to-peer systems(对等网络系统)</li>
+<li>Encryption(加密) and Security, caching &amp; content distribution, Peer-to-peer systems(对等网络系统)</li>
 </ul>
 <hr>
 <h1 id="Building-blocks"><a href="#Building-blocks" class="headerlink" title="Building blocks"></a>Building blocks</h1><ul>
@@ -499,9 +499,9 @@
 <li>nodes can connect multiple other nodes //多点连接</li>
 <li>Recursively, one node can connect multiple networks  </li>
 </ul>
-<p><img src="/2019/03/26/Socket-Programming/From Links to Networks.JPG" alt="From Links to Networks"></p>
 </li>
 </ul>
+<p><img src="/2019/03/26/Socket-Programming/From Links to Networks.JPG" alt="From Links to Networks"></p>
 <hr>
 <h1 id="Protocol-layering"><a href="#Protocol-layering" class="headerlink" title="Protocol layering"></a>Protocol layering</h1><table>
 <thead>
@@ -535,11 +535,11 @@
 <h1 id="OSI-layers"><a href="#OSI-layers" class="headerlink" title="OSI layers"></a>OSI layers</h1><p><img src="/2019/03/26/Socket-Programming/osi.JPG" alt="osi"></p>
 <ol>
 <li>Physical – sends individual <strong>bits</strong></li>
-<li>Data link – sends <strong>frames</strong>, handles access control to<br>shared media (e.g., <strong>coax</strong>) 电缆</li>
+<li>Data link – sends <strong>frames</strong>, handles access control to    shared media (e.g., <strong>coax</strong>) 电缆</li>
 <li>Network – delivers <strong>packets</strong>, using <strong>routing</strong></li>
-<li>Transport – <strong>demultiplexes</strong>(解复用), provides <strong>reliability &amp;</strong><br><strong>flow</strong> control</li>
-<li>Session – can <strong>tie together</strong> multiple <strong>streams</strong> (e.g.,<br>audio &amp; video)</li>
-<li>Presentation – <strong>crypto</strong>(加密), conversion between<br>representations</li>
+<li>Transport – <strong>demultiplexes</strong>(解复用), provides <strong>reliability &amp; flow</strong> control</li>
+<li>Session – can <strong>tie together</strong> multiple <strong>streams</strong> (e.g.,    audio &amp; video)</li>
+<li>Presentation – <strong>crypto</strong>(加密), conversion between    representations</li>
 <li>Application – what end user gets, e.g., <strong>HTTP (web)</strong> </li>
 </ol>
 <hr>
@@ -551,37 +551,28 @@
 </li>
 <li><p>Each layer can have its own addressing</p>
 <ul>
-<li><p>Link layer: e.g., 48-bit <strong>Ethernet address</strong>  (interface) //6Bytes</p>
-<ul>
-<li><h2 id="Ethernet-address"><a href="#Ethernet-address" class="headerlink" title="Ethernet address"></a>Ethernet address</h2><p> <img src="/2019/03/26/Socket-Programming/Ethernet address.JPG" alt="Ethernet address"></p>
-</li>
-</ul>
-</li>
-<li><p>Network layer: 32-bit <strong>IP address</strong> (node) //IPv4 4Bytes, IPv6 8Bytes.</p>
-<ul>
-<li><h2 id="IPv4-address"><a href="#IPv4-address" class="headerlink" title="IPv4 address"></a>IPv4 address</h2><p> <img src="/2019/03/26/Socket-Programming/ip add.JPG" alt="ip add"></p>
-</li>
-<li><h2 id="IPv4-vs-IPv6"><a href="#IPv4-vs-IPv6" class="headerlink" title="IPv4 vs. IPv6"></a>IPv4 vs. IPv6</h2><p> <img src="/2019/03/26/Socket-Programming/IP4 ip6.JPG" alt="IP4 ip6"></p>
-</li>
-</ul>
-</li>
-<li><p>Transport layer: 16-bit <strong>TCP port</strong> (service) //2Bytes</p>
-<ul>
-<li><h2 id="TCP-port-HTTP-80"><a href="#TCP-port-HTTP-80" class="headerlink" title="TCP port // HTTP 80"></a>TCP port // HTTP 80</h2><p><img src="/2019/03/26/Socket-Programming/tcp port.JPG" alt="tcp port"></p>
-</li>
+<li>Link layer: e.g., 48-bit <strong>Ethernet address</strong>  (interface) //6Bytes</li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p><strong>Routing</strong> is process of <strong>delivering data</strong> to destination across multiple link <strong>hops</strong></p>
+<h2 id="Ethernet-address"><a href="#Ethernet-address" class="headerlink" title="Ethernet address"></a>Ethernet address</h2><p><img src="/2019/03/26/Socket-Programming/Ethernet address.JPG" alt="Ethernet address"></p>
 <ul>
-<li><h2 id="hop"><a href="#hop" class="headerlink" title="hop"></a><strong>hop</strong></h2><p><strong>one portion of the path</strong> between source and destination.<br><img src="/2019/03/26/Socket-Programming/hops.JPG" alt="hops"></p>
-</li>
+<li>Network layer: 32-bit <strong>IP address</strong> (node) //IPv4 4Bytes, IPv6 8Bytes.</li>
+</ul>
+<h2 id="IPv4-address"><a href="#IPv4-address" class="headerlink" title="IPv4 address"></a>IPv4 address</h2><p><img src="/2019/03/26/Socket-Programming/ip add.JPG" alt="ip add"></p>
+<h2 id="IPv4-vs-IPv6"><a href="#IPv4-vs-IPv6" class="headerlink" title="IPv4 vs. IPv6"></a>IPv4 vs. IPv6</h2><p><img src="/2019/03/26/Socket-Programming/IP4 ip6.JPG" alt="IP4 ip6"></p>
+<ul>
+<li>Transport layer: 16-bit <strong>TCP port</strong> (service) //2Bytes</li>
+</ul>
+<h2 id="TCP-port-HTTP-80"><a href="#TCP-port-HTTP-80" class="headerlink" title="TCP port // HTTP 80"></a>TCP port // HTTP 80</h2><p><img src="/2019/03/26/Socket-Programming/tcp port.JPG" alt="tcp port"></p>
+<ul>
+<li><strong>Routing</strong> is process of <strong>delivering data</strong> to destination across multiple link <strong>hops</strong></li>
+</ul>
+<h2 id="hop"><a href="#hop" class="headerlink" title="hop"></a><strong>hop</strong></h2><p><strong>one portion of the path</strong> between source and destination.<br><img src="/2019/03/26/Socket-Programming/hops.JPG" alt="hops"></p>
+<ul>
 <li><p>The <strong>hop count</strong> refers to the number of <strong>intermediate devices</strong> through which data must pass between source and destination.</p>
 </li>
 <li><p>A large number of hops between source and destination implies lower <a href="https://en.wikipedia.org/wiki/Real-time_computing" target="_blank" rel="noopener">real-time</a> performance.</p>
-</li>
-</ul>
 </li>
 <li><p>Special addresses can exist for <strong>broadcast/multicast</strong> (???)</p>
 </li>
@@ -703,7 +694,6 @@
 </li>
 </ul>
 <hr>
-<p>to be continued…</p>
 <hr>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><p><a href="http://www.steves-internet-guide.com/tcpip-ports-sockets/" target="_blank" rel="noopener">TCP/IP Ports and Sockets Explained</a></p>
@@ -773,8 +763,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/26/Network-Map/" rel="next" title="Network Map">
-                <i class="fa fa-chevron-left"></i> Network Map
+              <a href="/2019/03/26/Linux/" rel="next" title="Linux">
+                <i class="fa fa-chevron-left"></i> Linux
               </a>
             
           </div>
@@ -866,7 +856,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -888,7 +878,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">81</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -1054,7 +1044,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">62k</span>
+    <span title="Site words total count">62.3k</span>
   
 </div>
 
