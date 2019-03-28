@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Medium,Array,vector,Matrix,Iteration,">
+  <meta name="keywords" content="Medium,vector,Matrix,Iteration,2D Array,">
 
 
 
@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order. Example: 1234567Input: 3Output:[ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ]]">
-<meta name="keywords" content="Medium,Array,vector,Matrix,Iteration">
+<meta name="description" content="Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order. Example: 1234567Input: 3Output:[ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ]]  My ac in cpp​    16 ms">
+<meta name="keywords" content="Medium,vector,Matrix,Iteration,2D Array">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode59. Spiral Matrix II">
 <meta property="og:url" content="http://yoursite.com/2019/03/28/LeetCode59-Spiral-Matrix-II/index.html">
 <meta property="og:site_name" content="Lightmare">
-<meta property="og:description" content="Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order. Example: 1234567Input: 3Output:[ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ]]">
+<meta property="og:description" content="Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order. Example: 1234567Input: 3Output:[ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ]]  My ac in cpp​    16 ms">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-28T02:06:43.709Z">
+<meta property="og:updated_time" content="2019-03-28T02:47:09.774Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode59. Spiral Matrix II">
-<meta name="twitter:description" content="Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order. Example: 1234567Input: 3Output:[ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ]]">
+<meta name="twitter:description" content="Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order. Example: 1234567Input: 3Output:[ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ]]  My ac in cpp​    16 ms">
 
 
 
@@ -369,7 +369,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T10:06:43+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-28T10:47:09+08:00">
                 2019-03-28
               </time>
             
@@ -424,7 +424,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  31 words
+                  228 words
                 </span>
               
 
@@ -464,6 +464,14 @@
         <p>Given a positive integer <em>n</em>, generate a square matrix filled with elements from 1 to <em>n</em>2 in spiral order.</p>
 <p><strong>Example:</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="number">3</span></span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line"> [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ],</span><br><span class="line"> [ <span class="number">8</span>, <span class="number">9</span>, <span class="number">4</span> ],</span><br><span class="line"> [ <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span> ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="My-ac-in-cpp"><a href="#My-ac-in-cpp" class="headerlink" title="My ac in cpp"></a>My ac in cpp</h1><p>​    16 ms    8.9 MB</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; generateMatrix(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> top = <span class="number">0</span>, right = n - <span class="number">1</span>, bottom = n - <span class="number">1</span>, left = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ret(n,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n));<span class="comment">//1.</span></span><br><span class="line">    <span class="keyword">while</span> (num&lt;=n*n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//top</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> col = left; col &lt;= right; col++) </span><br><span class="line">            ret[top][col] = num++;</span><br><span class="line">        <span class="keyword">if</span> (++top &gt; bottom) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//right</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> row = top; row &lt;= bottom; row++) </span><br><span class="line">            ret[row][right] = num++;</span><br><span class="line">        <span class="keyword">if</span> (--right &lt; left) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//bottom</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> col = right; col &gt;= left; col--) </span><br><span class="line">            ret[bottom][col] = num++;</span><br><span class="line">        <span class="keyword">if</span> (--bottom &lt; top) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//left</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> row = bottom; row &gt;= top; row--) </span><br><span class="line">            ret[row][left] = num++;</span><br><span class="line">        <span class="keyword">if</span> (++left &gt; right) <span class="keyword">break</span>;<span class="comment">//2.</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h1><ol>
+<li>二维数组初始化： vector&lt;vector<int>&gt; ret( n, vector<int>(n) );</int></int></li>
+<li>越界大小判断，错了两次了</li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>跟<a href="/2019/03/27/LeetCode54-Spiral-Matrix/">螺旋矩阵</a>一样，只不过是逆向思维，套路还是上右下左遍历，更新行列号，判断越界break。</p>
 
       
     </div>
@@ -507,13 +515,13 @@
           
             <a href="/tags/Medium/" rel="tag"># Medium</a>
           
-            <a href="/tags/Array/" rel="tag"># Array</a>
-          
             <a href="/tags/vector/" rel="tag"># vector</a>
           
             <a href="/tags/Matrix/" rel="tag"># Matrix</a>
           
             <a href="/tags/Iteration/" rel="tag"># Iteration</a>
+          
+            <a href="/tags/2D-Array/" rel="tag"># 2D Array</a>
           
         </div>
       
@@ -588,8 +596,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -628,7 +645,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -744,6 +761,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#My-ac-in-cpp"><span class="nav-number">1.</span> <span class="nav-text">My ac in cpp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#细节"><span class="nav-number">2.</span> <span class="nav-text">细节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -778,7 +811,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">62.4k</span>
+    <span title="Site words total count">62.6k</span>
   
 </div>
 

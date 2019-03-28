@@ -3,16 +3,16 @@
   <entry>
     <title><![CDATA[LeetCode59. Spiral Matrix II]]></title>
     <url>%2F2019%2F03%2F28%2FLeetCode59-Spiral-Matrix-II%2F</url>
-    <content type="text"><![CDATA[Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order. Example: 1234567Input: 3Output:[ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ]]]]></content>
+    <content type="text"><![CDATA[Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order. Example: 1234567Input: 3Output:[ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ]] My ac in cpp​ 16 ms 8.9 MB 1234567891011121314151617181920212223242526272829vector&lt;vector&lt;int&gt;&gt; generateMatrix(int n) &#123; int num = 1; int top = 0, right = n - 1, bottom = n - 1, left = 0; vector&lt;vector&lt;int&gt;&gt; ret(n,vector&lt;int&gt;(n));//1. while (num&lt;=n*n) &#123; //top for (int col = left; col &lt;= right; col++) ret[top][col] = num++; if (++top &gt; bottom) break; //right for (int row = top; row &lt;= bottom; row++) ret[row][right] = num++; if (--right &lt; left) break; //bottom for (int col = right; col &gt;= left; col--) ret[bottom][col] = num++; if (--bottom &lt; top) break; //left for (int row = bottom; row &gt;= top; row--) ret[row][left] = num++; if (++left &gt; right) break;//2. &#125; return ret;&#125; 细节 二维数组初始化： vector&lt;vector&gt; ret( n, vector(n) ); 越界大小判断，错了两次了 总结跟螺旋矩阵一样，只不过是逆向思维，套路还是上右下左遍历，更新行列号，判断越界break。]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
       <tags>
         <tag>Medium</tag>
-        <tag>Array</tag>
         <tag>vector</tag>
         <tag>Matrix</tag>
         <tag>Iteration</tag>
+        <tag>2D Array</tag>
       </tags>
   </entry>
   <entry>
@@ -89,7 +89,7 @@
   <entry>
     <title><![CDATA[Array and String]]></title>
     <url>%2F2019%2F03%2F27%2FArray-and-String%2F</url>
-    <content type="text"><![CDATA[ArrayArray store sequentially accessed randomly（index) one-dimensional array = linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful 12345678910111213141516#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; // 1. Initialize int a0[5]; int a1[5] = &#123; 1, 2, 3 &#125;; // other element will be set as the default value // 2. Get Length int size = sizeof(a1) / sizeof(*a1); cout &lt;&lt; "The size of a1 is: " &lt;&lt; size &lt;&lt; endl;//5 // 3. Sort sort(a1, a1 + size); for (int&amp; item : a1) &#123; cout &lt;&lt; " " &lt;&lt; item;//0 0 2 3 4 &#125;&#125; Dynamic Array dynamic array: random access list variable size vector 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; // 1. initialize vector&lt;int&gt; v0;//v0.size()=0 vector&lt;int&gt; v9(4*3);//v9.size()=12。初始值是0，用()而不是[]。 vector&lt;int&gt; v1(5, 0); // 2. make a copy vector&lt;int&gt; v2(v1.begin(), v1.end()); vector&lt;int&gt; v3(v2); // 2. cast an array to a vector int a[5] = &#123;0, 1, 2, 3, 4&#125;; vector&lt;int&gt; v4(a, *(&amp;a + 1));//copy // 3. insert v4.insert(v4.begin(), 1);//在it前面插入val // 5. iterate the vector for (int i = 0; i &lt; v4.size(); ++i) &#123; cout &lt;&lt; " " &lt;&lt; v4[i]; &#125; for (int const&amp; item : v4) &#123; cout &lt;&lt; " " &lt;&lt; item; &#125; for (auto item = v4.begin(); item != v4.end(); ++item) &#123; cout &lt;&lt; " " &lt;&lt; *item; &#125; // 7. sort sort(v4.begin(), v4.end()); &#125; Leetcode [724] 寻找数组的中心索引 [66] 加一 [747] 至少是其他数字两倍的最大数 2D Array sequence of elements rectangular grid 1234567891011121314151617181920212223242526272829#include &lt;iostream&gt;template &lt;size_t n, size_t m&gt;void printArray(int const(&amp;a)[n][m]) &#123; for (int i = 0; i &lt; n; ++i) &#123; for (int j = 0; j &lt; m; ++j) &#123; cout &lt;&lt; a[i][j] &lt;&lt; " "; &#125; cout &lt;&lt; endl; &#125;&#125;int main() &#123; cout &lt;&lt; "Example I:" &lt;&lt; endl; int a[2][5]; printArray(a); cout &lt;&lt; "Example II:" &lt;&lt; endl; int b[2][5] = &#123;&#123;1, 2, 3&#125;&#125;; printArray(b); cout &lt;&lt; "Example III:"&lt;&lt; endl; int c[][5] = &#123;1, 2, 3, 4, 5, 6, 7&#125;; printArray(c); cout &lt;&lt; "Example IV:" &lt;&lt; endl; int d[][5] = &#123;&#123;1, 2, 3, 4&#125;, &#123;5, 6&#125;, &#123;7&#125;&#125;; printArray(d);&#125; output 12345678910111213Example I:-858993460 -858993460 -858993460 -858993460 -858993460-858993460 -858993460 -858993460 -858993460 -858993460Example II:1 2 3 0 00 0 0 0 0Example III:1 2 3 4 56 7 0 0 0Example IV:1 2 3 4 05 6 0 0 07 0 0 0 0 Principle some other languages, implemented internally as a one-dimensional array some other languages, actually no multidimensional array at all. Dynamic 2D Array a nested dynamic array Leetcode [498] 对角线遍历 [54] 螺旋矩阵]]></content>
+    <content type="text"><![CDATA[ArrayArray store sequentially accessed randomly（index) one-dimensional array = linear array a fixed capacity：specify the size of the array when we initialize it,inconvenient and wasteful 12345678910111213141516#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; // 1. Initialize int a0[5]; int a1[5] = &#123; 1, 2, 3 &#125;; // other element will be set as the default value // 2. Get Length int size = sizeof(a1) / sizeof(*a1); cout &lt;&lt; "The size of a1 is: " &lt;&lt; size &lt;&lt; endl;//5 // 3. Sort sort(a1, a1 + size); for (int&amp; item : a1) &#123; cout &lt;&lt; " " &lt;&lt; item;//0 0 2 3 4 &#125;&#125; Dynamic Array dynamic array: random access list variable size vector 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; // 1. initialize vector&lt;int&gt; v0;//v0.size()=0 vector&lt;int&gt; v9(4*3);//v9.size()=12。初始值是0，用()而不是[]。 vector&lt;int&gt; v1(5, 0); // 2. make a copy vector&lt;int&gt; v2(v1.begin(), v1.end()); vector&lt;int&gt; v3(v2); // 2. cast an array to a vector int a[5] = &#123;0, 1, 2, 3, 4&#125;; vector&lt;int&gt; v4(a, *(&amp;a + 1));//copy // 3. insert v4.insert(v4.begin(), 1);//在it前面插入val // 5. iterate the vector for (int i = 0; i &lt; v4.size(); ++i) &#123; cout &lt;&lt; " " &lt;&lt; v4[i]; &#125; for (int const&amp; item : v4) &#123; cout &lt;&lt; " " &lt;&lt; item; &#125; for (auto item = v4.begin(); item != v4.end(); ++item) &#123; cout &lt;&lt; " " &lt;&lt; *item; &#125; // 7. sort sort(v4.begin(), v4.end()); &#125; Leetcode [724] 寻找数组的中心索引 [66] 加一 [747] 至少是其他数字两倍的最大数 2D Array sequence of elements rectangular grid 1234567891011121314151617181920212223242526272829#include &lt;iostream&gt;template &lt;size_t n, size_t m&gt;void printArray(int const(&amp;a)[n][m]) &#123; for (int i = 0; i &lt; n; ++i) &#123; for (int j = 0; j &lt; m; ++j) &#123; cout &lt;&lt; a[i][j] &lt;&lt; " "; &#125; cout &lt;&lt; endl; &#125;&#125;int main() &#123; cout &lt;&lt; "Example I:" &lt;&lt; endl; int a[2][5]; printArray(a); cout &lt;&lt; "Example II:" &lt;&lt; endl; int b[2][5] = &#123;&#123;1, 2, 3&#125;&#125;; printArray(b); cout &lt;&lt; "Example III:"&lt;&lt; endl; int c[][5] = &#123;1, 2, 3, 4, 5, 6, 7&#125;; printArray(c); cout &lt;&lt; "Example IV:" &lt;&lt; endl; int d[][5] = &#123;&#123;1, 2, 3, 4&#125;, &#123;5, 6&#125;, &#123;7&#125;&#125;; printArray(d);&#125; output 12345678910111213Example I:-858993460 -858993460 -858993460 -858993460 -858993460-858993460 -858993460 -858993460 -858993460 -858993460Example II:1 2 3 0 00 0 0 0 0Example III:1 2 3 4 56 7 0 0 0Example IV:1 2 3 4 05 6 0 0 07 0 0 0 0 Principle some other languages, implemented internally as a one-dimensional array some other languages, actually no multidimensional array at all. Dynamic 2D Array a nested dynamic array 123456789vector&lt;int&gt; subret(3);vector&lt;vector&lt;int&gt;&gt; ret(3, subret);for (auto const &amp; it : ret)&#123; for (auto const &amp; it2 : it) cout &lt;&lt; it2&lt;&lt;" "; cout &lt;&lt; endl;&#125; output 1230 0 00 0 00 0 0 Leetcode [498] 对角线遍历 [54] 螺旋矩阵]]></content>
   </entry>
   <entry>
     <title><![CDATA[Socket Programming]]></title>
@@ -135,9 +135,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Easy</tag>
         <tag>Linked List</tag>
         <tag>Two Pointers</tag>
+        <tag>Easy</tag>
         <tag>Medium</tag>
       </tags>
   </entry>
@@ -149,9 +149,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Easy</tag>
         <tag>Linked List</tag>
         <tag>Two Pointers</tag>
+        <tag>Easy</tag>
       </tags>
   </entry>
   <entry>
@@ -191,8 +191,8 @@
         <tag>Hash Table</tag>
         <tag>unordered_map</tag>
         <tag>Unordered Containers</tag>
-        <tag>Operating System</tag>
         <tag>Linux</tag>
+        <tag>Operating System</tag>
         <tag>unordered_set</tag>
         <tag>unordered_multimap</tag>
         <tag>unordered_multiset</tag>
@@ -255,8 +255,8 @@
       <tags>
         <tag>pointer</tag>
         <tag>Dynamic Programming</tag>
-        <tag>Math</tag>
         <tag>Easy</tag>
+        <tag>Math</tag>
         <tag>Array</tag>
         <tag>vector</tag>
       </tags>
@@ -310,9 +310,9 @@
         <tag>C++</tag>
         <tag>TCP/IP</tag>
         <tag>Linked List</tag>
+        <tag>Linux</tag>
         <tag>Heap</tag>
         <tag>Operating System</tag>
-        <tag>Linux</tag>
         <tag>process</tag>
         <tag>quicksort</tag>
       </tags>
@@ -364,8 +364,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Easy</tag>
+        <tag>Math</tag>
         <tag>String</tag>
       </tags>
   </entry>
@@ -402,8 +402,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Easy</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
