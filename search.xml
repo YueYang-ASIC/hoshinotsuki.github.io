@@ -3,13 +3,14 @@
   <entry>
     <title><![CDATA[LeetCode14. Longest Common Prefix]]></title>
     <url>%2F2019%2F03%2F29%2FLeetCode14-Longest-Common-Prefix%2F</url>
-    <content type="text"><![CDATA[Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string &quot;&quot;. Example 1: 12Input: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]Output: &quot;fl&quot; Example 2: 123Input: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]Output: &quot;&quot;Explanation: There is no common prefix among the input strings. Note: All given inputs are in lowercase letters a-z.]]></content>
+    <content type="text"><![CDATA[Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string &quot;&quot;. Example 1: 12Input: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]Output: &quot;fl&quot; Example 2: 123Input: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]Output: &quot;&quot;Explanation: There is no common prefix among the input strings. Note: All given inputs are in lowercase letters a-z. Sorting思路将容器里的string排序，有共同字母多的两个字符串会被排到一起，而跟其它字符串相同的字母越少的string会被挤到容器首尾两端，最后找首尾字母串的共同前缀。 my code in cppMy code in cpp12345678910111213141516171819string longestCommonPrefix(vector&lt;string&gt;&amp; strs) &#123; if (strs.empty())//1. return ""; sort(strs.begin(), strs.end()); vector&lt;char&gt; ret; string first = *strs.begin(); string last = strs.back(); int m = first.size(), n = last.size(); for(int i=0,j=0;i&lt;m&amp;&amp;j&lt;n;i++,j++) &#123; if (first[i] != last[i]) break; ret.push_back(first[i]); &#125; string res = ""; for (auto const &amp; c : ret) res += c; return res;&#125; Detail 一定要记得做入口判断，不然传[]进去，后面的函数编译器都用不了的，会报错。 lc in cpp1234567string longestCommonPrefix(vector&lt;string&gt;&amp; strs) &#123; if (strs.empty()) return ""; sort(strs.begin(), strs.end()); int i = 0, len = min(strs[0].size(), strs.back().size()); while (i &lt; len &amp;&amp; strs[0][i] == strs.back()[i]) ++i; return strs[0].substr(0, i);&#125; Brute-force思路将容器的string转换成2D array。纵向遍历。 my code in cpp12345678910111213141516171819202122232425262728293031323334353637383940class Solution &#123;public: string longestCommonPrefix(vector&lt;string&gt;&amp; strs) &#123; if (strs.empty()) return ""; vector&lt;char&gt; ret; vector&lt;vector&lt;char&gt;&gt; _2DArray; //1. for (auto const &amp; string : strs) &#123; vector&lt;char&gt; array; for(auto const &amp; c :string) &#123; array.push_back(c); &#125; _2DArray.push_back(array); &#125; for (int col = 0,row= 0;col&lt; _2DArray[0].size(); col++)//cols &#123; char cur = _2DArray[row][col]; for (; (row &lt; _2DArray.size()); row++)//rows &#123; if (strs[row].length() &lt;= col ||_2DArray[row][col] != cur)//2. break; &#125; if(row==_2DArray.size()) ret.push_back(cur); else break;//3. row = 0;//4. &#125; string res = ""; for (auto const &amp; c : ret) res += c; return res; &#125;&#125;; 细节 string to vector\ vector越界：strs[row].length() &lt;= col|| 。而且要在||前面 else break;:如果出现[“aca”,”cba”]，会返回a。加了else之后就不会继续遍历了。遇到不符合prefix的string就直接break. vector越界：每遍历完一列后，要把row置为0. lc in cpp1234567891011121314string longestCommonPrefix(vector&lt;string&gt;&amp; strs) &#123; if (strs.empty()) return ""; string res = ""; for (int j = 0; j &lt; strs[0].size(); ++j) &#123; char c = strs[0][j]; for (int i = 1; i &lt; strs.size(); ++i) &#123; if (j &gt;= strs[i].size() || strs[i][j] != c) &#123; return res; &#125; &#125; res.push_back(c); &#125; return res;&#125; #Brute-force 优化substr lc in cpp2当前某个字符和第一个字符串对应位置的字符不相等，说明不会再有更长的共同前缀了，我们直接通过用substr的方法直接取出共同前缀的子字符串。如果遍历结束前没有返回结果的话，说明第一个单词就是公共前缀，返回为结果即可。 12345678910string longestCommonPrefix(vector&lt;string&gt;&amp; strs) &#123; if (strs.empty()) return ""; for (int j = 0; j &lt; strs[0].size(); ++j) &#123; for (int i = 0; i &lt; strs.size(); ++i) &#123; if (j &gt;= strs[i].size() || strs[i][j] != strs[0][j]) return strs[i].substr(0, j); &#125; &#125; return strs[0];&#125; 总结 用sort很难想到，但是写出来很简单。 2Darray的纵向遍历有点难想到，写出来的时候细节很多，尤其是数组越界。看了别人的写法之后，我才知道vector\本身就是2Darray，直接用[]重载就行，根本不用转换vector\。而且用return res代替break就可以少在外面的for loop里面做break了。]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
       <tags>
         <tag>Easy</tag>
         <tag>String</tag>
+        <tag>string to vector</tag>
       </tags>
   </entry>
   <entry>
@@ -21,8 +22,9 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Two Pointers</tag>
         <tag>String</tag>
+        <tag>Two Pointers</tag>
+        <tag>KMP</tag>
       </tags>
   </entry>
   <entry>
@@ -46,11 +48,11 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Dynamic Programming</tag>
         <tag>2D Array</tag>
         <tag>Easy</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
-        <tag>Dynamic Programming</tag>
         <tag>O(1) space</tag>
       </tags>
   </entry>
@@ -62,11 +64,11 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Dynamic Programming</tag>
         <tag>2D Array</tag>
         <tag>Easy</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
-        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -149,9 +151,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Dynamic Programming</tag>
         <tag>Easy</tag>
         <tag>vector</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
       </tags>
   </entry>
@@ -323,9 +325,9 @@
       </categories>
       <tags>
         <tag>pointer</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Easy</tag>
         <tag>vector</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Math</tag>
         <tag>Array</tag>
       </tags>
@@ -419,8 +421,8 @@
       </categories>
       <tags>
         <tag>Sort</tag>
-        <tag>Medium</tag>
         <tag>String</tag>
+        <tag>Medium</tag>
         <tag>Array</tag>
         <tag>Permutations</tag>
       </tags>
@@ -483,8 +485,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Easy</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Easy</tag>
         <tag>Optimization problem</tag>
         <tag>Divide and Conquer</tag>
       </tags>
@@ -598,8 +600,8 @@
         <category>《C++ Primer》</category>
       </categories>
       <tags>
-        <tag>RBT</tag>
         <tag>STL</tag>
+        <tag>RBT</tag>
         <tag>Sort</tag>
         <tag>priority_queue</tag>
         <tag>Algorithms library</tag>
@@ -759,8 +761,8 @@
       </categories>
       <tags>
         <tag>String</tag>
-        <tag>Hard</tag>
         <tag>Array</tag>
+        <tag>Hard</tag>
         <tag>Backtracking</tag>
       </tags>
   </entry>
@@ -794,7 +796,7 @@
   <entry>
     <title><![CDATA[码不停题]]></title>
     <url>%2F2019%2F01%2F21%2Fleetcode%2F</url>
-    <content type="text"><![CDATA[题号 解答 [1] 两数之和 1. umap.find(target - nums[i])2. umap.count(target-nums[i]) 👍 [14] 最长公共前缀 [28] 实现strStr() 1. 暴力搜索法。O(m(m-n+1))=O(m*n)2. kmp [46] 全排列 1. 递归. 分层布局。1.交换第一个数字。2.第一个数固定。后面的排列。3.交换归位。 2. 递归。回溯。填空格法。访问数组标记。 [47] 全排列ii set。去重。递归。交换。 [51] N皇后 回溯。排序。基于条件对string进行排序。H [52] N皇后ii 回溯。计数。跟51题一样。 [53] 最大子序和 1. 2*O(n/2)+O(1)=O(n)。分治法。max(divide,merge)。2. O(n)。Kadane’s algorithm。DP。分为子问题。 [54] 螺旋矩阵 上右下左四个方向，依次打印。每次打印完一行后更新变量，判断越界。 [59] 螺旋矩阵 II 跟54螺旋矩阵一样，只不过是逆向思维，套路还是上右下左遍历，更新行列号，判断越界break。 [66] 加一 1.迭代O(1)space,O(n)time👍2. 递归O(n)space,O(n)time [67] 二进制求和 字符串链接，动态规划,二进制进位 [77] 组合 1. 公式法：C(K,N)=C(K-1,N-1)+C(K,N-1)。2. 回溯法。递归+循环。M [94] 二叉树的中序遍历 1. 中序遍历。递归。E2. 中序遍历。1个栈。M。👍3. 中序遍历。O1,非递归+不用栈。线索二叉树。H。 [104] 二叉树的最大深度 dfs.递归。E [105] 从前序与中序遍历序列构造二叉树 递归。二分查找。mid.start.end. pos=distance(.begin,find( , , )) [111] 二叉树的最小深度 dfs.递归。E [118] 杨辉三角 1. 初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和.但是太慢了。2.动态规划。空容器返空。初始化第0行[1]。从第一行开始到numrows-1行开始，每行构建个子容器：第一个塞1，中间塞和，最后塞1.👍 [119] 杨辉三角 II 1. dp.迭代。清空，塞1，塞中间，塞1，sub=ret2. 想象成一个栈，从后res[rowIndex]往前迭代，每次更新为前一个数加自身的和。.cpp) [138] 复制带随机指针的链表 链表/复制原始(copy,link,next)/复制随机(copy,next)/分离。M [141] 环形链表 快慢指针。fast&amp;&amp;fast-&gt;next一起判空。有环必走不到空，指针相遇就有环。 [142] 环形链表 II 1. 快慢指针，计数2. 三个指针！环状检测算法！👍 [144] 二叉树的前序遍历 1. 递归2. 迭代+栈👍 [145] 二叉树的后序遍历 1. 递归2. 迭代+1个栈👍3. 迭代+2个栈 [169] 求众数 1. 快排。找中位数。O(nlogn)2. 不修改数组的方法O(n) 👍 [172] 阶乘后的零 1. 数学。递归。2. 数学。迭代。 [179] 最大数 字符串排序,sort.lambda.string [215] 数组中的第K个最大元素 1. O(nlogn)。快排sort()。reverse()。会修改数组。2. O(n)。快排in-place partition/one way。会修改数组。3. O(nlogk)。priorityqueue-default-maxheap。基于堆。所有元素放入pq，弹出k-1次堆顶，返回pq.top()。不需要修改数组，适用于处理海量数据。4. O(nlogk)。multiset-default-minheap。基于rbt,设置一个大小为k的最小堆。最后弹出*set.begin()。不需要修改数组，适用于处理海量数据。.cpp) [233] 数字1的个数 数学。T:O(logn),S:O(1)1. 公式法：n/(10d)d + min(d,max(0,n\%(10d)-d+1))2.划分法。满二进一位（满载），如果量级的最后一位是1，要加上余数+1 [263] 丑数 数学。迭代。 [264] 丑数ii 动态规划.3个指针 [295] 数据流的中位数 1. 增删O(logn),查O(1).maxheap，两个stl::pq,一个放前一半大的数，一个放后一半大的负数。2. AVL。maxheap和minheap。优先队列。 [297] 二叉树的序列化与反序列化 1. bfs/queue/stringstream2. dfs递归/stringstream in(str)/obj.str()返回值 [387] 字符串中的第一个唯一字符 无序关联式容器，哈希表，计数。unordered_map&gt; [400] 第N个数字 迭代。数学。tostring(int)。(string)char。stoi(const string&amp;) [426] 把二叉搜索树转化为有序双向链表 分治法。递归。指针引用。中序遍历。M [463] 岛屿的周长 1. 岛屿边界处：在数组最左边，或者左边格子没有岛屿2. 先假设算4个边，判断左边和上边是否有岛屿 👍 [498] 对角线遍历 iteration：对角线索引 = 对角线坐标和；根据对角线index奇偶i，swap坐标;越界跳出 [700] 二叉搜索树的查找 1. 递归。BST。E2. 迭代。BST。E。 [701] 二叉搜索树的插入 1. 递归。BST。2. 迭代。BST。break。 [705] 设计哈希集合 hashset。二维数组。value=0或者1.代表集合中是否存在。E。 [706] 设计哈希映射 hashmap。key-value。映射。初值为-1。E。 [724] 寻找数组的中心索引 1. 计算不含nums[i]的leftsum，如果leftsum== total - leftsum -nums[i]，返回i2. left=0,right=total;right-sum[i],if(==),return i;left+nums[i];return -1 [747] 至少是其他数字两倍的最大数 第一遍找到最大并记录索引。第二遍如果又发现不符合条件的返-1。否则返index [804] 国际摩尔斯密码 unordered_set。hash。E。 [876] 链表的中间结点 快慢指针。链表。]]></content>
+    <content type="text"><![CDATA[题号 解答 [1] 两数之和 1. umap.find(target - nums[i])2. umap.count(target-nums[i]) 👍 [14] 最长公共前缀 1.sort,比较第一个和最后一个的公共前缀。👍2.2Darray。纵向遍历。优化版，substr3. 2Darray。纵向遍历。 [28] 实现strStr() 1. 暴力搜索法。O(m(m-n+1))=O(m*n)2. kmp [46] 全排列 1. 递归. 分层布局。1.交换第一个数字。2.第一个数固定。后面的排列。3.交换归位。 2. 递归。回溯。填空格法。访问数组标记。 [47] 全排列ii set。去重。递归。交换。 [51] N皇后 回溯。排序。基于条件对string进行排序。H [52] N皇后ii 回溯。计数。跟51题一样。 [53] 最大子序和 1. 2*O(n/2)+O(1)=O(n)。分治法。max(divide,merge)。2. O(n)。Kadane’s algorithm。DP。分为子问题。 [54] 螺旋矩阵 上右下左四个方向，依次打印。每次打印完一行后更新变量，判断越界。 [59] 螺旋矩阵 II 跟54螺旋矩阵一样，只不过是逆向思维，套路还是上右下左遍历，更新行列号，判断越界break。 [66] 加一 1.迭代O(1)space,O(n)time👍2. 递归O(n)space,O(n)time [67] 二进制求和 字符串链接，动态规划,二进制进位 [77] 组合 1. 公式法：C(K,N)=C(K-1,N-1)+C(K,N-1)。2. 回溯法。递归+循环。M [94] 二叉树的中序遍历 1. 中序遍历。递归。E2. 中序遍历。1个栈。M。👍3. 中序遍历。O1,非递归+不用栈。线索二叉树。H。 [104] 二叉树的最大深度 dfs.递归。E [105] 从前序与中序遍历序列构造二叉树 递归。二分查找。mid.start.end. pos=distance(.begin,find( , , )) [111] 二叉树的最小深度 dfs.递归。E [118] 杨辉三角 1. 初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和.但是太慢了。2.动态规划。空容器返空。初始化第0行[1]。从第一行开始到numrows-1行开始，每行构建个子容器：第一个塞1，中间塞和，最后塞1.👍 [119] 杨辉三角 II 1. dp.迭代。清空，塞1，塞中间，塞1，sub=ret2. 想象成一个栈，从后res[rowIndex]往前迭代，每次更新为前一个数加自身的和。.cpp) [138] 复制带随机指针的链表 链表/复制原始(copy,link,next)/复制随机(copy,next)/分离。M [141] 环形链表 快慢指针。fast&amp;&amp;fast-&gt;next一起判空。有环必走不到空，指针相遇就有环。 [142] 环形链表 II 1. 快慢指针，计数2. 三个指针！环状检测算法！👍 [144] 二叉树的前序遍历 1. 递归2. 迭代+栈👍 [145] 二叉树的后序遍历 1. 递归2. 迭代+1个栈👍3. 迭代+2个栈 [169] 求众数 1. 快排。找中位数。O(nlogn)2. 不修改数组的方法O(n) 👍 [172] 阶乘后的零 1. 数学。递归。2. 数学。迭代。 [179] 最大数 字符串排序,sort.lambda.string [215] 数组中的第K个最大元素 1. O(nlogn)。快排sort()。reverse()。会修改数组。2. O(n)。快排in-place partition/one way。会修改数组。3. O(nlogk)。priorityqueue-default-maxheap。基于堆。所有元素放入pq，弹出k-1次堆顶，返回pq.top()。不需要修改数组，适用于处理海量数据。4. O(nlogk)。multiset-default-minheap。基于rbt,设置一个大小为k的最小堆。最后弹出*set.begin()。不需要修改数组，适用于处理海量数据。.cpp) [233] 数字1的个数 数学。T:O(logn),S:O(1)1. 公式法：n/(10d)d + min(d,max(0,n\%(10d)-d+1))2.划分法。满二进一位（满载），如果量级的最后一位是1，要加上余数+1 [263] 丑数 数学。迭代。 [264] 丑数ii 动态规划.3个指针 [295] 数据流的中位数 1. 增删O(logn),查O(1).maxheap，两个stl::pq,一个放前一半大的数，一个放后一半大的负数。2. AVL。maxheap和minheap。优先队列。 [297] 二叉树的序列化与反序列化 1. bfs/queue/stringstream2. dfs递归/stringstream in(str)/obj.str()返回值 [387] 字符串中的第一个唯一字符 无序关联式容器，哈希表，计数。unordered_map&gt; [400] 第N个数字 迭代。数学。tostring(int)。(string)char。stoi(const string&amp;) [426] 把二叉搜索树转化为有序双向链表 分治法。递归。指针引用。中序遍历。M [463] 岛屿的周长 1. 岛屿边界处：在数组最左边，或者左边格子没有岛屿2. 先假设算4个边，判断左边和上边是否有岛屿 👍 [498] 对角线遍历 iteration：对角线索引 = 对角线坐标和；根据对角线index奇偶i，swap坐标;越界跳出 [700] 二叉搜索树的查找 1. 递归。BST。E2. 迭代。BST。E。 [701] 二叉搜索树的插入 1. 递归。BST。2. 迭代。BST。break。 [705] 设计哈希集合 hashset。二维数组。value=0或者1.代表集合中是否存在。E。 [706] 设计哈希映射 hashmap。key-value。映射。初值为-1。E。 [724] 寻找数组的中心索引 1. 计算不含nums[i]的leftsum，如果leftsum== total - leftsum -nums[i]，返回i2. left=0,right=total;right-sum[i],if(==),return i;left+nums[i];return -1 [747] 至少是其他数字两倍的最大数 第一遍找到最大并记录索引。第二遍如果又发现不符合条件的返-1。否则返index [804] 国际摩尔斯密码 unordered_set。hash。E。 [876] 链表的中间结点 快慢指针。链表。]]></content>
       <categories>
         <category>Interview</category>
       </categories>
