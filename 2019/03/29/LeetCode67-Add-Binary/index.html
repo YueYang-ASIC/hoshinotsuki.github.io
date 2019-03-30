@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="Given two binary strings, return their sum (also a binary string). The input strings are both non-empty and contains only characters 1 or 0. Example 1: 12Input: a = &amp;quot;11&amp;quot;, b = &amp;quot;1&amp;quot;Ou">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-29T03:31:09.452Z">
+<meta property="og:updated_time" content="2019-03-29T04:50:02.314Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode67. Add Binary">
 <meta name="twitter:description" content="Given two binary strings, return their sum (also a binary string). The input strings are both non-empty and contains only characters 1 or 0. Example 1: 12Input: a = &amp;quot;11&amp;quot;, b = &amp;quot;1&amp;quot;Ou">
@@ -369,7 +369,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-03-29T11:31:09+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-03-29T12:50:02+08:00">
                 2019-03-29
               </time>
             
@@ -424,7 +424,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  533 words
+                  534 words
                 </span>
               
 
@@ -478,7 +478,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">addBinary</span><span class="params">(<span class="built_in">string</span> a, <span class="built_in">string</span> b)</span> </span>&#123; </span><br><span class="line">    <span class="built_in">string</span> ret=<span class="string">""</span>;</span><br><span class="line">    <span class="keyword">int</span> max = a.size()<span class="number">-1</span>, min = b.size()<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> numa, numb,sum,carry=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (max&gt;=<span class="number">0</span> || min&gt;=<span class="number">0</span> )<span class="comment">//1.</span></span><br><span class="line">    &#123;</span><br><span class="line">        numa = (max &gt;= <span class="number">0</span>) ? a[max--] - <span class="string">'0'</span> : <span class="number">0</span>;<span class="comment">//2.</span></span><br><span class="line">        numb = (min &gt;= <span class="number">0</span>) ? b[min--] - <span class="string">'0'</span>: <span class="number">0</span>;</span><br><span class="line">        sum = numa + numb+ carry ;</span><br><span class="line">        carry = sum &gt;&gt; <span class="number">1</span>;<span class="comment">//3.</span></span><br><span class="line">        ret = to_string(sum % <span class="number">2</span>)+ret;<span class="comment">//4.</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> carry==<span class="number">1</span>?<span class="string">"1"</span>+ret:ret;<span class="comment">//5.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h1><ol>
 <li>不能写成while(max||min)因为索引为0的时候也要算。</li>
-<li>将字符转为数字：-‘0’，是单引号。长度一样不用管，如果数组越界了，就取(int)0。</li>
+<li>将字符转为数字：-‘0’，是单引号。长度不一样不用管，如果数组越界了，就取(int)0。</li>
 <li>进位标志：求商，如果不为1，就不用进位</li>
 <li>不是ret+=，那样写的话，ret在前面了，因为是<strong>低位对齐</strong>，所以要从后往前，ret应该链接在后面。int转string：to_string(int)</li>
 <li>最后不能直接返ret，如果还要进位，前面补1,连接到字符串前面。</li>
@@ -827,7 +827,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">66k</span>
+    <span title="Site words total count">66.6k</span>
   
 </div>
 
