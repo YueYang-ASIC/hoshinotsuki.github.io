@@ -3,15 +3,15 @@
   <entry>
     <title><![CDATA[LeetCode27. Remove Element]]></title>
     <url>%2F2019%2F04%2F01%2FLeetCode27-Remove-Element%2F</url>
-    <content type="text"><![CDATA[Given an array nums and a value val, remove all instances of that value in-place and return the new length. Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory. The order of elements can be changed. It doesn’t matter what you leave beyond the new length. Example 1: 12345Given nums = [3,2,2,3], val = 3,Your function should return length = 2, with the first two elements of nums being 2.It doesn't matter what you leave beyond the returned length. Example 2: 1234567Given nums = [0,1,2,2,3,0,4,2], val = 2,Your function should return length = 5, with the first five elements of nums containing 0, 1, 3, 0, and 4.Note that the order of those five elements can be arbitrary.It doesn't matter what values are set beyond the returned length. Clarification: Confused why the returned value is an integer but your answer is an array? Note that the input array is passed in by reference, which means modification to the input array will be known to the caller as well. Internally you can think of this: 12345678// nums is passed in by reference. (i.e., without making a copy)int len = removeElement(nums, val);// any modification to nums in your function would be known by the caller.// using the length returned by your function, it prints the first len elements.for (int i = 0; i &lt; len; i++) &#123; print(nums[i]);&#125; Two pointersmy code in cpp12345678910111213int removeElement(vector&lt;int&gt;&amp; nums, int val) &#123; int _old = 0, _new = 0, length = 0; while (_old!= nums.size()) &#123; if (nums[_old] != val) &#123; nums[_new++] = nums[_old]; length++; &#125; _old++; &#125; return length;&#125; 总结.png) 双指针。一个用来迭代老数组，一个更新新数组。 不用考虑新长度之和的元素，只用返回新长度，那么计数就好。]]></content>
+    <content type="text"><![CDATA[Given an array nums and a value val, remove all instances of that value in-place and return the new length. Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory. The order of elements can be changed. It doesn’t matter what you leave beyond the new length. Example 1: 12345Given nums = [3,2,2,3], val = 3,Your function should return length = 2, with the first two elements of nums being 2.It doesn't matter what you leave beyond the returned length. Example 2: 1234567Given nums = [0,1,2,2,3,0,4,2], val = 2,Your function should return length = 5, with the first five elements of nums containing 0, 1, 3, 0, and 4.Note that the order of those five elements can be arbitrary.It doesn't matter what values are set beyond the returned length. Clarification: Confused why the returned value is an integer but your answer is an array? Note that the input array is passed in by reference, which means modification to the input array will be known to the caller as well. Internally you can think of this: 12345678// nums is passed in by reference. (i.e., without making a copy)int len = removeElement(nums, val);// any modification to nums in your function would be known by the caller.// using the length returned by your function, it prints the first len elements.for (int i = 0; i &lt; len; i++) &#123; print(nums[i]);&#125; Two pointersmy code in cpp123456789int removeElement(vector&lt;int&gt;&amp; nums, int val) &#123; int _old = 0, _new = 0; while (_old!= nums.size()) &#123; if (nums[_old] != val) nums[_new++] = nums[_old++]; _old++; &#125; return _new;&#125; lc in cpp123456int removeElement(vector&lt;int&gt;&amp; nums, int val) &#123; int res = 0; for (int i = 0; i &lt; nums.size(); ++i) if (nums[i] != val) nums[res++] = nums[i]; return res;&#125; 总结.png) 双指针。一个用来迭代老数组，一个更新新数组。 不用考虑新长度之和的元素，只用返回新长度，也不用计数，因为_new就已经是计数了。]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
       <tags>
         <tag>Easy</tag>
         <tag>O(1) space</tag>
-        <tag>Two Pointers</tag>
         <tag>Array</tag>
+        <tag>Two Pointers</tag>
       </tags>
   </entry>
   <entry>
@@ -24,8 +24,8 @@
       <tags>
         <tag>Easy</tag>
         <tag>O(1) space</tag>
-        <tag>Two Pointers</tag>
         <tag>Array</tag>
+        <tag>Two Pointers</tag>
         <tag>Binary Search</tag>
         <tag>O(n) time</tag>
       </tags>
@@ -280,8 +280,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Linked List</tag>
         <tag>Two Pointers</tag>
+        <tag>Linked List</tag>
         <tag>Medium</tag>
       </tags>
   </entry>
@@ -294,8 +294,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Linked List</tag>
         <tag>Two Pointers</tag>
+        <tag>Linked List</tag>
       </tags>
   </entry>
   <entry>
@@ -495,8 +495,8 @@
       <tags>
         <tag>Sort</tag>
         <tag>String</tag>
-        <tag>Medium</tag>
         <tag>Array</tag>
+        <tag>Medium</tag>
         <tag>Permutations</tag>
       </tags>
   </entry>
@@ -673,8 +673,8 @@
         <category>《C++ Primer》</category>
       </categories>
       <tags>
-        <tag>RBT</tag>
         <tag>STL</tag>
+        <tag>RBT</tag>
         <tag>Sort</tag>
         <tag>priority_queue</tag>
         <tag>Algorithms library</tag>
