@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Easy,Two Pointers,Array,">
+  <meta name="keywords" content="Easy,O(1) space,Array,Two Pointers,">
 
 
 
@@ -78,7 +78,7 @@
 
 
 <meta name="description" content="Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length. Do not allocate extra space for another array, you must do this by modifyin">
-<meta name="keywords" content="Easy,Two Pointers,Array">
+<meta name="keywords" content="Easy,O(1) space,Array,Two Pointers">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode26. Remove Duplicates from Sorted Array">
 <meta property="og:url" content="http://yoursite.com/2019/04/01/LeetCode26-Remove-Duplicates-from-Sorted-Array/index.html">
@@ -86,7 +86,7 @@
 <meta property="og:description" content="Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length. Do not allocate extra space for another array, you must do this by modifyin">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/01/LeetCode26-Remove-Duplicates-from-Sorted-Array/未命名5.png">
-<meta property="og:updated_time" content="2019-04-01T04:17:34.475Z">
+<meta property="og:updated_time" content="2019-04-01T04:26:18.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode26. Remove Duplicates from Sorted Array">
 <meta name="twitter:description" content="Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length. Do not allocate extra space for another array, you must do this by modifyin">
@@ -371,7 +371,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-04-01T12:17:34+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-04-01T12:26:18+08:00">
                 2019-04-01
               </time>
             
@@ -426,7 +426,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  301 words
+                  345 words
                 </span>
               
 
@@ -478,7 +478,7 @@
 <h1 id="Two-pointers"><a href="#Two-pointers" class="headerlink" title="Two pointers"></a>Two pointers</h1><h2 id="my-code-in-cpp"><a href="#my-code-in-cpp" class="headerlink" title="my code in cpp"></a>my code in cpp</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.empty()) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> _new = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> _old = <span class="number">1</span>; _old &lt; nums.size(); _old++) </span><br><span class="line">        <span class="keyword">if</span> (nums[_old] != nums[_new]) nums[++_new] = nums[_old]; </span><br><span class="line">    <span class="keyword">return</span> _new+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2019/04/01/LeetCode26-Remove-Duplicates-from-Sorted-Array/未命名5.png" alt="未命名5"></p>
 <ol>
-<li>就是把<a href="/2019/04/01/LeetCode27-Remove-Element/">[27] 移除元素</a>的target变成nums[_new]了。</li>
+<li>双指针，一个指向老数组，一个指向新数组。如果老数组指针的值不等于新数组指针的值，新数组向前移一格。就是把<a href="/2019/04/01/LeetCode27-Remove-Element/">[27] 移除元素</a>的target变成nums[_new]了。</li>
 <li>另外记得做入口检查。</li>
 </ol>
 
@@ -524,9 +524,11 @@
           
             <a href="/tags/Easy/" rel="tag"># Easy</a>
           
-            <a href="/tags/Two-Pointers/" rel="tag"># Two Pointers</a>
+            <a href="/tags/O-1-space/" rel="tag"># O(1) space</a>
           
             <a href="/tags/Array/" rel="tag"># Array</a>
+          
+            <a href="/tags/Two-Pointers/" rel="tag"># Two Pointers</a>
           
         </div>
       
@@ -548,6 +550,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/01/LeetCode80-Remove-Duplicates-from-Sorted-Array-II/" rel="prev" title="LeetCode80. Remove Duplicates from Sorted Array II">
+                LeetCode80. Remove Duplicates from Sorted Array II <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -628,7 +634,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -816,7 +822,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">69.4k</span>
+    <span title="Site words total count">70k</span>
   
 </div>
 
