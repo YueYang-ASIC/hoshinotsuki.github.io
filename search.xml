@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode53. Maximum Subarray]]></title>
+    <url>%2F2019%2F04%2F03%2FLeetCode53-Maximum-Subarray%2F</url>
+    <content type="text"><![CDATA[Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum. Example: 123Input: [-2,1,-3,4,-1,2,1,-5,4],Output: 6Explanation: [4,-1,2,1] has the largest sum = 6. Follow up:If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle. 4/3/2019 二周目今天是第二次做这道题了。只记得用DP，而且求sum的时候还比较错了。重新做一遍。 DPDP就是要把大问题分解小问题，找到每个小问题的最优解，再从这些解里面找到最优解。 my code in cpp12345678910int maxSubArray(vector&lt;int&gt;&amp; nums) &#123; if(nums.empty()) return 0; int sum=0,_max=nums[0]; for(auto num:nums) &#123; sum=max(sum+num,num); _max=max(sum,_max); &#125; return _max;&#125; 开始误将num和_max比较，导致漏掉后面的最大子序列。应该将num和sum比较，找到subproblem最大的子序列。 因为最大子序列可能是分散的，求得每个最大子序列的和记为sum，在从这些sum中找到最大的和。 O(n) time Divide and Conquer 二分法，分别求左右两边的最大序列和，不包含中点。 从中间开始，一直到两边端点，累计总和，记下分别到两边端点的最大和，包含中点。 比较二分的最大值 与 包含中点的最大值，哪个更大。 my code in cpp12345678910111213141516171819202122232425262728293031323334class Solution &#123;public: int maxSubArray(vector&lt;int&gt;&amp; nums) &#123; return maxHelper(nums, 0, nums.size() - 1); &#125;private: int maxHelper(vector&lt;int&gt; &amp;nums, int l, int r) &#123; if (l &gt; r) return INT_MIN; int mid = l + (r - l) / 2; int l_max = maxHelper(nums, l, mid - 1); int r_max = maxHelper(nums, mid + 1, r); int sum = nums[mid],m_max=nums[mid]; //link left for (int i = mid - 1; i &gt;= l; --i) &#123; sum += nums[i]; m_max = max(m_max, sum); &#125; sum = m_max; //link right for (int i = mid + 1; i &lt;= r; i++) &#123; sum += nums[i]; m_max = max(m_max, sum); &#125; return max(max(l_max,r_max ),m_max); &#125;&#125;; 3/15/2019 一周目Optimization problem -DP如果sum&lt;=0，说明前面的可以不要了,sum=num。跟sum=max(sum+num,num)是一个意思,都是找子任务的最大值。用迭代器做了两个版本。 Newcoder in cpp12345678910int FindGreatestSumOfSubArray(vector&lt;int&gt; array) &#123; if(array.empty()) return 0; int sum=0,_max=array[0]; for(auto it = array.begin();it!=array.end();it++) &#123; sum&gt;0? sum+=*it:sum=*it; _max=max(_max,sum); &#125; return _max;&#125; my code in cpp12345678910int FindGreatestSumOfSubArray(vector&lt;int&gt; array) &#123; if(array.empty()) return 0; int sum=0,_max=array[0]; for(auto it = array.begin();it!=array.end();it++) &#123; sum=max(*it,sum+*it); _max=max(_max,sum); &#125; return _max;&#125; Divide and Conquer The Divide-and-Conquer algorithm breaks nums into two halves and find the maximum subarray sum in them recursively. the maximum subarray spans the two halves. a linear algorithm: starting from the middle element and move to both ends (left and right ends), record the maximum sum we have seen. In this case, the maximum sum is finally equal to the middle element plus the maximum sum of moving leftwards and the maximum sum of moving rightwards. Since we are done with LHS and RHS, we only need to check the case where we pass the middle element.(i.e. the middle element must be included).In that case, since our question asks a continuous subset, it must expand that way. 2*O(n/2)+O(1)=O(n) divide：用递归来分别求左右子集的max merge:用dp来从左右分别线性探索，加上mid 最后找到divide和merge中最大的就是要求的值。 Newcoder in cpp123456789101112131415161718192021222324252627282930313233343536class Solution &#123;public: int maxSubArray(vector&lt;int&gt;&amp; nums) &#123; return maxSubArray(nums, 0, nums.size() - 1); &#125;private: int maxSubArray(vector&lt;int&gt;&amp; nums, int l, int r) &#123; if (l &gt; r) &#123; return INT_MIN; &#125; //divide: int m = l + (r - l) / 2; int lmax = maxSubArray(nums, l, m - 1);//left int rmax = maxSubArray(nums, m + 1, r);//right int partmax = max(lmax, rmax);//not including mid //Merge: int ml= 0,mr = 0; //left O(n/2) for (int i = m - 1, sum = 0; i &gt;= l; i--) &#123; sum += nums[i]; ml = max(sum, ml); &#125; //right O(n/2) for (int i = m + 1, sum = 0; i &lt;= r; i++) &#123; sum += nums[i]; mr = max(sum, mr); &#125; //Merge-including mid,for continuous subset:O(1) int contmax=ml + mr + nums[m]; return max(partmax,contmax); //2*O(n/2)+O(1)=O(n) &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Easy</tag>
+        <tag>Dynamic Programming</tag>
+        <tag>Optimization problem</tag>
+        <tag>Divide and Conquer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode485. Max Consecutive Ones]]></title>
     <url>%2F2019%2F04%2F02%2FLeetCode485-Max-Consecutive-Ones%2F</url>
     <content type="text"><![CDATA[Given a binary array, find the maximum number of consecutive 1s in this array. Example 1: 1234Input: [1,1,0,1,1,1]Output: 3Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3. Note: The input array will only contain 0 and 1. The length of input array is a positive integer and will not exceed 10,000 Two pointersmy code in cpp思路是对的，但是总觉得我写出这么恶心的代码出来是要被别人打的。。 123456789101112131415161718192021222324int findMaxConsecutiveOnes(vector&lt;int&gt;&amp; nums) &#123; if (nums.empty()) return 0; int _fast = 0, _slow = 0,sign=0, _max = 0; while(_fast!=nums.size()) &#123; if (nums[_fast] == 1) &#123; if (sign == 0) &#123; _slow == _fast; sign = 1; &#125; &#125; else &#123; _slow = _fast +1; sign = 0; &#125; _max = max(_fast - _slow + 1, _max); _fast++; &#125; return _max;&#125; countLC in cpp112345678910int findMaxConsecutiveOnes(vector&lt;int&gt;&amp; nums) &#123; if (nums.empty()) return 0; int _max=0,count=0; for(auto const &amp;num : nums) &#123; if(num==1) _max=max(++count,_max); else count=0; &#125; return _max;&#125; sum比较聪明的方法。利用二进制的性质，只包含0,1。连续1的个数就是连续1的和，遇到0就清空。 LC in cpp212345678910int findMaxConsecutiveOnes(vector&lt;int&gt;&amp; nums) &#123; if (nums.empty()) return 0; int _max=0,count=0; for(auto const &amp;num : nums) &#123; if(num==1) _max=max(++count,_max); else count=0; &#125; return _max;&#125; 总结]]></content>
@@ -10,8 +24,8 @@
       <tags>
         <tag>Easy</tag>
         <tag>O(1) space</tag>
-        <tag>Array</tag>
         <tag>Two Pointers</tag>
+        <tag>Array</tag>
         <tag>Binary array</tag>
       </tags>
   </entry>
@@ -24,9 +38,9 @@
       </categories>
       <tags>
         <tag>O(1) space</tag>
-        <tag>Array</tag>
         <tag>Two Pointers</tag>
         <tag>Medium</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
@@ -39,8 +53,8 @@
       <tags>
         <tag>Easy</tag>
         <tag>O(1) space</tag>
-        <tag>Array</tag>
         <tag>Two Pointers</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
@@ -53,8 +67,8 @@
       <tags>
         <tag>Easy</tag>
         <tag>O(1) space</tag>
-        <tag>Array</tag>
         <tag>Two Pointers</tag>
+        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
@@ -67,8 +81,8 @@
       <tags>
         <tag>Easy</tag>
         <tag>O(1) space</tag>
-        <tag>Array</tag>
         <tag>Two Pointers</tag>
+        <tag>Array</tag>
         <tag>Binary Search</tag>
         <tag>O(n) time</tag>
       </tags>
@@ -98,8 +112,8 @@
       <tags>
         <tag>Easy</tag>
         <tag>O(1) space</tag>
-        <tag>String</tag>
         <tag>Two Pointers</tag>
+        <tag>String</tag>
       </tags>
   </entry>
   <entry>
@@ -112,8 +126,8 @@
       <tags>
         <tag>Easy</tag>
         <tag>O(1) space</tag>
-        <tag>String</tag>
         <tag>Two Pointers</tag>
+        <tag>String</tag>
       </tags>
   </entry>
   <entry>
@@ -138,8 +152,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>String</tag>
         <tag>Two Pointers</tag>
+        <tag>String</tag>
         <tag>KMP</tag>
       </tags>
   </entry>
@@ -164,11 +178,11 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>2D Array</tag>
         <tag>Easy</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
+        <tag>Dynamic Programming</tag>
         <tag>O(1) space</tag>
       </tags>
   </entry>
@@ -180,11 +194,11 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>2D Array</tag>
         <tag>Easy</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -267,9 +281,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Easy</tag>
         <tag>vector</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
       </tags>
   </entry>
@@ -323,8 +337,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Two Pointers</tag>
         <tag>Linked List</tag>
+        <tag>Two Pointers</tag>
         <tag>Medium</tag>
       </tags>
   </entry>
@@ -337,8 +351,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Two Pointers</tag>
         <tag>Linked List</tag>
+        <tag>Two Pointers</tag>
       </tags>
   </entry>
   <entry>
@@ -441,9 +455,9 @@
       </categories>
       <tags>
         <tag>pointer</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Easy</tag>
         <tag>vector</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
         <tag>Math</tag>
       </tags>
@@ -498,10 +512,10 @@
         <tag>TCP/IP</tag>
         <tag>Linked List</tag>
         <tag>Linux</tag>
-        <tag>Heap</tag>
         <tag>Operating System</tag>
         <tag>process</tag>
         <tag>quicksort</tag>
+        <tag>Heap</tag>
       </tags>
   </entry>
   <entry>
@@ -537,9 +551,9 @@
       </categories>
       <tags>
         <tag>Sort</tag>
+        <tag>Medium</tag>
         <tag>String</tag>
         <tag>Array</tag>
-        <tag>Medium</tag>
         <tag>Permutations</tag>
       </tags>
   </entry>
@@ -591,20 +605,6 @@
       <tags>
         <tag>Easy</tag>
         <tag>Math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[LeetCode53. Maximum Subarray]]></title>
-    <url>%2F2019%2F03%2F15%2FLeetCode53-Maximum-Subarray%2F</url>
-    <content type="text"><![CDATA[Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum. Example: 123Input: [-2,1,-3,4,-1,2,1,-5,4],Output: 6Explanation: [4,-1,2,1] has the largest sum = 6. Follow up:If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle. Optimization problem -DP the format of the sub problem(or the state of each sub problem). recursive 1maxSubArray(A, i) = maxSubArray(A, i - 1) &gt; 0 ? maxSubArray(A, i - 1) : 0 + A[i]; 动态规划用循环做。F(i)=numsi&lt;=0);F(i)=nums[i]+F(i-1)(F(i-1)&gt;0) 细节nums只有{-1}时，所以开始sum=nums[0]，然后从第二个开始循环。 12345678910111213141516171819202122232425class Solution &#123;public: int FindGreatestSumOfSubArray(vector&lt;int&gt; array) &#123; if(array.empty()) return 0; int cur=array[0]; int max=cur; for(auto it = array.begin()+1;it!=array.end();it++) &#123; if(cur&lt;=0) &#123; cur = *it; &#125; else &#123; cur+=*it; &#125; if(cur&gt;max) &#123; max=cur; &#125; &#125; return max; &#125;&#125;; Divide-and-Conquer The Divide-and-Conquer algorithm breaks nums into two halves and find the maximum subarray sum in them recursively. the maximum subarray spans the two halves. a linear algorithm: starting from the middle element and move to both ends (left and right ends), record the maximum sum we have seen. In this case, the maximum sum is finally equal to the middle element plus the maximum sum of moving leftwards and the maximum sum of moving rightwards. Since we are done with LHS and RHS, we only need to check the case where we pass the middle element.(i.e. the middle element must be included).In that case, since our question asks a continuous subset, it must expand that way. 分治法2*O(n/2)+O(1)=O(n) divide：用递归来分别求左右子集的max merge:用dp来从左右分别线性探索，加上mid 最后找到divide和merge中最大的就是要求的值。12345678910111213141516171819202122232425262728293031323334353637class Solution &#123;public: int maxSubArray(vector&lt;int&gt;&amp; nums) &#123; return maxSubArray(nums, 0, nums.size() - 1); &#125;private: int maxSubArray(vector&lt;int&gt;&amp; nums, int l, int r) &#123; if (l &gt; r) &#123; return INT_MIN; &#125; //divide: int m = l + (r - l) / 2; int lmax = maxSubArray(nums, l, m - 1);//left int rmax = maxSubArray(nums, m + 1, r);//right int partmax = max(lmax, rmax);//not including mid //Merge: int ml= 0,mr = 0; //left-DP:O(n/2) for (int i = m - 1, sum = 0; i &gt;= l; i--) &#123; sum += nums[i]; ml = max(sum, ml); &#125; //right-DP:O(n/2) for (int i = m + 1, sum = 0; i &lt;= r; i++) &#123; sum += nums[i]; mr = max(sum, mr); &#125; //Merge-including mid,for continuous subset:O(1) int contmax=ml + mr + nums[m]; return max(partmax,contmax); //2*O(n/2)+O(1)=O(n) &#125;&#125;;]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>Dynamic Programming</tag>
-        <tag>Easy</tag>
-        <tag>Optimization problem</tag>
-        <tag>Divide and Conquer</tag>
       </tags>
   </entry>
   <entry>
@@ -937,8 +937,8 @@
       </categories>
       <tags>
         <tag>static</tag>
-        <tag>Stack</tag>
         <tag>Heap</tag>
+        <tag>Stack</tag>
         <tag>Memory</tag>
       </tags>
   </entry>
