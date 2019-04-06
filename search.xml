@@ -1,6 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode125. Valid Palindrome]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode125-Valid-Palindrome%2F</url>
+    <content type="text"><![CDATA[Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases. Note: For the purpose of this problem, we define empty string as valid palindrome. Example 1: 12Input: &quot;A man, a plan, a canal: Panama&quot;Output: true Example 2: 12Input: &quot;race a car&quot;Output: false Two Pointersmy code in cpp12345678910bool isPalindrome(string s) &#123; int l = 0, r = s.size() - 1 ; while (r&lt;s.size()&amp;&amp;l &lt; r) &#123;//1. while (l&lt;s.size()&amp;&amp;!isalnum(s[l])) ++l;//2. while (r&lt;s.size()&amp;&amp;!isalnum(s[r])) --r; if (l&lt;s.size()&amp;&amp;r&lt;s.size()&amp;&amp;(s[l++] + 32 - 'a') %32 != (s[r--] + 32 - 'a') % 32) return false;//3. &#125; return true;&#125; 细节 开始写成while (!isalnum(s[l]))报错： heap-buffer-overflow。后来想想一定是数组越界的问题,只需要在每次while和if的时候都判断是否下标超过size()即可。 有一个内置函数isalnum(char)来表示是否是数字和字母，自己写就这样。 123456bool isAlphaNum(char &amp;ch) &#123; if (ch &gt;= 'a' &amp;&amp; ch &lt;= 'z') return true; if (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') return true; if (ch &gt;= '0' &amp;&amp; ch &lt;= '9') return true; return false;&#125; 如果直接取绝对值，写成 (abs(s[l] -s[r]) !=0&amp;&amp;abs(s[l] -s[r]) !=32) 会报错：”0P”。这里0是48，P是80，相隔32,所以不能用ascii相隔0和32来判断。所以用(char-‘a’+32)%32来将大写转成小写来判断两个字母是否相等，”OP”分别是-17和15，所以这两个不等。]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Easy</tag>
+        <tag>String</tag>
+        <tag>Two Pointers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode38. Count and Say]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode38-Count-and-Say%2F</url>
+    <content type="text"><![CDATA[The count-and-say sequence is the sequence of integers with the first five terms as following: 123451. 12. 113. 214. 12115. 111221 1 is read off as &quot;one 1&quot; or 11. 11 is read off as &quot;two 1s&quot; or 21. 21 is read off as &quot;one 2, then one 1&quot; or 1211. Given an integer n where 1 ≤ n ≤ 30, generate the nth term of the count-and-say sequence. Note: Each term of the sequence of integers will be represented as a string. Example 1: 12Input: 1Output: &quot;1&quot; Example 2: 12Input: 4Output: &quot;1211&quot; Hint 1The following are the terms from n=1 to n=10 of the count-and-say sequence: 1 11 21 1211 111221 312211 13112221 1113213211 31131211131221 13211311123113112211 Hint 2To generate the n th term, just count and say the n-1 th term.]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Easy</tag>
+        <tag>String</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode8. String to Integer (atoi)]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode8-String-to-Integer-atoi%2F</url>
+    <content type="text"><![CDATA[Implement atoi which converts a string to an integer. The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value. The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function. If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed. If no valid conversion could be performed, a zero value is returned. Note: Only the space character &#39; &#39; is considered as whitespace character. Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231, 231 − 1]. If the numerical value is out of the range of representable values, INT_MAX (231 − 1) or INT_MIN (−231) is returned. Example 1: 12Input: &quot;42&quot;Output: 42 Example 2: 1234Input: &quot; -42&quot;Output: -42Explanation: The first non-whitespace character is &apos;-&apos;, which is the minus sign. Then take as many numerical digits as possible, which gets 42. Example 3: 123Input: &quot;4193 with words&quot;Output: 4193Explanation: Conversion stops at digit &apos;3&apos; as the next character is not a numerical digit. Example 4: 1234Input: &quot;words and 987&quot;Output: 0Explanation: The first non-whitespace character is &apos;w&apos;, which is not a numerical digit or a +/- sign. Therefore no valid conversion could be performed. Example 5: 1234Input: &quot;-91283472332&quot;Output: -2147483648Explanation: The number &quot;-91283472332&quot; is out of the range of a 32-bit signed integer. Thefore INT_MIN (−231) is returned.]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>String</tag>
+        <tag>Medium</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode680. Valid Palindrome II]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode680-Valid-Palindrome-II%2F</url>
+    <content type="text"><![CDATA[Given a non-empty string s, you may delete at most one character. Judge whether you can make it a palindrome. Example 1: 12Input: &quot;aba&quot;Output: True Example 2: 123Input: &quot;abca&quot;Output: TrueExplanation: You could delete the character &apos;c&apos;. Note: The string will only contain lowercase characters a-z. The maximum length of the string is 50000.]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Easy</tag>
+        <tag>String</tag>
+        <tag>Two Pointers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode242. Valid Anagram]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode242-Valid-Anagram%2F</url>
+    <content type="text"><![CDATA[Given two strings s and t , write a function to determine if t is an anagram of s. Example 1: 12Input: s = &quot;anagram&quot;, t = &quot;nagaram&quot;Output: true Example 2: 12Input: s = &quot;rat&quot;, t = &quot;car&quot;Output: false Note: You may assume the string contains only lowercase alphabets. Follow up: What if the inputs contain unicode characters? How would you adapt your solution to such case?]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Hash Table</tag>
+        <tag>Sort</tag>
+        <tag>Easy</tag>
+        <tag>String</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode7. Reverse Integer]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode7-Reverse-Integer%2F</url>
+    <content type="text"><![CDATA[Given a 32-bit signed integer, reverse digits of an integer. Example 1: 12Input: 123Output: 321 Example 2: 12Input: -123Output: -321 Example 3: 12Input: 120Output: 21 Note: Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−2^31, 2^31 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows. stack + overflow Complexity Analysis Time Complexity: O(log⁡(x)). There are roughly log⁡10(x) digits in x . Space Complexity: O(1) my code in cpp123456789101112131415161718192021int reverse(int x) &#123; int ret = 0; while (x) &#123; //pop int pop = x % 10; x /= 10; //positive overflow if (ret &gt; INT_MAX/10 || ret == INT_MAX/10 &amp;&amp; pop &gt; 7)//1. return 0; //negative overflow if (ret &lt; INT_MIN/10 || ret == INT_MIN/10 &amp;&amp; pop &gt; 8) return 0; //push ret = ret * 10 + pop; &#125; return ret;&#125; 细节 ret &gt; INT_MAX/10 不能写成ret*10&gt;INT_MAX。否则报错。 1signed integer overflow: 964632435 * 10 cannot be represented in type &apos;int&apos; 注意INT_MAX（2147483647）和INT_MIN(-2147483647 - 1)的值。 总结 翻转整数用到stack的思想,back就是取模，pop就是求商，push就是ret*10+pop 另外还要注意overflow的问题，判断正数溢出和负数溢出的问题。（记一下2147483647，情人节吃屎吧36个人拿着ak47.）]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Easy</tag>
+        <tag>String</tag>
+        <tag>Math</tag>
+        <tag>Stack</tag>
+        <tag>Overflow</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode48. Rotate Image]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode48-Rotate-Image%2F</url>
+    <content type="text"><![CDATA[You are given an n x n 2D matrix representing an image. Rotate the image by 90 degrees (clockwise). Note: You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation. Example 1: 12345678910111213Given input matrix = [ [1,2,3], [4,5,6], [7,8,9]],rotate the input matrix in-place such that it becomes:[ [7,4,1], [8,5,2], [9,6,3]] Example 2: 123456789101112131415Given input matrix =[ [ 5, 1, 9,11], [ 2, 4, 8,10], [13, 3, 6, 7], [15,14,12,16]], rotate the input matrix in-place such that it becomes:[ [15,13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7,10,11]]]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Hash Table</tag>
+        <tag>2D Array</tag>
+        <tag>Medium</tag>
+        <tag>Matrix</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode36. Valid Sudoku]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode36-Valid-Sudoku%2F</url>
+    <content type="text"><![CDATA[Determine if a 9x9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules: Each row must contain the digits 1-9 without repetition. Each column must contain the digits 1-9 without repetition. Each of the 9 3x3 sub-boxes of the grid must contain the digits 1-9 without repetition. A partially filled sudoku which is valid. The Sudoku board could be partially filled, where empty cells are filled with the character &#39;.&#39;. Example 1: 12345678910111213Input:[ [&quot;5&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;], [&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;], [&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;], [&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;], [&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;], [&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;], [&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;], [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;], [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]Output: true Example 2: 123456789101112131415Input:[ [&quot;8&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;], [&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;], [&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;], [&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;], [&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;], [&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;], [&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;], [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;], [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]Output: falseExplanation: Same as Example 1, except with the 5 in the top left corner being modified to 8. Since there are two 8&apos;s in the top left 3x3 sub-box, it is invalid. Note: A Sudoku board (partially filled) could be valid but is not necessarily solvable. Only the filled cells need to be validated according to the mentioned rules. The given board contain only digits 1-9 and the character &#39;.&#39;. The given board size is always 9x9.]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Hash Table</tag>
+        <tag>2D Array</tag>
+        <tag>Medium</tag>
+        <tag>Matrix</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode350. Intersection of Two Arrays II]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode350-Intersection-of-Two-Arrays-II%2F</url>
+    <content type="text"><![CDATA[Given two arrays, write a function to compute their intersection. Example 1: 12Input: nums1 = [1,2,2,1], nums2 = [2,2]Output: [2,2] Example 2: 12Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]Output: [4,9] Note: Each element in the result should appear as many times as it shows in both arrays. The result can be in any order. Follow up: What if the given array is already sorted? How would you optimize your algorithm? What if nums1‘s size is small compared to nums2‘s size? Which algorithm is better? What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Hash Table</tag>
+        <tag>Sort</tag>
+        <tag>Easy</tag>
+        <tag>Two Pointers</tag>
+        <tag>Binary Search</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode136. Single Number]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode136-Single-Number%2F</url>
+    <content type="text"><![CDATA[Given a non-empty array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? Example 1: 12Input: [2,2,1]Output: 1 Example 2: 12Input: [4,1,2,1,2]Output: 4]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Hash Table</tag>
+        <tag>Easy</tag>
+        <tag>Array</tag>
+        <tag>Bit Manipulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode219. Contains Duplicate II]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode219-Contains-Duplicate-II%2F</url>
+    <content type="text"><![CDATA[Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k. Example 1: 12Input: nums = [1,2,3,1], k = 3Output: true Example 2: 12Input: nums = [1,0,1,1], k = 1Output: true Example 3: 12Input: nums = [1,2,3,1,2,3], k = 2Output: false]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Hash Table</tag>
+        <tag>Easy</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode217. Contains Duplicate]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode217-Contains-Duplicate%2F</url>
+    <content type="text"><![CDATA[Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct. Example 1: 12Input: [1,2,3,1]Output: true Example 2: 12Input: [1,2,3,4]Output: false Example 3: 12Input: [1,1,1,3,3,4,3,2,4,2]Output: true]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Hash Table</tag>
+        <tag>Easy</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode122. Best Time to Buy and Sell Stock II]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode122-Best-Time-to-Buy-and-Sell-Stock-II%2F</url>
+    <content type="text"><![CDATA[Say you have an array for which the ith element is the price of a given stock on day i. Design an algorithm to find the maximum profit. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times). Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again). Example 1: 1234Input: [7,1,5,3,6,4]Output: 7Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4. Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3. Example 2: 12345Input: [1,2,3,4,5]Output: 4Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4. Note that you cannot buy on day 1, buy on day 2 and sell them later, as you are engaging multiple transactions at the same time. You must sell before buying again. Example 3: 123Input: [7,6,4,3,1]Output: 0Explanation: In this case, no transaction is done, i.e. max profit = 0.]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Dynamic Programming</tag>
+        <tag>Easy</tag>
+        <tag>Array</tag>
+        <tag>Greedy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode121. Best Time to Buy and Sell Stock]]></title>
+    <url>%2F2019%2F04%2F05%2FLeetCode121-Best-Time-to-Buy-and-Sell-Stock%2F</url>
+    <content type="text"><![CDATA[Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit. Note that you cannot sell a stock before you buy one. Example 1: 1234Input: [7,1,5,3,6,4]Output: 5Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5. Not 7-1 = 6, as selling price needs to be larger than buying price. Example 2: 123Input: [7,6,4,3,1]Output: 0Explanation: In this case, no transaction is done, i.e. max profit = 0.]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Dynamic Programming</tag>
+        <tag>Easy</tag>
+        <tag>Array</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode283. Move Zeroes]]></title>
     <url>%2F2019%2F04%2F04%2FLeetCode283-Move-Zeroes%2F</url>
     <content type="text"><![CDATA[Given an array nums, write a function to move all 0‘s to the end of it while maintaining the relative order of the non-zero elements. Example: 12Input: [0,1,0,3,12]Output: [1,3,12,0,0] Note: You must do this in-place without making a copy of the array. Minimize the total number of operations. Two Pointers lc in cpp1234void moveZeroes(vector&lt;int&gt;&amp; nums) &#123; for (int left = 0, right = 0; right&lt; nums.size();right++) if (nums[right] != 0) swap(nums[right], nums[left++]);&#125; 题目要求O(1)space,那就用双指针,左边指向0,右边指向非零.当右边指到非零的时候,交换当前指向零的数即可.]]></content>
@@ -9,9 +199,9 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Two Pointers</tag>
-        <tag>O(1) space</tag>
         <tag>Array</tag>
+        <tag>O(1) space</tag>
+        <tag>Two Pointers</tag>
       </tags>
   </entry>
   <entry>
@@ -40,10 +230,10 @@
         <tag>STL</tag>
         <tag>stringstream</tag>
         <tag>getline</tag>
+        <tag>O(1) space</tag>
         <tag>String</tag>
         <tag>Two Pointers</tag>
         <tag>Medium</tag>
-        <tag>O(1) space</tag>
       </tags>
   </entry>
   <entry>
@@ -55,9 +245,9 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Two Pointers</tag>
-        <tag>O(1) space</tag>
         <tag>Array</tag>
+        <tag>O(1) space</tag>
+        <tag>Two Pointers</tag>
       </tags>
   </entry>
   <entry>
@@ -98,9 +288,9 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Two Pointers</tag>
-        <tag>O(1) space</tag>
         <tag>Array</tag>
+        <tag>O(1) space</tag>
+        <tag>Two Pointers</tag>
         <tag>Binary array</tag>
       </tags>
   </entry>
@@ -112,10 +302,10 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Array</tag>
+        <tag>O(1) space</tag>
         <tag>Two Pointers</tag>
         <tag>Medium</tag>
-        <tag>O(1) space</tag>
-        <tag>Array</tag>
       </tags>
   </entry>
   <entry>
@@ -127,9 +317,9 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Two Pointers</tag>
-        <tag>O(1) space</tag>
         <tag>Array</tag>
+        <tag>O(1) space</tag>
+        <tag>Two Pointers</tag>
       </tags>
   </entry>
   <entry>
@@ -141,9 +331,9 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Two Pointers</tag>
-        <tag>O(1) space</tag>
         <tag>Array</tag>
+        <tag>O(1) space</tag>
+        <tag>Two Pointers</tag>
       </tags>
   </entry>
   <entry>
@@ -155,9 +345,9 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Two Pointers</tag>
-        <tag>O(1) space</tag>
         <tag>Array</tag>
+        <tag>O(1) space</tag>
+        <tag>Two Pointers</tag>
         <tag>Binary Search</tag>
         <tag>O(n) time</tag>
       </tags>
@@ -173,8 +363,8 @@
         <tag>Sort</tag>
         <tag>Easy</tag>
         <tag>Array</tag>
-        <tag>Math</tag>
         <tag>Greedy</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -186,9 +376,9 @@
       </categories>
       <tags>
         <tag>Easy</tag>
+        <tag>O(1) space</tag>
         <tag>String</tag>
         <tag>Two Pointers</tag>
-        <tag>O(1) space</tag>
       </tags>
   </entry>
   <entry>
@@ -200,9 +390,9 @@
       </categories>
       <tags>
         <tag>Easy</tag>
+        <tag>O(1) space</tag>
         <tag>String</tag>
         <tag>Two Pointers</tag>
-        <tag>O(1) space</tag>
       </tags>
   </entry>
   <entry>
@@ -253,11 +443,11 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Dynamic Programming</tag>
         <tag>2D Array</tag>
         <tag>Easy</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
-        <tag>Dynamic Programming</tag>
         <tag>O(1) space</tag>
       </tags>
   </entry>
@@ -269,11 +459,11 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Dynamic Programming</tag>
         <tag>2D Array</tag>
         <tag>Easy</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
-        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -356,9 +546,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Dynamic Programming</tag>
         <tag>Easy</tag>
         <tag>vector</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
       </tags>
   </entry>
@@ -412,8 +602,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Linked List</tag>
         <tag>Two Pointers</tag>
+        <tag>Linked List</tag>
         <tag>Medium</tag>
       </tags>
   </entry>
@@ -426,8 +616,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Linked List</tag>
         <tag>Two Pointers</tag>
+        <tag>Linked List</tag>
       </tags>
   </entry>
   <entry>
@@ -465,9 +655,9 @@
       </categories>
       <tags>
         <tag>Hash Table</tag>
-        <tag>Linux</tag>
         <tag>unordered_map</tag>
         <tag>Unordered Containers</tag>
+        <tag>Linux</tag>
         <tag>Operating System</tag>
         <tag>unordered_set</tag>
         <tag>unordered_multimap</tag>
@@ -530,9 +720,9 @@
       </categories>
       <tags>
         <tag>pointer</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Easy</tag>
         <tag>vector</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
         <tag>Math</tag>
       </tags>
@@ -626,9 +816,9 @@
       </categories>
       <tags>
         <tag>Sort</tag>
+        <tag>Array</tag>
         <tag>String</tag>
         <tag>Medium</tag>
-        <tag>Array</tag>
         <tag>Permutations</tag>
       </tags>
   </entry>
@@ -715,8 +905,8 @@
       </categories>
       <tags>
         <tag>AVL</tag>
-        <tag>priority_queue</tag>
         <tag>Heapsort</tag>
+        <tag>priority_queue</tag>
         <tag>Hard</tag>
       </tags>
   </entry>
@@ -729,8 +919,8 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Sort</tag>
         <tag>Algorithms library</tag>
+        <tag>Sort</tag>
       </tags>
   </entry>
   <entry>
@@ -791,13 +981,13 @@
         <category>《C++ Primer》</category>
       </categories>
       <tags>
-        <tag>RBT</tag>
         <tag>STL</tag>
-        <tag>Sort</tag>
-        <tag>priority_queue</tag>
+        <tag>RBT</tag>
         <tag>Algorithms library</tag>
         <tag>Heapsort</tag>
+        <tag>priority_queue</tag>
         <tag>multiset</tag>
+        <tag>Sort</tag>
       </tags>
   </entry>
   <entry>
@@ -809,9 +999,9 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Containers library</tag>
-        <tag>Sort</tag>
         <tag>priority_queue</tag>
+        <tag>Sort</tag>
+        <tag>Containers library</tag>
       </tags>
   </entry>
   <entry>
@@ -837,11 +1027,11 @@
       </categories>
       <tags>
         <tag>RBT</tag>
-        <tag>Sort</tag>
-        <tag>priority_queue</tag>
         <tag>Algorithms library</tag>
         <tag>Heapsort</tag>
+        <tag>priority_queue</tag>
         <tag>multiset</tag>
+        <tag>Sort</tag>
         <tag>Medium</tag>
         <tag>Partition</tag>
       </tags>
@@ -868,8 +1058,8 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Sort</tag>
         <tag>Algorithms library</tag>
+        <tag>Sort</tag>
         <tag>Partition</tag>
         <tag>Quicksort</tag>
       </tags>
@@ -908,8 +1098,8 @@
         <category>Algorithms</category>
       </categories>
       <tags>
-        <tag>Sort</tag>
         <tag>Heapsort</tag>
+        <tag>Sort</tag>
         <tag>Quicksort</tag>
       </tags>
   </entry>
@@ -951,8 +1141,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>2D Array</tag>
         <tag>String</tag>
-        <tag>Array</tag>
         <tag>Hard</tag>
         <tag>Backtracking</tag>
       </tags>
@@ -987,7 +1177,7 @@
   <entry>
     <title><![CDATA[码不停题]]></title>
     <url>%2F2019%2F01%2F21%2Fleetcode%2F</url>
-    <content type="text"><![CDATA[Array [724] 寻找数组的中心索引 [66] 加一 [747] 至少是其他数字两倍的最大数 2D Array [498] 对角线遍历 [54] 螺旋矩阵 [59] 螺旋矩阵 II [118] 杨辉三角 [119] 杨辉三角 II String [67] 二进制求和 [14] 最长公共前缀 [28] 实现strStr() Two-Pointer : Reverse the elements in an array [344] 反转字符串 [541] 反转字符串 II [151] 反转字符串里的单词 (M) [557] 反转字符串中的单词 III(E) [561] 数组拆分 I [167] 两数之和 II - 输入有序数组 [189] 旋转数组 Two pointers : different steps [27] 移除元素 [26] 删除排序数组中的重复项 [80] 删除排序数组中的重复项 II [485] 最大连续1的个数 [53] 最大子序和 [209] 长度最小的子数组 [283] 移动零 汇总 题号 解答 [1] 两数之和 1. umap.find(target - nums[i])2. umap.count(target-nums[i]) 👍 [14] 最长公共前缀 1.sort,比较第一个和最后一个的公共前缀。👍2.2Darray。纵向遍历。优化版，substr3. 2Darray。纵向遍历。 [26] 删除排序数组中的重复项 双指针，一个指向老数组，一个指向新数组。如果老数组指针的值不等于新数组指针的值，新数组向前移一格 [27] 移除元素 双指针,一个指向老数组，一个指向新数组。如果老数组指针的值不等于target，新数组向前移一格 [28] 实现strStr() 1. 暴力搜索法。O(m(m-n+1))=O(m*n)2. kmp [46] 全排列 1. 递归. 分层布局。1.交换第一个数字。2.第一个数固定。后面的排列。3.交换归位。 2. 递归。回溯。填空格法。访问数组标记。 [47] 全排列ii set。去重。递归。交换。 [51] N皇后 回溯。排序。基于条件对string进行排序。H [52] N皇后ii 回溯。计数。跟51题一样。 [53] 最大子序和 1. 2*O(n/2)+O(1)=O(n)。分治法。max(divide,merge)。2. O(n)。Kadane’s algorithm。DP。分为子问题。3.二周目，dp4.二周目，分治法 [54] 螺旋矩阵 上右下左四个方向，依次打印。每次打印完一行后更新变量，判断越界。 [59] 螺旋矩阵 II 跟54螺旋矩阵一样，只不过是逆向思维，套路还是上右下左遍历，更新行列号，判断越界break。 [66] 加一 1.迭代O(1)space,O(n)time👍2. 递归O(n)space,O(n)time [67] 二进制求和 字符串链接，动态规划,二进制进位 [77] 组合 1. 公式法：C(K,N)=C(K-1,N-1)+C(K,N-1)。2. 回溯法。递归+循环。M [80] 删除排序数组中的重复项 II 双指针，一个遍历原来的，一个更新新数组。并且计数，只更新2以内的数字，如果遇到不重复的将计数设为1，否则计数加一。 [94] 二叉树的中序遍历 1. 中序遍历。递归。E2. 中序遍历。1个栈。M。👍3. 中序遍历。O1,非递归+不用栈。线索二叉树。H。 [104] 二叉树的最大深度 dfs.递归。E [105] 从前序与中序遍历序列构造二叉树 递归。二分查找。mid.start.end. pos=distance(.begin,find( , , )) [111] 二叉树的最小深度 dfs.递归。E [118] 杨辉三角 1. 初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和.但是太慢了。2.动态规划。空容器返空。初始化第0行[1]。从第一行开始到numrows-1行开始，每行构建个子容器：第一个塞1，中间塞和，最后塞1.👍 [119] 杨辉三角 II 1. dp.迭代。清空，塞1，塞中间，塞1，sub=ret2. 想象成一个栈，从后res[rowIndex]往前迭代，每次更新为前一个数加自身的和。.cpp) [138] 复制带随机指针的链表 链表/复制原始(copy,link,next)/复制随机(copy,next)/分离。M [141] 环形链表 快慢指针。fast&amp;&amp;fast-&gt;next一起判空。有环必走不到空，指针相遇就有环。 [142] 环形链表 II 1. 快慢指针，计数2. 三个指针！环状检测算法！👍 [144] 二叉树的前序遍历 1. 递归2. 迭代+栈👍 [145] 二叉树的后序遍历 1. 递归2. 迭代+1个栈👍3. 迭代+2个栈 [151] 翻转字符串里的单词 👍 1. Two Pointers2.stringstream+getline👍3. stringstream+&gt;&gt;👍 [167] 两数之和 II - 输入有序数组 双指针O(n) [169] 求众数 1. 快排。找中位数。O(nlogn)2. 不修改数组的方法O(n) 👍 [172] 阶乘后的零 1. 数学。递归。2. 数学。迭代。 [179] 最大数 字符串排序,sort.lambda.string [189] 旋转数组 1. Reverse,双指针2.Reverse,stl3.STL.push_back.erase.超时 [209] 长度最小的子数组 1. O(n).双指针2. 分治法 [215] 数组中的第K个最大元素 1. O(nlogn)。快排sort()。reverse()。会修改数组。2. O(n)。快排in-place partition/one way。会修改数组。3. O(nlogk)。priorityqueue-default-maxheap。基于堆。所有元素放入pq，弹出k-1次堆顶，返回pq.top()。不需要修改数组，适用于处理海量数据。4. O(nlogk)。multiset-default-minheap。基于rbt,设置一个大小为k的最小堆。最后弹出*set.begin()。不需要修改数组，适用于处理海量数据。.cpp) [233] 数字1的个数 数学。T:O(logn),S:O(1)1. 公式法：n/(10d)d + min(d,max(0,n\%(10d)-d+1))2.划分法。满二进一位（满载），如果量级的最后一位是1，要加上余数+1 [263] 丑数 数学。迭代。 [264] 丑数ii 动态规划.3个指针 [283] 移动零 Two Pointers [295] 数据流的中位数 1. 增删O(logn),查O(1).maxheap，两个stl::pq,一个放前一半大的数，一个放后一半大的负数。2. AVL。maxheap和minheap。优先队列。 [297] 二叉树的序列化与反序列化 1. bfs/queue/stringstream2. dfs递归/stringstream in(str)/obj.str()返回值 [344] 反转字符串 双指针 O(1) space [387] 字符串中的第一个唯一字符 无序关联式容器，哈希表，计数。unordered_map&gt; [400] 第N个数字 迭代。数学。tostring(int)。(string)char。stoi(const string&amp;) [426] 把二叉搜索树转化为有序双向链表 分治法。递归。指针引用。中序遍历。M [463] 岛屿的周长 1. 岛屿边界处：在数组最左边，或者左边格子没有岛屿2. 先假设算4个边，判断左边和上边是否有岛屿 👍 [485] 最大连续1的个数 1. two pointers2. count3. sum [498] 对角线遍历 iteration：对角线索引 = 对角线坐标和；根据对角线index奇偶i，swap坐标;越界跳出 [541] 反转字符串 II 1. 双指针2.stl:reverse(begin(),end()) [557] 反转字符串中的单词 III 1. two pointers2.stringstream [561] 数组拆分 I 贪心。排序 [700] 二叉搜索树的查找 1. 递归。BST。E2. 迭代。BST。E。 [701] 二叉搜索树的插入 1. 递归。BST。2. 迭代。BST。break。 [705] 设计哈希集合 hashset。二维数组。value=0或者1.代表集合中是否存在。E。 [706] 设计哈希映射 hashmap。key-value。映射。初值为-1。E。 [724] 寻找数组的中心索引 1. 计算不含nums[i]的leftsum，如果leftsum== total - leftsum -nums[i]，返回i2. left=0,right=total;right-sum[i],if(==),return i;left+nums[i];return -1 [747] 至少是其他数字两倍的最大数 第一遍找到最大并记录索引。第二遍如果又发现不符合条件的返-1。否则返index [804] 国际摩尔斯密码 unordered_set。hash。E。 [876] 链表的中间结点 快慢指针。链表。]]></content>
+    <content type="text"><![CDATA[Array [724] 寻找数组的中心索引 [66] 加一 [747] 至少是其他数字两倍的最大数 [121] 买卖股票的最佳时机 [122] 买卖股票的最佳时机 II [217] 存在重复元素 [219] 存在重复元素 II [136] 只出现一次的数字 [350] 两个数组的交集 II 2D Array [498] 对角线遍历 [54] 螺旋矩阵 [59] 螺旋矩阵 II [118] 杨辉三角 [119] 杨辉三角 II [36] 有效的数独 [48] 旋转图像 String [67] 二进制求和 [14] 最长公共前缀 [28] 实现strStr() [7] 整数反转 （stack,overflow,INT_MAX2147483647) [8] 字符串转换整数 (atoi) [38] 报数 [242] 有效的字母异位词 [125] 验证回文串 | Manacher’s Algorithm 马拉车算法 (mark) [680] 验证回文字符串 Ⅱ Two-Pointer : Reverse the elements in an array [344] 反转字符串 [541] 反转字符串 II [151] 反转字符串里的单词 (M) [557] 反转字符串中的单词 III(E) [561] 数组拆分 I [167] 两数之和 II - 输入有序数组 [189] 旋转数组 Two pointers : different steps [27] 移除元素 [26] 删除排序数组中的重复项 [80] 删除排序数组中的重复项 II [485] 最大连续1的个数 [53] 最大子序和 [209] 长度最小的子数组 [283] 移动零 汇总 题号 解答 [1] 两数之和 1. umap.find(target - nums[i])2. umap.count(target-nums[i]) 👍 [7] 整数反转 stack, overflow,INT_MAX,INT_MIN [14] 最长公共前缀 1.sort,比较第一个和最后一个的公共前缀。👍2.2Darray。纵向遍历。优化版，substr3. 2Darray。纵向遍历。 [26] 删除排序数组中的重复项 双指针，一个指向老数组，一个指向新数组。如果老数组指针的值不等于新数组指针的值，新数组向前移一格 [27] 移除元素 双指针,一个指向老数组，一个指向新数组。如果老数组指针的值不等于target，新数组向前移一格 [28] 实现strStr() 1. 暴力搜索法。O(m(m-n+1))=O(m*n)2. kmp [46] 全排列 1. 递归. 分层布局。1.交换第一个数字。2.第一个数固定。后面的排列。3.交换归位。 2. 递归。回溯。填空格法。访问数组标记。 [47] 全排列ii set。去重。递归。交换。 [51] N皇后 回溯。排序。基于条件对string进行排序。H [52] N皇后ii 回溯。计数。跟51题一样。 [53] 最大子序和 1. 2*O(n/2)+O(1)=O(n)。分治法。max(divide,merge)。2. O(n)。Kadane’s algorithm。DP。分为子问题。3.二周目，dp4.二周目，分治法 [54] 螺旋矩阵 上右下左四个方向，依次打印。每次打印完一行后更新变量，判断越界。 [59] 螺旋矩阵 II 跟54螺旋矩阵一样，只不过是逆向思维，套路还是上右下左遍历，更新行列号，判断越界break。 [66] 加一 1.迭代O(1)space,O(n)time👍2. 递归O(n)space,O(n)time [67] 二进制求和 字符串链接，动态规划,二进制进位 [77] 组合 1. 公式法：C(K,N)=C(K-1,N-1)+C(K,N-1)。2. 回溯法。递归+循环。M [80] 删除排序数组中的重复项 II 双指针，一个遍历原来的，一个更新新数组。并且计数，只更新2以内的数字，如果遇到不重复的将计数设为1，否则计数加一。 [94] 二叉树的中序遍历 1. 中序遍历。递归。E2. 中序遍历。1个栈。M。👍3. 中序遍历。O1,非递归+不用栈。线索二叉树。H。 [104] 二叉树的最大深度 dfs.递归。E [105] 从前序与中序遍历序列构造二叉树 递归。二分查找。mid.start.end. pos=distance(.begin,find( , , )) [111] 二叉树的最小深度 dfs.递归。E [118] 杨辉三角 1. 初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和.但是太慢了。2.动态规划。空容器返空。初始化第0行[1]。从第一行开始到numrows-1行开始，每行构建个子容器：第一个塞1，中间塞和，最后塞1.👍 [119] 杨辉三角 II 1. dp.迭代。清空，塞1，塞中间，塞1，sub=ret2. 想象成一个栈，从后res[rowIndex]往前迭代，每次更新为前一个数加自身的和。.cpp) [121] 买卖股票的最佳时机 [125] 验证回文串 Two pointers [138] 复制带随机指针的链表 链表/复制原始(copy,link,next)/复制随机(copy,next)/分离。M [141] 环形链表 快慢指针。fast&amp;&amp;fast-&gt;next一起判空。有环必走不到空，指针相遇就有环。 [142] 环形链表 II 1. 快慢指针，计数2. 三个指针！环状检测算法！👍 [144] 二叉树的前序遍历 1. 递归2. 迭代+栈👍 [145] 二叉树的后序遍历 1. 递归2. 迭代+1个栈👍3. 迭代+2个栈 [151] 翻转字符串里的单词 👍 1. Two Pointers2.stringstream+getline👍3. stringstream+&gt;&gt;👍 [167] 两数之和 II - 输入有序数组 双指针O(n) [169] 求众数 1. 快排。找中位数。O(nlogn)2. 不修改数组的方法O(n) 👍 [172] 阶乘后的零 1. 数学。递归。2. 数学。迭代。 [179] 最大数 字符串排序,sort.lambda.string [189] 旋转数组 1. Reverse,双指针2.Reverse,stl3.STL.push_back.erase.超时 [209] 长度最小的子数组 1. O(n).双指针2. 分治法 [215] 数组中的第K个最大元素 1. O(nlogn)。快排sort()。reverse()。会修改数组。2. O(n)。快排in-place partition/one way。会修改数组。3. O(nlogk)。priorityqueue-default-maxheap。基于堆。所有元素放入pq，弹出k-1次堆顶，返回pq.top()。不需要修改数组，适用于处理海量数据。4. O(nlogk)。multiset-default-minheap。基于rbt,设置一个大小为k的最小堆。最后弹出*set.begin()。不需要修改数组，适用于处理海量数据。.cpp) [233] 数字1的个数 数学。T:O(logn),S:O(1)1. 公式法：n/(10d)d + min(d,max(0,n\%(10d)-d+1))2.划分法。满二进一位（满载），如果量级的最后一位是1，要加上余数+1 [263] 丑数 数学。迭代。 [264] 丑数ii 动态规划.3个指针 [283] 移动零 Two Pointers [295] 数据流的中位数 1. 增删O(logn),查O(1).maxheap，两个stl::pq,一个放前一半大的数，一个放后一半大的负数。2. AVL。maxheap和minheap。优先队列。 [297] 二叉树的序列化与反序列化 1. bfs/queue/stringstream2. dfs递归/stringstream in(str)/obj.str()返回值 [344] 反转字符串 双指针 O(1) space [387] 字符串中的第一个唯一字符 无序关联式容器，哈希表，计数。unordered_map&gt; [400] 第N个数字 迭代。数学。tostring(int)。(string)char。stoi(const string&amp;) [426] 把二叉搜索树转化为有序双向链表 分治法。递归。指针引用。中序遍历。M [463] 岛屿的周长 1. 岛屿边界处：在数组最左边，或者左边格子没有岛屿2. 先假设算4个边，判断左边和上边是否有岛屿 👍 [485] 最大连续1的个数 1. two pointers2. count3. sum [498] 对角线遍历 iteration：对角线索引 = 对角线坐标和；根据对角线index奇偶i，swap坐标;越界跳出 [541] 反转字符串 II 1. 双指针2.stl:reverse(begin(),end()) [557] 反转字符串中的单词 III 1. two pointers2.stringstream [561] 数组拆分 I 贪心。排序 [700] 二叉搜索树的查找 1. 递归。BST。E2. 迭代。BST。E。 [701] 二叉搜索树的插入 1. 递归。BST。2. 迭代。BST。break。 [705] 设计哈希集合 hashset。二维数组。value=0或者1.代表集合中是否存在。E。 [706] 设计哈希映射 hashmap。key-value。映射。初值为-1。E。 [724] 寻找数组的中心索引 1. 计算不含nums[i]的leftsum，如果leftsum== total - leftsum -nums[i]，返回i2. left=0,right=total;right-sum[i],if(==),return i;left+nums[i];return -1 [747] 至少是其他数字两倍的最大数 第一遍找到最大并记录索引。第二遍如果又发现不符合条件的返-1。否则返index [804] 国际摩尔斯密码 unordered_set。hash。E。 [876] 链表的中间结点 快慢指针。链表。]]></content>
       <categories>
         <category>Interview</category>
       </categories>
