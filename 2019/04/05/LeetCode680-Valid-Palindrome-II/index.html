@@ -85,10 +85,12 @@
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="Given a non-empty string s, you may delete at most one character.  Judge whether you can make it a palindrome.  Example 1: 12Input: &amp;quot;aba&amp;quot;Output: True Example 2: 123Input: &amp;quot;abca&amp;quot;Out">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-05T11:41:04.858Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/05/LeetCode680-Valid-Palindrome-II/680.png">
+<meta property="og:updated_time" content="2019-04-08T06:06:15.212Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode680. Valid Palindrome II">
 <meta name="twitter:description" content="Given a non-empty string s, you may delete at most one character.  Judge whether you can make it a palindrome.  Example 1: 12Input: &amp;quot;aba&amp;quot;Output: True Example 2: 123Input: &amp;quot;abca&amp;quot;Out">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/05/LeetCode680-Valid-Palindrome-II/680.png">
 
 
 
@@ -359,8 +361,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-04-05T19:41:04+08:00">
-                2019-04-05
+              <time title="Post modified" itemprop="dateModified" datetime="2019-04-08T14:06:15+08:00">
+                2019-04-08
               </time>
             
           </span>
@@ -414,7 +416,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  63 words
+                  192 words
                 </span>
               
 
@@ -461,7 +463,9 @@
 <li>The string will only contain lowercase characters a-z. The maximum length of the string is 50000.</li>
 </ol>
 <hr>
-
+<p><img src="/2019/04/05/LeetCode680-Valid-Palindrome-II/680.png" alt="680"></p>
+<p>跟[125] <a href="/2019/04/05/LeetCode125-Valid-Palindrome/">验证回文串</a> 思路一样，只不过可以删字符，所以当字符不同的时候，左指针右移一格或者右指针左移一格，如果存在一种可能是回文的情况，就返回真。</p>
+<h1 id="Two-Pointers"><a href="#Two-Pointers" class="headerlink" title="Two Pointers"></a>Two Pointers</h1><h2 id="my-code-in-cpp"><a href="#my-code-in-cpp" class="headerlink" title="my code in cpp"></a>my code in cpp</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">validPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l=<span class="number">0</span>,r=s.size()<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s[l]!=s[r]) <span class="keyword">return</span> helper(s,l,r<span class="number">-1</span>)||helper(s,l+<span class="number">1</span>,r);</span><br><span class="line">        l++,r--;         </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">helper</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">while</span>(l&lt;r) </span><br><span class="line">       <span class="keyword">if</span>(s[l++]!=s[r--]) <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">   <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -585,15 +589,24 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Lightmare">
             
               <p class="site-author-name" itemprop="name">Lightmare</p>
-              <p class="site-description motion-element" itemprop="description">~ Magic world , Magical girl ~</p>
+              <p class="site-description motion-element" itemprop="description">凡是过去，皆为序曲。</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -603,7 +616,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -729,6 +742,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Two-Pointers"><span class="nav-number">1.</span> <span class="nav-text">Two Pointers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-code-in-cpp"><span class="nav-number">1.1.</span> <span class="nav-text">my code in cpp</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -763,7 +792,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">77.3k</span>
+    <span title="Site words total count">80.7k</span>
   
 </div>
 

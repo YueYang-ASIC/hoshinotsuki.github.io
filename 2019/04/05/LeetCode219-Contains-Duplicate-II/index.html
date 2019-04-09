@@ -85,10 +85,12 @@
 <meta property="og:site_name" content="Lightmare">
 <meta property="og:description" content="Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-05T00:39:20.835Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/05/LeetCode219-Contains-Duplicate-II/1.png">
+<meta property="og:updated_time" content="2019-04-09T10:09:36.451Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode219. Contains Duplicate II">
 <meta name="twitter:description" content="Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k.">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/05/LeetCode219-Contains-Duplicate-II/1.png">
 
 
 
@@ -359,8 +361,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-04-05T08:39:20+08:00">
-                2019-04-05
+              <time title="Post modified" itemprop="dateModified" datetime="2019-04-09T18:09:36+08:00">
+                2019-04-09
               </time>
             
           </span>
@@ -414,7 +416,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  76 words
+                  210 words
                 </span>
               
 
@@ -459,6 +461,9 @@
 <p><strong>Example 3:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,2,3,1,2,3], k = 2</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
 <hr>
+<p><img src="/2019/04/05/LeetCode219-Contains-Duplicate-II/1.png" alt="1"></p>
+<h1 id="Hash-table"><a href="#Hash-table" class="headerlink" title="Hash table"></a>Hash table</h1><p>适用无序关联式容器，unordered_map&lt;int,int&gt;，key是数字，value是坐标的映射，如果哈希表中存在这个数字，并且当前数字的索引减去这个数字的索引小于等于k，就返回真，否则将这个数字的索引存入哈希表中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">containsNearbyDuplicate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(m.find(nums[i])!=m.end() &amp;&amp; i-m[nums[i]]&lt;=k) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        m[nums[i]]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -583,15 +588,24 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Lightmare">
             
               <p class="site-author-name" itemprop="name">Lightmare</p>
-              <p class="site-description motion-element" itemprop="description">~ Magic world , Magical girl ~</p>
+              <p class="site-description motion-element" itemprop="description">凡是过去，皆为序曲。</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -601,7 +615,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -727,6 +741,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hash-table"><span class="nav-number">1.</span> <span class="nav-text">Hash table</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -761,7 +791,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">77.3k</span>
+    <span title="Site words total count">80.7k</span>
   
 </div>
 

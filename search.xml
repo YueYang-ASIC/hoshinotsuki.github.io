@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Bit Manipulation]]></title>
+    <url>%2F2019%2F04%2F09%2FBit-Manipulation%2F</url>
+    <content type="text"><![CDATA[各种位运算的使用and运算​ and运算通常用于二进制取位操作，例如一个数 and 1的结果就是取二进制的最末位。这可以用来判断一个整数的奇偶，二进制的最末位为0表示该数为偶数，最末位为1表示该数为奇数. or运算​ or运算通常用于二进制特定位上的无条件赋值，例如一个数or 1的结果就是把二进制最末位强行变成1。如果需要把二进制最末位变成0，对这个数or 1之后再减一就可以了，其实际意义就是把这个数强行变成最接近的偶数。 xor运算xor运算通常用于对二进制的特定一位进行取反操作，因为异或可以这样定义：0和1异或0都不变，异或1则取反。 xor运算的逆运算是它本身，也就是说两次异或同一个数最后结果不变，即(a xor b) xor b = a。xor运算可以用于简单的加密。 定义两个符号#和@ ，这两个符号互为逆运算，也就是说(x # y) @ y = x。现在依次执行下面三条命令，结果是什么？x &lt;- x # y y &lt;- x @ y x &lt;- x @ y执行了第一句后x变成了x # y。那么第二句实质就是y &lt;- x # y @ y，由于#和@互为逆运算，那么此时的y变成了原来的x。第三句中x实际上被赋值为(x # y) @ x，如果#运算具有交换律，那么赋值后x就变成最初的y了。 这三句话的结果是，x和y的位置互换了。 加法和减法互为逆运算，并且加法满足交换律。把#换成+，把@换成-，我们可以写出一个不需要临时变量的swap过程。 123456procedure swap(var a,b:longint);begina:=a + b;b:=a - b;a:=a - b;end; 好了，刚才不是说xor的逆运算是它本身吗？于是我们就有了一个看起来非常诡异的swap过程： 123456procedure swap(var a,b:longint);begina:=a xor b;b:=a xor b;a:=a xor b;end; not运算not运算的定义是把内存中的0和1全部取反。使用not运算时要格外小心，你需要注意整数类型有没有符号。如果not的对象是无符号整数（不能表示负数），那么得到的值就是它与该类型上界的差，因为无符号类型的数是用$0000到$FFFF依次表示的。下面的两个程序（仅语言不同）均返回65435。 1234567var a:word;begin a:=100; a:=not a; writeln(a);end. 12345678#include &lt;stdio.h&gt;int main()&#123; unsigned short a=100; a = ~a; printf( "%dn", a ); return 0;&#125; 如果not的对象是有符号的整数，情况就不一样了，稍后我们会在“整数类型的储存”小节中提到。 shl运算a shl b就表示把a转为二进制后左移b位（在后面添b个0）。例如100的二进制为1100100，而110010000转成十进制是400，那么100 shl 2 = 400。可以看出，a shl b的值实际上就是a乘以2的b次方，因为在二进制数后添一个0就相当于该数乘以2。​ 通常认为a shl 1比a * 2更快，因为前者是更底层一些的操作。因此程序中乘以2的操作请尽量用左移一位来代替。​ 定义一些常量可能会用到shl运算。你可以方便地用1 shl 16 – 1来表示65535。很多算法和数据结构要求数据规模必须是2的幂，此时可以用shl来定义Max_N等常量。 shr运算和shl相似，a shr b表示二进制右移b位（去掉末b位），相当于a除以2的b次方（取整）。我们也经常用shr 1来代替div 2，比如二分查找、堆的插入操作等等。想办法用shr代替除法运算可以使程序效率大大提高。最大公约数的二进制算法用除以2操作来代替慢得出奇的mod运算，效率可以提高60%。 技巧用于消去x的最后一位的11234x &amp; (x-1)x = 1100x-1 = 1011x &amp; (x-1) = 1000 用O(1)时间检测整数n是否是2的幂次.思路解析：N如果是2的幂次，则N满足两个条件。1.N&gt;02.N的二进制表示中只有一个1一位N的二进制表示中只有一个1，所以使用N&amp;(N-1)将唯一的一个1消去。如果N是2的幂次，那么N&amp;(N-1)得到结果为0，即可判断。 计算在一个 32 位的整数的二进制表示中有多少个 1.由 x &amp; (x-1) 消去x最后一位知。循环使用x &amp; (x-1)消去最后一位1，计算总共消去了多少次即可。 将整数A转换为B，需要改变多少个bit位思考将整数A转换为B，如果A和B在第i（0&lt;=i&lt;32）个位上相等，则不需要改变这个BIT位，如果在第i位上不相等，则需要改变这个BIT位。所以问题转化为了A和B有多少个BIT位不相同。联想到位运算有一个异或操作，相同为0，相异为1，所以问题转变成了计算A异或B之后这个数中1的个数。 使用二进制进行子集枚举给定一个含不同整数的集合，返回其所有的子集 样例 如果 S = [1,2,3]，有如下的解： [ [3], [1], [2], [1,2,3], [1,3], [2,3], [1,2] ]思路就是使用一个正整数二进制表示的第i位是1还是0，代表集合的第i个数取或者不取。所以从0到2n-1总共2n个整数，正好对应集合的2^n个子集。 12345678910S = &#123;1,2,3&#125;N bit Combination0 000 &#123;&#125;1 001 &#123;1&#125;2 010 &#123;2&#125;3 011 &#123;1,2&#125;4 100 &#123;3&#125;5 101 &#123;1,3&#125;6 110 &#123;2,3&#125;7 111 &#123;1,2,3&#125; a^b^b=a数组中，只有一个数出现一次，剩下都出现两次，找出出现一次的。问题 Given [1,2,2,1,3,4,3], return 4 因为只有一个数恰好出现一个，剩下的都出现过两次，所以只要将所有的数异或起来，就可以得到唯一的那个数。 12345678910#include&lt;stdio.h&gt;int main()&#123; int a[7]=&#123;1,2,2,1,3,4,3&#125;; int ans=0; for(int i=0;i&lt;7;i++)&#123; ans^=a[i]; &#125; printf("%d\n",ans);&#125; 数组中，只有一个数出现一次，剩下都出现三次，找出出现一次的。问题 Given [1,1,2,3,3,3,2,2,4,1] , return 4 因为数是出现三次的，也就是说，对于每一个二进制位，如果只出现一次的数在该二进制位为1，那么这个二进制位在全部数字中出现次数无法被3整除。模3运算只有三种状态：00,01,10，因此我们可以使用两个位来表示当前位%3，对于每一位，我们让Two，One表示当前位的状态，B表示输入数字的对应位，Two+和One+表示输出状态。 0 0 0 0 0 0 0 1 0 1 0 1 0 0 1 0 1 1 1 0 1 0 0 1 0 1 0 1 0 0 One+ = (One ^ B) &amp; (~Two) Two+ = (~One+) &amp; (Two ^ B) 123456789101112131415161718192021#include&lt;stdio.h&gt;void findNum(int *a,int n)&#123; int one=0; int two=0; int i,j,k; for(i=0;i&lt;n;i++)&#123; two=two|(one&amp;a[i]); one=one^a[i]; int three=two&amp;one; two=two^three; one=one^three; &#125; printf("%d\n",one|two);&#125;int main()&#123; int a[10]=&#123;1,1,2,3,3,3,2,2,4,1&#125;; findNum(a,10);&#125; 另外一种容易理解的方法 123456789101112131415161718192021#include&lt;stdio.h&gt;void findNum(int *a,int n)&#123; int ans=0; int bits[32]=&#123;0&#125;; for(int i=0;i&lt;n;i++)&#123; for(int j=0;j&lt;32;j++)&#123; bits[j]+=((a[i]&gt;&gt;j)&amp;1); &#125; &#125; for(int i=0;i&lt;32;i++)&#123; if(bits[i]%3==1) ans+=1&lt;&lt;i; &#125; printf("%d\n",ans);&#125;int main()&#123; int a[10]=&#123;1,1,2,3,3,3,2,2,4,1&#125;; findNum(a,10);&#125; 数组中，只有两个数出现一次，剩下都出现两次，找出出现一次的问题 Given [1,2,2,3,4,4,5,3] return 1 and 5有了第一题的基本的思路，我们不妨假设出现一个的两个元素是x，y，那么最终所有的元素异或的结果就是res = x^y。并且res！=0，那么我们可以找出res二进制表示中的某一位是1，那么这一位1对于这两个数x,y只有一个数的该位置是1。对于原来的数组，我们可以根据这个位置是不是1就可以将数组分成两个部分。求出x,y其中一个，我们就能求出两个了。 1234567891011121314151617181920212223242526272829#include&lt;stdio.h&gt;void findNum(int *a,int n)&#123; int ans=0; int pos=0; int x=0,y=0; for(int i=0;i&lt;n;i++) ans^=a[i]; int tmp=ans; while((tmp&amp;1)==0)&#123; //终止条件是二进制tmp最低位是1 pos++; tmp&gt;&gt;=1; &#125; for(int i=0;i&lt;n;i++)&#123; if((a[i]&gt;&gt;pos)&amp;1)&#123;//取出第pos位的值 x^=a[i]; &#125; &#125; y=x^ans; if(x&gt;y) swap(x,y);//从大到小输出x,y printf("%d %d\n",x,y);&#125;int main()&#123; int a[8]=&#123;1,2,2,3,4,4,5,3&#125;; findNum(a,8);&#125; 另外一种写法 1234567891011121314151617181920212223#include&lt;stdio.h&gt;void findNum(int *a,int n)&#123; int diff=0; int x=0,y=0; for(int i=0;i&lt;n;i++)&#123; diff^=a[i]; &#125; diff&amp;=-diff;//取diff的最后一位1的位置 for(int i=0;i&lt;n;i++)&#123; if((a[i]&amp;diff)==0)&#123; x^=a[i]; &#125;else y^=a[i]; &#125; if(x&gt;y) swap(x,y); printf("%d %d\n",x,y);&#125;int main()&#123; int a[10]=&#123;1,2,2,3,4,4,5,3&#125;; findNum(a,8);&#125;]]></content>
+      <categories>
+        <category>Data Structures</category>
+      </categories>
+      <tags>
+        <tag>Bit Manipulation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode125. Valid Palindrome]]></title>
     <url>%2F2019%2F04%2F05%2FLeetCode125-Valid-Palindrome%2F</url>
     <content type="text"><![CDATA[Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases. Note: For the purpose of this problem, we define empty string as valid palindrome. Example 1: 12Input: &quot;A man, a plan, a canal: Panama&quot;Output: true Example 2: 12Input: &quot;race a car&quot;Output: false Two Pointersmy code in cpp12345678910bool isPalindrome(string s) &#123; int l = 0, r = s.size() - 1 ; while (r&lt;s.size()&amp;&amp;l &lt; r) &#123;//1. while (l&lt;s.size()&amp;&amp;!isalnum(s[l])) ++l;//2. while (r&lt;s.size()&amp;&amp;!isalnum(s[r])) --r; if (l&lt;s.size()&amp;&amp;r&lt;s.size()&amp;&amp;(s[l++] + 32 - 'a') %32 != (s[r--] + 32 - 'a') % 32) return false;//3. &#125; return true;&#125; 细节 开始写成while (!isalnum(s[l]))报错： heap-buffer-overflow。后来想想一定是数组越界的问题,只需要在每次while和if的时候都判断是否下标超过size()即可。 有一个内置函数isalnum(char)来表示是否是数字和字母，自己写就这样。 123456bool isAlphaNum(char &amp;ch) &#123; if (ch &gt;= 'a' &amp;&amp; ch &lt;= 'z') return true; if (ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z') return true; if (ch &gt;= '0' &amp;&amp; ch &lt;= '9') return true; return false;&#125; 如果直接取绝对值，写成 (abs(s[l] -s[r]) !=0&amp;&amp;abs(s[l] -s[r]) !=32) 会报错：”0P”。这里0是48，P是80，相隔32,所以不能用ascii相隔0和32来判断。所以用(char-‘a’+32)%32来将大写转成小写来判断两个字母是否相等，”OP”分别是-17和15，所以这两个不等。]]></content>
@@ -41,7 +52,7 @@
   <entry>
     <title><![CDATA[LeetCode680. Valid Palindrome II]]></title>
     <url>%2F2019%2F04%2F05%2FLeetCode680-Valid-Palindrome-II%2F</url>
-    <content type="text"><![CDATA[Given a non-empty string s, you may delete at most one character. Judge whether you can make it a palindrome. Example 1: 12Input: &quot;aba&quot;Output: True Example 2: 123Input: &quot;abca&quot;Output: TrueExplanation: You could delete the character &apos;c&apos;. Note: The string will only contain lowercase characters a-z. The maximum length of the string is 50000.]]></content>
+    <content type="text"><![CDATA[Given a non-empty string s, you may delete at most one character. Judge whether you can make it a palindrome. Example 1: 12Input: &quot;aba&quot;Output: True Example 2: 123Input: &quot;abca&quot;Output: TrueExplanation: You could delete the character &apos;c&apos;. Note: The string will only contain lowercase characters a-z. The maximum length of the string is 50000. 跟[125] 验证回文串 思路一样，只不过可以删字符，所以当字符不同的时候，左指针右移一格或者右指针左移一格，如果存在一种可能是回文的情况，就返回真。 Two Pointersmy code in cpp123456789101112131415bool validPalindrome(string s) &#123; int l=0,r=s.size()-1; while(l&lt;r)&#123; if(s[l]!=s[r]) return helper(s,l,r-1)||helper(s,l+1,r); l++,r--; &#125; return true;&#125;bool helper(string s, int l,int r)&#123; while(l&lt;r) if(s[l++]!=s[r--]) return false; return true;&#125;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -126,7 +137,7 @@
   <entry>
     <title><![CDATA[LeetCode136. Single Number]]></title>
     <url>%2F2019%2F04%2F05%2FLeetCode136-Single-Number%2F</url>
-    <content type="text"><![CDATA[Given a non-empty array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? Example 1: 12Input: [2,2,1]Output: 1 Example 2: 12Input: [4,1,2,1,2]Output: 4]]></content>
+    <content type="text"><![CDATA[Given a non-empty array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? Example 1: 12Input: [2,2,1]Output: 1 Example 2: 12Input: [4,1,2,1,2]Output: 4 hash tableO(1)time O(n)space 先将所有数字存入hash table，key是数字，value是数字的个数。 1234567int singleNumber(vector&lt;int&gt;&amp; nums) &#123; unordered_map&lt;int, int&gt; m; for (int i = 0; i&lt;nums.size(); i++) ++m[nums[i]]; for (int i = 0; i&lt;nums.size(); i++) if (m[nums[i]] == 1) return nums[i]; return 0; Bit manipulation因为^运算具有交换律，且^运算同一个数结果为0，所以将所有数累计异或就可以得到只出现一次的数。 12345int singleNumber(vector&lt;int&gt;&amp; nums) &#123; int ret=0; for(auto num:nums) ret^=num; return ret;&#125;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -140,7 +151,7 @@
   <entry>
     <title><![CDATA[LeetCode219. Contains Duplicate II]]></title>
     <url>%2F2019%2F04%2F05%2FLeetCode219-Contains-Duplicate-II%2F</url>
-    <content type="text"><![CDATA[Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k. Example 1: 12Input: nums = [1,2,3,1], k = 3Output: true Example 2: 12Input: nums = [1,0,1,1], k = 1Output: true Example 3: 12Input: nums = [1,2,3,1,2,3], k = 2Output: false]]></content>
+    <content type="text"><![CDATA[Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k. Example 1: 12Input: nums = [1,2,3,1], k = 3Output: true Example 2: 12Input: nums = [1,0,1,1], k = 1Output: true Example 3: 12Input: nums = [1,2,3,1,2,3], k = 2Output: false Hash table适用无序关联式容器，unordered_map&lt;int,int&gt;，key是数字，value是坐标的映射，如果哈希表中存在这个数字，并且当前数字的索引减去这个数字的索引小于等于k，就返回真，否则将这个数字的索引存入哈希表中。 123456789bool containsNearbyDuplicate(vector&lt;int&gt;&amp; nums, int k) &#123; unordered_map&lt;int,int&gt; m; for(int i=0;i&lt;nums.size();i++) &#123; if(m.find(nums[i])!=m.end() &amp;&amp; i-m[nums[i]]&lt;=k) return true; m[nums[i]]=i; &#125; return false;&#125;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -153,12 +164,13 @@
   <entry>
     <title><![CDATA[LeetCode217. Contains Duplicate]]></title>
     <url>%2F2019%2F04%2F05%2FLeetCode217-Contains-Duplicate%2F</url>
-    <content type="text"><![CDATA[Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct. Example 1: 12Input: [1,2,3,1]Output: true Example 2: 12Input: [1,2,3,4]Output: false Example 3: 12Input: [1,1,1,3,3,4,3,2,4,2]Output: true]]></content>
+    <content type="text"><![CDATA[Given an array of integers, find if the array contains any duplicates.Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.Example 1:12Input: [1,2,3,1]Output: true Example 2:12Input: [1,2,3,4]Output: false Example 3:12Input: [1,1,1,3,3,4,3,2,4,2]Output: true Hash Table用无序关联式容器unordered_map记录数字出现的次数，key是数字，value代表数字出现的次数。用find(key)或者count(key)可以验证是否有重复数字。 my code in cpp12345678910bool containsDuplicate(vector&lt;int&gt;&amp; nums) &#123; unordered_map&lt;int,int&gt; m; for(int i=0;i&lt;nums.size();i++) &#123; //if(m.find(nums[i])!=m.end()) return true; if(m.count(nums[i])!=0) return true; ++m[nums[i]]; &#125; return false;&#125; Sort排序过后，比较两个相邻的数字是否相同，如果相同，就说明有重复数字。 my code in cpp123456bool containsDuplicate(vector&lt;int&gt;&amp; nums) &#123; sort(nums.begin(),nums.end()); for(int i=1;i&lt;nums.size();i++) if(nums[i]==nums[i-1]) return true; return false;&#125;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
       <tags>
         <tag>Hash Table</tag>
+        <tag>Sort</tag>
         <tag>Easy</tag>
         <tag>Array</tag>
       </tags>
@@ -166,13 +178,13 @@
   <entry>
     <title><![CDATA[LeetCode122. Best Time to Buy and Sell Stock II]]></title>
     <url>%2F2019%2F04%2F05%2FLeetCode122-Best-Time-to-Buy-and-Sell-Stock-II%2F</url>
-    <content type="text"><![CDATA[Say you have an array for which the ith element is the price of a given stock on day i. Design an algorithm to find the maximum profit. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times). Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again). Example 1: 1234Input: [7,1,5,3,6,4]Output: 7Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4. Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3. Example 2: 12345Input: [1,2,3,4,5]Output: 4Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4. Note that you cannot buy on day 1, buy on day 2 and sell them later, as you are engaging multiple transactions at the same time. You must sell before buying again. Example 3: 123Input: [7,6,4,3,1]Output: 0Explanation: In this case, no transaction is done, i.e. max profit = 0.]]></content>
+    <content type="text"><![CDATA[Say you have an array for which the ith element is the price of a given stock on day i. Design an algorithm to find the maximum profit. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times). Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again). Example 1: 1234Input: [7,1,5,3,6,4]Output: 7Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4. Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3. Example 2: 12345Input: [1,2,3,4,5]Output: 4Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4. Note that you cannot buy on day 1, buy on day 2 and sell them later, as you are engaging multiple transactions at the same time. You must sell before buying again. Example 3: 123Input: [7,6,4,3,1]Output: 0Explanation: In this case, no transaction is done, i.e. max profit = 0. 贪心+动态规划 从头开始遍历，相当于是一串串的利润总和，而且这些利润片段要最大，所以用到贪心算法，只要后面的数比前面的大，就将他们的差值加入到ret总和里面。 my code in cpp1234567int maxProfit(vector&lt;int&gt;&amp; prices) &#123; if(prices.empty()) return 0; int ret=0; for(int i=0;i&lt;prices.size()-1;i++) if(prices[i+1]&gt;prices[i]) ret+=prices[i+1]-prices[i]; return ret;&#125;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Easy</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
         <tag>Greedy</tag>
       </tags>
@@ -180,13 +192,13 @@
   <entry>
     <title><![CDATA[LeetCode121. Best Time to Buy and Sell Stock]]></title>
     <url>%2F2019%2F04%2F05%2FLeetCode121-Best-Time-to-Buy-and-Sell-Stock%2F</url>
-    <content type="text"><![CDATA[Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit. Note that you cannot sell a stock before you buy one. Example 1: 1234Input: [7,1,5,3,6,4]Output: 5Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5. Not 7-1 = 6, as selling price needs to be larger than buying price. Example 2: 123Input: [7,6,4,3,1]Output: 0Explanation: In this case, no transaction is done, i.e. max profit = 0.]]></content>
+    <content type="text"><![CDATA[Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit. Note that you cannot sell a stock before you buy one. Example 1: 1234Input: [7,1,5,3,6,4]Output: 5Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5. Not 7-1 = 6, as selling price needs to be larger than buying price. Example 2: 123Input: [7,6,4,3,1]Output: 0Explanation: In this case, no transaction is done, i.e. max profit = 0. 用动态规划，遍历一次数组， 更新两个变量，分别记录买入价和最大利润。 my code in cpp12345678910int maxProfit(vector&lt;int&gt;&amp; prices) &#123; if(!prices.size()) return 0; int buy=INT_MAX,ret=INT_MIN; for(auto price:prices) &#123; buy=min(buy,price); ret=max(ret,price-buy); &#125; return ret;&#125;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Easy</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
       </tags>
   </entry>
@@ -199,8 +211,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Array</tag>
         <tag>O(1) space</tag>
+        <tag>Array</tag>
         <tag>Two Pointers</tag>
       </tags>
   </entry>
@@ -245,8 +257,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Array</tag>
         <tag>O(1) space</tag>
+        <tag>Array</tag>
         <tag>Two Pointers</tag>
       </tags>
   </entry>
@@ -288,8 +300,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Array</tag>
         <tag>O(1) space</tag>
+        <tag>Array</tag>
         <tag>Two Pointers</tag>
         <tag>Binary array</tag>
       </tags>
@@ -302,8 +314,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Array</tag>
         <tag>O(1) space</tag>
+        <tag>Array</tag>
         <tag>Two Pointers</tag>
         <tag>Medium</tag>
       </tags>
@@ -317,8 +329,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Array</tag>
         <tag>O(1) space</tag>
+        <tag>Array</tag>
         <tag>Two Pointers</tag>
       </tags>
   </entry>
@@ -331,8 +343,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Array</tag>
         <tag>O(1) space</tag>
+        <tag>Array</tag>
         <tag>Two Pointers</tag>
       </tags>
   </entry>
@@ -345,8 +357,8 @@
       </categories>
       <tags>
         <tag>Easy</tag>
-        <tag>Array</tag>
         <tag>O(1) space</tag>
+        <tag>Array</tag>
         <tag>Two Pointers</tag>
         <tag>Binary Search</tag>
         <tag>O(n) time</tag>
@@ -443,11 +455,11 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>2D Array</tag>
         <tag>Easy</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
+        <tag>Dynamic Programming</tag>
         <tag>O(1) space</tag>
       </tags>
   </entry>
@@ -459,11 +471,11 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>2D Array</tag>
         <tag>Easy</tag>
         <tag>Iteration</tag>
         <tag>vector</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -546,9 +558,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>Dynamic Programming</tag>
         <tag>Easy</tag>
         <tag>vector</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
       </tags>
   </entry>
@@ -720,9 +732,9 @@
       </categories>
       <tags>
         <tag>pointer</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Easy</tag>
         <tag>vector</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Array</tag>
         <tag>Math</tag>
       </tags>
@@ -905,8 +917,8 @@
       </categories>
       <tags>
         <tag>AVL</tag>
-        <tag>Heapsort</tag>
         <tag>priority_queue</tag>
+        <tag>Heapsort</tag>
         <tag>Hard</tag>
       </tags>
   </entry>
@@ -919,8 +931,8 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Algorithms library</tag>
         <tag>Sort</tag>
+        <tag>Algorithms library</tag>
       </tags>
   </entry>
   <entry>
@@ -983,11 +995,11 @@
       <tags>
         <tag>STL</tag>
         <tag>RBT</tag>
+        <tag>Sort</tag>
+        <tag>priority_queue</tag>
         <tag>Algorithms library</tag>
         <tag>Heapsort</tag>
-        <tag>priority_queue</tag>
         <tag>multiset</tag>
-        <tag>Sort</tag>
       </tags>
   </entry>
   <entry>
@@ -999,9 +1011,9 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>priority_queue</tag>
-        <tag>Sort</tag>
         <tag>Containers library</tag>
+        <tag>Sort</tag>
+        <tag>priority_queue</tag>
       </tags>
   </entry>
   <entry>
@@ -1027,11 +1039,11 @@
       </categories>
       <tags>
         <tag>RBT</tag>
+        <tag>Sort</tag>
+        <tag>priority_queue</tag>
         <tag>Algorithms library</tag>
         <tag>Heapsort</tag>
-        <tag>priority_queue</tag>
         <tag>multiset</tag>
-        <tag>Sort</tag>
         <tag>Medium</tag>
         <tag>Partition</tag>
       </tags>
@@ -1058,8 +1070,8 @@
       </categories>
       <tags>
         <tag>STL</tag>
-        <tag>Algorithms library</tag>
         <tag>Sort</tag>
+        <tag>Algorithms library</tag>
         <tag>Partition</tag>
         <tag>Quicksort</tag>
       </tags>
@@ -1098,8 +1110,8 @@
         <category>Algorithms</category>
       </categories>
       <tags>
-        <tag>Heapsort</tag>
         <tag>Sort</tag>
+        <tag>Heapsort</tag>
         <tag>Quicksort</tag>
       </tags>
   </entry>
@@ -1177,7 +1189,7 @@
   <entry>
     <title><![CDATA[码不停题]]></title>
     <url>%2F2019%2F01%2F21%2Fleetcode%2F</url>
-    <content type="text"><![CDATA[Array [724] 寻找数组的中心索引 [66] 加一 [747] 至少是其他数字两倍的最大数 [121] 买卖股票的最佳时机 [122] 买卖股票的最佳时机 II [217] 存在重复元素 [219] 存在重复元素 II [136] 只出现一次的数字 [350] 两个数组的交集 II 2D Array [498] 对角线遍历 [54] 螺旋矩阵 [59] 螺旋矩阵 II [118] 杨辉三角 [119] 杨辉三角 II [36] 有效的数独 [48] 旋转图像 String [67] 二进制求和 [14] 最长公共前缀 [28] 实现strStr() [7] 整数反转 （stack,overflow,INT_MAX2147483647) [8] 字符串转换整数 (atoi) [38] 报数 [242] 有效的字母异位词 [125] 验证回文串 | Manacher’s Algorithm 马拉车算法 (mark) [680] 验证回文字符串 Ⅱ Two-Pointer : Reverse the elements in an array [344] 反转字符串 [541] 反转字符串 II [151] 反转字符串里的单词 (M) [557] 反转字符串中的单词 III(E) [561] 数组拆分 I [167] 两数之和 II - 输入有序数组 [189] 旋转数组 Two pointers : different steps [27] 移除元素 [26] 删除排序数组中的重复项 [80] 删除排序数组中的重复项 II [485] 最大连续1的个数 [53] 最大子序和 [209] 长度最小的子数组 [283] 移动零 汇总 题号 解答 [1] 两数之和 1. umap.find(target - nums[i])2. umap.count(target-nums[i]) 👍 [7] 整数反转 stack, overflow,INT_MAX,INT_MIN [14] 最长公共前缀 1.sort,比较第一个和最后一个的公共前缀。👍2.2Darray。纵向遍历。优化版，substr3. 2Darray。纵向遍历。 [26] 删除排序数组中的重复项 双指针，一个指向老数组，一个指向新数组。如果老数组指针的值不等于新数组指针的值，新数组向前移一格 [27] 移除元素 双指针,一个指向老数组，一个指向新数组。如果老数组指针的值不等于target，新数组向前移一格 [28] 实现strStr() 1. 暴力搜索法。O(m(m-n+1))=O(m*n)2. kmp [46] 全排列 1. 递归. 分层布局。1.交换第一个数字。2.第一个数固定。后面的排列。3.交换归位。 2. 递归。回溯。填空格法。访问数组标记。 [47] 全排列ii set。去重。递归。交换。 [51] N皇后 回溯。排序。基于条件对string进行排序。H [52] N皇后ii 回溯。计数。跟51题一样。 [53] 最大子序和 1. 2*O(n/2)+O(1)=O(n)。分治法。max(divide,merge)。2. O(n)。Kadane’s algorithm。DP。分为子问题。3.二周目，dp4.二周目，分治法 [54] 螺旋矩阵 上右下左四个方向，依次打印。每次打印完一行后更新变量，判断越界。 [59] 螺旋矩阵 II 跟54螺旋矩阵一样，只不过是逆向思维，套路还是上右下左遍历，更新行列号，判断越界break。 [66] 加一 1.迭代O(1)space,O(n)time👍2. 递归O(n)space,O(n)time [67] 二进制求和 字符串链接，动态规划,二进制进位 [77] 组合 1. 公式法：C(K,N)=C(K-1,N-1)+C(K,N-1)。2. 回溯法。递归+循环。M [80] 删除排序数组中的重复项 II 双指针，一个遍历原来的，一个更新新数组。并且计数，只更新2以内的数字，如果遇到不重复的将计数设为1，否则计数加一。 [94] 二叉树的中序遍历 1. 中序遍历。递归。E2. 中序遍历。1个栈。M。👍3. 中序遍历。O1,非递归+不用栈。线索二叉树。H。 [104] 二叉树的最大深度 dfs.递归。E [105] 从前序与中序遍历序列构造二叉树 递归。二分查找。mid.start.end. pos=distance(.begin,find( , , )) [111] 二叉树的最小深度 dfs.递归。E [118] 杨辉三角 1. 初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和.但是太慢了。2.动态规划。空容器返空。初始化第0行[1]。从第一行开始到numrows-1行开始，每行构建个子容器：第一个塞1，中间塞和，最后塞1.👍 [119] 杨辉三角 II 1. dp.迭代。清空，塞1，塞中间，塞1，sub=ret2. 想象成一个栈，从后res[rowIndex]往前迭代，每次更新为前一个数加自身的和。.cpp) [121] 买卖股票的最佳时机 [125] 验证回文串 Two pointers [138] 复制带随机指针的链表 链表/复制原始(copy,link,next)/复制随机(copy,next)/分离。M [141] 环形链表 快慢指针。fast&amp;&amp;fast-&gt;next一起判空。有环必走不到空，指针相遇就有环。 [142] 环形链表 II 1. 快慢指针，计数2. 三个指针！环状检测算法！👍 [144] 二叉树的前序遍历 1. 递归2. 迭代+栈👍 [145] 二叉树的后序遍历 1. 递归2. 迭代+1个栈👍3. 迭代+2个栈 [151] 翻转字符串里的单词 👍 1. Two Pointers2.stringstream+getline👍3. stringstream+&gt;&gt;👍 [167] 两数之和 II - 输入有序数组 双指针O(n) [169] 求众数 1. 快排。找中位数。O(nlogn)2. 不修改数组的方法O(n) 👍 [172] 阶乘后的零 1. 数学。递归。2. 数学。迭代。 [179] 最大数 字符串排序,sort.lambda.string [189] 旋转数组 1. Reverse,双指针2.Reverse,stl3.STL.push_back.erase.超时 [209] 长度最小的子数组 1. O(n).双指针2. 分治法 [215] 数组中的第K个最大元素 1. O(nlogn)。快排sort()。reverse()。会修改数组。2. O(n)。快排in-place partition/one way。会修改数组。3. O(nlogk)。priorityqueue-default-maxheap。基于堆。所有元素放入pq，弹出k-1次堆顶，返回pq.top()。不需要修改数组，适用于处理海量数据。4. O(nlogk)。multiset-default-minheap。基于rbt,设置一个大小为k的最小堆。最后弹出*set.begin()。不需要修改数组，适用于处理海量数据。.cpp) [233] 数字1的个数 数学。T:O(logn),S:O(1)1. 公式法：n/(10d)d + min(d,max(0,n\%(10d)-d+1))2.划分法。满二进一位（满载），如果量级的最后一位是1，要加上余数+1 [263] 丑数 数学。迭代。 [264] 丑数ii 动态规划.3个指针 [283] 移动零 Two Pointers [295] 数据流的中位数 1. 增删O(logn),查O(1).maxheap，两个stl::pq,一个放前一半大的数，一个放后一半大的负数。2. AVL。maxheap和minheap。优先队列。 [297] 二叉树的序列化与反序列化 1. bfs/queue/stringstream2. dfs递归/stringstream in(str)/obj.str()返回值 [344] 反转字符串 双指针 O(1) space [387] 字符串中的第一个唯一字符 无序关联式容器，哈希表，计数。unordered_map&gt; [400] 第N个数字 迭代。数学。tostring(int)。(string)char。stoi(const string&amp;) [426] 把二叉搜索树转化为有序双向链表 分治法。递归。指针引用。中序遍历。M [463] 岛屿的周长 1. 岛屿边界处：在数组最左边，或者左边格子没有岛屿2. 先假设算4个边，判断左边和上边是否有岛屿 👍 [485] 最大连续1的个数 1. two pointers2. count3. sum [498] 对角线遍历 iteration：对角线索引 = 对角线坐标和；根据对角线index奇偶i，swap坐标;越界跳出 [541] 反转字符串 II 1. 双指针2.stl:reverse(begin(),end()) [557] 反转字符串中的单词 III 1. two pointers2.stringstream [561] 数组拆分 I 贪心。排序 [700] 二叉搜索树的查找 1. 递归。BST。E2. 迭代。BST。E。 [701] 二叉搜索树的插入 1. 递归。BST。2. 迭代。BST。break。 [705] 设计哈希集合 hashset。二维数组。value=0或者1.代表集合中是否存在。E。 [706] 设计哈希映射 hashmap。key-value。映射。初值为-1。E。 [724] 寻找数组的中心索引 1. 计算不含nums[i]的leftsum，如果leftsum== total - leftsum -nums[i]，返回i2. left=0,right=total;right-sum[i],if(==),return i;left+nums[i];return -1 [747] 至少是其他数字两倍的最大数 第一遍找到最大并记录索引。第二遍如果又发现不符合条件的返-1。否则返index [804] 国际摩尔斯密码 unordered_set。hash。E。 [876] 链表的中间结点 快慢指针。链表。]]></content>
+    <content type="text"><![CDATA[Array [724] 寻找数组的中心索引 [66] 加一 [747] 至少是其他数字两倍的最大数 [121] 买卖股票的最佳时机 |dp [122] 买卖股票的最佳时机 II | greedy [217] 存在重复元素 | unordered_map,sort [219] 存在重复元素 II | unordered_map [136] 只出现一次的数字 | ^ [350] 两个数组的交集 II 2D Array [498] 对角线遍历 [54] 螺旋矩阵 [59] 螺旋矩阵 II [118] 杨辉三角 [119] 杨辉三角 II [36] 有效的数独 [48] 旋转图像 String [67] 二进制求和 [14] 最长公共前缀 [28] 实现strStr() [7] 整数反转 （stack,overflow,INT_MAX2147483647) [8] 字符串转换整数 (atoi) [38] 报数 [242] 有效的字母异位词 [125] 验证回文串 | Manacher’s Algorithm 马拉车算法 (mark) [680] 验证回文字符串 Ⅱ Two-Pointer : Reverse the elements in an array [344] 反转字符串 [541] 反转字符串 II [151] 反转字符串里的单词 (M) [557] 反转字符串中的单词 III(E) [561] 数组拆分 I [167] 两数之和 II - 输入有序数组 [189] 旋转数组 Two pointers : different steps [27] 移除元素 [26] 删除排序数组中的重复项 [80] 删除排序数组中的重复项 II [485] 最大连续1的个数 [53] 最大子序和 [209] 长度最小的子数组 [283] 移动零 汇总 题号 解答 [1] 两数之和 1. umap.find(target - nums[i])2. umap.count(target-nums[i]) 👍 [7] 整数反转 stack, overflow,INT_MAX,INT_MIN [14] 最长公共前缀 1.sort,比较第一个和最后一个的公共前缀。👍2.2Darray。纵向遍历。优化版，substr3. 2Darray。纵向遍历。 [26] 删除排序数组中的重复项 双指针，一个指向老数组，一个指向新数组。如果老数组指针的值不等于新数组指针的值，新数组向前移一格 [27] 移除元素 双指针,一个指向老数组，一个指向新数组。如果老数组指针的值不等于target，新数组向前移一格 [28] 实现strStr() 1. 暴力搜索法。O(m(m-n+1))=O(m*n)2. kmp [46] 全排列 1. 递归. 分层布局。1.交换第一个数字。2.第一个数固定。后面的排列。3.交换归位。 2. 递归。回溯。填空格法。访问数组标记。 [47] 全排列ii set。去重。递归。交换。 [51] N皇后 回溯。排序。基于条件对string进行排序。H [52] N皇后ii 回溯。计数。跟51题一样。 [53] 最大子序和 1. 2*O(n/2)+O(1)=O(n)。分治法。max(divide,merge)。2. O(n)。Kadane’s algorithm。DP。分为子问题。3.二周目，dp4.二周目，分治法 [54] 螺旋矩阵 上右下左四个方向，依次打印。每次打印完一行后更新变量，判断越界。 [59] 螺旋矩阵 II 跟54螺旋矩阵一样，只不过是逆向思维，套路还是上右下左遍历，更新行列号，判断越界break。 [66] 加一 1.迭代O(1)space,O(n)time👍2. 递归O(n)space,O(n)time [67] 二进制求和 字符串链接，动态规划,二进制进位 [77] 组合 1. 公式法：C(K,N)=C(K-1,N-1)+C(K,N-1)。2. 回溯法。递归+循环。M [80] 删除排序数组中的重复项 II 双指针，一个遍历原来的，一个更新新数组。并且计数，只更新2以内的数字，如果遇到不重复的将计数设为1，否则计数加一。 [94] 二叉树的中序遍历 1. 中序遍历。递归。E2. 中序遍历。1个栈。M。👍3. 中序遍历。O1,非递归+不用栈。线索二叉树。H。 [104] 二叉树的最大深度 dfs.递归。E [105] 从前序与中序遍历序列构造二叉树 递归。二分查找。mid.start.end. pos=distance(.begin,find( , , )) [111] 二叉树的最小深度 dfs.递归。E [118] 杨辉三角 1. 初始化外部容器，每行内部容器resize(row+1),头尾(尾是row)是1，中间是上层的和.但是太慢了。2.动态规划。空容器返空。初始化第0行[1]。从第一行开始到numrows-1行开始，每行构建个子容器：第一个塞1，中间塞和，最后塞1.👍 [119] 杨辉三角 II 1. dp.迭代。清空，塞1，塞中间，塞1，sub=ret2. 想象成一个栈，从后res[rowIndex]往前迭代，每次更新为前一个数加自身的和。.cpp) [121] 买卖股票的最佳时机 dp [122] 买卖股票的最佳时机II dp+greedy [125] 验证回文串 Two pointers [136] 只出现一次的数字 1. 位运算O(n)time O(1)space2. unordered_map O(1)time O(n)space [138] 复制带随机指针的链表 链表/复制原始(copy,link,next)/复制随机(copy,next)/分离。M [141] 环形链表 快慢指针。fast&amp;&amp;fast-&gt;next一起判空。有环必走不到空，指针相遇就有环。 [142] 环形链表 II 1. 快慢指针，计数2. 三个指针！环状检测算法！👍 [144] 二叉树的前序遍历 1. 递归2. 迭代+栈👍 [145] 二叉树的后序遍历 1. 递归2. 迭代+1个栈👍3. 迭代+2个栈 [151] 翻转字符串里的单词 👍 1. Two Pointers2.stringstream+getline👍3. stringstream+&gt;&gt;👍 [167] 两数之和 II - 输入有序数组 双指针O(n) [169] 求众数 1. 快排。找中位数。O(nlogn)2. 不修改数组的方法O(n) 👍 [172] 阶乘后的零 1. 数学。递归。2. 数学。迭代。 [179] 最大数 字符串排序,sort.lambda.string [189] 旋转数组 1. Reverse,双指针2.Reverse,stl3.STL.push_back.erase.超时 [209] 长度最小的子数组 1. O(n).双指针2. 分治法 [215] 数组中的第K个最大元素 1. O(nlogn)。快排sort()。reverse()。会修改数组。2. O(n)。快排in-place partition/one way。会修改数组。3. O(nlogk)。priorityqueue-default-maxheap。基于堆。所有元素放入pq，弹出k-1次堆顶，返回pq.top()。不需要修改数组，适用于处理海量数据。4. O(nlogk)。multiset-default-minheap。基于rbt,设置一个大小为k的最小堆。最后弹出*set.begin()。不需要修改数组，适用于处理海量数据。.cpp) [217] 存在重复元素 1. sort2. unordered_map [219] 存在重复元素II unordered_map [233] 数字1的个数 数学。T:O(logn),S:O(1)1. 公式法：n/(10d)d + min(d,max(0,n\%(10d)-d+1))2.划分法。满二进一位（满载），如果量级的最后一位是1，要加上余数+1 [263] 丑数 数学。迭代。 [264] 丑数ii 动态规划.3个指针 [283] 移动零 Two Pointers [295] 数据流的中位数 1. 增删O(logn),查O(1).maxheap，两个stl::pq,一个放前一半大的数，一个放后一半大的负数。2. AVL。maxheap和minheap。优先队列。 [297] 二叉树的序列化与反序列化 1. bfs/queue/stringstream2. dfs递归/stringstream in(str)/obj.str()返回值 [344] 反转字符串 双指针 O(1) space [387] 字符串中的第一个唯一字符 无序关联式容器，哈希表，计数。unordered_map&gt; [400] 第N个数字 迭代。数学。tostring(int)。(string)char。stoi(const string&amp;) [426] 把二叉搜索树转化为有序双向链表 分治法。递归。指针引用。中序遍历。M [463] 岛屿的周长 1. 岛屿边界处：在数组最左边，或者左边格子没有岛屿2. 先假设算4个边，判断左边和上边是否有岛屿 👍 [485] 最大连续1的个数 1. two pointers2. count3. sum [498] 对角线遍历 iteration：对角线索引 = 对角线坐标和；根据对角线index奇偶i，swap坐标;越界跳出 [541] 反转字符串 II 1. 双指针2.stl:reverse(begin(),end()) [557] 反转字符串中的单词 III 1. two pointers2.stringstream [561] 数组拆分 I 贪心。排序 [680] 验证回文字符串 Ⅱ two pointers [700] 二叉搜索树的查找 1. 递归。BST。E2. 迭代。BST。E。 [701] 二叉搜索树的插入 1. 递归。BST。2. 迭代。BST。break。 [705] 设计哈希集合 hashset。二维数组。value=0或者1.代表集合中是否存在。E。 [706] 设计哈希映射 hashmap。key-value。映射。初值为-1。E。 [724] 寻找数组的中心索引 1. 计算不含nums[i]的leftsum，如果leftsum== total - leftsum -nums[i]，返回i2. left=0,right=total;right-sum[i],if(==),return i;left+nums[i];return -1 [747] 至少是其他数字两倍的最大数 第一遍找到最大并记录索引。第二遍如果又发现不符合条件的返-1。否则返index [804] 国际摩尔斯密码 unordered_set。hash。E。 [876] 链表的中间结点 快慢指针。链表。]]></content>
       <categories>
         <category>Interview</category>
       </categories>
